@@ -3,13 +3,16 @@ package banyan.com.gemcrm.activity;
 /**
  * Created by Ravi on 29/07/15.
  */
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import banyan.com.gemcrm.R;
@@ -22,6 +25,7 @@ public class Fragment_Dashboard extends Fragment {
     }
 
     CardView card1, card2, card3, card4;
+    ImageView thumbnail1,thumbnail2,thumbnail3,thumbnail4;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,11 +44,17 @@ public class Fragment_Dashboard extends Fragment {
         card3 = (CardView) rootView.findViewById(R.id.dashboard_card_view3);
         card4 = (CardView) rootView.findViewById(R.id.dashboard_card_view4);
 
+        thumbnail1 = (ImageView) rootView.findViewById(R.id.dashboard_thumbnail1);
+        thumbnail2 = (ImageView) rootView.findViewById(R.id.dashboard_thumbnail2);
+        thumbnail3 = (ImageView) rootView.findViewById(R.id.dashboard_thumbnail3);
+        thumbnail4 = (ImageView) rootView.findViewById(R.id.dashboard_thumbnail4);
+
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "Target 1", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getActivity(), Activity_Dashboard_Finance_Target.class);
+                startActivity(i);
 
             }
         });
@@ -53,7 +63,8 @@ public class Fragment_Dashboard extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "Target 2", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getActivity(), Activity_Dashboard_Product_Target.class);
+                startActivity(i);
 
             }
         });
@@ -72,6 +83,26 @@ public class Fragment_Dashboard extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getActivity(), "Target 4", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        thumbnail1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getActivity(), Activity_Dashboard_Finance_Target.class);
+                startActivity(i);
+
+            }
+        });
+
+        thumbnail2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getActivity(), Activity_Dashboard_Product_Target.class);
+                startActivity(i);
 
             }
         });

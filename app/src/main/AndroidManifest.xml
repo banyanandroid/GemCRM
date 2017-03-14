@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="banyan.com.gemcrm">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,7 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AfterFabAnimationActivity"></activity>
+        <activity android:name=".activity.Activity_Enquiry_Add"></activity>
+        <activity android:name=".activity.Activity_Appoinment_Add"></activity>
+        <activity android:name=".activity.Activity_Dashboard_Finance_Target"></activity>
+        <activity android:name=".activity.Activity_Dashboard_Product_Target"></activity>
     </application>
 
 </manifest>

@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             return true;
         }
 
-        if(id == R.id.action_search){
-            Toast.makeText(getApplicationContext(), "Search action is selected!", Toast.LENGTH_SHORT).show();
+        if(id == R.id.action_alert){
+            Toast.makeText(getApplicationContext(), "Search Alert is selected!", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_enquiry);
                 break;
             case 2:
-                fragment = new Fragment_Oppoinments();
+                fragment = new Fragment_Appoinments();
                 title = getString(R.string.title_appointment);
                 break;
             case 3:

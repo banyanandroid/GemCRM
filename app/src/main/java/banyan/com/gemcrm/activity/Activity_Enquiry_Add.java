@@ -12,21 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import banyan.com.gemcrm.R;
-import banyan.com.gemcrm.global.BaseActivity;
+import banyan.com.gemcrm.global.BaseActivity_Enquiry;
 import butterknife.ButterKnife;
 
 
-public class AfterFabAnimationActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
+public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         enterFromBottomAnimation();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_after_fab_animation);
+        setContentView(R.layout.activity_add_new_enquiry);
         ButterKnife.bind(this);
         setUpToolbarWithTitle(getString(R.string.COMPOSE), true);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.add_enquiry_spn_product_group);
 
         spinner.setOnItemSelectedListener(this);
 

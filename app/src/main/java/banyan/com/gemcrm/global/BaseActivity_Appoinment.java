@@ -8,13 +8,13 @@ import banyan.com.gemcrm.R;
 /**
  * Created by Cristopher on 11/6/15.
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity_Appoinment extends AppCompatActivity {
 
     protected void setUpToolbarWithTitle(String title, boolean hasBackButton){
         Toolbar toolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         if(getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Create New Enquiery");
+            getSupportActionBar().setTitle("Create New Appoinment");
             getSupportActionBar().setDisplayShowHomeEnabled(hasBackButton);
             getSupportActionBar().setDisplayHomeAsUpEnabled(hasBackButton);
         }
