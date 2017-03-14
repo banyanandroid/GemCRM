@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import banyan.com.gemcrm.R;
+import banyan.com.gemcrm.global.BaseActivity;
 import butterknife.ButterKnife;
 
 

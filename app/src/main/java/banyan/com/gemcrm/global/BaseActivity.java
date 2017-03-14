@@ -1,4 +1,4 @@
-package banyan.com.gemcrm.activity;
+package banyan.com.gemcrm.global;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
