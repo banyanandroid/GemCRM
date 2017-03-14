@@ -80,16 +80,25 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         switch (position) {
             case 0:
                 fragment = new Fragment_Dashboard();
-                title = getString(R.string.title_home);
+                title = getString(R.string.title_dashboard);
                 break;
             case 1:
                 fragment = new Fragment_Enquiry();
-                title = getString(R.string.title_friends);
+                title = getString(R.string.title_enquiry);
                 break;
             case 2:
                 fragment = new Fragment_Oppoinments();
-                title = getString(R.string.title_messages);
+                title = getString(R.string.title_appointment);
                 break;
+            case 3:
+                fragment=new Fragment_Target();
+                title=getString(R.string.title_target);
+                break;
+            case 4:
+                fragment=new Fragment_Campaign();
+                title=getString(R.string.title_campaign);
+                break;
+
             default:
                 break;
         }

@@ -6,20 +6,32 @@
         <string name="drawer_open">Open</string>
         <string name="drawer_close">Close</string>
 
-        <string name="nav_item_home">Home</string>
-        <string name="nav_item_friends">Friends</string>
-        <string name="nav_item_notifications">Messages</string>
+        <string name="nav_item_dashboard">Dashboard</string>
+        <string name="nav_item_enquiry">Enquiry</string>
+        <string name="nav_item_appointment">Appointment</string>
+        <string name="nav_item_target">Target</string>
+        <string name="nav_item_campaign">Campaign</string>
+        <string name="nav_item_about">About</string>
+        <string name="nav_item_logout">Logout</string>
 
         <!-- navigation drawer item labels  -->
         <string-array name="nav_drawer_labels">
-            <item>@string/nav_item_home</item>
-            <item>@string/nav_item_friends</item>
-            <item>@string/nav_item_notifications</item>
+            <item>@string/nav_item_dashboard</item>
+            <item>@string/nav_item_enquiry</item>
+            <item>@string/nav_item_appointment</item>
+            <item>@string/nav_item_target</item>
+            <item>@string/nav_item_campaign</item>
+            <item>@string/nav_item_about</item>
+            <item>@string/nav_item_logout</item>
         </string-array>
 
-        <string name="title_messages">Messages</string>
-        <string name="title_friends">Friends</string>
-        <string name="title_home">Home</string>
+        <string name="title_dashboard">Dashboard</string>
+        <string name="title_enquiry">Enquiry</string>
+        <string name="title_appointment">Appointment</string>
+        <string name="title_target">Target</string>
+        <string name="title_campaign">Campaign</string>
+        <string name="title_about">About</string>
+        <string name="title_logout">Logout</string>
 
     <string name="COMPOSE">Compose</string>
     <string name="INBOX">Inbox</string>
