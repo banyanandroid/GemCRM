@@ -5,6 +5,7 @@
         <string name="action_search">Search</string>
         <string name="drawer_open">Open</string>
         <string name="drawer_close">Close</string>
+        <string name="spinner_title">Select Category</string>
 
         <string name="nav_item_dashboard">Dashboard</string>
         <string name="nav_item_enquiry">Enquiry</string>

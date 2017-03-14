@@ -2,14 +2,20 @@ package banyan.com.gemcrm.activity;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import banyan.com.gemcrm.R;
 import butterknife.ButterKnife;
 
 
-public class AfterFabAnimationActivity extends BaseActivity {
+public class AfterFabAnimationActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +24,25 @@ public class AfterFabAnimationActivity extends BaseActivity {
         setContentView(R.layout.activity_after_fab_animation);
         ButterKnife.bind(this);
         setUpToolbarWithTitle(getString(R.string.COMPOSE), true);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+
+        spinner.setOnItemSelectedListener(this);
+
+        List<String> categories = new ArrayList<String>();
+        categories.add("Dryer");
+        categories.add("Chiller");
+        categories.add("Cooler");
+        categories.add("Var");
+        categories.add("Small products");
+
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(dataAdapter);
     }
 
     @Override
@@ -30,6 +55,18 @@ public class AfterFabAnimationActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
     /*@Override
