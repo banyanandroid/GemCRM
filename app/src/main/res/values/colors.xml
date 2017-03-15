@@ -14,6 +14,6 @@
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
 
-    <color name="trans_black">#aa333333</color>
+    <color name="trans_black">#aa757575</color>
     <color name="trans_white">#aaFFFFFF</color>
 </resources>

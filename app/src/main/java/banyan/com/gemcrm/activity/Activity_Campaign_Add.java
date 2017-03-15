@@ -33,6 +33,7 @@ public class Activity_Campaign_Add extends BaseActivity_Appoinment implements Ad
 
         edt_date = (EditText) findViewById(R.id.add_campaign_edt_date);
 
+        edt_date.setKeyListener(null);
         edt_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
