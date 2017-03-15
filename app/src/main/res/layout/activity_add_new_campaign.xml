@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    android:background="@drawable/background">
 
     <include layout="@layout/toolbar"></include>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/trans_black">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,10 +26,10 @@
                 android:id="@+id/add_campaign_edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Name"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:inputType="text"
                 android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Name"
+                android:inputType="text"
                 android:singleLine="true" />
 
 
@@ -35,37 +37,32 @@
                 android:id="@+id/add_campaign_edt_companyname"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Company Name"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:inputType="text"
                 android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Company Name"
+                android:inputType="text"
                 android:singleLine="true" />
+
             <EditText
                 android:id="@+id/add_campaign_edt_company_description"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Company Description"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:inputType="text"
                 android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Company Description"
+                android:inputType="text"
                 android:singleLine="true" />
-            <LinearLayout
+
+            <EditText
+                android:id="@+id/add_campaign_edt_date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="3"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:text="Date"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    />
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Date"
+                android:inputType="text"
+                android:singleLine="true" />
 
-
-            </LinearLayout>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
