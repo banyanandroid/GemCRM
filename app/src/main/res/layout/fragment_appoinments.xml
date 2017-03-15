@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
@@ -18,6 +19,15 @@
         android:layout_marginRight="46dp"
         android:background="@color/colorAccent"
         android:src="@mipmap/ic_calender" />
+
+    <com.github.fabtransitionactivity.SheetLayout
+        android:id="@+id/bottom_sheet1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        app:ft_container_gravity="center"
+        app:ft_color="@color/colorPrimary"
+        android:elevation="2dp"/>
 
     <TextView
         android:id="@+id/label"

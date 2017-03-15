@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_enquiry);
                 break;
             case 2:
-                fragment = new Fragment_Appoinments();
+                fragment = new Fragment_Appointments();
                 title = getString(R.string.title_appointment);
                 break;
             case 3:

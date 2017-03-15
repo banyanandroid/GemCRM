@@ -1,8 +1,8 @@
 package banyan.com.gemcrm.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,36 +12,30 @@ import android.view.ViewGroup;
 import com.github.fabtransitionactivity.SheetLayout;
 
 import banyan.com.gemcrm.R;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
 /**
- * Created by Ravi on 29/07/15.
+ * Created by steve on 15/3/17.
  */
-public class Fragment_Appoinments extends Fragment implements SheetLayout.OnFabAnimationEndListener {
+
+public class Fragment_Appointments extends Fragment implements SheetLayout.OnFabAnimationEndListener {
 
     SheetLayout mSheetLayout;
     FloatingActionButton mFab;
 
     private static final int REQUEST_CODE = 1;
 
-    public Fragment_Appoinments() {
-        // Required empty public constructor
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootview = inflater.inflate(R.layout.fragment_appoinments, null);
 
-    }
+        ButterKnife.bind(getActivity());
+        // setUpToolbarWithTitle(getString(R.string.INBOX), false);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_appoinments, container, false);
-
-        mFab = (FloatingActionButton) rootView.findViewById(R.id.fab_add_appoinment);
-        mSheetLayout = (SheetLayout) rootView.findViewById(R.id.bottom_sheet);
+        mFab = (FloatingActionButton) rootview.findViewById(R.id.fab_add_appoinment);
+        mSheetLayout = (SheetLayout) rootview.findViewById(R.id.bottom_sheet1);
 
         mSheetLayout.setFab(mFab);
         mSheetLayout.setFabAnimationEndListener(this);
@@ -53,8 +47,8 @@ public class Fragment_Appoinments extends Fragment implements SheetLayout.OnFabA
             }
         });
 
-        // Inflate the layout for this fragment
-        return rootView;
+        return rootview;
+
     }
 
     @OnClick(R.id.fab_add_appoinment)
@@ -75,15 +69,5 @@ public class Fragment_Appoinments extends Fragment implements SheetLayout.OnFabA
         if(requestCode == REQUEST_CODE){
             mSheetLayout.contractFab();
         }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 }

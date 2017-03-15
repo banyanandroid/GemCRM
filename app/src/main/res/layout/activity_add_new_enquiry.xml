@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    android:orientation="vertical">
 
     <include layout="@layout/toolbar"></include>
 
@@ -20,117 +20,72 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/add_enquiry_edt_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:hint="Name"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner">
-
-                <EditText
-                    android:id="@+id/add_enquiry_edt_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Name"
-                    android:inputType="text"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                android:inputType="text"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:singleLine="true" />
+            <EditText
+                android:id="@+id/add_enquiry_edt_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:hint="Email"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner">
-
-                <EditText
-                    android:id="@+id/add_enquiry_edt_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="E-mail"
-                    android:inputType="textEmailAddress"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                android:inputType="text"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:singleLine="true" />
+            <EditText
+                android:id="@+id/add_enquiry_edt_address"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:hint="address"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner">
-
-                <EditText
-                    android:id="@+id/add_enquiry_edt_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Address"
-                    android:inputType="text" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                android:inputType="text"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:singleLine="true" />
+            <EditText
+                android:id="@+id/add_enquiry_edt_phonono"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:hint="Phone number"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner">
-
-                <EditText
-                    android:id="@+id/add_enquiry_edt_phoneno"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Phone Number"
-                    android:inputType="phone"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                android:inputType="text"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:singleLine="true" />
+            <EditText
+                android:id="@+id/add_enquiry_edt_contact_person"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:hint="Contact Person"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner">
-
-                <EditText
-                    android:id="@+id/add_enquiry_edt_contact_person"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Contact Person Name"
-                    android:inputType="text"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
+                android:inputType="text"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:singleLine="true" />
+            <EditText
+                android:id="@+id/add_enquiry_edt_contact_person_number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:hint="Contact person Phone Number"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner">
-
-                <EditText
-                    android:id="@+id/add_enquiry_edt_contact_person_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Contact Person Name Phone No"
-                    android:inputType="text"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                android:inputType="text"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:singleLine="true" />
+            <EditText
+                android:id="@+id/add_enquiry_edt_pincode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:hint="Pincode"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner">
+                android:inputType="text"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:singleLine="true" />
 
-                <EditText
-                    android:id="@+id/add_enquiry_edt_pincode"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Pincode"
-                    android:inputType="phone"
-                    android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -142,22 +97,27 @@
 
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="Product Group"
-                    android:textColor="@color/cardview_dark_background"
+                    android:layout_marginTop="10dip"
+                    android:text="Product Group:"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="5dp"/>
 
                 <Spinner
                     android:id="@+id/add_enquiry_spn_product_group"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_parent_rounded_corner"></Spinner>
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:prompt="@string/spinner_title"
+                    android:layout_alignTop="@+id/text"
+                    android:layout_alignBottom="@+id/text"
+                    android:gravity="center"
+                    android:background="@drawable/bg_parent_rounded_corner"
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
