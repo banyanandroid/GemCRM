@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity android:name=".activity.MainActivity">
+
+        </activity>
+        <activity android:name=".activity.Activity_Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
