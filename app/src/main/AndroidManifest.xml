@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".activity.Activity_Enquiry_Add"></activity>
         <activity android:name=".activity.Activity_Appoinment_Add"></activity>
+        <activity android:name=".activity.Activity_Campaign_Add"></activity>
         <activity android:name=".activity.Activity_Dashboard_Finance_Target"></activity>
         <activity android:name=".activity.Activity_Dashboard_Product_Target"></activity>
     </application>

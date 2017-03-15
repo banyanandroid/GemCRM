@@ -1,18 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
 
-    <TextView
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_campaign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
+        android:background="@color/colorAccent"
+        android:src="@drawable/ic_campaign" />
+
+    <com.github.fabtransitionactivity.SheetLayout
+        android:id="@+id/bottom_sheet2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Campaign"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:gravity="center"
+        android:layout_gravity="bottom"
+        app:ft_container_gravity="center"
+        app:ft_color="@color/colorPrimary"
+        android:elevation="2dp"/>
+
+    <TextView
+        android:id="@+id/label1"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:textSize="45dp"
+        android:text="CAMPAIGN"
         android:textStyle="bold"/>
 
-
-</LinearLayout>
+</RelativeLayout>
