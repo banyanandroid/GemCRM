@@ -17,17 +17,25 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import banyan.com.gemcrm.R;
 import banyan.com.gemcrm.adapter.NavigationDrawerAdapter;
+import banyan.com.gemcrm.global.SessionManager;
 import banyan.com.gemcrm.model.NavDrawerItem;
 
 public class FragmentDrawer extends Fragment {
 
     private static String TAG = FragmentDrawer.class.getSimpleName();
+
+    TextView txt_username;
+    public static String str_id, str_name;
+    // Session Manager Class
+    SessionManager session;
 
     private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -72,6 +80,20 @@ public class FragmentDrawer extends Fragment {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
+        txt_username = (TextView) layout.findViewById(R.id.drawer_txtview_username);
+
+        session = new SessionManager(getActivity());
+
+        session.checkLogin();
+
+        // get user data from session
+        HashMap<String, String> user = session.getUserDetails();
+
+        // name
+        str_name = user.get(SessionManager.KEY_USER);
+        str_id = user.get(SessionManager.KEY_USER_ID);
+
+        txt_username.setText(""+str_name);
 
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);

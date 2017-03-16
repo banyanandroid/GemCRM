@@ -1,18 +1,40 @@
 package banyan.com.gemcrm.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.sdsmdg.tastytoast.TastyToast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import banyan.com.gemcrm.R;
+import banyan.com.gemcrm.global.AppConfig;
+import banyan.com.gemcrm.global.SessionManager;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -22,12 +44,47 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
 
+    // Session Manager Class
+    SessionManager session;
+
+    public static String str_id, str_name;
+
+    public static RequestQueue queue;
+
+    //Notification Batch
+
+    RelativeLayout notificationCount1, parent_batch;
+    TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        session = new SessionManager(getApplicationContext());
+
+        session.checkLogin();
+
+        // get user data from session
+        HashMap<String, String> user = session.getUserDetails();
+
+        // name
+        str_name = user.get(SessionManager.KEY_USER);
+        str_id = user.get(SessionManager.KEY_USER_ID);
+
+        try {
+            System.out.println("user" + str_id);
+            System.out.println("user" + str_id);
+            System.out.println("user" + str_id);
+            System.out.println("user" + str_id);
+            System.out.println("user" + str_id);
+            queue = Volley.newRequestQueue(MainActivity.this);
+            Function_UpdateLastLogin();
+        }catch (Exception e) {
+
+        }
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -42,30 +99,57 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
 
+    /**********************************
+     * Main Menu
+     *********************************/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem item1 = menu.findItem(R.id.action_alert);
+        MenuItemCompat.setActionView(item1, R.layout.notification_update_count_layout);
+        notificationCount1 = (RelativeLayout) MenuItemCompat.getActionView(item1);
+        parent_batch = (RelativeLayout) MenuItemCompat.getActionView(item1);
+        tv = (TextView) notificationCount1.findViewById(R.id.badge_notification_2);
+        tv.setText("0");
+        //str_cart = Integer.toString(count);
+        //tv.setText("" + cart_size);
+
+        parent_batch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(),"Batch Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(),"Batch Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_alert) {
+
+            Toast.makeText(getApplicationContext(),"Batch Clicked", Toast.LENGTH_LONG).show();
+
+            return true;
+        }
         if (id == R.id.action_settings) {
-            return true;
-        }
 
-        if(id == R.id.action_alert){
-            Toast.makeText(getApplicationContext(), "Search Alert is selected!", Toast.LENGTH_SHORT).show();
-            return true;
+            Toast.makeText(getApplicationContext(),"Settings", Toast.LENGTH_LONG).show();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -99,6 +183,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title=getString(R.string.title_campaign);
                 break;
 
+            case 5:
+                TastyToast.makeText(getApplicationContext(), "About", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                break;
+
+            case 6:
+
+                session.logoutUser();
+
+                break;
+
             default:
                 break;
         }
@@ -112,5 +206,62 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             // set the toolbar title
             getSupportActionBar().setTitle(title);
         }
+    }
+
+    /********************************
+     * User Authentication
+     *********************************/
+
+    private void Function_UpdateLastLogin() {
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_lastlogin, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                Log.d("USER_LOGIN", response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    System.out.println("REG" + success);
+
+                    if (success == 1) {
+
+                       // TastyToast.makeText(getApplicationContext(), "Done", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+
+                    } else {
+                        TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_id);
+
+                System.out.println("user" + str_id);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
     }
 }
