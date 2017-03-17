@@ -1,10 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
+
+    <ListView
+        android:id="@+id/camp_listView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </ListView>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_campaign"
@@ -25,19 +33,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        app:ft_container_gravity="center"
+        android:elevation="2dp"
         app:ft_color="@color/colorPrimary"
-        android:elevation="2dp"/>
-
-    <TextView
-        android:id="@+id/label1"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="45dp"
-        android:text="CAMPAIGN"
-        android:textStyle="bold"/>
+        app:ft_container_gravity="center" />
 
 </RelativeLayout>

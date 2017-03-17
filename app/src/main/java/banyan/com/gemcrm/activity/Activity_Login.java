@@ -51,7 +51,6 @@ public class Activity_Login extends Activity {
     private static final String TAG_ID = "user_id";
     String TAG = "reg";
 
-    ProgressDialog pDialog;
     SpotsDialog dialog;
     public static RequestQueue queue;
 
