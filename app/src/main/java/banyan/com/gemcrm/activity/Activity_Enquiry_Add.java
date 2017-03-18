@@ -47,9 +47,9 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
     String str_user_name, str_user_id;
 
     AutoCompleteTextView auto_campaign_name;
-    EditText edt_user, edt_email, edt_address, edt_phone, edt_contact_person, edt_contact_person_phone, edt_pincode,edt_description;
+    EditText edt_user, edt_email, edt_address, edt_phone, edt_contact_person, edt_contact_person_phone, edt_pincode, edt_description, edt_refrence;
 
-    String str_user, str_email, str_address, str_phoneno, str_contact_person, str_contact_person_phone, str_pincode , str_description= "";
+    String str_user, str_email, str_address, str_phoneno, str_contact_person, str_contact_person_phone, str_pincode, str_description, str_enq_thro_des = "";
 
     Button btn_submit;
 
@@ -83,11 +83,12 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
     ArrayList<String> Arraylist_camp_id = null;
     ArrayList<String> Arraylist_camp_title = null;
 
-    private ArrayAdapter<String> adapter_campaign;
+    private ArrayAdapter<String> adapter_contact;
+    ArrayList<String> stringArray_contact = null;
 
     String str_selected_product, str_selected_product_id = "";
     String str_selected_enquiry_through, str_selected_enquiry_through_id = "";
-    String str_selected_campaign = "";
+    String str_selected_campaign, str_selected_campaign_id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,8 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
         str_user_name = user.get(SessionManager.KEY_USER);
         str_user_id = user.get(SessionManager.KEY_USER_ID);
 
+        auto_campaign_name = (AutoCompleteTextView) findViewById(R.id.new_enq_auto_campaign);
+
         edt_user = (EditText) findViewById(R.id.add_enquiry_edt_name);
         edt_email = (EditText) findViewById(R.id.add_enquiry_edt_email);
         edt_address = (EditText) findViewById(R.id.add_enquiry_edt_address);
@@ -112,6 +115,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
         edt_contact_person_phone = (EditText) findViewById(R.id.add_enquiry_edt_contact_person_number);
         edt_pincode = (EditText) findViewById(R.id.add_enquiry_edt_pincode);
         edt_description = (EditText) findViewById(R.id.add_enquiry_edt_description);
+        edt_refrence = (EditText) findViewById(R.id.add_enquiry_edt_enquiry_ref);
 
         spn_product = (Spinner) findViewById(R.id.add_enquiry_spn_product_group);
         spn_enq_through = (Spinner) findViewById(R.id.add_enquiry_spn_product_enquiry_through);
@@ -139,7 +143,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 str_selected_product = Arraylist_products.get(arg2);
                 str_selected_product_id = Arraylist_product_id.get(arg2);
 
-                System.out.println("ID : " + str_selected_product+ " :   " +str_selected_product_id);
+                System.out.println("ID : " + str_selected_product + " :   " + str_selected_product_id);
 
             }
 
@@ -161,7 +165,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 System.out.println("ID : " + str_selected_enquiry_through);
                 System.out.println("NAME : " + str_selected_enquiry_through_id);
 
-                if (str_selected_enquiry_through.equals("CAMPAIGN")){
+                if (str_selected_enquiry_through.equals("CAMPAIGN")) {
                     linear_camp.setVisibility(View.VISIBLE);
                     linear_ref.setVisibility(View.GONE);
 
@@ -172,11 +176,11 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                         // TODO: handle exception
                     }
 
-                }else if (str_selected_enquiry_through.equals("REFERENCE")){
+                } else if (str_selected_enquiry_through.equals("REFERENCE")) {
                     linear_camp.setVisibility(View.GONE);
                     linear_ref.setVisibility(View.VISIBLE);
 
-                }else{
+                } else {
                     linear_camp.setVisibility(View.GONE);
                     linear_ref.setVisibility(View.GONE);
 
@@ -202,6 +206,14 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 str_phoneno = edt_phone.getText().toString();
                 str_contact_person = edt_contact_person.getText().toString();
                 str_contact_person_phone = edt_contact_person_phone.getText().toString();
+                str_description = edt_description.getText().toString();
+
+                if (str_selected_enquiry_through.equals("CAMPAIGN")) {
+                    str_enq_thro_des = str_selected_campaign_id;
+                } else if (str_selected_enquiry_through.equals("REFERENCE")) {
+                    str_enq_thro_des = edt_refrence.getText().toString();
+                }
+
 
                 if (str_user.equals("")) {
                     edt_user.setError("Please Enter Company Name");
@@ -218,6 +230,11 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 } else if (str_contact_person.equals("")) {
                     edt_contact_person.setError("Please Enter the Field");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Contact Person", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                } else {
+                    dialog = new SpotsDialog(Activity_Enquiry_Add.this);
+                    dialog.show();
+                    queue = Volley.newRequestQueue(getApplicationContext());
+                    Post_Enquiry();
                 }
 
             }
@@ -455,26 +472,17 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                             Arraylist_camp_title.add(camp_title);
                         }
                         try {
-
-                            System.out.println("CAMP B$4444444: " + Arraylist_camp_title);
-
-                            adapter_campaign = new ArrayAdapter<String>(Activity_Enquiry_Add.this,
+                            adapter_contact = new ArrayAdapter<String>(getApplicationContext(),
                                     android.R.layout.simple_list_item_1, Arraylist_camp_title);
-                            auto_campaign_name.setAdapter(adapter_campaign);
+                            auto_campaign_name.setAdapter(adapter_contact);
                             auto_campaign_name.setThreshold(1);
-
-                            System.out.println("CAMP : " + Arraylist_camp_title);
-
-                            System.out.println("CAMP DONEEEEEE: " + Arraylist_camp_title);
 
                             auto_campaign_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                                         long arg3) {
                                     t1 = (TextView) arg1;
                                     str_selected_campaign = t1.getText().toString();
-
-                                    System.out.println("SELECTED : " + str_selected_campaign);
-
+                                    str_selected_campaign_id = Arraylist_camp_id.get(arg2);
                                 }
                             });
 
@@ -513,6 +521,101 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
         // Adding request to request queue
         queue.add(request);
+    }
+
+    /*****************************
+     * GET Post Enquiry
+     ***************************/
+
+    public void Post_Enquiry() {
+
+        String tag_json_obj = "json_obj_req";
+        System.out.println("CAME 1");
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_add_enquiry, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        Alerter.create(Activity_Enquiry_Add.this)
+                                .setTitle("GEM CRM")
+                                .setText("Posted Successfully !!!")
+                                .show();
+
+                        try {
+                            function_reset();
+                        } catch (Exception e) {
+
+                        }
+
+                    } else if (success == 0) {
+
+
+                    }
+                    dialog.dismiss();
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                dialog.dismiss();
+            }
+
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                dialog.dismiss();
+                Alerter.create(Activity_Enquiry_Add.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_user_id);
+                params.put("enq_name", str_user);
+                params.put("enq_email", str_email);
+                params.put("enq_address", str_address);
+                params.put("enq_phone", str_phoneno);
+                params.put("enq_contactperson", str_contact_person);
+                params.put("enq_contactper_phone", str_contact_person_phone);
+                params.put("enq_pin", str_pincode);
+                params.put("enq_product", str_selected_product_id);
+                params.put("enquiry_through", str_selected_enquiry_through_id);
+                params.put("enquiry_through_description", str_enq_thro_des);
+                params.put("enq_remarks", str_description);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+    private void function_reset() {
+        edt_user.setText("");
+        edt_email.setText("");
+        edt_address.setText("");
+        edt_phone.setText("");
+        edt_contact_person.setText("");
+        edt_contact_person_phone.setText("");
+        edt_pincode.setText("");
+        edt_description.setText("");
+        edt_refrence.setText("");
     }
 
 
