@@ -3,9 +3,7 @@ package banyan.com.gemcrm.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -38,7 +36,6 @@ import banyan.com.gemcrm.R;
 import banyan.com.gemcrm.adapter.Campaign_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dmax.dialog.SpotsDialog;
 
@@ -46,7 +43,7 @@ import dmax.dialog.SpotsDialog;
  * Created by steve on 14/3/17.
  */
 
-public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnimationEndListener{
+public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnimationEndListener,SwipeRefreshLayout.OnRefreshListener{
 
     SheetLayout mSheetLayout;
     FloatingActionButton mFab;
@@ -64,6 +61,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
     String TAG = "add task";
 
     private ListView List;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public static final String TAG_CAMP_ID = "campaign_id";
     public static final String TAG_CAMP_TITLE = "campaign_title";
@@ -73,7 +71,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
     public static final String TAG_CAMP_LOCATION = "campaign_place";
     public static final String TAG_CAMP_CREATED_ON = "campaign_created_on";
 
-    static ArrayList<HashMap<String, String>> complaint_list;
+    static ArrayList<HashMap<String, String>> campaign_list;
 
     HashMap<String, String> params = new HashMap<String, String>();
 
@@ -109,9 +107,28 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
         });
 
         List = (ListView) rootview.findViewById(R.id.camp_listView);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootview.findViewById(R.id.camp_swipe_refresh_layout);
+
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        swipeRefreshLayout.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        swipeRefreshLayout.setRefreshing(true);
+
+                                        try {
+                                            queue = Volley.newRequestQueue(getActivity());
+                                            GetMyCampaign();
+
+                                        } catch (Exception e) {
+                                            // TODO: handle exception
+                                        }
+                                    }
+                                }
+        );
 
         // Hashmap for ListView
-        complaint_list = new ArrayList<HashMap<String, String>>();
+        campaign_list = new ArrayList<HashMap<String, String>>();
 
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -119,31 +136,22 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-
+                System.out.println("Clciked");
             }
 
         });
-
-        try {
-
-            dialog = new SpotsDialog(getActivity());
-            dialog.show();
-            queue = Volley.newRequestQueue(getActivity());
-            GetMyCampaign();
-
-        }catch (Exception e) {
-
-        }
-
-
 
         return rootview;
 
     }
 
+    /**
+     * This method is called when swipe refresh is pulled down
+     */
+    @Override
     public void onRefresh() {
         try {
-            complaint_list.clear();
+            campaign_list.clear();
             queue = Volley.newRequestQueue(getActivity());
             GetMyCampaign();
 
@@ -220,13 +228,13 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
                             map.put(TAG_CAMP_END_DATE, end_date);
                             map.put(TAG_CAMP_CREATED_ON, created_on);
 
-                            complaint_list.add(map);
+                            campaign_list.add(map);
 
-                            System.out.println("HASHMAP ARRAY" + complaint_list);
+                            System.out.println("HASHMAP ARRAY" + campaign_list);
 
 
                             adapter = new Campaign_Adapter(getActivity(),
-                                    complaint_list);
+                                    campaign_list);
                             List.setAdapter(adapter);
 
                         }
@@ -234,22 +242,25 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
                     } else if (success == 0) {
 
                         adapter = new Campaign_Adapter(getActivity(),
-                                complaint_list);
+                                campaign_list);
                         List.setAdapter(adapter);
                     }
+                    swipeRefreshLayout.setRefreshing(false);
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
 
-                dialog.dismiss();
+               // dialog.dismiss();
+                swipeRefreshLayout.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                dialog.dismiss();
+                //dialog.dismiss();
                 Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+                swipeRefreshLayout.setRefreshing(false);
             }
         }) {
 

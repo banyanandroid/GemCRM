@@ -18,14 +18,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.Activity_Login">
+        <activity
+            android:name=".activity.Activity_Login"
+            android:label="@string/app_name">
 
         </activity>
-        <activity android:name=".activity.Activity_Enquiry_Add"></activity>
-        <activity android:name=".activity.Activity_Appoinment_Add"></activity>
-        <activity android:name=".activity.Activity_Campaign_Add"></activity>
-        <activity android:name=".activity.Activity_Dashboard_Finance_Target"></activity>
-        <activity android:name=".activity.Activity_Dashboard_Product_Target"></activity>
+        <activity android:name=".activity.Activity_Enquiry_Add"
+            android:label="Add Enquiry"></activity>
+        <activity android:name=".activity.Activity_Appoinment_Add"
+            android:label="Add Appointment"></activity>
+        <activity android:name=".activity.Activity_Campaign_Add"
+            android:label="Add Campaign"></activity>
+        <activity android:name=".activity.Activity_Dashboard_Finance_Target"
+            android:label="Finance Target"></activity>
+        <activity android:name=".activity.Activity_Dashboard_Product_Target"
+            android:label="Product Target"></activity>
+
+        <activity android:name=".activity.Activity_Appointment_description"
+            android:label="Appointment Description"></activity>
+
     </application>
 
 </manifest>

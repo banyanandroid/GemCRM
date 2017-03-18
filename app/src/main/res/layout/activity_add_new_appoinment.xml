@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/android_date_picker"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".activity.Activity_Appoinment_Add">
+    tools:context=".activity.MainActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -14,33 +12,142 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/trans_black">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:orientation="vertical">
 
-            <DatePicker
-                android:id="@+id/datePicker"
+            <EditText
+                android:id="@+id/add_appoint_edt_name"
                 android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:layout_height="match_parent" />
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:drawableRight="@mipmap/ic_edt_camp"
+                android:hint="Appoint With"
+                android:inputType="text"
+                android:singleLine="true" />
 
-            <Button
-                android:id="@+id/change_date_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change Date" />
 
-            <TextView
-                android:id="@+id/display_date"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/add_appoint_edt_location"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:drawableRight="@mipmap/ic_edt_location"
+                android:hint="Appointment Location"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/add_appoint_edt_camp_description"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:drawableRight="@mipmap/ic_edt_desc"
+                android:hint="Appointment Note"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/add_appoint_edt_appoint_through"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:drawableRight="@mipmap/ic_edt_desc"
+                android:hint="Appointment Through"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Display Date"
-                android:textSize="22sp" />
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/add_appoint_edt_start_date"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_parent_rounded_corner"
+                    android:drawableRight="@mipmap/ic_edt_date"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="Date"
+                    android:inputType="text"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/add_appoint_edt_time"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_parent_rounded_corner"
+                    android:drawableRight="@mipmap/ic_edt_date"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="Time"
+                    android:inputType="text"
+                    android:singleLine="true" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/add_appoint_btn_reset"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:text="Reset"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/add_appoint_btn_submit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:text="Submit"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
+
+
     </ScrollView>
+
+    <include layout="@layout/toolbar"></include>
+
 </LinearLayout>
