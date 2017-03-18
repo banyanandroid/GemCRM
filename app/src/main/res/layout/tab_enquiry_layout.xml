@@ -17,7 +17,7 @@
         android:layout_marginEnd="46dp"
         android:layout_marginRight="46dp"
         android:background="@color/colorAccent"
-        android:src="@mipmap/ic_add" />
+        android:src="@mipmap/ic_fab_add_enqury" />
 
     <com.github.fabtransitionactivity.SheetLayout
         android:id="@+id/bottom_sheet"

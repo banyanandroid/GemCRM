@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import banyan.com.gemcrm.R;
-import banyan.com.gemcrm.adapter.Campaign_Adapter;
+import banyan.com.gemcrm.adapter.Camp_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
 import butterknife.OnClick;
@@ -75,7 +75,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
 
     HashMap<String, String> params = new HashMap<String, String>();
 
-    public Campaign_Adapter adapter;
+    public Camp_Adapter adapter;
 
     String str_select_task_id;
 
@@ -93,7 +93,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
         str_user_name = user.get(SessionManager.KEY_USER);
         str_user_id = user.get(SessionManager.KEY_USER_ID);
 
-        mFab = (FloatingActionButton) rootview.findViewById(R.id.fab_add_campaign);
+        mFab = (FloatingActionButton) rootview.findViewById(R.id.fab_camp_appoinment);
         mSheetLayout = (SheetLayout) rootview.findViewById(R.id.bottom_sheet2);
 
         mSheetLayout.setFab(mFab);
@@ -160,7 +160,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
         }
     }
 
-    @OnClick(R.id.fab_add_campaign)
+    @OnClick(R.id.fab_camp_appoinment)
     void onFabClick() {
         mSheetLayout.expandFab();
     }
@@ -182,7 +182,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
     }
 
     /*****************************
-     * GET My Task
+     * GET My Campaign
      ***************************/
 
     public void GetMyCampaign() {
@@ -233,7 +233,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
                             System.out.println("HASHMAP ARRAY" + campaign_list);
 
 
-                            adapter = new Campaign_Adapter(getActivity(),
+                            adapter = new Camp_Adapter(getActivity(),
                                     campaign_list);
                             List.setAdapter(adapter);
 
@@ -241,7 +241,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
 
                     } else if (success == 0) {
 
-                        adapter = new Campaign_Adapter(getActivity(),
+                        adapter = new Camp_Adapter(getActivity(),
                                 campaign_list);
                         List.setAdapter(adapter);
                     }

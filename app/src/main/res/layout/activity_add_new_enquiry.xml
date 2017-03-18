@@ -10,6 +10,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +31,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
-                android:hint="Name"
+                android:hint="Company Name *"
                 android:inputType="text"
                 android:singleLine="true" />
 
@@ -40,7 +41,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
-                android:hint="Email"
+                android:hint="Company Email *"
                 android:inputType="text"
                 android:singleLine="true" />
 
@@ -50,37 +51,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
-                android:hint="address"
-                android:inputType="text"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/add_enquiry_edt_phonono"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner"
-                android:hint="Phone number"
-                android:inputType="text"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/add_enquiry_edt_contact_person"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner"
-                android:hint="Contact Person"
-                android:inputType="text"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/add_enquiry_edt_contact_person_number"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="@drawable/bg_parent_rounded_corner"
-                android:hint="Contact person Phone Number"
+                android:hint="address *"
                 android:inputType="text"
                 android:singleLine="true" />
 
@@ -94,6 +65,36 @@
                 android:inputType="text"
                 android:singleLine="true" />
 
+            <EditText
+                android:id="@+id/add_enquiry_edt_phonono"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Company Phone number *"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/add_enquiry_edt_contact_person"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Contact Person *"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/add_enquiry_edt_contact_person_number"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Contact person Phone Number"
+                android:inputType="text"
+                android:singleLine="true" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,34 +104,103 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-
                 <TextView
-                    android:id="@+id/text"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="10dip"
-                    android:layout_weight="0.75"
-                    android:text="Product Group:"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:text="Product Group"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp"  />
 
                 <Spinner
                     android:id="@+id/add_enquiry_spn_product_group"
                     android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_alignBottom="@+id/text"
-                    android:layout_alignTop="@+id/text"
-                    android:layout_weight="1.25"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:popupBackground="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/add_enquiry_edt_description"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Specification"
+                android:inputType="textMultiLine" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:text="Enquiry Through"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+                <Spinner
+                    android:id="@+id/add_enquiry_spn_product_enquiry_through"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:popupBackground="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/new_enq_linear_ref"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/add_enquiry_edt_enquiry_ref"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:background="@drawable/bg_parent_rounded_corner"
-                    android:gravity="center"
-                    android:prompt="@string/spinner_title" />
+                    android:hint="Reference *"
+                    android:inputType="textMultiLine" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/new_enq_linear_camp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:gravity="center"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Search Campaign *"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:background="@drawable/bg_parent_rounded_corner" />
 
             </LinearLayout>
 
             <Button
+                android:id="@+id/add_enq_btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -145,7 +215,5 @@
 
 
     </ScrollView>
-
-    <include layout="@layout/toolbar"></include>
 
 </LinearLayout>

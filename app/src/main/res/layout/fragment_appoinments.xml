@@ -36,7 +36,7 @@
         android:layout_marginEnd="46dp"
         android:layout_marginRight="46dp"
         android:background="@color/colorAccent"
-        android:src="@drawable/ic_campaign" />
+        android:src="@mipmap/ic_fab_appointment" />
 
     <com.github.fabtransitionactivity.SheetLayout
         android:id="@+id/bottom_sheet1"

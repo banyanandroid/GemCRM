@@ -6,29 +6,26 @@
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <LinearLayout
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/camp_swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/camp_swipe_refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/camp_listView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="2dp"
+            android:listSelector="@color/row_activated">
 
-            <ListView
-                android:id="@+id/camp_listView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        </ListView>
 
-            </ListView>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-    </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add_campaign"
+        android:id="@+id/fab_camp_appoinment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -39,7 +36,7 @@
         android:layout_marginEnd="46dp"
         android:layout_marginRight="46dp"
         android:background="@color/colorAccent"
-        android:src="@drawable/ic_campaign" />
+        android:src="@mipmap/ic_fab_camp" />
 
     <com.github.fabtransitionactivity.SheetLayout
         android:id="@+id/bottom_sheet2"

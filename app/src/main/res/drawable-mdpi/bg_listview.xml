@@ -5,9 +5,9 @@
  
     <!-- view <span class="r0b1y7zrz0" id="r0b1y7zrz0_3" style="height: 13px;">background color</span> -->
     <solid
-        android:color="#FFFFFF" >
+        android:color="@color/colorAccent" >
     </solid>
- 
+
     <!-- view border color and width -->
     <stroke
         android:width="1dp"
