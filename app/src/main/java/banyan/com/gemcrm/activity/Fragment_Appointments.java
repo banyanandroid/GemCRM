@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.fabtransitionactivity.SheetLayout;
+import com.tapadoo.alerter.Alerter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -117,20 +118,6 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
                 mSheetLayout.expandFab();
             }
         });
-
-      /*  List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                System.out.println("POSRRR : " + position);
-                System.out.println("POSRRR : " + position);
-                System.out.println("POSRRR : " + position);
-                System.out.println("POSRRR : " + position);
-                System.out.println("POSRRR : " + position);
-                System.out.println("POSRRR : " + position);
-                System.out.println("POSRRR : " + position);
-            }
-        });*/
 
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -236,7 +223,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
     }
 
     /*****************************
-     * GET My Task
+     * GET My Appointment
      ***************************/
 
     public void GetMyAppointment() {
@@ -300,6 +287,12 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
                         adapter = new Appointment_Adapter(getActivity(),
                                 appointment_list);
                         List.setAdapter(adapter);
+
+                        Alerter.create(getActivity())
+                                .setTitle("GEM CRM")
+                                .setText("Data Not Found :( \n Try Again")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
                     }
 
                     swipeRefreshLayout.setRefreshing(false);
@@ -316,7 +309,12 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
             @Override
             public void onErrorResponse(VolleyError error) {
                 swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+
+                Alerter.create(getActivity())
+                        .setTitle("GEM CRM")
+                        .setText("Internal Error :(\n" +error.getMessage() )
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
             }
         }) {
 

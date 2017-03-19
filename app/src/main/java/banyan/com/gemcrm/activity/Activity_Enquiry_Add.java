@@ -545,7 +545,8 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
                         Alerter.create(Activity_Enquiry_Add.this)
                                 .setTitle("GEM CRM")
-                                .setText("Posted Successfully !!!")
+                                .setText("Enquiry Posted Suceessfully :)")
+                                .setBackgroundColor(R.color.Alert_Success)
                                 .show();
 
                         try {
@@ -556,7 +557,11 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
                     } else if (success == 0) {
 
-
+                        Alerter.create(Activity_Enquiry_Add.this)
+                                .setTitle("GEM CRM")
+                                .setText("Enquiry Post FAiled :(")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
                     }
                     dialog.dismiss();
                 } catch (JSONException e) {
@@ -575,7 +580,8 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 dialog.dismiss();
                 Alerter.create(Activity_Enquiry_Add.this)
                         .setTitle("GEM CRM")
-                        .setText(error.getMessage())
+                        .setText("Enquiry Post FAiled ! \n"+ error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
                         .show();
             }
         }) {

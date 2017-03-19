@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
+import com.tapadoo.alerter.Alerter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -265,11 +266,20 @@ public class Activity_Campaign_Add extends BaseActivity_Appoinment implements Ad
 
                     if (success == 1) {
 
-                        TastyToast.makeText(getApplicationContext(), "Success", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+                        Alerter.create(Activity_Campaign_Add.this)
+                                .setTitle("GEM CRM")
+                                .setText("Campaign Created Sucessfully :)")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
                         function_reset();
 
                     } else {
-                        TastyToast.makeText(getApplicationContext(), "Bad Credentials :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+
+                        Alerter.create(Activity_Campaign_Add.this)
+                                .setTitle("GEM CRM")
+                                .setText("Something Went Wrong :(")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
                     }
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -282,7 +292,11 @@ public class Activity_Campaign_Add extends BaseActivity_Appoinment implements Ad
             @Override
             public void onErrorResponse(VolleyError error) {
                 dialog.dismiss();
-                TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                Alerter.create(Activity_Campaign_Add.this)
+                        .setTitle("GEM CRM")
+                        .setText("Internal Error !")
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
             }
         }) {
 

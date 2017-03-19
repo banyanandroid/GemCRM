@@ -25,7 +25,7 @@ public class Fragment_Enquiry extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 3 ;
+    public static int int_items = 4 ;
 
     @Nullable
     @Override
@@ -74,8 +74,9 @@ public class Fragment_Enquiry extends Fragment {
         {
             switch (position){
                 case 0 : return new Tab_Enquiry_Fragment();
-                case 1 : return new Tab_Succeed_Enquiry_Fragment();
-                case 2 : return new Tab_Failure_Enquiry_Fragment();
+                case 1 : return new Tab_My_Enquiry_Fragment();
+                case 2 : return new Tab_Succeed_Enquiry_Fragment();
+                case 3 : return new Tab_Failure_Enquiry_Fragment();
             }
             return null;
         }
@@ -96,10 +97,12 @@ public class Fragment_Enquiry extends Fragment {
 
             switch (position){
                 case 0 :
-                    return "Enquiries";
+                    return "Alloted\nEnquiries";
                 case 1 :
-                    return "Succeed\nEnquiries";
+                    return "My\nEnquiries";
                 case 2 :
+                    return "Succeed\nEnquiries";
+                case 3 :
                     return "Failure\nEnquiries";
             }
             return null;

@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
+import com.tapadoo.alerter.Alerter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +47,7 @@ import dmax.dialog.SpotsDialog;
 
 public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements AdapterView.OnItemSelectedListener {
 
-    EditText edt_app_with, edt_app_location, edt_app_note,edt_app_through, edt_app_date, edt_app_time;
+    EditText edt_app_with, edt_app_location, edt_app_note, edt_app_through, edt_app_date, edt_app_time;
 
     Button btn_submit, btn_reset;
 
@@ -78,10 +79,10 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
         edt_app_date = (EditText) findViewById(R.id.add_appoint_edt_start_date);
         edt_app_time = (EditText) findViewById(R.id.add_appoint_edt_time);
 
-        edt_app_with.setFilters(new InputFilter[] { filter });
-        edt_app_location.setFilters(new InputFilter[] { filter });
-        edt_app_through.setFilters(new InputFilter[] { filter });
-        edt_app_note.setFilters(new InputFilter[] { filter });
+        edt_app_with.setFilters(new InputFilter[]{filter});
+        edt_app_location.setFilters(new InputFilter[]{filter});
+        edt_app_through.setFilters(new InputFilter[]{filter});
+        edt_app_note.setFilters(new InputFilter[]{filter});
 
         btn_submit = (Button) findViewById(R.id.add_appoint_btn_submit);
         btn_reset = (Button) findViewById(R.id.add_appoint_btn_reset);
@@ -150,7 +151,7 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
                 mTimePicker = new TimePickerDialog(Activity_Appoinment_Add.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        edt_app_time.setText( selectedHour + ":" + selectedMinute);
+                        edt_app_time.setText(selectedHour + ":" + selectedMinute);
                     }
                 }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");
@@ -171,22 +172,22 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
                 str_app_date = edt_app_date.getText().toString();
                 str_app_time = edt_app_time.getText().toString();
 
-                if (str_app_with.equals("")){
+                if (str_app_with.equals("")) {
                     edt_app_with.setError("Please Enter Appointment With");
                     TastyToast.makeText(getApplicationContext(), "Appointment With is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }else if (str_app_location.equals("")){
+                } else if (str_app_location.equals("")) {
                     edt_app_location.setError("Please Enter Appointment Location");
                     TastyToast.makeText(getApplicationContext(), "Appointment Location is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }else if (str_app_note.equals("")){
+                } else if (str_app_note.equals("")) {
                     edt_app_note.setError("Please Enter Appointment Note");
                     TastyToast.makeText(getApplicationContext(), "Appointment Note is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }else if (str_app_through.equals("")){
+                } else if (str_app_through.equals("")) {
                     edt_app_through.setError("Please Appointment Through");
                     TastyToast.makeText(getApplicationContext(), "Appointment Through is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }else if (str_app_date.equals("")){
+                } else if (str_app_date.equals("")) {
                     edt_app_date.setError("Please Enter Date");
                     TastyToast.makeText(getApplicationContext(), "Appointment Date is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }else {
+                } else {
                    /* dialog = new SpotsDialog(Activity_Appoinment_Add.this);
                     dialog.show();
                     queue = Volley.newRequestQueue(Activity_Appoinment_Add.this);
@@ -223,6 +224,7 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
         String item = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
+
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }
@@ -248,11 +250,19 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
 
                     if (success == 1) {
 
-                        TastyToast.makeText(getApplicationContext(), "Success", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+                        Alerter.create(Activity_Appoinment_Add.this)
+                                .setTitle("GEM CRM")
+                                .setText("Appointment Created Sucessfully :)")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
                         function_reset();
 
                     } else {
-                        TastyToast.makeText(getApplicationContext(), "Bad Credentials :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                        Alerter.create(Activity_Appoinment_Add.this)
+                                .setTitle("GEM CRM")
+                                .setText("Something Went Wrong :(")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
                     }
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -265,7 +275,11 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
             @Override
             public void onErrorResponse(VolleyError error) {
                 dialog.dismiss();
-                TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                Alerter.create(Activity_Appoinment_Add.this)
+                        .setTitle("GEM CRM")
+                        .setText("Internal Error !")
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
             }
         }) {
 
@@ -298,7 +312,7 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
         queue.add(request);
     }
 
-    private void function_reset(){
+    private void function_reset() {
 
         edt_app_with.setText("");
         edt_app_note.setText("");

@@ -32,4 +32,9 @@
         <item>#fcba59</item>
         <item>#24c6d5</item>
     </string-array>
+
+    <color name="Alert_Success">#4CAF50</color>
+    <color name="Alert_Fail">#F44336</color>
+    <color name="Alert_Warning">#FFC107</color>
+
 </resources>

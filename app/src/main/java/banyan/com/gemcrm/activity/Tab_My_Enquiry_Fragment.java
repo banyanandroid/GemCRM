@@ -36,7 +36,7 @@ import banyan.com.gemcrm.global.SessionManager;
 /**
  * Created by Jo on 7/27/2016.
  */
-public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class Tab_My_Enquiry_Fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     String str_user_name, str_user_id;
     String str_task_name, str_task_des;
 
@@ -86,7 +86,7 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootview = inflater.inflate(R.layout.tab_succeed_enquiry_layout, null);
+        View rootview = inflater.inflate(R.layout.tab_my_enquiry_layout, null);
 
         session = new SessionManager(getActivity());
 
@@ -95,8 +95,8 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
         str_user_name = user.get(SessionManager.KEY_USER);
         str_user_id = user.get(SessionManager.KEY_USER_ID);
 
-        List = (ListView) rootview.findViewById(R.id.my_succeed_enq__listView);
-        swipeRefreshLayout = (SwipeRefreshLayout) rootview.findViewById(R.id.my_succeed_enq_swipe_refresh_layout);
+        List = (ListView) rootview.findViewById(R.id.my_enq__listView);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootview.findViewById(R.id.my_enq_swipe_refresh_layout);
 
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -158,7 +158,7 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
         String tag_json_obj = "json_obj_req";
         System.out.println("CAME 1");
         StringRequest request = new StringRequest(Request.Method.POST,
-                AppConfig.url_my_succeed_enquiry, new Response.Listener<String>() {
+                AppConfig.url_my_enquiry, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {

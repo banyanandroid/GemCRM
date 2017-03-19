@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.fabtransitionactivity.SheetLayout;
+import com.tapadoo.alerter.Alerter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -244,6 +245,12 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
                         adapter = new Camp_Adapter(getActivity(),
                                 campaign_list);
                         List.setAdapter(adapter);
+
+                        Alerter.create(getActivity())
+                                .setTitle("GEM CRM")
+                                .setText("Data Not Found :( \n Try Again")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
                     }
                     swipeRefreshLayout.setRefreshing(false);
                 } catch (JSONException e) {
@@ -259,8 +266,13 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
             @Override
             public void onErrorResponse(VolleyError error) {
                 //dialog.dismiss();
-                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
                 swipeRefreshLayout.setRefreshing(false);
+
+                Alerter.create(getActivity())
+                        .setTitle("GEM CRM")
+                        .setText("Internal Error :(\n" +error.getMessage() )
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
             }
         }) {
 

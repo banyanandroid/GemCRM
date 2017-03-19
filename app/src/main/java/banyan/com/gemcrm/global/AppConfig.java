@@ -22,4 +22,9 @@ public class AppConfig {
     public static String url_enquiry_through = base_url + "android/enquiry_through.php";
     public static String url_campaign = base_url + "android/get_campaign_list.php";
     public static String url_add_enquiry = base_url + "android/user_create_enquiry.php";
+
+    public static String url_get_alloted_enquiry = base_url + "android/get_alloted_enquiries.php";
+    public static String url_my_enquiry = base_url + "android/get_my_enquries.php";
+    public static String url_my_succeed_enquiry = base_url + "android/get_my_suceed_enquiries.php";
+    public static String url_my_failure_enquiry = base_url + "android/get_my_failed_enquiries.php";
 }
