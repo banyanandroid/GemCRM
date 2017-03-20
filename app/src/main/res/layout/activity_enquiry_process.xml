@@ -48,7 +48,7 @@
                         android:weightSum="2">
 
                         <TextView
-                            android:id="@+id/appoint_des_txt_app_created_on"
+                            android:id="@+id/enq_process_txt_app_created_on"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -75,7 +75,7 @@
                         android:weightSum="2">
 
                         <TextView
-                            android:id="@+id/appoint_process_txt_id"
+                            android:id="@+id/enq_process_txt_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -110,11 +110,23 @@
                             android:src="@drawable/company" />
 
                         <TextView
-                            android:id="@+id/enq_des_txt_company_name"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="company Name"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_company_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
                             android:text="company Name"
                             android:textColor="@color/album_title"
@@ -137,15 +149,29 @@
                             android:src="@drawable/email" />
 
                         <TextView
-                            android:id="@+id/enq_des_txt_email"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left"
                             android:text="Email"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_email"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
+                            android:gravity="left"
+                            android:text="Email"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -163,15 +189,29 @@
                             android:src="@drawable/location" />
 
                         <TextView
-                            android:id="@+id/enq_des_txt_address"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left"
                             android:text="Address"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_address"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
+                            android:gravity="left"
+                            android:text="Address"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -189,11 +229,23 @@
                             android:src="@drawable/pin" />
 
                         <TextView
-                            android:id="@+id/enq_des_txt_pin"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="Pincode"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_pin"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
                             android:text="Pin Code"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -215,11 +267,24 @@
                             android:src="@drawable/phone" />
 
                         <TextView
-                            android:id="@+id/enq_des_txt_comp_phone"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="Phone No"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_comp_phone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
+                            android:gravity="left"
                             android:text="Phone No"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -241,11 +306,24 @@
                             android:src="@drawable/employee" />
 
                         <TextView
-                            android:id="@+id/enq_des_txt_conact_person"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="Contact Person"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_conact_person"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
+                            android:gravity="left"
                             android:text="Contact Person"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -267,11 +345,24 @@
                             android:src="@drawable/phone" />
 
                         <TextView
-                            android:id="@+id/enq_des_txt_contact_person_phone"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="Phone"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_contact_person_phone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
+                            android:gravity="left"
                             android:text="Phone"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -294,10 +385,22 @@
 
                         <TextView
                             android:id="@+id/enq_des_txt_product"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:text="Product"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_product"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
                             android:text="Product"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -319,12 +422,62 @@
                             android:src="@drawable/des" />
 
                         <TextView
-                            android:id="@+id/enq_des_txt_enq_thro"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:text="Enq Thorough"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_enq_thro"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
+                            android:text="Enq Thorough"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/des" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:gravity="left|center"
+                            android:text="Enq Description"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/enq_process_txt_enq_thro_desc"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
+                            android:gravity="left|center"
+                            android:text="Enquiry Description"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -350,6 +503,17 @@
                     android:background="@drawable/bg_parent_rounded_corner"
                     android:drawableRight="@mipmap/ic_edt_desc"
                     android:hint="Specification"
+                    android:inputType="text"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/add_appoint_edt_discount"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:background="@drawable/bg_parent_rounded_corner"
+                    android:drawableRight="@mipmap/ic_edt_location"
+                    android:hint="Discount"
                     android:inputType="text"
                     android:singleLine="true" />
 

@@ -1,8 +1,9 @@
 package banyan.com.gemcrm.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,13 +34,10 @@ import java.util.Map;
 
 import banyan.com.gemcrm.R;
 import banyan.com.gemcrm.adapter.Alloted_Complaints_Adapter;
-import banyan.com.gemcrm.adapter.Appointment_Adapter;
-import banyan.com.gemcrm.adapter.Camp_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import dmax.dialog.SpotsDialog;
 
 /**
  * Created by Jo on 7/27/2016.
@@ -67,6 +64,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
     public static final String TAG_ENQ_YEAR_ID = "enq_year_id";
     public static final String TAG_ENQ_START_MONTH = "enq_month_id";
     public static final String TAG_ENQ_END_COMP_NAME = "enq_company_name";
+    public static final String TAG_ENQ_END_COMP_EMAIL = "enq_company_email";
     public static final String TAG_ENQ_PHONENO = "enq_company_phn_no";
     public static final String TAG_ENQ_COMP_ADDRESS = "enq_company_address";
     public static final String TAG_ENQ_PIN = "enq_company_pincode";
@@ -90,7 +88,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
     public static final String TAG_ENQ_COMPLEED_ON = "enq_completed_on";
 
 
-    static ArrayList<HashMap<String, String>> campaign_list;
+    static ArrayList<HashMap<String, String>> enquiry_list;
 
     HashMap<String, String> params = new HashMap<String, String>();
 
@@ -150,7 +148,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
         );
 
         // Hashmap for ListView
-        campaign_list = new ArrayList<HashMap<String, String>>();
+        enquiry_list = new ArrayList<HashMap<String, String>>();
 
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -158,7 +156,53 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                System.out.println("Clciked");
+                String enq_no = enquiry_list.get(position).get(TAG_ENQ_ID);
+                String enq_year_id = enquiry_list.get(position).get(TAG_ENQ_YEAR_ID);
+                String enq_month_id = enquiry_list.get(position).get(TAG_ENQ_START_MONTH);
+                String enq_company_name = enquiry_list.get(position).get(TAG_ENQ_END_COMP_NAME);
+                String enq_company_email = enquiry_list.get(position).get(TAG_ENQ_END_COMP_EMAIL);
+                String enq_company_phn_no = enquiry_list.get(position).get(TAG_ENQ_PHONENO);
+                String enq_company_address = enquiry_list.get(position).get(TAG_ENQ_COMP_ADDRESS);
+                String enq_company_pincode = enquiry_list.get(position).get(TAG_ENQ_PIN);
+                String enq_contact_person_name = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_NAME);
+                String enq_contact_person_phone_no = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_PHONE);
+                String enq_product_series = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_SERIES);
+                String enq_discount = enquiry_list.get(position).get(TAG_ENQ_DISCOUNT);
+                String enq_description = enquiry_list.get(position).get(TAG_ENQ_DESC);
+                String enquiry_through = enquiry_list.get(position).get(TAG_ENQ_THROUGH);
+                String enquiry_through_description = enquiry_list.get(position).get(TAG_ENQ_THROUGH_DESC);
+                String enq_status = enquiry_list.get(position).get(TAG_ENQ_STATUS);
+                String enq_remarks = enquiry_list.get(position).get(TAG_ENQ_REMARK);
+                String enq_created_on = enquiry_list.get(position).get(TAG_ENQ_CREAATED_ON);
+                String enq_completed_on = enquiry_list.get(position).get(TAG_ENQ_COMPLEED_ON);
+
+
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("enq_no", enq_no);
+                editor.putString("enq_year_id", enq_year_id);
+                editor.putString("enq_month_id", enq_month_id);
+                editor.putString("enq_company_name", enq_company_name);
+                editor.putString("enq_company_email", enq_company_email);
+                editor.putString("enq_company_phn_no", enq_company_phn_no);
+                editor.putString("enq_company_address", enq_company_address);
+                editor.putString("enq_company_pincode", enq_company_pincode);
+                editor.putString("enq_contact_person_name", enq_contact_person_name);
+                editor.putString("enq_contact_person_phone_no", enq_contact_person_phone_no);
+                editor.putString("enq_product_series", enq_product_series);
+                editor.putString("enq_discount", enq_discount);
+                editor.putString("enq_description", enq_description);
+                editor.putString("enquiry_through", enquiry_through);
+                editor.putString("enquiry_through_description", enquiry_through_description);
+                editor.putString("enq_status", enq_status);
+                editor.putString("enq_remarks", enq_remarks);
+                editor.putString("enq_created_on", enq_created_on);
+                editor.putString("enq_completed_on", enq_completed_on);
+
+                Intent i = new Intent(getActivity(), Activity_Enquiry_Process.class);
+                startActivity(i);
             }
 
         });
@@ -174,7 +218,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
     @Override
     public void onRefresh() {
         try {
-            campaign_list.clear();
+            enquiry_list.clear();
             queue = Volley.newRequestQueue(getActivity());
             GetMyAllotedEnquiries();
 
@@ -235,6 +279,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             String year_id = obj1.getString(TAG_ENQ_YEAR_ID);
                             String month_id = obj1.getString(TAG_ENQ_START_MONTH);
                             String comp_name = obj1.getString(TAG_ENQ_END_COMP_NAME);
+                            String comp_email = obj1.getString(TAG_ENQ_END_COMP_EMAIL);
                             String comp_phone = obj1.getString(TAG_ENQ_PHONENO);
                             String comp_address = obj1.getString(TAG_ENQ_COMP_ADDRESS);
                             String comp_pin = obj1.getString(TAG_ENQ_PIN);
@@ -265,6 +310,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             map.put(TAG_ENQ_YEAR_ID, year_id);
                             map.put(TAG_ENQ_START_MONTH, month_id);
                             map.put(TAG_ENQ_END_COMP_NAME, comp_name);
+                            map.put(TAG_ENQ_END_COMP_EMAIL, comp_email);
                             map.put(TAG_ENQ_PHONENO, comp_phone);
                             map.put(TAG_ENQ_COMP_ADDRESS, comp_address);
                             map.put(TAG_ENQ_PIN, comp_pin);
@@ -287,13 +333,13 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             map.put(TAG_ENQ_CREAATED_ON, enq_created_on);
                             map.put(TAG_ENQ_COMPLEED_ON, enq_completed_on);
 
-                            campaign_list.add(map);
+                            enquiry_list.add(map);
 
-                            System.out.println("HASHMAP ARRAY" + campaign_list);
+                            System.out.println("HASHMAP ARRAY" + enquiry_list);
 
 
                             adapter = new Alloted_Complaints_Adapter(getActivity(),
-                                    campaign_list);
+                                    enquiry_list);
                             List.setAdapter(adapter);
 
                         }
@@ -301,7 +347,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                     } else if (success == 0) {
 
                         adapter = new Alloted_Complaints_Adapter(getActivity(),
-                                campaign_list);
+                                enquiry_list);
                         List.setAdapter(adapter);
 
                         Alerter.create(getActivity())

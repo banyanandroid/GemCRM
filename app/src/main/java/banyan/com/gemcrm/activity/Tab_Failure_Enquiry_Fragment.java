@@ -1,6 +1,9 @@
 package banyan.com.gemcrm.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +42,11 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
     String str_user_name, str_user_id;
     String str_task_name, str_task_des;
 
+    String str_select_id, str_select_comp_name, str_select_phoneno, str_select_comp_address, str_select_pin, str_select_person_name,
+            str_select_produc_series, str_select_model, str_select_modelno, str_select_pro_type, str_select_prod_qty,
+            str_select_price, str_select_allotedto, str_select_team_id, str_select_discount, str_select_desc, str_select_enq_throu,
+            getStr_select_enq_throu_desc, str_select_status, str_select_remark, str_select_createdon, str_select_completeon = "";
+
     public static RequestQueue queue;
 
     // Session Manager Class
@@ -54,6 +61,7 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
     public static final String TAG_ENQ_YEAR_ID = "enq_year_id";
     public static final String TAG_ENQ_START_MONTH = "enq_month_id";
     public static final String TAG_ENQ_END_COMP_NAME = "enq_company_name";
+    public static final String TAG_ENQ_END_COMP_EMAIL = "enq_company_email";
     public static final String TAG_ENQ_PHONENO = "enq_company_phn_no";
     public static final String TAG_ENQ_COMP_ADDRESS = "enq_company_address";
     public static final String TAG_ENQ_PIN = "enq_company_pincode";
@@ -77,7 +85,7 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
     public static final String TAG_ENQ_COMPLEED_ON = "enq_completed_on";
 
 
-    static ArrayList<HashMap<String, String>> my_enquries;
+    static ArrayList<HashMap<String, String>> enquiry_list;
 
     HashMap<String, String> params = new HashMap<String, String>();
 
@@ -117,7 +125,7 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
         );
 
         // Hashmap for ListView
-        my_enquries = new ArrayList<HashMap<String, String>>();
+        enquiry_list = new ArrayList<HashMap<String, String>>();
 
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -125,7 +133,67 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                System.out.println("Clciked");
+                String enq_no = enquiry_list.get(position).get(TAG_ENQ_ID);
+                String enq_year_id = enquiry_list.get(position).get(TAG_ENQ_YEAR_ID);
+                String enq_month_id = enquiry_list.get(position).get(TAG_ENQ_START_MONTH);
+                String enq_company_name = enquiry_list.get(position).get(TAG_ENQ_END_COMP_NAME);
+                String enq_company_email = enquiry_list.get(position).get(TAG_ENQ_END_COMP_EMAIL);
+                String enq_company_phn_no = enquiry_list.get(position).get(TAG_ENQ_PHONENO);
+                String enq_company_address = enquiry_list.get(position).get(TAG_ENQ_COMP_ADDRESS);
+                String enq_company_pincode = enquiry_list.get(position).get(TAG_ENQ_PIN);
+                String enq_contact_person_name = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_NAME);
+                String enq_contact_person_phone_no = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_PHONE);
+                String enq_product_series = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_SERIES);
+                String enq_product_model = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_MODEL);
+                String enq_product_model_no = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_MODEL_NO);
+                String enq_product_type = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_TYPE);
+                String enq_product_qty = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_QTY);
+                String enq_product_price = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_PRICE);
+                String enq_alloted_to = enquiry_list.get(position).get(TAG_ENQ_ALLOTED_TO);
+                String enq_team_id = enquiry_list.get(position).get(TAG_ENQ_TEAM_ID);
+                String enq_discount = enquiry_list.get(position).get(TAG_ENQ_DISCOUNT);
+                String enq_description = enquiry_list.get(position).get(TAG_ENQ_DESC);
+                String enquiry_through = enquiry_list.get(position).get(TAG_ENQ_THROUGH);
+                String enquiry_through_description = enquiry_list.get(position).get(TAG_ENQ_THROUGH_DESC);
+                String enq_status = enquiry_list.get(position).get(TAG_ENQ_STATUS);
+                String enq_remarks = enquiry_list.get(position).get(TAG_ENQ_REMARK);
+                String enq_created_on = enquiry_list.get(position).get(TAG_ENQ_CREAATED_ON);
+                String enq_completed_on = enquiry_list.get(position).get(TAG_ENQ_COMPLEED_ON);
+
+
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("enq_no", enq_no);
+                editor.putString("enq_year_id", enq_year_id);
+                editor.putString("enq_month_id", enq_month_id);
+                editor.putString("enq_company_name", enq_company_name);
+                editor.putString("enq_company_email", enq_company_email);
+                editor.putString("enq_company_phn_no", enq_company_phn_no);
+                editor.putString("enq_company_address", enq_company_address);
+                editor.putString("enq_company_pincode", enq_company_pincode);
+                editor.putString("enq_contact_person_name", enq_contact_person_name);
+                editor.putString("enq_contact_person_phone_no", enq_contact_person_phone_no);
+                editor.putString("enq_product_series", enq_product_series);
+                editor.putString("str_select_model", enq_product_model);
+                editor.putString("enq_product_model_no", enq_product_model_no);
+                editor.putString("enq_product_type", enq_product_type);
+                editor.putString("enq_product_qty", enq_product_qty);
+                editor.putString("enq_product_price", enq_product_price);
+                editor.putString("enq_alloted_to", enq_alloted_to);
+                editor.putString("enq_team_id", enq_team_id);
+                editor.putString("enq_discount", enq_discount);
+                editor.putString("enq_description", enq_description);
+                editor.putString("enquiry_through", enquiry_through);
+                editor.putString("enquiry_through_description", enquiry_through_description);
+                editor.putString("enq_status", enq_status);
+                editor.putString("enq_remarks", enq_remarks);
+                editor.putString("enq_created_on", enq_created_on);
+                editor.putString("enq_completed_on", enq_completed_on);
+
+                Intent i = new Intent(getActivity(), Activity_Enquiry_Description.class);
+                startActivity(i);
             }
 
         });
@@ -140,7 +208,7 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
     @Override
     public void onRefresh() {
         try {
-            my_enquries.clear();
+            enquiry_list.clear();
             queue = Volley.newRequestQueue(getActivity());
             GetMyEnquries();
 
@@ -180,6 +248,7 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
                             String year_id = obj1.getString(TAG_ENQ_YEAR_ID);
                             String month_id = obj1.getString(TAG_ENQ_START_MONTH);
                             String comp_name = obj1.getString(TAG_ENQ_END_COMP_NAME);
+                            String comp_email = obj1.getString(TAG_ENQ_END_COMP_EMAIL);
                             String comp_phone = obj1.getString(TAG_ENQ_PHONENO);
                             String comp_address = obj1.getString(TAG_ENQ_COMP_ADDRESS);
                             String comp_pin = obj1.getString(TAG_ENQ_PIN);
@@ -210,6 +279,7 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
                             map.put(TAG_ENQ_YEAR_ID, year_id);
                             map.put(TAG_ENQ_START_MONTH, month_id);
                             map.put(TAG_ENQ_END_COMP_NAME, comp_name);
+                            map.put(TAG_ENQ_END_COMP_EMAIL, comp_email);
                             map.put(TAG_ENQ_PHONENO, comp_phone);
                             map.put(TAG_ENQ_COMP_ADDRESS, comp_address);
                             map.put(TAG_ENQ_PIN, comp_pin);
@@ -232,13 +302,13 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
                             map.put(TAG_ENQ_CREAATED_ON, enq_created_on);
                             map.put(TAG_ENQ_COMPLEED_ON, enq_completed_on);
 
-                            my_enquries.add(map);
+                            enquiry_list.add(map);
 
-                            System.out.println("HASHMAP ARRAY" + my_enquries);
+                            System.out.println("HASHMAP ARRAY" + enquiry_list);
 
 
                             adapter = new Alloted_Complaints_Adapter(getActivity(),
-                                    my_enquries);
+                                    enquiry_list);
                             List.setAdapter(adapter);
 
                         }
@@ -246,7 +316,7 @@ public class Tab_Failure_Enquiry_Fragment extends Fragment implements SwipeRefre
                     } else if (success == 0) {
 
                         adapter = new Alloted_Complaints_Adapter(getActivity(),
-                                my_enquries);
+                                enquiry_list);
                         List.setAdapter(adapter);
 
                         Alerter.create(getActivity())
