@@ -3,7 +3,9 @@ package banyan.com.gemcrm.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -44,7 +46,7 @@ import dmax.dialog.SpotsDialog;
  * Created by steve on 14/3/17.
  */
 
-public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnimationEndListener,SwipeRefreshLayout.OnRefreshListener{
+public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnimationEndListener, SwipeRefreshLayout.OnRefreshListener {
 
     SheetLayout mSheetLayout;
     FloatingActionButton mFab;
@@ -137,12 +139,42 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
+                String str_camp_id = campaign_list.get(position).get(TAG_CAMP_ID);
+                String str_camp_created_on = campaign_list.get(position).get(TAG_CAMP_CREATED_ON);
+
+                String str_camp_name = campaign_list.get(position).get(TAG_CAMP_TITLE);
+                String str_camp_location = campaign_list.get(position).get(TAG_CAMP_LOCATION);
+                String str_camp_start_date = campaign_list.get(position).get(TAG_CAMP_START_DATE);
+                String str_camp_end_date = campaign_list.get(position).get(TAG_CAMP_END_DATE);
+                String str_camp_des = campaign_list.get(position).get(TAG_CAMP_DES);
+
+
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("str_camp_id", str_camp_id);
+                editor.putString("str_camp_created_on", str_camp_created_on);
+
+                editor.putString("str_camp_name", str_camp_name);
+                editor.putString("str_camp_location", str_camp_location);
+                editor.putString("str_camp_des", str_camp_des);
+                editor.putString("str_camp_start_date", str_camp_start_date);
+                editor.putString("str_camp_end_date", str_camp_end_date);
+
+
+                editor.commit();
+
+                Intent i = new Intent(getActivity(), Activity_Campaing_description.class);
+                startActivity(i);
                 System.out.println("Clciked");
             }
 
         });
 
+
         return rootview;
+
 
     }
 
@@ -174,10 +206,11 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
         startActivityForResult(intent, REQUEST_CODE);
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE){
+        if (requestCode == REQUEST_CODE) {
             mSheetLayout.contractFab();
         }
     }
@@ -258,7 +291,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
                     e.printStackTrace();
                 }
 
-               // dialog.dismiss();
+                // dialog.dismiss();
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, new Response.ErrorListener() {

@@ -43,7 +43,7 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
                 android:drawableRight="@mipmap/ic_edt_location"
-                android:hint="Company Location"
+                android:hint="Campaign Location"
                 android:inputType="text"
                 android:singleLine="true" />
 
@@ -54,7 +54,7 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
                 android:drawableRight="@mipmap/ic_edt_desc"
-                android:hint="Company Description"
+                android:hint="Campaign Description"
                 android:inputType="text"
                 android:singleLine="true" />
 
@@ -80,7 +80,7 @@
                 android:drawableRight="@mipmap/ic_edt_date"
                 android:editable="false"
                 android:focusable="false"
-                android:hint="Start Date"
+                android:hint="End Date"
                 android:inputType="text"
                 android:singleLine="true" />
 
