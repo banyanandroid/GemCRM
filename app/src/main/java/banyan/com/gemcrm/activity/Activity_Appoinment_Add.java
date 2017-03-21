@@ -249,9 +249,10 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
                     JSONObject obj = new JSONObject(response);
                     int success = obj.getInt("success");
 
-                    System.out.println("REG" + success);
+                    System.out.println("Appointment" + success);
 
                     if (success == 1) {
+
 
                         Alerter.create(Activity_Appoinment_Add.this)
                                 .setTitle("GEM CRM")
