@@ -1,9 +1,7 @@
 package banyan.com.gemcrm.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,7 +28,6 @@ import java.util.Map;
 import banyan.com.gemcrm.R;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
-import butterknife.ButterKnife;
 import dmax.dialog.SpotsDialog;
 
 /**
@@ -49,13 +46,14 @@ public class Activity_Login extends Activity {
 
     private static final String TAG_NAME = "user_name";
     private static final String TAG_ID = "user_id";
+    private static final String TAG_GCM = "gcm_id";
     String TAG = "reg";
 
     SpotsDialog dialog;
     public static RequestQueue queue;
 
 
-    String str_user_name, str_user_id;
+    String str_user_name, str_user_id, str_gcm;
 
     // Session Manager Class
     SessionManager session;
@@ -130,12 +128,14 @@ public class Activity_Login extends Activity {
 
                             str_user_name = obj1.getString(TAG_NAME);
                             str_user_id = obj1.getString(TAG_ID);
+                            str_gcm = obj1.getString(TAG_GCM);
                         }
 
                         System.out.println("NAME" + str_user_name);
                         System.out.println("ID" + str_user_id);
+                        System.out.println("ID" + str_gcm);
 
-                        session.createLoginSession(str_user_name, str_user_id);
+                        session.createLoginSession(str_user_name, str_user_id, str_gcm);
 
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);

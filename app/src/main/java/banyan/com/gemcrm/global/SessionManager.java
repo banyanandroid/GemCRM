@@ -32,6 +32,7 @@ public class SessionManager {
 	// User name (make variable public to access from outside)
 	public static final String KEY_USER = "name";
 	public static final String KEY_USER_ID = "id";
+	public static final String KEY_GCM = "gcm";
 
 	// Constructor
 	public SessionManager(Context context){
@@ -43,13 +44,14 @@ public class SessionManager {
 	/**
 	 * Create login session
 	 * */
-	public void createLoginSession(String name, String id){
+	public void createLoginSession(String name, String id, String gcm){
 		// Storing login value as TRUE
 		editor.putBoolean(IS_LOGIN, true);
 
 		// Storing name in pref
 		editor.putString(KEY_USER, name);
 		editor.putString(KEY_USER_ID, id);
+		editor.putString(KEY_GCM, gcm);
 
 
 
@@ -91,6 +93,9 @@ public class SessionManager {
 
 		// user id
 		user.put(KEY_USER_ID, pref.getString(KEY_USER_ID, null));
+
+		//GCM
+		user.put(KEY_GCM, pref.getString(KEY_GCM, null));
 
 
 

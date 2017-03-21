@@ -18,7 +18,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 import banyan.com.gemcrm.R;
+import banyan.com.gemcrm.global.SessionManager;
 
 
 public class Fragment_Dashboard extends Fragment {
@@ -27,6 +30,8 @@ public class Fragment_Dashboard extends Fragment {
         // Required empty public constructor
     }
 
+    SessionManager session;
+    String str_user_name, str_user_id, str_gcm = "";
     CardView card1, card2, card3, card4;
     ImageView thumbnail1,thumbnail2,thumbnail3,thumbnail4;
 
@@ -40,6 +45,15 @@ public class Fragment_Dashboard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        session = new SessionManager(getActivity());
+
+        session.checkLogin();
+        HashMap<String, String> user = session.getUserDetails();
+        str_user_name = user.get(SessionManager.KEY_USER);
+        str_user_id = user.get(SessionManager.KEY_USER_ID);
+        str_gcm = user.get(SessionManager.KEY_GCM);
+
 
 
         card1 = (CardView) rootView.findViewById(R.id.dashboard_card_view1);

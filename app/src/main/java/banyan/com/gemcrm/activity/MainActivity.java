@@ -1,6 +1,5 @@
 package banyan.com.gemcrm.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,7 +24,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     SessionManager session;
 
     public static String str_id, str_name;
+    String str_gcm = null;
+    String GcmId = null;
 
     public static RequestQueue queue;
 
@@ -73,18 +73,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // name
         str_name = user.get(SessionManager.KEY_USER);
         str_id = user.get(SessionManager.KEY_USER_ID);
+        str_gcm = user.get(SessionManager.KEY_GCM);
 
         try {
             System.out.println("user" + str_id);
-            System.out.println("user" + str_id);
-            System.out.println("user" + str_id);
-            System.out.println("user" + str_id);
-            System.out.println("user" + str_id);
             queue = Volley.newRequestQueue(MainActivity.this);
             Function_UpdateLastLogin();
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
+
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -120,14 +118,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(),"Batch Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
             }
         });
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(),"Batch Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -142,13 +140,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_alert) {
 
-            Toast.makeText(getApplicationContext(),"Batch Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
 
             return true;
         }
         if (id == R.id.action_settings) {
 
-            Toast.makeText(getApplicationContext(),"Settings", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -175,12 +173,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_appointment);
                 break;
             case 3:
-                fragment=new Fragment_Target();
-                title=getString(R.string.title_target);
+                fragment = new Fragment_Target();
+                title = getString(R.string.title_target);
                 break;
             case 4:
-                fragment=new Fragment_Campaign();
-                title=getString(R.string.title_campaign);
+                fragment = new Fragment_Campaign();
+                title = getString(R.string.title_campaign);
                 break;
 
             case 5:
@@ -208,6 +206,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         }
     }
 
+
+
     /********************************
      * User Authentication
      *********************************/
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
                     if (success == 1) {
 
-                       // TastyToast.makeText(getApplicationContext(), "Done", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+                        // TastyToast.makeText(getApplicationContext(), "Done", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
 
                     } else {
                         TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);

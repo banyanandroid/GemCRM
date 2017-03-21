@@ -10,7 +10,7 @@
         <string name="nav_item_dashboard">Dashboard</string>
         <string name="nav_item_enquiry">Enquiry</string>
         <string name="nav_item_appointment">Appointment</string>
-        <string name="nav_item_target">Target</string>
+        <string name="nav_item_target">My Tasks</string>
         <string name="nav_item_campaign">Campaign</string>
         <string name="nav_item_about">About</string>
         <string name="nav_item_logout">Logout</string>
@@ -29,7 +29,7 @@
         <string name="title_dashboard">Dashboard</string>
         <string name="title_enquiry">Enquiry</string>
         <string name="title_appointment">Appointment</string>
-        <string name="title_target">Target</string>
+        <string name="title_target">My Tasks</string>
         <string name="title_campaign">Campaign</string>
         <string name="title_about">About</string>
         <string name="title_logout">Logout</string>

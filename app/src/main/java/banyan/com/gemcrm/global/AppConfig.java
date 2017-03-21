@@ -27,4 +27,12 @@ public class AppConfig {
     public static String url_my_enquiry = base_url + "android/get_my_enquries.php";
     public static String url_my_succeed_enquiry = base_url + "android/get_my_suceed_enquiries.php";
     public static String url_my_failure_enquiry = base_url + "android/get_my_failed_enquiries.php";
+
+    public static String url_enq_model = base_url + "android/user_get_model.php";
+    public static String url_enq_discount = base_url + "android/user_get_discount.php";
+    public static String url_enq_modelno = base_url + "android/enquiry_product_type.php";
+    public static String url_enq_modeltype = base_url + "android/get_type.php";
+
+
+    public static String url_my_task = base_url + "android/user_task_list.php";
 }

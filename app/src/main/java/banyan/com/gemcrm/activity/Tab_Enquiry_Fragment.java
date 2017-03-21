@@ -66,6 +66,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
     public static final String TAG_ENQ_END_COMP_NAME = "enq_company_name";
     public static final String TAG_ENQ_END_COMP_EMAIL = "enq_company_email";
     public static final String TAG_ENQ_PHONENO = "enq_company_phn_no";
+    public static final String TAG_ENQ_PRODUCT_ID  = "enq_product_id";
     public static final String TAG_ENQ_COMP_ADDRESS = "enq_company_address";
     public static final String TAG_ENQ_PIN = "enq_company_pincode";
     public static final String TAG_ENQ_CON_PERSON_NAME = "enq_contact_person_name";
@@ -166,6 +167,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                 String enq_company_pincode = enquiry_list.get(position).get(TAG_ENQ_PIN);
                 String enq_contact_person_name = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_NAME);
                 String enq_contact_person_phone_no = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_PHONE);
+                String enq_product_id = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_ID);
                 String enq_product_series = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_SERIES);
                 String enq_discount = enquiry_list.get(position).get(TAG_ENQ_DISCOUNT);
                 String enq_description = enquiry_list.get(position).get(TAG_ENQ_DESC);
@@ -175,6 +177,10 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                 String enq_remarks = enquiry_list.get(position).get(TAG_ENQ_REMARK);
                 String enq_created_on = enquiry_list.get(position).get(TAG_ENQ_CREAATED_ON);
                 String enq_completed_on = enquiry_list.get(position).get(TAG_ENQ_COMPLEED_ON);
+
+                System.out.println("b4" + enq_created_on);
+                System.out.println("b4" + enq_created_on);
+                System.out.println("b4" + enq_created_on);
 
 
                 SharedPreferences sharedPreferences = PreferenceManager
@@ -191,6 +197,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                 editor.putString("enq_company_pincode", enq_company_pincode);
                 editor.putString("enq_contact_person_name", enq_contact_person_name);
                 editor.putString("enq_contact_person_phone_no", enq_contact_person_phone_no);
+                editor.putString("enq_product_id", enq_product_id);
                 editor.putString("enq_product_series", enq_product_series);
                 editor.putString("enq_discount", enq_discount);
                 editor.putString("enq_description", enq_description);
@@ -200,6 +207,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                 editor.putString("enq_remarks", enq_remarks);
                 editor.putString("enq_created_on", enq_created_on);
                 editor.putString("enq_completed_on", enq_completed_on);
+                editor.commit();
 
                 Intent i = new Intent(getActivity(), Activity_Enquiry_Process.class);
                 startActivity(i);
@@ -285,6 +293,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             String comp_pin = obj1.getString(TAG_ENQ_PIN);
                             String comp_contact_person_name = obj1.getString(TAG_ENQ_CON_PERSON_NAME);
                             String comp_contactperson_phone = obj1.getString(TAG_ENQ_CON_PERSON_PHONE);
+                            String comp_product_id = obj1.getString(TAG_ENQ_PRODUCT_ID);
                             String enq_product_series = obj1.getString(TAG_ENQ_PRODUCT_SERIES);
                             String enq_product_model = obj1.getString(TAG_ENQ_PRODUCT_MODEL);
                             String enq_product_model_no = obj1.getString(TAG_ENQ_PRODUCT_MODEL_NO);
@@ -302,6 +311,11 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             String enq_created_on = obj1.getString(TAG_ENQ_CREAATED_ON);
                             String enq_completed_on = obj1.getString(TAG_ENQ_COMPLEED_ON);
 
+                            System.out.println("enq_created_on" + enq_created_on);
+                            System.out.println("enq_created_on" + enq_created_on);
+                            System.out.println("enq_created_on" + enq_created_on);
+                            System.out.println("enq_created_on" + enq_created_on);
+
                             // creating new HashMap
                             HashMap<String, String> map = new HashMap<String, String>();
 
@@ -316,6 +330,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             map.put(TAG_ENQ_PIN, comp_pin);
                             map.put(TAG_ENQ_CON_PERSON_NAME, comp_contact_person_name);
                             map.put(TAG_ENQ_CON_PERSON_PHONE, comp_contactperson_phone);
+                            map.put(TAG_ENQ_PRODUCT_ID, comp_product_id);
                             map.put(TAG_ENQ_PRODUCT_SERIES, enq_product_series);
                             map.put(TAG_ENQ_PRODUCT_MODEL, enq_product_model);
                             map.put(TAG_ENQ_PRODUCT_MODEL_NO, enq_product_model_no);
