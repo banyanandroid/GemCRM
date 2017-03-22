@@ -324,7 +324,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main_follow, menu);
 
         MenuItem item1 = menu.findItem(R.id.action_alert);
         MenuItemCompat.setActionView(item1, R.layout.notification_update_count_layout);
@@ -362,6 +362,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         if (id == R.id.action_alert) {
 
             Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+        if (id == R.id.action_followup) {
+
+
 
             return true;
         }

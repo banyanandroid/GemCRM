@@ -1,27 +1,41 @@
 package banyan.com.gemcrm.activity;
 
 /**
- * Created by Ravi on 29/07/15.
+ * Created by Jo on 10/03/16.
  */
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.tapadoo.alerter.Alerter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
+import java.util.Map;
 
 import banyan.com.gemcrm.R;
+import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
+import dmax.dialog.SpotsDialog;
 
 
 public class Fragment_Dashboard extends Fragment {
@@ -30,10 +44,41 @@ public class Fragment_Dashboard extends Fragment {
         // Required empty public constructor
     }
 
+    private static String TAG = MainActivity.class.getSimpleName();
+
     SessionManager session;
     String str_user_name, str_user_id, str_gcm = "";
     CardView card1, card2, card3, card4;
-    ImageView thumbnail1,thumbnail2,thumbnail3,thumbnail4;
+    LinearLayout thumbnail1,thumbnail2,thumbnail3,thumbnail4;
+
+    TextView txt_fin_achive,txt_fin_target, txt_enq_achive, txt_enq_target, txt_camp_achive, txt_camp_target;
+
+    SpotsDialog dialog;
+    public static RequestQueue queue;
+
+    public static final String TAG_TARGET_AMOUNT = "target_amount";
+    public static final String TAG_ACHIVED_AMT = "acheived_amount";
+    public static final String TAG_YTD = "ytd";
+    public static final String TAG_TOTALTODAYAMOUNT = "totaltodayamount";
+
+    public static final String TAG_TARGET_DRYER = "user_target_dryer";
+    public static final String TAG_ACHIVE_DRYER = "user_acheived_dryer";
+    public static final String TAG_TARGET_CHILLER = "user_target_chiller";
+    public static final String TAG_ACHIVE_CHILLER = "user_acheived_chiller";
+    public static final String TAG_PRO_TARGET_COOLER = "user_target_cooler";
+    public static final String TAG_ACHIVE_COOLER = "user_acheived_cooler";
+    public static final String TAG_TARGET_VAR = "user_target_var";
+    public static final String TAG_ACHIVE_VAR = "user_acheived_var";
+    public static final String TAG_TARGET_SMALL_PROD = "user_target_small_products";
+    public static final String TAG_ACHIVE_SMALL_PROD = "user_small_products";
+
+    public static final String TAG_ENQ_TARGET = "enquiry_target";
+    public static final String TAG_TOTAL_ENQUIRY = "totalenq";
+    public static final String TAG_YTD_ENQ = "ytdenquiry";
+    public static final String TAG_TOTAL_TODAY_ENQ = "totaltodayenq";
+
+    public static final String TAG_CAMP_TARGET = "campaign_target";
+    public static final String TAG_CAMP_ACHIVE = "campaign_acheived";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,7 +94,11 @@ public class Fragment_Dashboard extends Fragment {
         session = new SessionManager(getActivity());
 
         session.checkLogin();
+
+        // get user data from session
         HashMap<String, String> user = session.getUserDetails();
+
+        // name
         str_user_name = user.get(SessionManager.KEY_USER);
         str_user_id = user.get(SessionManager.KEY_USER_ID);
         str_gcm = user.get(SessionManager.KEY_GCM);
@@ -59,10 +108,19 @@ public class Fragment_Dashboard extends Fragment {
         card3 = (CardView) rootView.findViewById(R.id.dashboard_card_view3);
         card4 = (CardView) rootView.findViewById(R.id.dashboard_card_view4);
 
-        thumbnail1 = (ImageView) rootView.findViewById(R.id.dashboard_thumbnail1);
-        thumbnail2 = (ImageView) rootView.findViewById(R.id.dashboard_thumbnail2);
-        thumbnail3 = (ImageView) rootView.findViewById(R.id.dashboard_thumbnail3);
-        thumbnail4 = (ImageView) rootView.findViewById(R.id.dashboard_thumbnail4);
+        thumbnail1 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail1);
+        thumbnail2 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail2);
+        thumbnail3 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail3);
+        thumbnail4 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail4);
+
+        txt_fin_achive = (TextView) rootView.findViewById(R.id.dash_txt_fin_achive);
+        txt_fin_target = (TextView) rootView.findViewById(R.id.dash_txt_fin_target);
+
+        txt_camp_achive = (TextView) rootView.findViewById(R.id.dash_txt_camp_achive);
+        txt_camp_target = (TextView) rootView.findViewById(R.id.dash_txt_camp_target);
+
+        txt_enq_achive = (TextView) rootView.findViewById(R.id.dash_txt_enq_achive);
+        txt_enq_target = (TextView) rootView.findViewById(R.id.dash_txt_enq_target);
 
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +146,7 @@ public class Fragment_Dashboard extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getActivity(), Ativity_Dash.class);
+                Intent i = new Intent(getActivity(), Activity_Dashboard_Enquiry_Target.class);
                 startActivity(i);
 
             }
@@ -98,7 +156,8 @@ public class Fragment_Dashboard extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "Target 4", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getActivity(), Activity_Dashboard_PieChart_Target.class);
+                startActivity(i);
 
             }
         });
@@ -123,6 +182,37 @@ public class Fragment_Dashboard extends Fragment {
             }
         });
 
+        thumbnail3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getActivity(), Activity_Dashboard_Enquiry_Target.class);
+                startActivity(i);
+
+            }
+        });
+
+        thumbnail4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getActivity(), Activity_Dashboard_PieChart_Target.class);
+                startActivity(i);
+
+            }
+        });
+
+        try{
+
+            dialog = new SpotsDialog(getActivity());
+            dialog.show();
+            queue = Volley.newRequestQueue(getActivity());
+            GetMyAllotedEnquiries();
+
+        }catch (Exception e){
+
+        }
+
         return rootView;
     }
 
@@ -134,6 +224,148 @@ public class Fragment_Dashboard extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    /*****************************
+     * GET My Task
+     ***************************/
+
+    public void GetMyAllotedEnquiries() {
+
+        String tag_json_obj = "json_obj_req";
+        System.out.println("CAME 1");
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_my_targets, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("finance_group");
+
+                        for (int i = 0; arr.length() > i; i++) {
+                            JSONObject obj1 = arr.getJSONObject(i);
+
+                            String target = obj1.getString(TAG_TARGET_AMOUNT);
+                            String Achived = obj1.getString(TAG_ACHIVED_AMT);
+                            String Total = obj1.getString(TAG_TOTALTODAYAMOUNT);
+                            String ytd = obj1.getString(TAG_YTD);
+
+
+                            System.out.println("TAGETTT" + target);
+                            System.out.println("Achived" + Achived);
+                            System.out.println("Total" + Total);
+                            System.out.println("ytd" + ytd);
+
+                            try {
+                                txt_fin_achive.setText(""+Achived);
+                                txt_fin_target.setText(""+target);
+                            }catch (Exception e) {
+
+                            }
+                        }
+
+                        JSONArray arr_product = obj.getJSONArray("product_group");
+
+                        for (int i = 0; arr_product.length() > i; i++) {
+                            JSONObject obj_prod = arr_product.getJSONObject(i);
+
+                            String target_dryer = obj_prod.getString(TAG_TARGET_DRYER);
+                            String Achived_dryer = obj_prod.getString(TAG_ACHIVE_DRYER);
+                            String target_chiller = obj_prod.getString(TAG_TARGET_CHILLER);
+                            String Achived_chiller = obj_prod.getString(TAG_ACHIVE_CHILLER);
+                            String target_cooler = obj_prod.getString(TAG_PRO_TARGET_COOLER);
+                            String Achived_cooler = obj_prod.getString(TAG_ACHIVE_COOLER);
+                            String target_var = obj_prod.getString(TAG_TARGET_VAR);
+                            String Achived_var = obj_prod.getString(TAG_ACHIVE_VAR);
+                            String target_small_pro = obj_prod.getString(TAG_TARGET_SMALL_PROD);
+                            String Achived_small_pro = obj_prod.getString(TAG_ACHIVE_SMALL_PROD);
+
+                        }
+
+                        JSONArray arr_enq = obj.getJSONArray("enquiry_group");
+
+                        for (int i = 0; arr_enq.length() > i; i++) {
+                            JSONObject obj_enq = arr_enq.getJSONObject(i);
+
+                            String enq_target = obj_enq.getString(TAG_ENQ_TARGET);
+                            String total_enq = obj_enq.getString(TAG_TOTAL_ENQUIRY);
+                            String ytd_enq = obj_enq.getString(TAG_YTD_ENQ);
+                            String total_today_enq = obj_enq.getString(TAG_TOTAL_TODAY_ENQ);
+
+                            try {
+                                txt_enq_achive.setText(""+total_enq);
+                                txt_enq_target.setText(""+enq_target);
+                            }catch (Exception e) {
+
+                            }
+
+                        }
+
+                        JSONArray arr_camp = obj.getJSONArray("campaign_group");
+
+                        for (int i = 0; arr_camp.length() > i; i++) {
+                            JSONObject obj_camp = arr_camp.getJSONObject(i);
+
+                            String camp_achive = obj_camp.getString(TAG_CAMP_ACHIVE);
+                            String camp_target = obj_camp.getString(TAG_CAMP_TARGET);
+
+                            try {
+                                txt_camp_achive.setText(""+camp_achive);
+                                txt_camp_target.setText(""+camp_target);
+                            }catch (Exception e) {
+
+                            }
+
+                        }
+
+
+                    } else if (success == 0) {
+
+                        Alerter.create(getActivity())
+                                .setTitle("GEM CRM")
+                                .setText("Data Not Found \n Try Again")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+                    }
+
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                dialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_user_id); // replace as str_id
+
+                System.out.println("user_id" + str_user_id);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
     }
 
 

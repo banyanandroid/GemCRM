@@ -1,6 +1,5 @@
 package banyan.com.gemcrm.activity;
 
-import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +35,7 @@ import dmax.dialog.SpotsDialog;
  * Created by Jo on 3/15/2017.
  */
 
-public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
+public class Activity_Dashboard_Enquiry_Target extends AppCompatActivity {
 
     String TAG = "Complaints";
     public static RequestQueue queue;
@@ -45,21 +44,20 @@ public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
     SessionManager session;
     String str_user_name, str_user_id, str_gcm = "";
 
-    public static final String TAG_TARGET_AMOUNT = "target_amount";
-    public static final String TAG_ACHIVED_AMT = "acheived_amount";
-    public static final String TAG_YTD = "ytd";
-    public static final String TAG_TOTALTODAYAMOUNT = "totaltodayamount";
+    public static final String TAG_ENQ_TARGET = "enquiry_target";
+    public static final String TAG_TOTAL_ENQUIRY = "totalenq";
+    public static final String TAG_YTD_ENQ = "ytdenquiry";
+    public static final String TAG_TOTAL_TODAY_ENQ = "totaltodayenq";
 
-    String month = "";
-    int target_amount = 0;
-    int achived_amount = 0;
-    int ytd = 0;
-    int totaltodayamount = 0;
+    int target_enq = 0;
+    int total_enq = 0;
+    int ytd_enq = 0;
+    int today_enq = 0;
 
-    ArrayList<BarEntry> Arraylist_target_amount;
-    ArrayList<BarEntry> Arraylist_acheived_amount;
-    ArrayList<BarEntry> Arraylist_ytd;
-    ArrayList<BarEntry> Arraylist_totaltodayamount;
+    ArrayList<BarEntry> Arraylist_enq_target;
+    ArrayList<BarEntry> Arraylist_total_enq;
+    ArrayList<BarEntry> Arraylist_ytd_enq;
+    ArrayList<BarEntry> Arraylist_totaltodayenq;
 
     ArrayList<BarEntry> valueSet1 = null;
     ArrayList<BarEntry> valueSet2 = null;
@@ -81,7 +79,7 @@ public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_finance_target);
 
-        session = new SessionManager(Activity_Dashboard_Finance_Target.this);
+        session = new SessionManager(Activity_Dashboard_Enquiry_Target.this);
 
         session.checkLogin();
 
@@ -97,9 +95,9 @@ public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
 
         try {
 
-            dialog = new SpotsDialog(Activity_Dashboard_Finance_Target.this);
+            dialog = new SpotsDialog(Activity_Dashboard_Enquiry_Target.this);
             dialog.show();
-            queue = Volley.newRequestQueue(Activity_Dashboard_Finance_Target.this);
+            queue = Volley.newRequestQueue(Activity_Dashboard_Enquiry_Target.this);
             GetMyTask();
 
         }catch (Exception e) {
@@ -129,56 +127,49 @@ public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
 
                         JSONArray arr;
 
-                        arr = obj.getJSONArray("finance_group");
+                        arr = obj.getJSONArray("enquiry_group");
 
-                        Arraylist_target_amount = new ArrayList<BarEntry>();
-                        Arraylist_acheived_amount = new ArrayList<BarEntry>();
-                        Arraylist_ytd = new ArrayList<BarEntry>();
-                        Arraylist_totaltodayamount = new ArrayList<BarEntry>();
+                        Arraylist_enq_target = new ArrayList<BarEntry>();
+                        Arraylist_total_enq = new ArrayList<BarEntry>();
+                        Arraylist_ytd_enq = new ArrayList<BarEntry>();
+                        Arraylist_totaltodayenq = new ArrayList<BarEntry>();
                         xAxis = new ArrayList<String>();
 
                         for (int i = 0; arr.length() > i; i++) {
                             JSONObject obj1 = arr.getJSONObject(i);
 
-                           // month = obj1.getString("month");
-                          // String totaltodayamount = obj1.getString(TAG_TOTALTODAYAMOUNT);
-                            target_amount = obj1.getInt(TAG_TARGET_AMOUNT);
-                            achived_amount = obj1.getInt(TAG_ACHIVED_AMT);
-                            ytd = obj1.getInt(TAG_YTD);
+                            target_enq = obj1.getInt(TAG_ENQ_TARGET);
+                            total_enq = obj1.getInt(TAG_TOTAL_ENQUIRY);
+                            ytd_enq = obj1.getInt(TAG_YTD_ENQ);
+                            today_enq = obj1.getInt(TAG_TOTAL_TODAY_ENQ);
 
 
-                            System.out.println("target_amount : " +target_amount);
-                            System.out.println("achived_amount : " +achived_amount);
-                            System.out.println("ytd : " +ytd);
-                            System.out.println("totaltodayamt : " +totaltodayamount);
+                            System.out.println("target_enq : " +target_enq);
+                            System.out.println("total_enq : " +total_enq);
+                            System.out.println("ytd_enq : " +ytd_enq);
+                            System.out.println("today_enq : " +today_enq);
 
-                            v1e1 = new BarEntry(target_amount, i);
-                            Arraylist_target_amount.add(v1e1);
+                            v1e1 = new BarEntry(target_enq, i);
+                            Arraylist_enq_target.add(v1e1);
 
-                            v2e1 = new BarEntry(achived_amount, i);
-                            Arraylist_acheived_amount.add(v2e1);
+                            v2e1 = new BarEntry(total_enq, i);
+                            Arraylist_total_enq.add(v2e1);
 
-                            v3e1 = new BarEntry(ytd, i);
-                            Arraylist_ytd.add(v3e1);
+                            v3e1 = new BarEntry(ytd_enq, i);
+                            Arraylist_ytd_enq.add(v3e1);
 
-                            int va = 2000;
-
-                            v4e1 = new BarEntry(va, i);
-                            Arraylist_totaltodayamount.add(v4e1);
+                            v4e1 = new BarEntry(today_enq, i);
+                            Arraylist_totaltodayenq.add(v4e1);
 
                             xAxis.add("This Month");
 
                             BarData data = new BarData(getXAxisValues(), getDataSet());
                             chart.setData(data);
-                            chart.setDescription("Financial Target");
+                            chart.setDescription("Enquiry Target");
                             chart.animateXY(2000, 2000);
                             chart.invalidate();
 
                         }
-
-                        System.out.println("TEST : " + Arraylist_target_amount);
-                        System.out.println("TEST : " + Arraylist_acheived_amount);
-                        System.out.println("TEST : " + Arraylist_ytd);
 
                     } else if (success == 0) {
 
@@ -197,7 +188,7 @@ public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(Activity_Dashboard_Finance_Target.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Dashboard_Enquiry_Target.this, error.getMessage(), Toast.LENGTH_LONG).show();
 
                 dialog.dismiss();
 
@@ -223,13 +214,13 @@ public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
 
     private ArrayList<BarDataSet> getDataSet() {
 
-        barDataSet1 = new BarDataSet(Arraylist_target_amount, "Target Amount");
+        barDataSet1 = new BarDataSet(Arraylist_enq_target, "Target Enquiry");
         barDataSet1.setColor(Color.rgb(30, 144, 255));
-        barDataSet2 = new BarDataSet(Arraylist_acheived_amount, "Achived Amount");
+        barDataSet2 = new BarDataSet(Arraylist_total_enq, "Achived Enquiry");
         barDataSet2.setColors(ColorTemplate.JOYFUL_COLORS);
-        barDataSet3 = new BarDataSet(Arraylist_ytd, "YTD");
+        barDataSet3 = new BarDataSet(Arraylist_ytd_enq, "YTD");
         barDataSet3.setColors(ColorTemplate.COLORFUL_COLORS);
-        barDataSet4 = new BarDataSet(Arraylist_totaltodayamount, "Today's Target");
+        barDataSet4 = new BarDataSet(Arraylist_totaltodayenq, "Today's Target");
         barDataSet4.setColor(Color.rgb(204, 0, 204));
 
         dataSets = new ArrayList<>();

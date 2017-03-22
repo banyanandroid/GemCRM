@@ -42,7 +42,15 @@
             android:name=".activity.Activity_Dashboard_Finance_Target"
             android:label="Finance Target"></activity>
         <activity
+            android:name=".activity.Activity_Dashboard_PieChart_Target"
+            android:label="Product Target"></activity>
+
+        <activity
             android:name=".activity.Activity_Dashboard_Product_Target"
+            android:label="Product Target"></activity>
+
+        <activity
+            android:name=".activity.Activity_Dashboard_Enquiry_Target"
             android:label="Product Target"></activity>
 
         <activity
@@ -66,6 +74,9 @@
         <activity
             android:name=".activity.Ativity_Dash"
             android:label="Enquiry Process"></activity>
+
+        <activity android:name=".activity.Activity_FollowUp"
+            android:label="Follow Ups"></activity>
 
     </application>
 
