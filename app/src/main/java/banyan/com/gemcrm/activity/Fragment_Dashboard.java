@@ -54,8 +54,6 @@ public class Fragment_Dashboard extends Fragment {
         str_user_id = user.get(SessionManager.KEY_USER_ID);
         str_gcm = user.get(SessionManager.KEY_GCM);
 
-
-
         card1 = (CardView) rootView.findViewById(R.id.dashboard_card_view1);
         card2 = (CardView) rootView.findViewById(R.id.dashboard_card_view2);
         card3 = (CardView) rootView.findViewById(R.id.dashboard_card_view3);
@@ -90,7 +88,8 @@ public class Fragment_Dashboard extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "Target 3", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(getActivity(), Ativity_Dash.class);
+                startActivity(i);
 
             }
         });

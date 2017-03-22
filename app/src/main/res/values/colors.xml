@@ -37,4 +37,11 @@
     <color name="Alert_Fail">#F44336</color>
     <color name="Alert_Warning">#FFC107</color>
 
+    <color name="dashboard_first">#009688</color>
+    <color name="dashboard_second">#00bcd4</color>
+    <color name="dashboard_third">#673ab7</color>
+    <color name="dashboard_foruth">#607d8b</color>
+
+    <color name="Fab_bg">#ff5252</color>
+
 </resources>

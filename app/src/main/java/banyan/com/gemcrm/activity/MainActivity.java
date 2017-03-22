@@ -23,7 +23,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
+import com.tapadoo.alerter.Alerter;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,8 +33,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import banyan.com.gemcrm.R;
+import banyan.com.gemcrm.adapter.Alloted_Complaints_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
+import dmax.dialog.SpotsDialog;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
@@ -49,7 +53,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     String str_gcm = null;
     String GcmId = null;
 
+    SpotsDialog dialog;
     public static RequestQueue queue;
+
+    public static final String TAG_TARGET_AMOUNT = "target_amount";
+    public static final String TAG_ACHIVED_AMT = "acheived_amount";
+    public static final String TAG_YTD = "ytd";
+    public static final String TAG_TOTALTODAYAMOUNT = "totaltodayamount";
 
     //Notification Batch
 
@@ -144,10 +154,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
             return true;
         }
-        if (id == R.id.action_settings) {
 
-            Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -229,6 +236,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
                     if (success == 1) {
 
+                        dialog = new SpotsDialog(MainActivity.this);
+                        dialog.show();
+                        queue = Volley.newRequestQueue(MainActivity.this);
+                        GetMyAllotedEnquiries();
                         // TastyToast.makeText(getApplicationContext(), "Done", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
 
                     } else {
@@ -264,4 +275,85 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // Adding request to request queue
         queue.add(request);
     }
+
+    /*****************************
+     * GET My Task
+     ***************************/
+
+    public void GetMyAllotedEnquiries() {
+
+        String tag_json_obj = "json_obj_req";
+        System.out.println("CAME 1");
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_my_targets, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("finance_group");
+
+                        for (int i = 0; arr.length() > i; i++) {
+                            JSONObject obj1 = arr.getJSONObject(i);
+
+                            String target = obj1.getString(TAG_TARGET_AMOUNT);
+                            String Achived = obj1.getString(TAG_ACHIVED_AMT);
+                            String Total = obj1.getString(TAG_TOTALTODAYAMOUNT);
+                            String ytd = obj1.getString(TAG_YTD);
+
+
+                            System.out.println("TAGETTT" + target);
+                            System.out.println("Achived" + Achived);
+                            System.out.println("Total" + Total);
+                            System.out.println("ytd" + ytd);
+                        }
+
+                    } else if (success == 0) {
+
+                        Alerter.create(MainActivity.this)
+                                .setTitle("GEM CRM")
+                                .setText("Data Not Found \n Try Again")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+                    }
+
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                 dialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_id); // replace as str_id
+
+                System.out.println("user_id" + str_id);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
 }

@@ -3,13 +3,17 @@ package banyan.com.gemcrm.activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,6 +90,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     ArrayList<String> Arraylist_model_price = null;
 
     private Toolbar mToolbar;
+
+    //Notification Batch
+
+    RelativeLayout notificationCount1, parent_batch;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -306,6 +315,58 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         }
 
 
+    }
+
+
+    /**********************************
+     * Main Menu
+     *********************************/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem item1 = menu.findItem(R.id.action_alert);
+        MenuItemCompat.setActionView(item1, R.layout.notification_update_count_layout);
+        notificationCount1 = (RelativeLayout) MenuItemCompat.getActionView(item1);
+        parent_batch = (RelativeLayout) MenuItemCompat.getActionView(item1);
+        tv = (TextView) notificationCount1.findViewById(R.id.badge_notification_2);
+        tv.setText("0");
+        //str_cart = Integer.toString(count);
+        //tv.setText("" + cart_size);
+
+        parent_batch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_alert) {
+
+            Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /***************************

@@ -24,4 +24,8 @@
 
     <dimen name="padding_list_row">16dp</dimen>
     <dimen name="icon_width_height">40dp</dimen>
+
+    <dimen name="chart_size">250dp</dimen>
+    <dimen name="stroke_size">18dp</dimen>
+
 </resources>
