@@ -12,7 +12,7 @@
         <ListView
             android:id="@+id/my_succeed_enq__listView"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:dividerHeight="2dp"
             android:listSelector="@color/row_activated">
 

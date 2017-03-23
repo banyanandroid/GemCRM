@@ -566,6 +566,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                         arr = obj.getJSONArray("product_group");
 
+                        Arraylist_model_no.clear();
+
                         for (int i = 0; arr.length() > i; i++) {
                             JSONObject obj1 = arr.getJSONObject(i);
 
