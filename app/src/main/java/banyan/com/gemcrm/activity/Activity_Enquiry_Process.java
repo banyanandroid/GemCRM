@@ -1,10 +1,12 @@
 package banyan.com.gemcrm.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -53,6 +56,14 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     TextView txt_minus, txt_value, txt_add;
 
+    //Hide & Seek
+
+    TextView add_more_1, add_more_2, add_more_3, add_more_4, add_more_5;
+
+    CardView card1, card2, card3, card4, card5;
+
+    ImageView img_delete1, img_delete2, img_delete3, img_delete4, img_delete5;
+
     int i = 0;
 
     EditText edt_spec, edt_discount, edt_price;
@@ -75,7 +86,33 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     public static final String TAG_Model_Type = "product_type";
     public static final String TAG_Model_PRICE = "product_price";
 
-    Spinner spn_model;
+    public static final String TAG_GROUP_ID = "product_id";
+    public static final String TAG_GROUP_TITLE = "product_group_name";
+
+    int product_group = 0;
+
+    Spinner spn_group2,spn_group3,spn_group4,spn_group5,spn_group6;
+    ArrayList<String> Arraylist_group2 = null;
+    ArrayList<String> Arraylist_group_id2 = null;
+    String str_Selected_group2 = "";
+
+    ArrayList<String> Arraylist_group3 = null;
+    ArrayList<String> Arraylist_group_id3 = null;
+    String str_Selected_group3 = "";
+
+    ArrayList<String> Arraylist_group4 = null;
+    ArrayList<String> Arraylist_group_id4 = null;
+    String str_Selected_group4 = "";
+
+    ArrayList<String> Arraylist_group5 = null;
+    ArrayList<String> Arraylist_group_id5 = null;
+    String str_Selected_group5 = "";
+
+    ArrayList<String> Arraylist_group6 = null;
+    ArrayList<String> Arraylist_group_id6 = null;
+    String str_Selected_group6 = "";
+
+    Spinner spn_model, spn_model2,spn_model3,spn_model4,spn_model5,spn_model6;
     ArrayList<String> Arraylist_model = null;
     String str_Selected_model = "";
 
@@ -124,18 +161,43 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         txt_enq_enq_through = (TextView) findViewById(R.id.enq_process_txt_enq_thro);
         txt_enq_enq_thro_des = (TextView) findViewById(R.id.enq_process_txt_enq_thro_desc);
 
-        txt_minus = (TextView) findViewById(R.id.enq_process_txt_minus);
-        txt_value = (TextView) findViewById(R.id.enq_process_txt_count);
-        txt_add = (TextView) findViewById(R.id.enq_process_txt_add);
+        txt_minus = (TextView) findViewById(R.id.enq_process_txt_minus1);
+        txt_value = (TextView) findViewById(R.id.enq_process_txt_count1);
+        txt_add = (TextView) findViewById(R.id.enq_process_txt_add1);
 
         edt_discount = (EditText) findViewById(R.id.add_appoint_edt_name);
-        edt_spec = (EditText) findViewById(R.id.add_appoint_edt_discount);
-        edt_price = (EditText) findViewById(R.id.enq_process_edt_price);
+        edt_spec = (EditText) findViewById(R.id.add_appoint_edt_discount1);
+        edt_price = (EditText) findViewById(R.id.enq_process_edt_price1);
 
-        spn_model = (Spinner) findViewById(R.id.enq_process_spn_product_model);
-        spn_model_no = (Spinner) findViewById(R.id.enq_process_spn_model_no);
-        spn_model_type = (Spinner) findViewById(R.id.enq_process_spn_product_type);
+        spn_model = (Spinner) findViewById(R.id.enq_process_spn_product_model1);
+        spn_model2 = (Spinner) findViewById(R.id.enq_process_spn_product_mode2);
+        spn_model3 = (Spinner) findViewById(R.id.enq_process_spn_product_mode3);
+        spn_model4 = (Spinner) findViewById(R.id.enq_process_spn_product_mode4);
+        spn_model5 = (Spinner) findViewById(R.id.enq_process_spn_product_mode5);
+        spn_model6 = (Spinner) findViewById(R.id.enq_process_spn_product_mode6);
 
+        spn_model_no = (Spinner) findViewById(R.id.enq_process_spn_model_no1);
+        spn_model_type = (Spinner) findViewById(R.id.enq_process_spn_product_type1);
+
+        // Hide And Seek
+
+        add_more_1 = (TextView) findViewById(R.id.enq_process_txt_add_more1);
+        add_more_2 = (TextView) findViewById(R.id.enq_process_txt_add_more2);
+        add_more_3 = (TextView) findViewById(R.id.enq_process_txt_add_more3);
+        add_more_4 = (TextView) findViewById(R.id.enq_process_txt_add_more4);
+        add_more_5 = (TextView) findViewById(R.id.enq_process_txt_add_more5);
+
+        img_delete1 = (ImageView) findViewById(R.id.enq_process_img_delete2);
+        img_delete2 = (ImageView) findViewById(R.id.enq_process_img_delete3);
+        img_delete3 = (ImageView) findViewById(R.id.enq_process_img_delete4);
+        img_delete4 = (ImageView) findViewById(R.id.enq_process_img_delete5);
+        img_delete5 = (ImageView) findViewById(R.id.enq_process_img_delete6);
+
+        card1 = (CardView) findViewById(R.id.card_view_prod2);
+        card2 = (CardView) findViewById(R.id.card_view_prod3);
+        card3 = (CardView) findViewById(R.id.card_view_prod4);
+        card4 = (CardView) findViewById(R.id.card_view_prod5);
+        card5 = (CardView) findViewById(R.id.card_view_prod6);
 
         Arraylist_model = new ArrayList<String>();
         Arraylist_model_no = new ArrayList<String>();
@@ -185,6 +247,117 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        add_more_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                add_more_1.setVisibility(View.GONE);
+                card1.setVisibility(View.VISIBLE);
+                add_more_2.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        add_more_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                add_more_2.setVisibility(View.GONE);
+                card2.setVisibility(View.VISIBLE);
+                add_more_3.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        add_more_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                add_more_3.setVisibility(View.GONE);
+                card3.setVisibility(View.VISIBLE);
+                add_more_4.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        add_more_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                add_more_4.setVisibility(View.GONE);
+                card4.setVisibility(View.VISIBLE);
+                add_more_5.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        add_more_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                add_more_5.setVisibility(View.GONE);
+                card5.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        img_delete1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                card1.setVisibility(View.GONE);
+                add_more_1.setVisibility(View.VISIBLE);
+                add_more_2.setVisibility(View.GONE);
+
+            }
+        });
+
+        img_delete2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                card2.setVisibility(View.GONE);
+                add_more_2.setVisibility(View.VISIBLE);
+                add_more_3.setVisibility(View.GONE);
+
+            }
+        });
+
+        img_delete3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                card3.setVisibility(View.GONE);
+                add_more_3.setVisibility(View.VISIBLE);
+                add_more_4.setVisibility(View.GONE);
+
+            }
+        });
+
+        img_delete4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                card4.setVisibility(View.GONE);
+                add_more_4.setVisibility(View.VISIBLE);
+                add_more_5.setVisibility(View.GONE);
+
+
+            }
+        });
+
+        img_delete5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                card5.setVisibility(View.GONE);
+                add_more_5.setVisibility(View.VISIBLE);
+
+
+            }
+        });
 
         spn_model.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -270,7 +443,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                     int acutal_value = i * price;
 
-                    edt_price.setText(""+acutal_value);
+                    edt_price.setText("" + acutal_value);
 
                 }
 
@@ -295,7 +468,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                     int acutal_value = i * price;
 
-                    edt_price.setText(""+acutal_value);
+                    edt_price.setText("" + acutal_value);
 
                 }
 
@@ -368,6 +541,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         if (id == R.id.action_followup) {
 
 
+            Intent i = new Intent(getApplicationContext(), Activity_FollowUp.class);
+            startActivity(i);
 
             return true;
         }
@@ -466,7 +641,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     }
 
     /***************************
-     * GET Product Group
+     * GET Get Price
      ***************************/
 
     public void Get_Discount() {
@@ -748,5 +923,109 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         queue.add(request);
     }
 
+    /***************************
+     * GET Product Group
+     ***************************/
+
+    public void GetProductGroup() {
+
+        String tag_json_obj = "json_obj_req";
+        System.out.println("CAME 1");
+        StringRequest request = new StringRequest(Request.Method.GET,
+                AppConfig.url_product_group, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("product_group");
+
+                        for (int i = 0; arr.length() > i; i++) {
+                            JSONObject obj1 = arr.getJSONObject(i);
+
+                            String id = obj1.getString(TAG_GROUP_ID);
+                            String product = obj1.getString(TAG_GROUP_TITLE);
+
+                            Arraylist_group2.add(product);
+                            Arraylist_group_id2.add(id);
+
+                            try {
+                                spn_group2
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_group2));
+
+                                spn_group3
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_group2));
+
+                                spn_group4
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_group2));
+
+                                spn_group5
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_group2));
+
+                                spn_group6
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_group2));
+
+                            } catch (Exception e) {
+
+                            }
+
+                        }
+
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("No Data Found")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Alerter.create(Activity_Enquiry_Process.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
 
 }

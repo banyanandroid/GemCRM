@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:timeline="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#FFFFFF">
+
+    <com.alorma.timeline.RoundTimelineView
+        android:id="@+id/timeline"
+        android:layout_width="?android:listPreferredItemHeight"
+        android:layout_height="?android:listPreferredItemHeight"
+        timeline:timeline_lineStyle="dashed"/>
+
+    <TextView
+        android:id="@+id/followups_list_txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="?android:listPreferredItemHeight"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textColor="@color/album_title"
+        android:text="sample"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:ignore="RtlHardcoded"/>
+
+</LinearLayout>

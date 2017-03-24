@@ -48,4 +48,5 @@ dependencies {
     compile 'com.github.d-max:spots-dialog:0.4@aar' // Progress view
     compile 'com.tapadoo.android:alerter:1.0.6'     //Alerter Lib
     compile 'com.github.clans:fab:1.6.4'
+    compile 'com.github.alorma:timelineview:2.3.0'
 }
