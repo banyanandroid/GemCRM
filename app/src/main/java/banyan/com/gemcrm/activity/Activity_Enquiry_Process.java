@@ -89,32 +89,30 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     public static final String TAG_GROUP_ID = "product_id";
     public static final String TAG_GROUP_TITLE = "product_group_name";
 
-    int product_group = 0;
+    int select_product_group = 0;
 
-    Spinner spn_group2,spn_group3,spn_group4,spn_group5,spn_group6;
+    Spinner spn_group2, spn_group3, spn_group4, spn_group5, spn_group6;
     ArrayList<String> Arraylist_group2 = null;
     ArrayList<String> Arraylist_group_id2 = null;
     String str_Selected_group2 = "";
-
-    ArrayList<String> Arraylist_group3 = null;
-    ArrayList<String> Arraylist_group_id3 = null;
     String str_Selected_group3 = "";
-
-    ArrayList<String> Arraylist_group4 = null;
-    ArrayList<String> Arraylist_group_id4 = null;
     String str_Selected_group4 = "";
-
-    ArrayList<String> Arraylist_group5 = null;
-    ArrayList<String> Arraylist_group_id5 = null;
     String str_Selected_group5 = "";
-
-    ArrayList<String> Arraylist_group6 = null;
-    ArrayList<String> Arraylist_group_id6 = null;
     String str_Selected_group6 = "";
 
-    Spinner spn_model, spn_model2,spn_model3,spn_model4,spn_model5,spn_model6;
+    Spinner spn_model, spn_model2, spn_model3, spn_model4, spn_model5, spn_model6;
     ArrayList<String> Arraylist_model = null;
+    ArrayList<String> Arraylist_model2 = null;
+    ArrayList<String> Arraylist_model3 = null;
+    ArrayList<String> Arraylist_model4 = null;
+    ArrayList<String> Arraylist_model5 = null;
+    ArrayList<String> Arraylist_model6 = null;
     String str_Selected_model = "";
+    String str_Selected_model2 = "";
+    String str_Selected_model3 = "";
+    String str_Selected_model4 = "";
+    String str_Selected_model5 = "";
+    String str_Selected_model6 = "";
 
     Spinner spn_model_no;
     ArrayList<String> Arraylist_model_no = null;
@@ -169,6 +167,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_spec = (EditText) findViewById(R.id.add_appoint_edt_discount1);
         edt_price = (EditText) findViewById(R.id.enq_process_edt_price1);
 
+        spn_group2 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group2);
+        spn_group3 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group3);
+        spn_group4 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group4);
+        spn_group5 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group5);
+        spn_group6 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group6);
+
         spn_model = (Spinner) findViewById(R.id.enq_process_spn_product_model1);
         spn_model2 = (Spinner) findViewById(R.id.enq_process_spn_product_mode2);
         spn_model3 = (Spinner) findViewById(R.id.enq_process_spn_product_mode3);
@@ -203,6 +207,15 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         Arraylist_model_no = new ArrayList<String>();
         Arraylist_model_type = new ArrayList<String>();
         Arraylist_model_price = new ArrayList<String>();
+
+        Arraylist_group_id2 = new ArrayList<String>();
+        Arraylist_group2 = new ArrayList<String>();
+
+        Arraylist_model2 = new ArrayList<String>();
+        Arraylist_model3 = new ArrayList<String>();
+        Arraylist_model4 = new ArrayList<String>();
+        Arraylist_model5 = new ArrayList<String>();
+        Arraylist_model6 = new ArrayList<String>();
 
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
@@ -426,6 +439,126 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
+        spn_group2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_group = 2;
+                str_Selected_group2 = Arraylist_group_id2.get(arg2);
+
+                dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                dialog.show();
+                queue = Volley.newRequestQueue(getApplicationContext());
+                GetModel_Type_FOR_Multiple();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_group3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_group = 3;
+                str_Selected_group3 = Arraylist_group_id2.get(arg2);
+
+                dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                dialog.show();
+                queue = Volley.newRequestQueue(getApplicationContext());
+                GetModel_Type_FOR_Multiple();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_group4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_group = 4;
+                str_Selected_group4 = Arraylist_group_id2.get(arg2);
+
+                dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                dialog.show();
+                queue = Volley.newRequestQueue(getApplicationContext());
+                GetModel_Type_FOR_Multiple();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_group5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_group = 5;
+                str_Selected_group5 = Arraylist_group_id2.get(arg2);
+
+                dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                dialog.show();
+                queue = Volley.newRequestQueue(getApplicationContext());
+                GetModel_Type_FOR_Multiple();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_group6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_group = 6;
+                str_Selected_group6 = Arraylist_group_id2.get(arg2);
+
+                dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                dialog.show();
+                queue = Volley.newRequestQueue(getApplicationContext());
+                GetModel_Type_FOR_Multiple();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
         txt_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -551,7 +684,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     }
 
     /***************************
-     * GET Model
+     * GET Model Ex. 2KD, 2KW
      ***************************/
 
     public void GetModel_Type() {
@@ -872,6 +1005,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                             }
 
+                            try {
+                                GetProductGroup();
+                            } catch (Exception e) {
+
+                            }
 
                         }
 
@@ -947,6 +1085,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                         arr = obj.getJSONArray("product_group");
 
+                        Arraylist_group2.clear();
+
                         for (int i = 0; arr.length() > i; i++) {
                             JSONObject obj1 = arr.getJSONObject(i);
 
@@ -957,6 +1097,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                             Arraylist_group_id2.add(id);
 
                             try {
+
+                                System.out.println("GROUP :: " + Arraylist_group2);
+                                System.out.println("GROUP ID :: " + Arraylist_group_id2);
                                 spn_group2
                                         .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
                                                 android.R.layout.simple_spinner_dropdown_item,
@@ -1018,6 +1161,136 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+
+    /*******************************************
+     * GET Model FOR MULTIPLE Ex. 2KD, 2KW
+     *******************************************/
+
+    public void GetModel_Type_FOR_Multiple() {
+
+        System.out.println("CAME 1" + str_select_group);
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_enq_model, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("model");
+
+                        if (select_product_group == 2) {
+
+                            Arraylist_model2.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String product = obj1.getString(TAG_PROD_TITLE);
+
+                                Arraylist_model2.add(product);
+
+                                try {
+                                    spn_model2
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model2));
+
+                                } catch (Exception e) {
+
+                                }
+                            }
+                        } else if (select_product_group == 3) {
+
+                            Arraylist_model3.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String product = obj1.getString(TAG_PROD_TITLE);
+
+                                Arraylist_model3.add(product);
+
+                                try {
+                                    spn_model3
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model3));
+
+                                } catch (Exception e) {
+
+                                }
+                            }
+                        }
+
+                        /*queue = Volley.newRequestQueue(getApplicationContext());
+                        Get_Discount();*/
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("No Data Found")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                    dialog.dismiss();
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                dialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                dialog.dismiss();
+
+                Alerter.create(Activity_Enquiry_Process.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                if (select_product_group == 2) {
+                    params.put("group_id", str_Selected_group2);
+                    System.out.println("PAss 2" + str_Selected_group2);
+                }else if (select_product_group == 3) {
+                    params.put("group_id", str_Selected_group3);
+                    System.out.println("PAss 3" + str_Selected_group3);
+                }
+
+
+                System.out.println();
 
                 return params;
             }
