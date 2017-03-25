@@ -55,6 +55,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             txt_enq_person_phone, txt_enq_product, txt_enq_enq_through, txt_enq_enq_thro_des;
 
     TextView txt_minus, txt_value, txt_add;
+    TextView txt_minus2, txt_value2, txt_add2;
+    TextView txt_minus3, txt_value3, txt_add3;
+    TextView txt_minus4, txt_value4, txt_add4;
+    TextView txt_minus5, txt_value5, txt_add5;
+    TextView txt_minus6, txt_value6, txt_add6;
+
 
     //Hide & Seek
 
@@ -67,6 +73,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     int i = 0;
 
     EditText edt_spec, edt_discount, edt_price;
+
+    EditText edt_price2, edt_price3, edt_price4, edt_price5, edt_price6;
 
     String str_select_group;
 
@@ -90,6 +98,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     public static final String TAG_GROUP_TITLE = "product_group_name";
 
     int select_product_group = 0;
+    int select_product_model = 0;
+    int select_product_model_no = 0;
 
     Spinner spn_group2, spn_group3, spn_group4, spn_group5, spn_group6;
     ArrayList<String> Arraylist_group2 = null;
@@ -107,6 +117,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     ArrayList<String> Arraylist_model4 = null;
     ArrayList<String> Arraylist_model5 = null;
     ArrayList<String> Arraylist_model6 = null;
+
     String str_Selected_model = "";
     String str_Selected_model2 = "";
     String str_Selected_model3 = "";
@@ -114,15 +125,46 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     String str_Selected_model5 = "";
     String str_Selected_model6 = "";
 
-    Spinner spn_model_no;
+    Spinner spn_model_no, spn_model_no2, spn_model_no3, spn_model_no4, spn_model_no5, spn_model_no6;
     ArrayList<String> Arraylist_model_no = null;
-    String str_Selected_model_no = "";
+    ArrayList<String> Arraylist_model_no2 = null;
+    ArrayList<String> Arraylist_model_no3 = null;
+    ArrayList<String> Arraylist_model_no4 = null;
+    ArrayList<String> Arraylist_model_no5 = null;
+    ArrayList<String> Arraylist_model_no6 = null;
 
-    Spinner spn_model_type;
+    String str_Selected_model_no = "";
+    String str_Selected_model_no2 = "";
+    String str_Selected_model_no3 = "";
+    String str_Selected_model_no4 = "";
+    String str_Selected_model_no5 = "";
+    String str_Selected_model_no6 = "";
+
+    Spinner spn_model_type, spn_model_type2, spn_model_type3, spn_model_type4, spn_model_type5, spn_model_type6;
     ArrayList<String> Arraylist_model_type = null;
+    ArrayList<String> Arraylist_model_price = null;
     String str_Selected_model_type, str_Selected_model_price = "";
 
-    ArrayList<String> Arraylist_model_price = null;
+    ArrayList<String> Arraylist_model_type2 = null;
+    ArrayList<String> Arraylist_model_price2 = null;
+    String str_Selected_model_type2, str_Selected_model_price2 = "";
+
+    ArrayList<String> Arraylist_model_type3 = null;
+    ArrayList<String> Arraylist_model_price3 = null;
+    String str_Selected_model_type3, str_Selected_model_price3 = "";
+
+    ArrayList<String> Arraylist_model_type4 = null;
+    ArrayList<String> Arraylist_model_price4 = null;
+    String str_Selected_model_type4, str_Selected_model_price4 = "";
+
+    ArrayList<String> Arraylist_model_type5 = null;
+    ArrayList<String> Arraylist_model_price5 = null;
+    String str_Selected_model_type5, str_Selected_model_price5 = "";
+
+    ArrayList<String> Arraylist_model_type6 = null;
+    ArrayList<String> Arraylist_model_price6 = null;
+    String str_Selected_model_type6, str_Selected_model_price6 = "";
+
 
     private Toolbar mToolbar;
 
@@ -163,9 +205,35 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         txt_value = (TextView) findViewById(R.id.enq_process_txt_count1);
         txt_add = (TextView) findViewById(R.id.enq_process_txt_add1);
 
+        txt_minus2 = (TextView) findViewById(R.id.enq_process_txt_minus2);
+        txt_value2 = (TextView) findViewById(R.id.enq_process_txt_count2);
+        txt_add2 = (TextView) findViewById(R.id.enq_process_txt_add2);
+
+        txt_minus3 = (TextView) findViewById(R.id.enq_process_txt_minus3);
+        txt_value3 = (TextView) findViewById(R.id.enq_process_txt_count3);
+        txt_add3 = (TextView) findViewById(R.id.enq_process_txt_add3);
+
+        txt_minus4 = (TextView) findViewById(R.id.enq_process_txt_minus4);
+        txt_value4 = (TextView) findViewById(R.id.enq_process_txt_count4);
+        txt_add4 = (TextView) findViewById(R.id.enq_process_txt_add4);
+
+        txt_minus5 = (TextView) findViewById(R.id.enq_process_txt_minus5);
+        txt_value5 = (TextView) findViewById(R.id.enq_process_txt_count5);
+        txt_add5 = (TextView) findViewById(R.id.enq_process_txt_add5);
+
+        txt_minus6 = (TextView) findViewById(R.id.enq_process_txt_minus6);
+        txt_value6 = (TextView) findViewById(R.id.enq_process_txt_count6);
+        txt_add6 = (TextView) findViewById(R.id.enq_process_txt_add6);
+
         edt_discount = (EditText) findViewById(R.id.add_appoint_edt_name);
         edt_spec = (EditText) findViewById(R.id.add_appoint_edt_discount1);
         edt_price = (EditText) findViewById(R.id.enq_process_edt_price1);
+
+        edt_price2 = (EditText) findViewById(R.id.enq_process_edt_price2);
+        edt_price3 = (EditText) findViewById(R.id.enq_process_edt_price3);
+        edt_price4 = (EditText) findViewById(R.id.enq_process_edt_price4);
+        edt_price5 = (EditText) findViewById(R.id.enq_process_edt_price5);
+        edt_price6 = (EditText) findViewById(R.id.enq_process_edt_price6);
 
         spn_group2 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group2);
         spn_group3 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group3);
@@ -181,7 +249,18 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         spn_model6 = (Spinner) findViewById(R.id.enq_process_spn_product_mode6);
 
         spn_model_no = (Spinner) findViewById(R.id.enq_process_spn_model_no1);
+        spn_model_no2 = (Spinner) findViewById(R.id.enq_process_spn_model_no2);
+        spn_model_no3 = (Spinner) findViewById(R.id.enq_process_spn_model_no3);
+        spn_model_no4 = (Spinner) findViewById(R.id.enq_process_spn_model_no4);
+        spn_model_no5 = (Spinner) findViewById(R.id.enq_process_spn_model_no5);
+        spn_model_no6 = (Spinner) findViewById(R.id.enq_process_spn_model_no6);
+
         spn_model_type = (Spinner) findViewById(R.id.enq_process_spn_product_type1);
+        spn_model_type2 = (Spinner) findViewById(R.id.enq_process_spn_product_type2);
+        spn_model_type3 = (Spinner) findViewById(R.id.enq_process_spn_product_type3);
+        spn_model_type4 = (Spinner) findViewById(R.id.enq_process_spn_product_type4);
+        spn_model_type5 = (Spinner) findViewById(R.id.enq_process_spn_product_type5);
+        spn_model_type6 = (Spinner) findViewById(R.id.enq_process_spn_product_type6);
 
         // Hide And Seek
 
@@ -216,6 +295,24 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         Arraylist_model4 = new ArrayList<String>();
         Arraylist_model5 = new ArrayList<String>();
         Arraylist_model6 = new ArrayList<String>();
+
+        Arraylist_model_no2 = new ArrayList<String>();
+        Arraylist_model_no3 = new ArrayList<String>();
+        Arraylist_model_no4 = new ArrayList<String>();
+        Arraylist_model_no5 = new ArrayList<String>();
+        Arraylist_model_no6 = new ArrayList<String>();
+
+        Arraylist_model_type2 = new ArrayList<String>();
+        Arraylist_model_type3 = new ArrayList<String>();
+        Arraylist_model_type4 = new ArrayList<String>();
+        Arraylist_model_type5 = new ArrayList<String>();
+        Arraylist_model_type6 = new ArrayList<String>();
+
+        Arraylist_model_price2 = new ArrayList<String>();
+        Arraylist_model_price3 = new ArrayList<String>();
+        Arraylist_model_price4 = new ArrayList<String>();
+        Arraylist_model_price5 = new ArrayList<String>();
+        Arraylist_model_price6 = new ArrayList<String>();
 
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
@@ -372,6 +469,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
+        /****************************************
+         *  Spinner Model Interface Ex.2KD, 2Kw
+         * **************************************/
+
         spn_model.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -394,6 +495,125 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
+
+        spn_model2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model = 2;
+                str_Selected_model2 = Arraylist_model2.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model2);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelNo_FOR_Multiple();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model = 3;
+                str_Selected_model3 = Arraylist_model3.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model3);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelNo_FOR_Multiple();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model = 4;
+                str_Selected_model4 = Arraylist_model4.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model4);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelNo_FOR_Multiple();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model = 5;
+                str_Selected_model5 = Arraylist_model5.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model5);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelNo_FOR_Multiple();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model = 6;
+                str_Selected_model6 = Arraylist_model6.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model6);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelNo_FOR_Multiple();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+
+        /*********************************************
+         *  Spinner Model No Interface Ex. 2KD0028
+         * ********************************************/
 
         spn_model_no.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -418,6 +638,128 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
+        spn_model_no2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model_no = 2;
+
+                str_Selected_model_no2 = Arraylist_model_no2.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_no2);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelType_FOR_Multiple();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model_no3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model_no = 3;
+                str_Selected_model_no3 = Arraylist_model_no3.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_no3);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelType_FOR_Multiple();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model_no4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model_no = 4;
+                str_Selected_model_no4 = Arraylist_model_no4.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_no4);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelType_FOR_Multiple();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model_no5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model_no = 5;
+                str_Selected_model_no5 = Arraylist_model_no5.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_no5);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelType_FOR_Multiple();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model_no6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_model_no = 6;
+                str_Selected_model_no6 = Arraylist_model_no6.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_no6);
+
+                queue = Volley.newRequestQueue(getApplicationContext());
+                Get_Product_modelType_FOR_Multiple();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        /*********************************************
+         *  Spinner Model Type Interface Ex.
+         * ********************************************/
+
         spn_model_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -438,6 +780,104 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
+
+        spn_model_type2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                str_Selected_model_type2 = Arraylist_model_type2.get(arg2);
+                str_Selected_model_price2 = Arraylist_model_price2.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_type2);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model_type3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                str_Selected_model_type3 = Arraylist_model_type3.get(arg2);
+                str_Selected_model_price3 = Arraylist_model_price3.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_type3);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model_type4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                str_Selected_model_type4 = Arraylist_model_type4.get(arg2);
+                str_Selected_model_price4 = Arraylist_model_price4.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_price4);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model_type5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                str_Selected_model_type5 = Arraylist_model_type5.get(arg2);
+                str_Selected_model_price5 = Arraylist_model_price5.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_type5);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        spn_model_type6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                str_Selected_model_type6 = Arraylist_model_type6.get(arg2);
+                str_Selected_model_price6 = Arraylist_model_price6.get(arg2);
+
+                System.out.println("NAME : " + str_Selected_model_price6);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        /*********************************************
+         *  Spinner Group Interface Ex. DRYER,CHILLER
+         * ********************************************/
 
         spn_group2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -559,6 +999,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
+
+        /*********************************************
+         *  Product Count 1
+         * ********************************************/
+
         txt_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -608,6 +1053,271 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
+        /*********************************************
+         *  Product Count 2
+         * ********************************************/
+
+        txt_minus2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value2.getText().toString());
+
+                if (i <= 0) {
+
+
+                } else {
+                    i = i - 1;
+                    txt_value2.setText("" + i);
+
+                    int price = Integer.parseInt(str_Selected_model_price2);
+
+                    int acutal_value = i * price;
+
+                    edt_price2.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+        txt_add2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value2.getText().toString());
+
+                if (i > 9) {
+
+
+                } else {
+                    i = i + 1;
+                    txt_value2.setText("" + i);
+
+
+                    int price = Integer.parseInt(str_Selected_model_price2);
+
+                    int acutal_value = i * price;
+
+                    edt_price2.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+        /*********************************************
+         *  Product Count 3
+         * ********************************************/
+
+        txt_minus3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value3.getText().toString());
+
+                if (i <= 0) {
+
+
+                } else {
+                    i = i - 1;
+                    txt_value3.setText("" + i);
+
+                    int price = Integer.parseInt(str_Selected_model_price3);
+
+                    int acutal_value = i * price;
+
+                    edt_price3.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+        txt_add3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value3.getText().toString());
+
+                if (i > 9) {
+
+
+                } else {
+                    i = i + 1;
+                    txt_value3.setText("" + i);
+
+
+                    int price = Integer.parseInt(str_Selected_model_price3);
+
+                    int acutal_value = i * price;
+
+                    edt_price3.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+
+        /*********************************************
+         *  Product Count 4
+         * ********************************************/
+
+        txt_minus4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value4.getText().toString());
+
+                if (i <= 0) {
+
+
+                } else {
+                    i = i - 1;
+                    txt_value4.setText("" + i);
+
+                    int price = Integer.parseInt(str_Selected_model_price4);
+
+                    int acutal_value = i * price;
+
+                    edt_price4.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+        txt_add4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value4.getText().toString());
+
+                if (i > 9) {
+
+
+                } else {
+                    i = i + 1;
+                    txt_value4.setText("" + i);
+
+
+                    int price = Integer.parseInt(str_Selected_model_price4);
+
+                    int acutal_value = i * price;
+
+                    edt_price4.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+        /*********************************************
+         *  Product Count 5
+         * ********************************************/
+
+        txt_minus5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value5.getText().toString());
+
+                if (i <= 0) {
+
+
+                } else {
+                    i = i - 1;
+                    txt_value5.setText("" + i);
+
+                    int price = Integer.parseInt(str_Selected_model_price5);
+
+                    int acutal_value = i * price;
+
+                    edt_price5.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+        txt_add5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value5.getText().toString());
+
+                if (i > 9) {
+
+
+                } else {
+                    i = i + 1;
+                    txt_value5.setText("" + i);
+
+
+                    int price = Integer.parseInt(str_Selected_model_price5);
+
+                    int acutal_value = i * price;
+
+                    edt_price5.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+        /*********************************************
+         *  Product Count 6
+         * ********************************************/
+
+        txt_minus6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value6.getText().toString());
+
+                if (i <= 0) {
+
+
+                } else {
+                    i = i - 1;
+                    txt_value6.setText("" + i);
+
+                    int price = Integer.parseInt(str_Selected_model_price6);
+
+                    int acutal_value = i * price;
+
+                    edt_price6.setText("" + acutal_value);
+
+                }
+
+            }
+        });
+
+        txt_add6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                i = Integer.parseInt(txt_value6.getText().toString());
+
+                if (i > 9) {
+
+
+                } else {
+                    i = i + 1;
+                    txt_value6.setText("" + i);
+
+
+                    int price = Integer.parseInt(str_Selected_model_price6);
+
+                    int acutal_value = i * price;
+
+                    edt_price6.setText("" + acutal_value);
+
+                }
+
+            }
+        });
 
         try {
 
@@ -1238,6 +1948,69 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 }
                             }
+                        } else if (select_product_group == 4) {
+
+                            Arraylist_model4.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String product = obj1.getString(TAG_PROD_TITLE);
+
+                                Arraylist_model4.add(product);
+
+                                try {
+                                    spn_model4
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model4));
+
+                                } catch (Exception e) {
+
+                                }
+                            }
+                        } else if (select_product_group == 5) {
+
+                            Arraylist_model5.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String product = obj1.getString(TAG_PROD_TITLE);
+
+                                Arraylist_model5.add(product);
+
+                                try {
+                                    spn_model5
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model5));
+
+                                } catch (Exception e) {
+
+                                }
+                            }
+                        } else if (select_product_group == 6) {
+
+                            Arraylist_model6.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String product = obj1.getString(TAG_PROD_TITLE);
+
+                                Arraylist_model6.add(product);
+
+                                try {
+                                    spn_model6
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model6));
+
+                                } catch (Exception e) {
+
+                                }
+                            }
                         }
 
                         /*queue = Volley.newRequestQueue(getApplicationContext());
@@ -1284,9 +2057,18 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 if (select_product_group == 2) {
                     params.put("group_id", str_Selected_group2);
                     System.out.println("PAss 2" + str_Selected_group2);
-                }else if (select_product_group == 3) {
+                } else if (select_product_group == 3) {
                     params.put("group_id", str_Selected_group3);
                     System.out.println("PAss 3" + str_Selected_group3);
+                } else if (select_product_group == 4) {
+                    params.put("group_id", str_Selected_group4);
+                    System.out.println("PAss 4" + str_Selected_group4);
+                } else if (select_product_group == 5) {
+                    params.put("group_id", str_Selected_group5);
+                    System.out.println("PAss 5" + str_Selected_group5);
+                } else if (select_product_group == 6) {
+                    params.put("group_id", str_Selected_group6);
+                    System.out.println("PAss 6" + str_Selected_group6);
                 }
 
 
@@ -1300,5 +2082,520 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         // Adding request to request queue
         queue.add(request);
     }
+
+    /*******************************************
+     * GET Product Model No For Multiple
+     ******************************************/
+
+    public void Get_Product_modelNo_FOR_Multiple() {
+
+        System.out.println("CAME 1" + str_select_group);
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_enq_modelno, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("product_group");
+
+
+                        if (select_product_model == 2) {
+
+                            Arraylist_model_no2.clear();
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String model_no = obj1.getString(TAG_Model_NO);
+
+                                Arraylist_model_no2.add(model_no);
+
+                                try {
+                                    spn_model_no2
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model_no2));
+
+                                } catch (Exception e) {
+
+                                }
+
+                            }
+
+                        } else if (select_product_model == 3) {
+
+                            Arraylist_model_no3.clear();
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String model_no = obj1.getString(TAG_Model_NO);
+
+                                Arraylist_model_no3.add(model_no);
+
+                                try {
+                                    spn_model_no3
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model_no3));
+
+                                } catch (Exception e) {
+
+                                }
+
+                            }
+
+                        } else if (select_product_model == 4) {
+
+                            Arraylist_model_no4.clear();
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String model_no = obj1.getString(TAG_Model_NO);
+
+                                Arraylist_model_no4.add(model_no);
+
+                                try {
+                                    spn_model_no4
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model_no4));
+
+                                } catch (Exception e) {
+
+                                }
+
+                            }
+
+                        } else if (select_product_model == 5) {
+
+                            Arraylist_model_no5.clear();
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String model_no = obj1.getString(TAG_Model_NO);
+
+                                Arraylist_model_no5.add(model_no);
+
+                                try {
+                                    spn_model_no5
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model_no5));
+
+                                } catch (Exception e) {
+
+                                }
+
+                            }
+
+                        } else if (select_product_model == 6) {
+
+                            Arraylist_model_no6.clear();
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                String model_no = obj1.getString(TAG_Model_NO);
+
+                                Arraylist_model_no6.add(model_no);
+
+                                try {
+                                    spn_model_no6
+                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                    android.R.layout.simple_spinner_dropdown_item,
+                                                    Arraylist_model_no6));
+
+                                } catch (Exception e) {
+
+                                }
+
+                            }
+
+                        }
+
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("No Data Found")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                dialog.dismiss();
+                Alerter.create(Activity_Enquiry_Process.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                if (select_product_model == 2) {
+
+                    params.put("series", str_Selected_model2);
+                    System.out.println("series" + str_Selected_model2);
+
+                } else if (select_product_model == 3) {
+
+                    params.put("series", str_Selected_model3);
+                    System.out.println("series" + str_Selected_model3);
+
+                } else if (select_product_model == 4) {
+
+                    params.put("series", str_Selected_model4);
+                    System.out.println("series" + str_Selected_model4);
+
+                } else if (select_product_model == 5) {
+
+                    params.put("series", str_Selected_model5);
+                    System.out.println("series" + str_Selected_model5);
+
+                } else if (select_product_model == 6) {
+
+                    params.put("series", str_Selected_model6);
+                    System.out.println("series" + str_Selected_model6);
+
+                }
+
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+
+    /***********************************
+     * GET Model Type For Multiple
+     **************************************/
+
+    public void Get_Product_modelType_FOR_Multiple() {
+
+        System.out.println("CAME 1" + str_select_group);
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_enq_modeltype, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("product_group");
+
+                        if (select_product_model_no == 2) {
+
+                            Arraylist_model_type2.clear();
+                            Arraylist_model_price2.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                JSONArray arr_type = obj1.getJSONArray("product_type_main");
+                                JSONArray arr_price = obj1.getJSONArray("product_price_main");
+
+                                for (int j = 0; arr_type.length() > j; j++) {
+                                    JSONObject obj_type = arr_type.getJSONObject(j);
+
+                                    String model_type = obj_type.getString(TAG_Model_Type);
+
+                                    Arraylist_model_type2.add(model_type);
+
+                                    try {
+                                        spn_model_type2
+                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                        android.R.layout.simple_spinner_dropdown_item,
+                                                        Arraylist_model_type2));
+
+                                    } catch (Exception e) {
+
+                                    }
+
+                                }
+
+                                for (int k = 0; arr_price.length() > k; k++) {
+                                    JSONObject obj_price = arr_price.getJSONObject(k);
+
+                                    String model_price = obj_price.getString(TAG_Model_PRICE);
+
+                                    Arraylist_model_price2.add(model_price);
+
+                                }
+
+                            }
+
+                        } else if (select_product_model_no == 3) {
+
+                            Arraylist_model_type3.clear();
+                            Arraylist_model_price3.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                JSONArray arr_type = obj1.getJSONArray("product_type_main");
+                                JSONArray arr_price = obj1.getJSONArray("product_price_main");
+
+                                for (int j = 0; arr_type.length() > j; j++) {
+                                    JSONObject obj_type = arr_type.getJSONObject(j);
+
+                                    String model_type = obj_type.getString(TAG_Model_Type);
+
+                                    Arraylist_model_type3.add(model_type);
+
+                                    try {
+                                        spn_model_type3
+                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                        android.R.layout.simple_spinner_dropdown_item,
+                                                        Arraylist_model_type3));
+
+                                    } catch (Exception e) {
+
+                                    }
+
+                                }
+
+                                for (int k = 0; arr_price.length() > k; k++) {
+                                    JSONObject obj_price = arr_price.getJSONObject(k);
+
+                                    String model_price = obj_price.getString(TAG_Model_PRICE);
+
+                                    Arraylist_model_price3.add(model_price);
+
+                                }
+
+                            }
+
+                        } else if (select_product_model_no == 4) {
+
+                            Arraylist_model_type4.clear();
+                            Arraylist_model_price4.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                JSONArray arr_type = obj1.getJSONArray("product_type_main");
+                                JSONArray arr_price = obj1.getJSONArray("product_price_main");
+
+                                for (int j = 0; arr_type.length() > j; j++) {
+                                    JSONObject obj_type = arr_type.getJSONObject(j);
+
+                                    String model_type = obj_type.getString(TAG_Model_Type);
+
+                                    Arraylist_model_type4.add(model_type);
+
+                                    try {
+                                        spn_model_type4
+                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                        android.R.layout.simple_spinner_dropdown_item,
+                                                        Arraylist_model_type4));
+
+                                    } catch (Exception e) {
+
+                                    }
+
+                                }
+
+                                for (int k = 0; arr_price.length() > k; k++) {
+                                    JSONObject obj_price = arr_price.getJSONObject(k);
+
+                                    String model_price = obj_price.getString(TAG_Model_PRICE);
+
+                                    Arraylist_model_price4.add(model_price);
+
+                                }
+
+                            }
+
+                        } else if (select_product_model_no == 5) {
+
+                            Arraylist_model_type5.clear();
+                            Arraylist_model_price5.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                JSONArray arr_type = obj1.getJSONArray("product_type_main");
+                                JSONArray arr_price = obj1.getJSONArray("product_price_main");
+
+                                for (int j = 0; arr_type.length() > j; j++) {
+                                    JSONObject obj_type = arr_type.getJSONObject(j);
+
+                                    String model_type = obj_type.getString(TAG_Model_Type);
+
+                                    Arraylist_model_type5.add(model_type);
+
+                                    try {
+                                        spn_model_type5
+                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                        android.R.layout.simple_spinner_dropdown_item,
+                                                        Arraylist_model_type5));
+
+                                    } catch (Exception e) {
+
+                                    }
+
+                                }
+
+                                for (int k = 0; arr_price.length() > k; k++) {
+                                    JSONObject obj_price = arr_price.getJSONObject(k);
+
+                                    String model_price = obj_price.getString(TAG_Model_PRICE);
+
+                                    Arraylist_model_price5.add(model_price);
+
+                                }
+
+                            }
+
+                        } else if (select_product_model_no == 6) {
+
+                            Arraylist_model_type6.clear();
+                            Arraylist_model_price6.clear();
+
+                            for (int i = 0; arr.length() > i; i++) {
+                                JSONObject obj1 = arr.getJSONObject(i);
+
+                                JSONArray arr_type = obj1.getJSONArray("product_type_main");
+                                JSONArray arr_price = obj1.getJSONArray("product_price_main");
+
+                                for (int j = 0; arr_type.length() > j; j++) {
+                                    JSONObject obj_type = arr_type.getJSONObject(j);
+
+                                    String model_type = obj_type.getString(TAG_Model_Type);
+
+                                    Arraylist_model_type6.add(model_type);
+
+                                    try {
+                                        spn_model_type6
+                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                        android.R.layout.simple_spinner_dropdown_item,
+                                                        Arraylist_model_type6));
+
+                                    } catch (Exception e) {
+
+                                    }
+
+                                }
+
+                                for (int k = 0; arr_price.length() > k; k++) {
+                                    JSONObject obj_price = arr_price.getJSONObject(k);
+
+                                    String model_price = obj_price.getString(TAG_Model_PRICE);
+
+                                    Arraylist_model_price6.add(model_price);
+
+                                }
+
+                            }
+
+                        }
+
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("No Data Found")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Alerter.create(Activity_Enquiry_Process.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                if (select_product_model_no == 2) {
+
+                    params.put("model_no", str_Selected_model_no2);
+                    System.out.println("model_no" + str_Selected_model_no2);
+                    System.out.println("model_no" + str_Selected_model_no2);
+                    System.out.println("model_no" + str_Selected_model_no2);
+                } else if (select_product_model_no == 3) {
+
+                    params.put("model_no", str_Selected_model_no3);
+                    System.out.println("model_no" + str_Selected_model_no3);
+                    System.out.println("model_no" + str_Selected_model_no3);
+                    System.out.println("model_no" + str_Selected_model_no3);
+                } else if (select_product_model_no == 4) {
+
+                    params.put("model_no", str_Selected_model_no4);
+                    System.out.println("model_no" + str_Selected_model_no4);
+                    System.out.println("model_no" + str_Selected_model_no4);
+                    System.out.println("model_no" + str_Selected_model_no4);
+                } else if (select_product_model_no == 5) {
+
+                    params.put("model_no", str_Selected_model_no5);
+                    System.out.println("model_no" + str_Selected_model_no5);
+                    System.out.println("model_no" + str_Selected_model_no5);
+                    System.out.println("model_no" + str_Selected_model_no5);
+                } else if (select_product_model_no == 6) {
+
+                    params.put("model_no", str_Selected_model_no6);
+                    System.out.println("model_no" + str_Selected_model_no6);
+                    System.out.println("model_no" + str_Selected_model_no6);
+                    System.out.println("model_no" + str_Selected_model_no6);
+                }
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
 
 }
