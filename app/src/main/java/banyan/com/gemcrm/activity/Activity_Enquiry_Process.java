@@ -52,8 +52,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             str_select_person_number, str_select_produc_id, str_select_produc_series, str_select_desc, str_select_enq_throu,
             getStr_select_enq_throu_desc, str_select_createdon, str_select_completeon = "";
 
-    TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_txt_email, txt_enq_address, txt_enq_pin, txt_enq_phone, txt_enq_conact_person,
-            txt_enq_person_phone, txt_enq_product, txt_enq_enq_through, txt_enq_enq_thro_des;
+    TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_product, txt_enq_enq_through, txt_enq_enq_thro_des;
+
+
+    EditText edt_txt_enq_txt_email,edt_txt_enq_address,edt_txt_enq_pin,edt_txt_enq_phone,edt_txt_enq_conact_person,
+            edt_txt_enq_person_phone;
 
     TextView txt_minus, txt_value, txt_add;
     TextView txt_minus2, txt_value2, txt_add2;
@@ -169,6 +172,14 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     Button btn_send_catalog, btn_save,btn_save_pre_quote;
 
+    String str_po_en_no,str_po_comp_name,str_po_email,str_po_address,str_po_pin,str_po_phone,str_po_contact_person,
+            str_po_contact_person_phone,str_po_product,str_po_enq_through,str_po_enq_description,
+            str_po_group1,str_po_model1,str_po_model_no1,str_po_model_type,str_po_qty1,str_po_price1,
+            str_po_group2,str_po_model2,str_po_model_no2,str_po_mode2_type,str_po_qty2,str_po_price2,
+            str_po_group3,str_po_model3,str_po_model_no3,str_po_mode3_type,str_po_qty3,str_po_price3,
+            str_po_group4,str_po_model4,str_po_model_no4,str_po_mode4_type,str_po_qty4,str_po_price4,
+            str_po_group5,str_po_model5,str_po_model_no5,str_po_mode5_type,str_po_qty5,str_po_price5,
+            str_po_group6,str_po_model6,str_po_model_no6,str_po_mode6_type,str_po_qty6,str_po_price6;
 
     private Toolbar mToolbar;
 
@@ -195,15 +206,16 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         txt_created_on = (TextView) findViewById(R.id.enq_process_txt_app_created_on);
         txt_enq_id = (TextView) findViewById(R.id.enq_process_txt_id);
         txt_enq_company_name = (TextView) findViewById(R.id.enq_process_txt_company_name);
-        txt_enq_txt_email = (TextView) findViewById(R.id.enq_process_txt_email);
-        txt_enq_address = (TextView) findViewById(R.id.enq_process_txt_address);
-        txt_enq_pin = (TextView) findViewById(R.id.enq_process_txt_pin);
-        txt_enq_phone = (TextView) findViewById(R.id.enq_process_txt_comp_phone);
-        txt_enq_conact_person = (TextView) findViewById(R.id.enq_process_txt_conact_person);
-        txt_enq_person_phone = (TextView) findViewById(R.id.enq_process_txt_contact_person_phone);
         txt_enq_product = (TextView) findViewById(R.id.enq_process_txt_product);
         txt_enq_enq_through = (TextView) findViewById(R.id.enq_process_txt_enq_thro);
         txt_enq_enq_thro_des = (TextView) findViewById(R.id.enq_process_txt_enq_thro_desc);
+
+        edt_txt_enq_txt_email = (EditText) findViewById(R.id.enq_process_txt_email);
+        edt_txt_enq_address = (EditText) findViewById(R.id.enq_process_txt_address);
+        edt_txt_enq_pin = (EditText) findViewById(R.id.enq_process_txt_pin);
+        edt_txt_enq_phone = (EditText) findViewById(R.id.enq_process_txt_comp_phone);
+        edt_txt_enq_conact_person = (EditText) findViewById(R.id.enq_process_txt_conact_person);
+        edt_txt_enq_person_phone = (EditText) findViewById(R.id.enq_process_txt_contact_person_phone);
 
         txt_minus = (TextView) findViewById(R.id.enq_process_txt_minus1);
         txt_value = (TextView) findViewById(R.id.enq_process_txt_count1);
@@ -286,6 +298,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         card4 = (CardView) findViewById(R.id.card_view_prod5);
         card5 = (CardView) findViewById(R.id.card_view_prod6);
 
+        btn_save = (Button) findViewById(R.id.enq_process_btn_save);
+        btn_send_catalog = (Button) findViewById(R.id.enq_process_btn_catalog);
+        btn_save_pre_quote = (Button) findViewById(R.id.enq_process_btn_save_preview_quote);
+
         Arraylist_model = new ArrayList<String>();
         Arraylist_model_no = new ArrayList<String>();
         Arraylist_model_type = new ArrayList<String>();
@@ -346,12 +362,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             txt_created_on.setText(str_select_createdon);
             txt_enq_id.setText(str_select_id);
             txt_enq_company_name.setText(str_select_comp_name);
-            txt_enq_txt_email.setText(str_select_email);
-            txt_enq_address.setText(str_select_comp_address);
-            txt_enq_pin.setText(str_select_pin);
-            txt_enq_phone.setText(str_select_phoneno);
-            txt_enq_conact_person.setText(str_select_person_name);
-            txt_enq_person_phone.setText(str_select_person_number);
+            edt_txt_enq_txt_email.setText(str_select_email);
+            edt_txt_enq_address.setText(str_select_comp_address);
+            edt_txt_enq_pin.setText(str_select_pin);
+            edt_txt_enq_phone.setText(str_select_phoneno);
+            edt_txt_enq_conact_person.setText(str_select_person_name);
+            edt_txt_enq_person_phone.setText(str_select_person_number);
             txt_enq_product.setText(str_select_produc_series);
             txt_enq_enq_through.setText(str_select_enq_throu);
             txt_enq_enq_thro_des.setText(getStr_select_enq_throu_desc);

@@ -2570,7 +2570,7 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/enq_process_btn_qupte"
+                        android:id="@+id/enq_process_btn_save"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -2591,7 +2591,7 @@
                     android:weightSum="2">
 
                     <Button
-                        android:id="@+id/enq_process_btn_save"
+                        android:id="@+id/enq_process_btn_save_preview_quote"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
