@@ -1339,6 +1339,39 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
+
+        btn_save_pre_quote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                str_po_en_no = txt_enq_id.getText().toString();
+                str_po_comp_name = txt_enq_company_name.getText().toString();
+                str_po_email = edt_txt_enq_txt_email.getText().toString();
+                str_po_address = edt_txt_enq_address.getText().toString();
+                str_po_pin = edt_txt_enq_pin.getText().toString();
+                str_po_phone = edt_txt_enq_phone.getText().toString();
+                str_po_contact_person = edt_txt_enq_conact_person.getText().toString();
+                str_po_contact_person_phone = edt_txt_enq_person_phone.getText().toString();
+                str_po_product = txt_enq_product.getText().toString();
+                str_po_enq_through = txt_enq_enq_through.getText().toString();
+                str_po_enq_description = txt_enq_enq_thro_des.getText().toString();
+
+                str_po_group1 = txt_enq_product.getText().toString();
+               /* str_po_model1 = spn_model.selec
+
+
+                        ,,str_po_model_no1,str_po_model_type,str_po_qty1,str_po_price1,
+                        str_po_group2,str_po_model2,str_po_model_no2,str_po_mode2_type,str_po_qty2,str_po_price2,
+                        str_po_group3,str_po_model3,str_po_model_no3,str_po_mode3_type,str_po_qty3,str_po_price3,
+                        str_po_group4,str_po_model4,str_po_model_no4,str_po_mode4_type,str_po_qty4,str_po_price4,
+                        str_po_group5,str_po_model5,str_po_model_no5,str_po_mode5_type,str_po_qty5,str_po_price5,
+                        str_po_group6,str_po_model6,str_po_model_no6,str_po_mode6_type,str_po_qty6,str_po_price6;*/
+
+            }
+        });
+
+
+
         try {
 
             dialog = new SpotsDialog(Activity_Enquiry_Process.this);
