@@ -55,7 +55,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_product, txt_enq_enq_through, txt_enq_enq_thro_des;
 
 
-    EditText edt_txt_enq_txt_email,edt_txt_enq_address,edt_txt_enq_pin,edt_txt_enq_phone,edt_txt_enq_conact_person,
+    EditText edt_txt_enq_txt_email, edt_txt_enq_address, edt_txt_enq_pin, edt_txt_enq_phone, edt_txt_enq_conact_person,
             edt_txt_enq_person_phone;
 
     TextView txt_minus, txt_value, txt_add;
@@ -170,16 +170,17 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     String str_Selected_model_type6, str_Selected_model_price6 = "";
 
 
-    Button btn_send_catalog, btn_save,btn_save_pre_quote;
+    Button btn_send_catalog, btn_save, btn_save_pre_quote;
 
-    String str_po_en_no,str_po_comp_name,str_po_email,str_po_address,str_po_pin,str_po_phone,str_po_contact_person,
-            str_po_contact_person_phone,str_po_product,str_po_enq_through,str_po_enq_description,
-            str_po_group1,str_po_model1,str_po_model_no1,str_po_model_type,str_po_qty1,str_po_price1,
-            str_po_group2,str_po_model2,str_po_model_no2,str_po_mode2_type,str_po_qty2,str_po_price2,
-            str_po_group3,str_po_model3,str_po_model_no3,str_po_mode3_type,str_po_qty3,str_po_price3,
-            str_po_group4,str_po_model4,str_po_model_no4,str_po_mode4_type,str_po_qty4,str_po_price4,
-            str_po_group5,str_po_model5,str_po_model_no5,str_po_mode5_type,str_po_qty5,str_po_price5,
-            str_po_group6,str_po_model6,str_po_model_no6,str_po_mode6_type,str_po_qty6,str_po_price6;
+    String str_po_en_no, str_po_comp_name, str_po_email, str_po_address, str_po_pin, str_po_phone, str_po_contact_person,
+            str_po_contact_person_phone, str_po_product, str_po_enq_through, str_po_enq_description,
+            str_po_group1, str_po_model1, str_po_model_no1, str_po_model_type, str_po_qty1, str_po_price1,
+            str_po_group2, str_po_model2, str_po_model_no2, str_po_mode2_type, str_po_qty2, str_po_price2,
+            str_po_group3, str_po_model3, str_po_model_no3, str_po_mode3_type, str_po_qty3, str_po_price3,
+            str_po_group4, str_po_model4, str_po_model_no4, str_po_mode4_type, str_po_qty4, str_po_price4,
+            str_po_group5, str_po_model5, str_po_model_no5, str_po_mode5_type, str_po_qty5, str_po_price5,
+            str_po_group6, str_po_model6, str_po_model_no6, str_po_mode6_type, str_po_qty6, str_po_price6,
+            str_po_status, str_po_discount, str_po_spec;
 
     private Toolbar mToolbar;
 
@@ -1357,19 +1358,53 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_enq_description = txt_enq_enq_thro_des.getText().toString();
 
                 str_po_group1 = txt_enq_product.getText().toString();
-               /* str_po_model1 = spn_model.selec
+                str_po_model1 = str_Selected_model;
+                str_po_model_no1 = str_Selected_model_no;
+                str_po_model_type = str_Selected_model_type;
+                str_po_qty1 = txt_value.getText().toString();
+                str_po_price1 = edt_price.getText().toString();
 
+                str_po_group2 = str_Selected_group2;
+                str_po_model2 = str_Selected_model2;
+                str_po_model_no2 = str_Selected_model_no2;
+                str_po_mode2_type = str_Selected_model_type2;
+                str_po_qty2 = txt_value2.getText().toString();
+                str_po_price2 = edt_price2.getText().toString();
 
-                        ,,str_po_model_no1,str_po_model_type,str_po_qty1,str_po_price1,
-                        str_po_group2,str_po_model2,str_po_model_no2,str_po_mode2_type,str_po_qty2,str_po_price2,
-                        str_po_group3,str_po_model3,str_po_model_no3,str_po_mode3_type,str_po_qty3,str_po_price3,
-                        str_po_group4,str_po_model4,str_po_model_no4,str_po_mode4_type,str_po_qty4,str_po_price4,
-                        str_po_group5,str_po_model5,str_po_model_no5,str_po_mode5_type,str_po_qty5,str_po_price5,
-                        str_po_group6,str_po_model6,str_po_model_no6,str_po_mode6_type,str_po_qty6,str_po_price6;*/
+                str_po_group3 = str_Selected_group3;
+                str_po_model3 = str_Selected_model3;
+                str_po_model_no3 = str_Selected_model_no3;
+                str_po_mode3_type = str_Selected_model_type3;
+                str_po_qty3 = txt_value3.getText().toString();
+                str_po_price3 = edt_price3.getText().toString();
 
+                str_po_group4 = str_Selected_group4;
+                str_po_model4 = str_Selected_model4;
+                str_po_model_no4 = str_Selected_model_no4;
+                str_po_mode4_type = str_Selected_model_type4;
+                str_po_qty4 = txt_value4.getText().toString();
+                str_po_price4 = edt_price4.getText().toString();
+
+                str_po_group5 = str_Selected_group5;
+                str_po_model5 = str_Selected_model5;
+                str_po_model_no5 = str_Selected_model_no5;
+                str_po_mode5_type = str_Selected_model_type5;
+                str_po_qty5 = txt_value5.getText().toString();
+                str_po_price5 = edt_price5.getText().toString();
+
+                str_po_group6 = str_Selected_group6;
+                str_po_model6 = str_Selected_model6;
+                str_po_model_no6 = str_Selected_model_no6;
+                str_po_mode6_type = str_Selected_model_type6;
+                str_po_qty6 = txt_value6.getText().toString();
+                str_po_price6 = edt_price6.getText().toString();
+
+                // str_po_status = want to get
+
+                str_po_discount = edt_discount.getText().toString();
+                str_po_spec = edt_spec.getText().toString();
             }
         });
-
 
 
         try {

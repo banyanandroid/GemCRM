@@ -23,17 +23,17 @@
             <RelativeLayout
                 android:id="@+id/icon_back"
                 android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
 
                 <TextView
                     android:id="@+id/list_mytask_initial"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
+                    android:background="@drawable/bg_circle"
                     android:gravity="center"
                     android:text="J"
-                    android:background="@drawable/bg_circle"
                     android:textColor="@color/white"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -42,8 +42,8 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5.5"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_weight="5.5"
                 android:orientation="vertical">
 
                 <TextView
