@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -166,6 +167,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     String str_Selected_model_type6, str_Selected_model_price6 = "";
 
 
+    Button btn_send_catalog, btn_save,btn_save_pre_quote;
+
+
     private Toolbar mToolbar;
 
     //Notification Batch
@@ -225,8 +229,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         txt_value6 = (TextView) findViewById(R.id.enq_process_txt_count6);
         txt_add6 = (TextView) findViewById(R.id.enq_process_txt_add6);
 
-        edt_discount = (EditText) findViewById(R.id.add_appoint_edt_name);
-        edt_spec = (EditText) findViewById(R.id.add_appoint_edt_discount1);
+        edt_discount = (EditText) findViewById(R.id.enq_process_edt_discount);
+        edt_spec = (EditText) findViewById(R.id.enq_process_edt_remarks2);
         edt_price = (EditText) findViewById(R.id.enq_process_edt_price1);
 
         edt_price2 = (EditText) findViewById(R.id.enq_process_edt_price2);
@@ -1484,7 +1488,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     }
 
     /***************************
-     * GET Get Price
+     * GET Get Discount
      ***************************/
 
     public void Get_Discount() {

@@ -43,11 +43,9 @@
     <string name="backdrop_subtitle">This season top 20 albums</string>
 
     <string-array name="enq_status">
-        <item>Completed</item>
-        <item>Dropped</item>
         <item>New Quotation</item>
         <item>Another Quotation</item>
-        <item>Appointment</item>
+        <item>Call With TL</item>
     </string-array>
 
 </resources>
