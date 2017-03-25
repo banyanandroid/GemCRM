@@ -183,7 +183,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
-    //Notification Batch
+    //Notification Batchh
 
     RelativeLayout notificationCount1, parent_batch;
     TextView tv;
