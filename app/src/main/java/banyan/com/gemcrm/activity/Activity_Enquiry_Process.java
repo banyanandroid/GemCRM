@@ -2812,8 +2812,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                                 .setBackgroundColor(R.color.Alert_Success)
                                 .show();
 
-
-
+                        Intent i = new Intent(Activity_Enquiry_Process.this, Activity_Quotation.class);
+                        i.putExtra("quotation_number",quotation_no);
+                        startActivity(i);
 
                         int success2 = obj.getInt("success2");
                         int success3 = obj.getInt("success3");
