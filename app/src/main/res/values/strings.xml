@@ -44,7 +44,7 @@
 
     <string-array name="enq_status">
         <item>New Quotation</item>
-        <item>Another Quotation</item>
+        <item>Appointment</item>
         <item>Call With TL</item>
     </string-array>
 

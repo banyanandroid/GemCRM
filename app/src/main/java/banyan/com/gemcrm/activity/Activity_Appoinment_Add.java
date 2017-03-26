@@ -191,10 +191,10 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
                     edt_app_date.setError("Please Enter Date");
                     TastyToast.makeText(getApplicationContext(), "Appointment Date is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else {
-                   /* dialog = new SpotsDialog(Activity_Appoinment_Add.this);
+                    dialog = new SpotsDialog(Activity_Appoinment_Add.this);
                     dialog.show();
                     queue = Volley.newRequestQueue(Activity_Appoinment_Add.this);
-                    Function_Add_Campaign();*/
+                    Function_Add_Campaign();
 
                    // Appointment
                 }

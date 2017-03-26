@@ -842,17 +842,17 @@
                                 android:gravity="center|left"
                                 android:text="Product Group"
                                 android:textColor="@color/album_title"
-                                android:textSize="16dp"  />
+                                android:textSize="16dp" />
 
                             <Spinner
                                 android:id="@+id/enquiry_process_spn_product_group2"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="16dp"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary" />
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
 
                         </LinearLayout>
 
@@ -1130,7 +1130,6 @@
                     card_view:contentPadding="10dp">
 
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -1180,17 +1179,17 @@
                                 android:gravity="center|left"
                                 android:text="Product Group"
                                 android:textColor="@color/album_title"
-                                android:textSize="16dp"  />
+                                android:textSize="16dp" />
 
                             <Spinner
                                 android:id="@+id/enquiry_process_spn_product_group3"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="16dp"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary" />
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
 
                         </LinearLayout>
 
@@ -1482,7 +1481,6 @@
                             android:weightSum="2">
 
 
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1519,17 +1517,17 @@
                                 android:gravity="center|left"
                                 android:text="Product Group"
                                 android:textColor="@color/album_title"
-                                android:textSize="16dp"  />
+                                android:textSize="16dp" />
 
                             <Spinner
                                 android:id="@+id/enquiry_process_spn_product_group4"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="16dp"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary" />
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
 
                         </LinearLayout>
 
@@ -1855,17 +1853,17 @@
                                 android:gravity="center|left"
                                 android:text="Product Group"
                                 android:textColor="@color/album_title"
-                                android:textSize="16dp"  />
+                                android:textSize="16dp" />
 
                             <Spinner
                                 android:id="@+id/enquiry_process_spn_product_group5"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="16dp"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary" />
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
 
                         </LinearLayout>
 
@@ -2190,17 +2188,17 @@
                                 android:gravity="center|left"
                                 android:text="Product Group"
                                 android:textColor="@color/album_title"
-                                android:textSize="16dp"  />
+                                android:textSize="16dp" />
 
                             <Spinner
                                 android:id="@+id/enquiry_process_spn_product_group6"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:textColor="@color/black"
-                                android:textSize="16dp"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary" />
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
 
                         </LinearLayout>
 
@@ -2470,8 +2468,8 @@
                         android:gravity="center|left"
                         android:text="Complaint Status"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/enq_process_spinner_status2"
@@ -2483,6 +2481,46 @@
                         android:popupBackground="@color/colorPrimary"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/enq_process_inear_appointment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:id="@+id/enq_add_appoint_edt_start_date"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:drawableRight="@mipmap/ic_edt_date"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:hint="Date"
+                        android:inputType="text"
+                        android:singleLine="true" />
+
+                    <EditText
+                        android:id="@+id/enq_add_appoint_edt_time"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:drawableRight="@mipmap/ic_edt_date"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:hint="Time"
+                        android:inputType="text"
+                        android:singleLine="true" />
+
 
                 </LinearLayout>
 
@@ -2547,7 +2585,6 @@
                         android:singleLine="true" />
 
                 </LinearLayout>
-
 
 
                 <LinearLayout
