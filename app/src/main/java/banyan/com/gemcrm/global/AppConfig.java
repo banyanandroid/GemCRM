@@ -35,6 +35,7 @@ public class AppConfig {
     public static String url_enq_modeltype = base_url + "android/get_type.php";
 
     public static String url_post_enq = base_url + "android/enquiry_save_quotation.php";
+    public static String url_post_Appointment = base_url + "android/enquiry_save_quotation.php";
 
 
     public static String url_my_task = base_url + "android/user_task_list.php";

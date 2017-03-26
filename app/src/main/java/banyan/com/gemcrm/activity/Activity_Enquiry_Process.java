@@ -1467,10 +1467,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                     try {
 
-                        /*  dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                        dialog = new SpotsDialog(Activity_Enquiry_Process.this);
                         dialog.show();
                         queue = Volley.newRequestQueue(getApplicationContext());
-                        Post_Enquiry();*/
+                        POST_Apppointment();
 
                     } catch (Exception e) {
                         // TODO: handle exception
@@ -2785,8 +2785,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
      //   String str_url = "http://gemservice.in/crm/android/enquiry_save_quotation.php?enq_no=" + str_po_en_no + "&companyname=" + str_po_comp_name + "&email=" + str_po_email + "&address=" + str_po_address + "&pin=" + str_po_pin + "&phone_no=" + str_po_phone + "&contact_person=" + str_po_contact_person + "&contact_person_phone=" + str_po_contact_person_phone + "&enq_through=" + str_po_enq_through + "&enq_desc=" + str_po_enq_description + "&pro_group=" + str_po_group1 + "&pro_model=" + str_po_model1 + "&pro_model_no=" + str_po_model_no1 + "&pro_model_type=" + str_po_model_type + "&pro_qty=" + str_po_qty1 + "&pro_price=" + str_po_price1 + "&pro_group2=" + str_po_group2 + "&pro_model2=" + str_po_model2 + "&pro_model_no2=" + str_po_model_no2 + "&pro_model_type2=" + str_po_mode2_type + "&pro_qty2=" + str_po_qty2 + "&pro_price2=" + str_po_price2 + "&pro_group3=" + str_po_group3 + "&pro_model3=" + str_po_model3 + "&pro_model_no3=" + str_po_model_no3 + "&pro_model_type3=" + str_po_mode3_type + "&pro_qty3=" + str_po_qty3 + "&pro_price3=" + str_po_price3 + "&pro_group4=" + str_po_group4 + "&pro_model4=" + str_po_model4 + "&pro_model_no4=" + str_po_model_no4 + "&pro_model_type4=" + str_po_mode4_type + "&pro_qty4=" + str_po_qty4 + "&pro_price4=" + str_po_price4 + "&pro_group5=" + str_po_group5 + "&pro_model5=" + str_po_model5 + "&pro_model_no5=" + str_po_model_no5 + "&pro_model_type5=" + str_po_mode5_type + "&pro_qty5=" + str_po_qty5 + "&pro_price5=" + str_po_price5 + "&pro_group6=" + str_po_group6 + "&pro_model6=" + str_po_model6 + "&pro_model_no6=" + str_po_model6 + "&pro_model_type6=" + str_po_mode6_type + "&pro_qty6=" + str_po_qty6 + "&pro_price6=" + str_po_price6 + "&discount=" + str_po_discount + "&remarks=" + str_po_spec + "&status=" + str_po_status + "&user=" + str_user_id;
 
-    //    System.out.println("CAME str_url" + str_url);
-
         StringRequest request = new StringRequest(Request.Method.POST,
                 AppConfig.url_post_enq, new Response.Listener<String>() {
 
@@ -2940,81 +2938,64 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     }
 
 
+    /***************************
+     * POST Appointment
+     * *************************/
+    public void POST_Apppointment() {
 
-
-
-    /*private void Post_Enquiry() {
-
-        String url = "http://gemservice.in/crm/android/enquiry_save_quotation.php?enq_no=" + str_po_en_no +
-                "&companyname=" + str_po_comp_name + "&email=" + str_po_email + "&address=" + str_po_email + "&pin=" + str_po_email + "&phone_no=" + str_po_email + "&" +
-                "contact_person=" + str_po_email + "&contact_person_phone=" + str_po_email + "&enq_through=" + str_po_email + "&enq_desc=" + str_po_email + "&pro_group=" + str_po_email + "&" +
-                "pro_model=" + str_po_email + "&pro_model_no=" + str_po_email + "&pro_model_type=" + str_po_email + "&pro_qty=" + str_po_email + "&pro_price=" + str_po_email + "&pro_group2=" + str_po_email + "&" +
-                "pro_model2=" + str_po_email + "&pro_model_no2=" + str_po_email + "&pro_model_type2=" + str_po_email + "&pro_qty2=" + str_po_email + "&pro_price2=" + str_po_email + "&pro_group3=" + str_po_email + "&" +
-                "pro_model3=" + str_po_email + "&pro_model_no3=" + str_po_email + "&pro_model_type3=" + str_po_email + "&pro_qty3=" + str_po_email + "&pro_price3=" + str_po_email + "&pro_group4=" + str_po_email + "&" +
-                "pro_model4=" + str_po_email + "&pro_model_no4=" + str_po_email + "&pro_model_type4=" + str_po_email + "&pro_qty4=" + str_po_email + "&pro_price4=" + str_po_email + "&pro_group5=" + str_po_email + "&" +
-                "pro_model5=" + str_po_email + "&pro_model_no5=" + str_po_email + "&pro_model_type5=" + str_po_email + "&pro_qty5=" + str_po_email + "&pro_price5=" + str_po_email + "&pro_group6=" + str_po_email + "&" +
-                "pro_model6=" + str_po_email + "&pro_model_no6=" + str_po_email + "&pro_model_type6=" + str_po_email + "&pro_qty6=" + str_po_email + "&pro_price6=" + str_po_email + "&discount=" + str_po_email + "&remarks=" + str_po_email + "" +
-                "&status=" + str_po_email + "&user=" + str_po_email + "";
-
-
-        System.out.println("URL :::: " + url);
-        System.out.println("URL :::: " + url);
-        System.out.println("URL :::: " + url);
+        System.out.println("CAME 1" + str_select_group);
 
         StringRequest request = new StringRequest(Request.Method.POST,
-                AppConfig.url_post_enq, new Response.Listener<String>() {
+                AppConfig.url_post_Appointment, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, response.toString());
-                Log.d("USER_LOGIN", response.toString());
+
+                System.out.println("CAME str_url" + response);
+
                 try {
                     JSONObject obj = new JSONObject(response);
 
-                    System.out.println("RESPONCE :::: " + response.toString());
-                    System.out.println("RESPONCE :::: " + response.toString());
-                    System.out.println("RESPONCE :::: " + response.toString());
-                    System.out.println("RESPONCE :::: " + response.toString());
-                    System.out.println("RESPONCE :::: " + response.toString());
-                    System.out.println("RESPONCE :::: " + response.toString());
-                    System.out.println("RESPONCE :::: " + response.toString());
-                    System.out.println("RESPONCE :::: " + response.toString());
-                    System.out.println("RESPONCE :::: " + response.toString());
-
                     int success = obj.getInt("success");
-
-                    System.out.println("enquiry" + success);
 
                     if (success == 1) {
 
-
                         Alerter.create(Activity_Enquiry_Process.this)
                                 .setTitle("GEM CRM")
-                                .setText("Appointment Created Sucessfully :)")
+                                .setText("Appointment Saved Successfully")
                                 .setBackgroundColor(R.color.Alert_Success)
                                 .show();
 
-                    } else {
+
+                    } else if (success == 0) {
+
                         Alerter.create(Activity_Enquiry_Process.this)
                                 .setTitle("GEM CRM")
-                                .setText("Something Went Wrong :(")
+                                .setText("No Data Found")
                                 .setBackgroundColor(R.color.Alert_Fail)
                                 .show();
+
                     }
+
+                    dialog.dismiss();
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+
                 dialog.dismiss();
             }
+
         }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 dialog.dismiss();
                 Alerter.create(Activity_Enquiry_Process.this)
                         .setTitle("GEM CRM")
-                        .setText("Internal Error !")
+                        .setText(error.getMessage())
                         .setBackgroundColor(R.color.Alert_Warning)
                         .show();
             }
@@ -3034,110 +3015,34 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("contact_person_phone", str_po_contact_person_phone);
                 params.put("enq_through", str_po_enq_through);
                 params.put("enq_desc", str_po_enq_description);
-                params.put("pro_group", str_po_group1);
-                params.put("pro_model", str_po_model1);
-                params.put("pro_model_no", str_po_model_no1);
-                params.put("pro_model_type", str_po_model_type);
-                params.put("pro_qty", str_po_qty1);
-                params.put("pro_price", str_po_price1);
-                params.put("pro_group2", str_po_group2);
-                params.put("pro_model2", str_po_model2);
-                params.put("pro_model_no2", str_po_model_no2);
-                params.put("pro_model_type2", str_po_mode2_type);
-                params.put("pro_qty2", str_po_qty2);
-                params.put("pro_price2", str_po_price2);
-                params.put("pro_group3", str_po_group3);
-                params.put("pro_model3", str_po_model3);
-                params.put("pro_model_no3", str_po_model_no3);
-                params.put("pro_model_type3", str_po_mode3_type);
-                params.put("pro_qty3", str_po_qty3);
-                params.put("pro_price3", str_po_price3);
-                params.put("pro_group4", str_po_group4);
-                params.put("pro_model4", str_po_model4);
-                params.put("pro_model_no4", str_po_model_no4);
-                params.put("pro_model_type4", str_po_mode4_type);
-                params.put("pro_qty4", str_po_qty4);
-                params.put("pro_price4", str_po_price4);
-                params.put("pro_group5", str_po_group5);
-                params.put("pro_model5", str_po_model5);
-                params.put("pro_model_no5", str_po_model_no5);
-                params.put("pro_model_type5", str_po_mode5_type);
-                params.put("pro_qty5", str_po_qty5);
-                params.put("pro_price5", str_po_price5);
-                params.put("pro_group6", str_po_group6);
-                params.put("pro_model6", str_po_model6);
-                params.put("pro_model_no6", str_po_model_no6);
-                params.put("pro_model_type6", str_po_mode6_type);
-                params.put("pro_qty6", str_po_qty6);
-                params.put("pro_price6", str_po_price6);
-                params.put("discount", str_po_discount);
-                params.put("remarks", str_po_spec);
+                params.put("remarks", "remarks");
                 params.put("status", str_po_status);
+                params.put("date", str_po_appoint_date);
+                params.put("time", str_po_appoint_time);
+                params.put("appointment_through", "appointment_through");
+                params.put("appointment_location", "appointment_location");
+                params.put("appointment_description", "appointment_description");
                 params.put("user", str_user_id);
 
-                System.out.println("enq_no" + str_po_en_no);
-                System.out.println("companyname" + str_po_comp_name);
-                System.out.println("email" + str_po_email);
-                System.out.println("address" + str_po_address);
-                System.out.println("pin" + str_po_pin);
-                System.out.println("phone_no" + str_po_phone);
-                System.out.println("contact_person" + str_po_contact_person);
-                System.out.println("contact_person_phone" + str_po_contact_person_phone);
-                System.out.println("enq_through" + str_po_enq_through);
-                System.out.println("enq_desc" + str_po_enq_description);
-                System.out.println("pro_group" + str_po_group1);
-                System.out.println("pro_model" + str_po_model1);
-                System.out.println("pro_model_no" + str_po_model_no1);
-                System.out.println("pro_model_type" + str_po_model_type);
-                System.out.println("pro_qty" + str_po_qty1);
-                System.out.println("pro_price" + str_po_price1);
-                System.out.println("pro_group2" + str_po_group2);
-                System.out.println("pro_model2" + str_po_model2);
-                System.out.println("pro_model_no2" + str_po_model_no2);
-                System.out.println("pro_model_type2" + str_po_mode2_type);
-                System.out.println("pro_qty2" + str_po_qty2);
-                System.out.println("pro_price2" + str_po_price2);
-                System.out.println("pro_group3" + str_po_group3);
-                System.out.println("pro_model3" + str_po_model3);
-                System.out.println("pro_model_no3" + str_po_model_no3);
-                System.out.println("pro_model_type3" + str_po_mode3_type);
-                System.out.println("pro_qty3" + str_po_qty3);
-                System.out.println("pro_price3" + str_po_price3);
-                System.out.println("pro_group4" + str_po_group4);
-                System.out.println("pro_model4" + str_po_model4);
-                System.out.println("pro_model_no4" + str_po_model_no4);
-                System.out.println("pro_model_type4" + str_po_mode4_type);
-                System.out.println("pro_qty4" + str_po_qty4);
-                System.out.println("pro_price4" + str_po_price4);
-                System.out.println("pro_group5" + str_po_group5);
-                System.out.println("pro_model5" + str_po_model5);
-                System.out.println("pro_model_no5" + str_po_model_no5);
-                System.out.println("pro_model_type5" + str_po_mode5_type);
-                System.out.println("pro_qty5" + str_po_qty5);
-                System.out.println("pro_price5" + str_po_price5);
-                System.out.println("pro_group6" + str_po_group6);
-                System.out.println("pro_model6" + str_po_model6);
-                System.out.println("pro_model_no6" + str_po_model_no6);
-                System.out.println("pro_model_type6" + str_po_mode6_type);
-                System.out.println("pro_qty6" + str_po_qty6);
-                System.out.println("pro_price6" + str_po_price6);
-                System.out.println("discount" + str_po_discount);
-                System.out.println("remarks" + str_po_spec);
-                System.out.println("status" + str_po_status);
-                System.out.println("user" + str_user_id);
+                return checkParams(params);
+            }
 
-
-                return params;
+            private Map<String, String> checkParams(Map<String, String> map){
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>)it.next();
+                    if(pairs.getValue()==null){
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
             }
 
         };
 
-        int socketTimeout = 50000;//30 seconds - change to what you want
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        request.setRetryPolicy(policy);
-
         // Adding request to request queue
         queue.add(request);
-    }*/
+    }
+
 
 }
