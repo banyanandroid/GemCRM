@@ -18,9 +18,9 @@ import banyan.com.gemcrm.R;
 
 public class Activity_Appointment_description extends AppCompatActivity {
 
-    TextView txt_app_with, txt_app_date, txt_app_time, txt_app_through, txt_app_note, txt_created_on, txt_location;
+    TextView txt_app_with,txt_app_company_name , txt_app_date, txt_app_time, txt_app_through, txt_app_note, txt_created_on, txt_location;
 
-    String str_with, str_date, str_time, str_through, str_note, str_created_on, str_location = "";
+    String str_appoint_id,str_with, str_company_name, str_date, str_time, str_through, str_note, str_created_on, str_location = "";
 
     Button btn_edit_appoinment , btn_delete_appoinment ;
 
@@ -43,12 +43,16 @@ public class Activity_Appointment_description extends AppCompatActivity {
         txt_app_note = (TextView) findViewById(R.id.appoint_des_txt_app_note);
         txt_app_date = (TextView) findViewById(R.id.appoint_des_txt_app_date);
         txt_app_time = (TextView) findViewById(R.id.appoint_des_txt_time);
+        txt_app_company_name = (TextView) findViewById(R.id.appoint_des_txt_company_name);
 
 
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
 
+
+        str_appoint_id = sharedPreferences.getString("str_select_id", "str_select_id");
         str_with = sharedPreferences.getString("str_select_app_with", "str_select_app_with");
+        str_company_name = sharedPreferences.getString("str_select_app_company_name", "str_select_app_company_name");
         str_date = sharedPreferences.getString("str_select_app_date", "str_select_app_date");
         str_time = sharedPreferences.getString("str_select_app_time", "str_select_app_time");
         str_through = sharedPreferences.getString("str_select_app_through", "str_select_app_through");
@@ -66,6 +70,7 @@ public class Activity_Appointment_description extends AppCompatActivity {
             txt_app_through.setText(str_through);
             txt_app_note.setText(str_note);
             txt_app_date.setText(str_date);
+            txt_app_company_name.setText(str_company_name);
 
         }catch (Exception e) {
 

@@ -24,19 +24,51 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/edit_appoint_txt_app_created_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:gravity="center"
+                    android:text="Created on"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/date" />
+
+
+            </LinearLayout>
+
+
             <EditText
-                android:id="@+id/add_appoint_edt_name"
+                android:id="@+id/edit_appoint_edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
                 android:drawableRight="@mipmap/ic_edt_camp"
+                android:editable="false"
+                android:focusable="false"
                 android:hint="Appoint With"
                 android:inputType="text"
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/add_appoint_edt_company_name"
+                android:id="@+id/edit_appoint_edt_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -48,29 +80,27 @@
 
 
             <EditText
-                android:id="@+id/add_appoint_edt_location"
+                android:id="@+id/edit_appoint_edt_location"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
                 android:drawableRight="@mipmap/ic_edt_location"
                 android:hint="Appointment Location"
-                android:inputType="text"
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/add_appoint_edt_camp_description"
+                android:id="@+id/edit_appoint_edt_camp_description"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
                 android:drawableRight="@mipmap/ic_edt_desc"
                 android:hint="Appointment Note"
-                android:inputType="text"
                 android:singleLine="true" />
 
             <EditText
-                android:id="@+id/add_appoint_edt_appoint_through"
+                android:id="@+id/edit_appoint_edt_appoint_through"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -87,7 +117,7 @@
                 android:weightSum="2">
 
                 <EditText
-                    android:id="@+id/add_appoint_edt_start_date"
+                    android:id="@+id/edit_appoint_edt_start_date"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -101,7 +131,7 @@
                     android:singleLine="true" />
 
                 <EditText
-                    android:id="@+id/add_appoint_edt_time"
+                    android:id="@+id/edit_appoint_edt_time"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -118,42 +148,69 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                <Button
-                    android:id="@+id/add_appoint_btn_reset"
+                <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:text="Reset"
+                    android:gravity="center|left"
+                    android:text="Appoinment Status"
                     android:textColor="@color/white"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
-                <Button
-                    android:id="@+id/add_appoint_btn_submit"
+                <Spinner
+                    android:id="@+id/edit_appoint_spn_appoinment_status"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorAccent"
-                    android:text="Submit"
-                    android:textColor="@color/white"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-
+                    android:popupBackground="@color/colorPrimary"
+                    android:textColor="@color/black"
+                    android:entries="@array/appoint_status"
+                    android:textSize="16dp" />
 
             </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/edit_appoint_btn_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@color/alert_default_error_background"
+                    android:text="CANCEL"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/edit_appoint_btn_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:text="UPDATE"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
         </LinearLayout>
 
 
@@ -162,3 +219,6 @@
     <include layout="@layout/toolbar"></include>
 
 </LinearLayout>
+
+
+

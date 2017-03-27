@@ -11,9 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -24,7 +27,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
+import com.tapadoo.alerter.Alerter;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,15 +42,13 @@ import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
 import dmax.dialog.SpotsDialog;
 
-import static dmax.dialog.R.layout.dialog;
-
 /**
  * Created by Schan on 18-Mar-17.
  */
 
 public class Activity_Appoinment_Edit extends AppCompatActivity {
 
-    EditText edt_app_with, edt_app_location, edt_app_note, edt_app_through, edt_app_date, edt_app_time;
+    EditText edt_app_with, edt_app_company_name, edt_app_location, edt_app_note, edt_app_through, edt_app_date, edt_app_time;
 
     TextView app_created_on, app_up_created_on;
 
@@ -54,8 +57,10 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
 
     Button btn_update, btn_cancel;
 
-    String str_with, str_date, str_time, str_through, str_note, str_created_on, str_location = "",
-            str_up_with, str_up_date, str_up_time, str_up_through, str_up_note, str_up_created_on, str_up_location;
+    Spinner spn_appoint_status;
+
+    String str_appoint_id,str_with, str_company_name, str_date, str_time, str_through, str_note, str_created_on, str_location = "";
+    String str_up_with, str_up_company_name, str_up_date, str_up_time, str_up_through, str_up_note, str_up_created_on, str_up_location, str_up_status = "";
 
     int from_year, from_month, from_date;
 
@@ -66,15 +71,18 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
 
     String TAG = "reg";
 
+    String str_po_status = "";
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_appoinment);
+        setContentView(R.layout.activity_appoinment_edit);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
         edt_app_with = (EditText) findViewById(R.id.edit_appoint_edt_name);
+        edt_app_company_name = (EditText) findViewById(R.id.edit_appoint_edt_company_name);
         edt_app_location = (EditText) findViewById(R.id.edit_appoint_edt_location);
         edt_app_through = (EditText) findViewById(R.id.edit_appoint_edt_appoint_through);
         edt_app_note = (EditText) findViewById(R.id.edit_appoint_edt_camp_description);
@@ -84,10 +92,14 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
         btn_update = (Button) findViewById(R.id.edit_appoint_btn_update);
         btn_cancel = (Button) findViewById(R.id.edit_appoint_btn_cancel);
 
+        spn_appoint_status = (Spinner) findViewById(R.id.edit_appoint_spn_appoinment_status);
+
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
 
+        str_appoint_id = sharedPreferences.getString("str_select_id", "str_select_id");
         str_with = sharedPreferences.getString("str_select_app_with", "str_select_app_with");
+        str_company_name = sharedPreferences.getString("str_select_app_company_name", "str_select_app_company_name");
         str_date = sharedPreferences.getString("str_select_app_date", "str_select_app_date");
         str_time = sharedPreferences.getString("str_select_app_time", "str_select_app_time");
         str_through = sharedPreferences.getString("str_select_app_through", "str_select_app_through");
@@ -98,6 +110,7 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
         try {
 
             app_created_on.setText(str_created_on);
+            edt_app_company_name.setText(str_company_name);
             edt_app_with.setText(str_with);
             edt_app_time.setText(str_time);
             edt_app_location.setText(str_location);
@@ -184,21 +197,69 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
             }
         });
 
+
+        /*******************************
+         *  Spinner Loaders
+         * ******************************/
+
+        // Product and Product Model Spinner
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Appoinment_Edit.this, R.array.enq_status, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_appoint_status.setAdapter(adapter);
+
+        // Spinner Product Interface
+        spn_appoint_status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                str_up_status = parent.getItemAtPosition(pos).toString();
+
+                if (str_up_status.equals("null")) {
+
+                    TastyToast.makeText(Activity_Appoinment_Edit.this, "Please Select Status", TastyToast.LENGTH_LONG, TastyToast.INFO);
+
+                } else if (str_up_status.equals("Completed")) {
+
+                    str_po_status = "0";
+
+                } else {
+
+                    str_po_status = "1";
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 str_up_with = edt_app_with.getText().toString();
+                str_up_company_name = edt_app_company_name.getText().toString();
                 str_up_date = edt_app_date.getText().toString();
                 str_up_note = edt_app_note.getText().toString();
                 str_up_time = edt_app_time.getText().toString();
                 str_up_through = edt_app_through.getText().toString();
                 str_up_location = edt_app_location.getText().toString();
-                // str_up_created_on = EXAMPLE.getText().toString();
+                str_up_created_on = app_created_on.getText().toString();
+
 
                 if (str_up_with.equals("")) {
                     TastyToast.makeText(getApplicationContext(), "Appointment With is Empty", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
                     edt_app_with.setError("Please Enter Appointment With");
+                } else if (str_up_company_name.equals("")) {
+                    TastyToast.makeText(getApplicationContext(), "Company Name is Empty", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
+                    edt_app_company_name.setError("Please Enter Company Name");
                 } else if (str_up_date.equals("")) {
                     TastyToast.makeText(getApplicationContext(), "Date is not Selected", TastyToast.LENGTH_SHORT, TastyToast.WARNING);
                     edt_app_date.setError("Please Select Date");
@@ -248,12 +309,12 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
 
 
         StringRequest request = new StringRequest(Request.Method.POST,
-                AppConfig.url_lastlogin, new Response.Listener<String>() {
+                AppConfig.url_editappointment, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, response.toString());
-                Log.d("--------EXAMPLE--------", response.toString());
+                Log.d("EXAMPLE", response.toString());
                 try {
                     JSONObject obj = new JSONObject(response);
                     int success = obj.getInt("success");
@@ -262,12 +323,24 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
 
                     if (success == 1) {
 
-                        TastyToast.makeText(getApplicationContext(), "Success", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
-
-                        //function
+                        Alerter.create(Activity_Appoinment_Edit.this)
+                                .setTitle("GEM CRM")
+                                .setText("Appoinment Updated Successfully (: ")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
 
                     } else {
-                        TastyToast.makeText(getApplicationContext(), "Bad Credentials :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+
+                        /*adapter = new Appointment_Adapter(Activity_Appoinment_Edit.this,
+                                appointment_list);
+                        List.setAdapter(adapter);*/
+
+                        Alerter.create(Activity_Appoinment_Edit.this)
+                                .setTitle("GEM CRM")
+                                .setText("Appoinment Update Failed :( \n Try Again")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
                     }
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
@@ -288,21 +361,25 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("user", str_user_id);
+                params.put("appoint_id", str_appoint_id);
+                params.put("appoint_company_name", str_up_company_name);
                 params.put("appoint_date", str_up_date);
                 params.put("appoint_time", str_up_time);
                 params.put("appoint_with", str_up_with);
                 params.put("appoint_through", str_up_through);
                 params.put("appoint_location", str_up_location);
                 params.put("appoint_description", str_up_note);
+                params.put("appoint_status", str_po_status);
 
-                System.out.println("user : " + str_user_id);
+                System.out.println("appoint_id : " + str_appoint_id);
                 System.out.println("appoint_date : " + str_up_date);
                 System.out.println("appoint_time : " + str_up_time);
                 System.out.println("appoint_with : " + str_up_with);
                 System.out.println("appoint_through : " + str_up_through);
                 System.out.println("appoint_location : " + str_up_location);
                 System.out.println("appoint_description : " + str_up_note);
+                System.out.println("appoint_status : " + str_po_status);
+                System.out.println("appoint_company_name : " + str_up_company_name);
 
                 return params;
             }
@@ -321,3 +398,4 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
     }
 
 }
+

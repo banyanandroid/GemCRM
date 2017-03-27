@@ -60,7 +60,7 @@ import dmax.dialog.SpotsDialog;
 public class Activity_Enquiry_Process extends AppCompatActivity {
 
     String str_select_id, str_select_comp_name, str_select_phoneno, str_select_email, str_select_comp_address, str_select_pin, str_select_person_name,
-            str_select_person_number, str_select_produc_id, str_select_produc_series, str_select_desc, str_select_enq_throu,
+            str_select_person_number, str_select_produc_id, str_select_produc_series, str_select_desc, str_select_enq_throu, str_status,
             getStr_select_enq_throu_desc, str_select_createdon, str_select_completeon = "";
 
     TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_product, txt_enq_enq_through, txt_enq_enq_thro_des;
@@ -378,6 +378,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         str_select_enq_throu = sharedPreferences.getString("enquiry_through", "enquiry_through");
         getStr_select_enq_throu_desc = sharedPreferences.getString("enquiry_through_description", "enquiry_through_description");
         str_select_desc = sharedPreferences.getString("enq_description", "enq_description");
+        str_status = sharedPreferences.getString("enq_status", "enq_status");
 
         System.out.println("IN _enq_created_on " + str_select_createdon);
         System.out.println("IN _ enq_created_on" + str_select_createdon);
@@ -1372,9 +1373,20 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
         // Product and Product Model Spinner
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Enquiry_Process.this, R.array.enq_status, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spn_status.setAdapter(adapter);
+        if (str_status.equals("New")) {
+
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Enquiry_Process.this, R.array.enq_status, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spn_status.setAdapter(adapter);
+
+        } else if (str_status.equals("Process")) {
+
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Enquiry_Process.this, R.array.enq_process, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spn_status.setAdapter(adapter);
+
+        }
+
 
         // Spinner Product Interface
         spn_status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -2790,7 +2802,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
         System.out.println("CAME 1" + str_select_group);
 
-     //   String str_url = "http://gemservice.in/crm/android/enquiry_save_quotation.php?enq_no=" + str_po_en_no + "&companyname=" + str_po_comp_name + "&email=" + str_po_email + "&address=" + str_po_address + "&pin=" + str_po_pin + "&phone_no=" + str_po_phone + "&contact_person=" + str_po_contact_person + "&contact_person_phone=" + str_po_contact_person_phone + "&enq_through=" + str_po_enq_through + "&enq_desc=" + str_po_enq_description + "&pro_group=" + str_po_group1 + "&pro_model=" + str_po_model1 + "&pro_model_no=" + str_po_model_no1 + "&pro_model_type=" + str_po_model_type + "&pro_qty=" + str_po_qty1 + "&pro_price=" + str_po_price1 + "&pro_group2=" + str_po_group2 + "&pro_model2=" + str_po_model2 + "&pro_model_no2=" + str_po_model_no2 + "&pro_model_type2=" + str_po_mode2_type + "&pro_qty2=" + str_po_qty2 + "&pro_price2=" + str_po_price2 + "&pro_group3=" + str_po_group3 + "&pro_model3=" + str_po_model3 + "&pro_model_no3=" + str_po_model_no3 + "&pro_model_type3=" + str_po_mode3_type + "&pro_qty3=" + str_po_qty3 + "&pro_price3=" + str_po_price3 + "&pro_group4=" + str_po_group4 + "&pro_model4=" + str_po_model4 + "&pro_model_no4=" + str_po_model_no4 + "&pro_model_type4=" + str_po_mode4_type + "&pro_qty4=" + str_po_qty4 + "&pro_price4=" + str_po_price4 + "&pro_group5=" + str_po_group5 + "&pro_model5=" + str_po_model5 + "&pro_model_no5=" + str_po_model_no5 + "&pro_model_type5=" + str_po_mode5_type + "&pro_qty5=" + str_po_qty5 + "&pro_price5=" + str_po_price5 + "&pro_group6=" + str_po_group6 + "&pro_model6=" + str_po_model6 + "&pro_model_no6=" + str_po_model6 + "&pro_model_type6=" + str_po_mode6_type + "&pro_qty6=" + str_po_qty6 + "&pro_price6=" + str_po_price6 + "&discount=" + str_po_discount + "&remarks=" + str_po_spec + "&status=" + str_po_status + "&user=" + str_user_id;
+        //   String str_url = "http://gemservice.in/crm/android/enquiry_save_quotation.php?enq_no=" + str_po_en_no + "&companyname=" + str_po_comp_name + "&email=" + str_po_email + "&address=" + str_po_address + "&pin=" + str_po_pin + "&phone_no=" + str_po_phone + "&contact_person=" + str_po_contact_person + "&contact_person_phone=" + str_po_contact_person_phone + "&enq_through=" + str_po_enq_through + "&enq_desc=" + str_po_enq_description + "&pro_group=" + str_po_group1 + "&pro_model=" + str_po_model1 + "&pro_model_no=" + str_po_model_no1 + "&pro_model_type=" + str_po_model_type + "&pro_qty=" + str_po_qty1 + "&pro_price=" + str_po_price1 + "&pro_group2=" + str_po_group2 + "&pro_model2=" + str_po_model2 + "&pro_model_no2=" + str_po_model_no2 + "&pro_model_type2=" + str_po_mode2_type + "&pro_qty2=" + str_po_qty2 + "&pro_price2=" + str_po_price2 + "&pro_group3=" + str_po_group3 + "&pro_model3=" + str_po_model3 + "&pro_model_no3=" + str_po_model_no3 + "&pro_model_type3=" + str_po_mode3_type + "&pro_qty3=" + str_po_qty3 + "&pro_price3=" + str_po_price3 + "&pro_group4=" + str_po_group4 + "&pro_model4=" + str_po_model4 + "&pro_model_no4=" + str_po_model_no4 + "&pro_model_type4=" + str_po_mode4_type + "&pro_qty4=" + str_po_qty4 + "&pro_price4=" + str_po_price4 + "&pro_group5=" + str_po_group5 + "&pro_model5=" + str_po_model5 + "&pro_model_no5=" + str_po_model_no5 + "&pro_model_type5=" + str_po_mode5_type + "&pro_qty5=" + str_po_qty5 + "&pro_price5=" + str_po_price5 + "&pro_group6=" + str_po_group6 + "&pro_model6=" + str_po_model6 + "&pro_model_no6=" + str_po_model6 + "&pro_model_type6=" + str_po_mode6_type + "&pro_qty6=" + str_po_qty6 + "&pro_price6=" + str_po_price6 + "&discount=" + str_po_discount + "&remarks=" + str_po_spec + "&status=" + str_po_status + "&user=" + str_user_id;
 
         StringRequest request = new StringRequest(Request.Method.POST,
                 AppConfig.url_post_enq, new Response.Listener<String>() {
@@ -2916,11 +2928,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 return checkParams(params);
             }
 
-            private Map<String, String> checkParams(Map<String, String> map){
+            private Map<String, String> checkParams(Map<String, String> map) {
                 Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
                 while (it.hasNext()) {
-                    Map.Entry<String, String> pairs = (Map.Entry<String, String>)it.next();
-                    if(pairs.getValue()==null){
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
                         map.put(pairs.getKey(), "");
                     }
                 }
@@ -3023,11 +3035,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 return checkParams(params);
             }
 
-            private Map<String, String> checkParams(Map<String, String> map){
+            private Map<String, String> checkParams(Map<String, String> map) {
                 Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
                 while (it.hasNext()) {
-                    Map.Entry<String, String> pairs = (Map.Entry<String, String>)it.next();
-                    if(pairs.getValue()==null){
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
                         map.put(pairs.getKey(), "");
                     }
                 }
@@ -3052,29 +3064,29 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 .setMessage("Enquiry Posted Successfully\nQuotation Number : " + str_number)
                 .setIcon(R.mipmap.ic_launcher)
                 .setPositiveButton("Done",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        try {
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                try {
 
-                            SharedPreferences sharedPreferences = PreferenceManager
-                                    .getDefaultSharedPreferences(Activity_Enquiry_Process.this);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    SharedPreferences sharedPreferences = PreferenceManager
+                                            .getDefaultSharedPreferences(Activity_Enquiry_Process.this);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                            editor.putString("quotation_no", quotation_no);
+                                    editor.putString("quotation_no", quotation_no);
 
-                            System.out.println("quotation_no" + quotation_no);
+                                    System.out.println("quotation_no" + quotation_no);
 
 
-                            Intent i = new Intent(getApplicationContext(), Activity_Quotation.class);
-                            startActivity(i);
+                                    Intent i = new Intent(getApplicationContext(), Activity_Quotation.class);
+                                    startActivity(i);
 
-                        } catch (Exception e) {
+                                } catch (Exception e) {
 
-                        }
-                    }
-                }).show();
+                                }
+                            }
+                        }).show();
 
     }
 

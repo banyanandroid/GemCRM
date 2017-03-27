@@ -50,11 +50,13 @@ import dmax.dialog.SpotsDialog;
 
 public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements AdapterView.OnItemSelectedListener {
 
-    EditText edt_app_with, edt_app_location, edt_app_note, edt_app_through, edt_app_date, edt_app_time;
+    EditText edt_app_with, edt_app_company_name , edt_app_location, edt_app_note, edt_app_through,
+            edt_app_date, edt_app_time;
 
     Button btn_submit, btn_reset;
 
-    String str_app_with, str_app_location, str_app_note, str_app_through, str_app_date, str_app_time;
+    String str_app_with , str_app_company_name , str_app_location, str_app_note, str_app_through,
+            str_app_date, str_app_time;
 
     int from_year, from_month, from_date;
 
@@ -76,16 +78,20 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
         setUpToolbarWithTitle(getString(R.string.COMPOSE), true);
 
         edt_app_with = (EditText) findViewById(R.id.add_appoint_edt_name);
+        edt_app_company_name = (EditText) findViewById(R.id.add_appoint_edt_company_name);
         edt_app_location = (EditText) findViewById(R.id.add_appoint_edt_location);
         edt_app_through = (EditText) findViewById(R.id.add_appoint_edt_appoint_through);
         edt_app_note = (EditText) findViewById(R.id.add_appoint_edt_camp_description);
         edt_app_date = (EditText) findViewById(R.id.add_appoint_edt_start_date);
         edt_app_time = (EditText) findViewById(R.id.add_appoint_edt_time);
 
+
+
         edt_app_with.setFilters(new InputFilter[]{filter});
         edt_app_location.setFilters(new InputFilter[]{filter});
         edt_app_through.setFilters(new InputFilter[]{filter});
         edt_app_note.setFilters(new InputFilter[]{filter});
+        edt_app_company_name.setFilters(new InputFilter[]{filter});
 
         btn_submit = (Button) findViewById(R.id.add_appoint_btn_submit);
         btn_reset = (Button) findViewById(R.id.add_appoint_btn_reset);
@@ -169,15 +175,20 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
             public void onClick(View v) {
 
                 str_app_with = edt_app_with.getText().toString();
+                str_app_company_name = edt_app_company_name.getText().toString();
                 str_app_location = edt_app_location.getText().toString();
                 str_app_note = edt_app_note.getText().toString();
                 str_app_through = edt_app_through.getText().toString();
                 str_app_date = edt_app_date.getText().toString();
                 str_app_time = edt_app_time.getText().toString();
 
+
                 if (str_app_with.equals("")) {
                     edt_app_with.setError("Please Enter Appointment With");
                     TastyToast.makeText(getApplicationContext(), "Appointment With is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                }else if (str_app_company_name.equals("")) {
+                    edt_app_company_name.setError("Please Enter Company Name");
+                    TastyToast.makeText(getApplicationContext(), "Company Name is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else if (str_app_location.equals("")) {
                     edt_app_location.setError("Please Enter Appointment Location");
                     TastyToast.makeText(getApplicationContext(), "Appointment Location is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
@@ -264,6 +275,7 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
                         function_reset();
 
                     } else {
+
                         Alerter.create(Activity_Appoinment_Add.this)
                                 .setTitle("GEM CRM")
                                 .setText("Something Went Wrong :(")
@@ -300,6 +312,8 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
                 params.put("appoint_through", str_app_through);
                 params.put("appoint_location", str_app_location);
                 params.put("appoint_description", str_app_note);
+                params.put("appoint_company_name", str_app_company_name);
+
 
                 System.out.println("user : " + str_user_id);
                 System.out.println("appoint_date : " + str_app_date);
@@ -308,19 +322,20 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
                 System.out.println("appoint_through : " + str_app_through);
                 System.out.println("appoint_location : " + str_app_location);
                 System.out.println("appoint_description : " + str_app_note);
-
+                System.out.println("appoint_company_name : " + str_app_company_name);
                 return params;
             }
 
         };
 
-        // Adding request to request queue fgfj
+        // Adding request to request queue
         queue.add(request);
     }
 
     private void function_reset() {
 
         edt_app_with.setText("");
+        edt_app_company_name.setText("");
         edt_app_note.setText("");
         edt_app_through.setText("");
         edt_app_location.setText("");

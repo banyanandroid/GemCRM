@@ -18,6 +18,7 @@ public class AppConfig {
 
     public static String url_getappointment = base_url + "android/user_get_appointment_list.php";
     public static String url_addappointment = base_url + "android/user_create_appointment.php";
+    public static String url_editappointment = base_url + "android/user_update_appointment.php";
 
     public static String url_product_group = base_url + "android/product_group.php";
     public static String url_enquiry_through = base_url + "android/enquiry_through.php";

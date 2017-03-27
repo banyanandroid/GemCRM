@@ -105,6 +105,33 @@
                         android:src="@drawable/des" />
 
                     <TextView
+                        android:id="@+id/appoint_des_txt_company_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_weight="1"
+                        android:text="Company Name"
+                        android:textColor="@color/album_title"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/des" />
+
+                    <TextView
                         android:id="@+id/appoint_des_txt_app_note"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

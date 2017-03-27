@@ -44,7 +44,7 @@ import dmax.dialog.SpotsDialog;
  * Created by Jo on 15/3/17.
  */
 
-public class Fragment_Appointments extends Fragment implements SheetLayout.OnFabAnimationEndListener, SwipeRefreshLayout.OnRefreshListener{
+public class Fragment_Appointments extends Fragment implements SheetLayout.OnFabAnimationEndListener, SwipeRefreshLayout.OnRefreshListener {
 
     SheetLayout mSheetLayout;
     FloatingActionButton mFab;
@@ -71,6 +71,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
     public static final String TAG_Appoint_Date = "appointment_date";
     public static final String TAG_Appoint_Time = "appointment_time";
     public static final String TAG_Appoint_with = "appointment_with";
+    public static final String TAG_Appoint_Company_Name = "appointment_company_name";
     public static final String TAG_Appoint_Through = "appointment_through";
     public static final String TAG_Appoint_Location = "appointment_location";
     public static final String TAG_Appoint_Des = "appointment_description";
@@ -138,7 +139,6 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
         );
 
 
-
         List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -153,6 +153,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
                 String str_select_app_location = appointment_list.get(position).get(TAG_Appoint_Location);
                 String str_select_app_des = appointment_list.get(position).get(TAG_Appoint_Des);
                 String str_select_app_createdon = appointment_list.get(position).get(TAG_Appoint_Created);
+                String str_select_app_company_name = appointment_list.get(position).get(TAG_Appoint_Company_Name);
 
                 SharedPreferences sharedPreferences = PreferenceManager
                         .getDefaultSharedPreferences(getActivity());
@@ -165,6 +166,8 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
                 editor.putString("str_select_app_location", str_select_app_location);
                 editor.putString("str_select_app_des", str_select_app_des);
                 editor.putString("str_select_app_createdon", str_select_app_createdon);
+                editor.putString("str_select_app_createdon", str_select_app_createdon);
+                editor.putString("str_select_app_company_name", str_select_app_company_name);
 
                 editor.commit();
 
@@ -187,6 +190,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
         return rootview;
 
     }
+
     /**
      * This method is called when swipe refresh is pulled down
      */
@@ -257,6 +261,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
                             String appoint_des = obj1.getString(TAG_Appoint_Des);
                             String appoint_location = obj1.getString(TAG_Appoint_Location);
                             String appoint_created = obj1.getString(TAG_Appoint_Created);
+                            String appoint_company_name = obj1.getString(TAG_Appoint_Company_Name);
 
                             // creating new HashMap
                             HashMap<String, String> map = new HashMap<String, String>();
@@ -270,6 +275,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
                             map.put(TAG_Appoint_Location, appoint_location);
                             map.put(TAG_Appoint_Des, appoint_des);
                             map.put(TAG_Appoint_Created, appoint_created);
+                            map.put(TAG_Appoint_Company_Name, appoint_company_name);
 
                             appointment_list.add(map);
 
@@ -312,7 +318,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
 
                 Alerter.create(getActivity())
                         .setTitle("GEM CRM")
-                        .setText("Internal Error :(\n" +error.getMessage() )
+                        .setText("Internal Error :(\n" + error.getMessage())
                         .setBackgroundColor(R.color.Alert_Warning)
                         .show();
             }
