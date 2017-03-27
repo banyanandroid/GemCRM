@@ -5,7 +5,11 @@
     android:background="@drawable/background"
     android:orientation="vertical">
 
-    <ScrollView
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"></include>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/trans_black">
@@ -13,214 +17,296 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="10">
 
-            <LinearLayout
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_square_border"
-                android:gravity="center">
+                android:layout_height="0dp"
+                android:layout_weight="4.5">
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="left|center"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/gemlogo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:gravity="right"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="155dp"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Quotation"
-                        android:textColor="@color/album_title"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/order_q_date"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/activity_vertical_margin"
-                        android:layout_marginLeft="80dp"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_weight="2.5"
                         android:background="@drawable/bg_square_border"
-                        android:gravity="left"
-                        android:hint="Id :GEM-0000210"
-                        android:textColor="@color/album_title"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_square_border"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:orientation="vertical"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Bill To"
-                        android:textColor="@color/album_title"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
+                        android:weightSum="4">
 
-                    <TextView
-                        android:id="@+id/quotation_to"
-                        android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_vertical"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/logo" />
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="GEM INDIA SERVICES"
+                                android:textColor="@color/black"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Coimbatore, Tamilnadu,\nIndia."
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:layout_weight="2"
+                            android:gravity="right"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:layout_weight="1"
+                                android:gravity="center|right"
+                                android:text="Quotation"
+                                android:textColor="@color/black"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/order_quotation_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|right"
+                                android:text="Id :GEM-0000000"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:background="@drawable/bg_parent_rounded_corner"
-                        android:gravity="left"
-                        android:hint="
-    Mr. Bret
-    48A,Thousand lights
-    Anna saalai,
-    Chennai-600001."
-                        android:lines="5"
-                        android:textColor="@color/album_title"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
+                        android:layout_weight="2"
+                        android:background="@drawable/bg_square_border"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="Bill To"
+                                android:textColor="@color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/quotation_comp_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:text="Comp Name"
+                                    android:textColor="@color/album_title"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/quotation_comp_address"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:text="Comp Address"
+                                    android:textColor="@color/album_title"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/quotation_comp_phone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:text="Comp Phone"
+                                    android:textColor="@color/album_title"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/activity_vertical_margin"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center|right"
+                                android:text="Total Amount"
+                                android:textColor="@color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/quotation_amt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center|right"
+                                android:hint="RS.00.00"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:orientation="vertical"
+                                android:weightSum="2">
+
+                                <TextView
+                                    android:id="@+id/textView4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center"
+                                    android:text="Quotation Date:"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/quotation_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center"
+                                    android:hint="DD/MM/YYYY"
+                                    android:textColor="@color/album_title"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5">
+
+                        <TextView
+                            android:id="@+id/quotation_txt_tax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:gravity="right|center"
+                            android:hint="Tax"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:orientation="vertical"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="100dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Total amount"
-                        android:textColor="@color/album_title"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/quotation_amt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="55dp"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_parent_rounded_corner"
-                        android:gravity="left"
-                        android:hint="RS.20,00,000.00"
-                        android:textColor="@color/album_title"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/quotation_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="75dp"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_parent_rounded_corner"
-                        android:gravity="left"
-                        android:hint=" 08/03/2017"
-                        android:textColor="@color/album_title"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            </ScrollView>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_square_border"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:weightSum="5">
+                android:weightSum="3">
 
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.75"
+                    android:gravity="center"
                     android:text="Item"
-                    android:textColor="@color/album_title"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Quantity"
-                    android:textColor="@color/album_title"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Product series"
-                    android:textColor="@color/album_title"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="product model"
-                    android:textColor="@color/album_title"
+                    android:textColor="@color/white"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="left"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:text="QTY"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.75"
+                    android:gravity="center"
                     android:text="Amount"
-                    android:textColor="@color/album_title"
+                    android:textColor="@color/white"
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
@@ -230,25 +316,29 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp"
+                android:layout_weight="3">
 
                 <ListView
                     android:id="@+id/quotation_lst"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
 
                 </ListView>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.5"
                 android:background="@drawable/bg_square_border">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -256,9 +346,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Total amount"
-                        android:textColor="@color/album_title"
+                        android:gravity="center|right"
+                        android:text="Total amount : "
+                        android:textColor="@color/black"
                         android:textSize="14dp"
                         android:textStyle="bold" />
 
@@ -266,13 +356,10 @@
                         android:id="@+id/quotation_total_amt"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="55dp"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_parent_rounded_corner"
-                        android:gravity="left"
-                        android:hint="RS.20,00,000.00"
+                        android:gravity="right|center"
+                        android:hint="RS.00.00"
                         android:textColor="@color/album_title"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -280,25 +367,32 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/quotation_send_invoice"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/colorAccent"
-                android:text="Send invoice"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/quotation_send_invoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/colorAccent"
+                    android:text="Send invoice"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
 
-    </ScrollView>
+    </LinearLayout>
 
 
 </LinearLayout>

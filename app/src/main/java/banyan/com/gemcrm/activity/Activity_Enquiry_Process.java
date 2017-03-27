@@ -1,9 +1,14 @@
 package banyan.com.gemcrm.activity;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -200,6 +205,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     RelativeLayout notificationCount1, parent_batch;
     TextView tv;
+
+    String quotation_no = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -2804,31 +2811,19 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                     if (success == 1) {
 
-                        int quotation_no = obj.getInt("quotation_no");
+                        quotation_no = obj.getString("quotation_no");
 
-                        Alerter.create(Activity_Enquiry_Process.this)
-                                .setTitle("GEM CRM")
-                                .setText("Enquiry Saved Successfully")
-                                .setBackgroundColor(R.color.Alert_Success)
-                                .show();
+                        FunctionCAllAlert(quotation_no);
 
-                        Intent i = new Intent(Activity_Enquiry_Process.this, Activity_Quotation.class);
-                        i.putExtra("quotation_number",quotation_no);
-                        startActivity(i);
+                        SharedPreferences sharedPreferences = PreferenceManager
+                                .getDefaultSharedPreferences(Activity_Enquiry_Process.this);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                        int success2 = obj.getInt("success2");
-                        int success3 = obj.getInt("success3");
-                        int success4 = obj.getInt("success4");
-                        int success5 = obj.getInt("success5");
-                        int success6 = obj.getInt("success6");
+                        editor.putString("quotation_no", quotation_no);
 
+                        System.out.println("quotation_no" + quotation_no);
 
-                        System.out.println("CAME success2" + success2);
-                        System.out.println("CAME success3" + success3);
-                        System.out.println("CAME success4" + success4);
-                        System.out.println("CAME success5" + success5);
-                        System.out.println("CAME success6" + success6);
-                        System.out.println("CAME quotation_no" + quotation_no);
+                        editor.commit();
 
                     } else if (success == 0) {
 
@@ -3043,6 +3038,44 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
         // Adding request to request queue
         queue.add(request);
+    }
+
+
+    /***************************
+     * Function ALert
+     * *************************/
+
+    private void FunctionCAllAlert(final String str_number) {
+
+        new android.app.AlertDialog.Builder(Activity_Enquiry_Process.this)
+                .setTitle("Gem India")
+                .setMessage("Enquiry Posted Successfully\nQuotation Number : " + str_number)
+                .setIcon(R.mipmap.ic_launcher)
+                .setPositiveButton("Done",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        try {
+
+                            SharedPreferences sharedPreferences = PreferenceManager
+                                    .getDefaultSharedPreferences(Activity_Enquiry_Process.this);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                            editor.putString("quotation_no", quotation_no);
+
+                            System.out.println("quotation_no" + quotation_no);
+
+
+                            Intent i = new Intent(getApplicationContext(), Activity_Quotation.class);
+                            startActivity(i);
+
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }).show();
+
     }
 
 

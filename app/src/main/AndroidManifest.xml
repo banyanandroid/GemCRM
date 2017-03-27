@@ -78,6 +78,9 @@
         <activity android:name=".activity.Activity_FollowUp"
             android:label="Follow Ups"></activity>
 
+        <activity android:name=".activity.Activity_Quotation"
+            android:label="Quotation Preview"></activity>
+
     </application>
 
 </manifest>
