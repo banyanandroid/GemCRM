@@ -32,7 +32,7 @@ public class SessionManager {
 	// User name (make variable public to access from outside)
 	public static final String KEY_USER = "name";
 	public static final String KEY_USER_ID = "id";
-	public static final String KEY_GCM = "gcm";
+	public static final String KEY_PERMISSION = "gcm";
 
 	// Constructor
 	public SessionManager(Context context){
@@ -51,7 +51,7 @@ public class SessionManager {
 		// Storing name in pref
 		editor.putString(KEY_USER, name);
 		editor.putString(KEY_USER_ID, id);
-		editor.putString(KEY_GCM, gcm);
+		editor.putString(KEY_PERMISSION, gcm);
 
 
 
@@ -95,7 +95,7 @@ public class SessionManager {
 		user.put(KEY_USER_ID, pref.getString(KEY_USER_ID, null));
 
 		//GCM
-		user.put(KEY_GCM, pref.getString(KEY_GCM, null));
+		user.put(KEY_PERMISSION, pref.getString(KEY_PERMISSION, null));
 
 
 

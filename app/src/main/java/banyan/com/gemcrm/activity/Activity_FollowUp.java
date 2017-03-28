@@ -1,12 +1,21 @@
 package banyan.com.gemcrm.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,13 +44,16 @@ import dmax.dialog.SpotsDialog;
  * Created by Jo on 3/23/2017.
  */
 
-public class Activity_FollowUp extends AppCompatActivity implements  SwipeRefreshLayout.OnRefreshListener  {
+public class Activity_FollowUp extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     SpotsDialog dialog;
     public static RequestQueue queue;
 
-    public static final String TAG_PROD_ID = "product_id";
-    public static final String TAG_PROD_TITLE = "product_group_name";
+    public static final String TAG_MESSAGE = "message";
+    public static final String TAG_PROCESS = "process";
+    public static final String TAG_DESCRIPTION = "description";
+    public static final String TAG_REPORT = "report";
+    public static final String TAG_CREATED_ON = "created_on";
 
     String TAG = "add task";
 
@@ -54,6 +66,14 @@ public class Activity_FollowUp extends AppCompatActivity implements  SwipeRefres
 
     public Followups_Adapter adapter;
 
+    String str_enq_no = "";
+
+    TextView txt_created_on, txt_created_by, txt_allorted_to, txt_process_Status, txt_process_remark, txt_compleed_on;
+
+    String str_message, str_process, str_description, str_report, str_createon = "";
+
+    TextView txt_msg, txt_process, txt_description, txt_report, txt_create_on;
+
     private Toolbar mToolbar;
 
     @Override
@@ -64,9 +84,52 @@ public class Activity_FollowUp extends AppCompatActivity implements  SwipeRefres
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        txt_created_on = (TextView) findViewById(R.id.followup_txt_created_on);
+        txt_created_by = (TextView) findViewById(R.id.followup_txt_created_by);
+        txt_allorted_to = (TextView) findViewById(R.id.followup_txt_allerted_to);
+        txt_process_Status = (TextView) findViewById(R.id.followup_txt_process_Status);
+        txt_process_remark = (TextView) findViewById(R.id.followup_txt_process_remark);
+        txt_compleed_on = (TextView) findViewById(R.id.followup_txt_completed_on);
 
         List = (ListView) findViewById(R.id.followup_listView);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.followup_swipe_refresh_layout);
+
+        try {
+            SharedPreferences sharedPreferences = PreferenceManager
+                    .getDefaultSharedPreferences(getApplicationContext());
+
+            str_enq_no = sharedPreferences.getString("follow_up_enq_no", "follow_up_enq_no");
+        } catch (Exception e) {
+
+        }
+
+        List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                System.out.println("position" + position);
+                System.out.println("position" + position);
+                System.out.println("position" + position);
+
+                str_message = campaign_list.get(position).get(TAG_MESSAGE);
+                str_process = campaign_list.get(position).get(TAG_PROCESS);
+                str_description = campaign_list.get(position).get(TAG_DESCRIPTION);
+                str_report = campaign_list.get(position).get(TAG_REPORT);
+                str_createon = campaign_list.get(position).get(TAG_CREATED_ON);
+
+
+                System.out.println("str_message" + str_message);
+                System.out.println("str_process" + str_process);
+                System.out.println("str_description" + str_description);
+                System.out.println("str_report" + str_report);
+                System.out.println("str_createon" + str_createon);
+
+                FunctionCAllAlert();
+
+
+            }
+        });
+
 
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -76,6 +139,7 @@ public class Activity_FollowUp extends AppCompatActivity implements  SwipeRefres
                                         swipeRefreshLayout.setRefreshing(true);
 
                                         try {
+                                            campaign_list.clear();
                                             queue = Volley.newRequestQueue(Activity_FollowUp.this);
                                             GetProductGroup();
 
@@ -110,54 +174,67 @@ public class Activity_FollowUp extends AppCompatActivity implements  SwipeRefres
 
         String tag_json_obj = "json_obj_req";
         System.out.println("CAME 1");
-        StringRequest request = new StringRequest(Request.Method.GET,
-                AppConfig.url_product_group, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_followups, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, response.toString());
                 try {
                     JSONObject obj = new JSONObject(response);
-                    int success = obj.getInt("success");
 
-                    if (success == 1) {
+                    String created_on = obj.getString("enq_created_on");
+                    String created_by = obj.getString("created_user_name");
+                    String allorted_to = obj.getString("alotted_user_name");
+                    String fol_remark = obj.getString("process_remark");
+                    String fol_status = obj.getString("process_status");
+                    String completed_on = obj.getString("process_completed_on");
 
-                        JSONArray arr;
+                    try {
 
-                        arr = obj.getJSONArray("product_group");
+                        txt_created_on.setText("" + created_on);
+                        txt_created_by.setText("" + created_by);
+                        txt_allorted_to.setText("" + allorted_to);
+                        txt_process_Status.setText("" + fol_status);
+                        txt_process_remark.setText("" + fol_remark);
+                        txt_compleed_on.setText("" + completed_on);
 
-                        for (int i = 0; arr.length() > i; i++) {
-                            JSONObject obj1 = arr.getJSONObject(i);
+                    } catch (Exception e) {
 
-                            String id = obj1.getString(TAG_PROD_ID);
-                            String product = obj1.getString(TAG_PROD_TITLE);
-
-                            HashMap<String, String> map = new HashMap<String, String>();
-
-                            // adding each child node to HashMap key => value
-                            map.put(TAG_PROD_ID, id);
-                            map.put(TAG_PROD_TITLE, product);
-
-                            campaign_list.add(map);
-
-                            System.out.println("HASHMAP ARRAY" + campaign_list);
+                    }
 
 
-                            adapter = new Followups_Adapter(Activity_FollowUp.this,
-                                    campaign_list);
-                            List.setAdapter(adapter);
+                    JSONArray arr;
+
+                    arr = obj.getJSONArray("process");
+
+                    for (int i = 0; arr.length() > i; i++) {
+                        JSONObject obj1 = arr.getJSONObject(i);
+
+                        String message = obj1.getString(TAG_MESSAGE);
+                        String process = obj1.getString(TAG_PROCESS);
+                        String description = obj1.getString(TAG_DESCRIPTION);
+                        String report = obj1.getString(TAG_REPORT);
+                        String creteon = obj1.getString(TAG_CREATED_ON);
+
+                        HashMap<String, String> map = new HashMap<String, String>();
+
+                        // adding each child node to HashMap key => value
+                        map.put(TAG_MESSAGE, message);
+                        map.put(TAG_PROCESS, process);
+                        map.put(TAG_DESCRIPTION, description);
+                        map.put(TAG_REPORT, report);
+                        map.put(TAG_CREATED_ON, creteon);
+
+                        campaign_list.add(map);
+
+                        System.out.println("HASHMAP ARRAY" + campaign_list);
 
 
-                        }
+                        adapter = new Followups_Adapter(Activity_FollowUp.this,
+                                campaign_list);
+                        List.setAdapter(adapter);
 
-
-                    } else if (success == 0) {
-
-                        Alerter.create(Activity_FollowUp.this)
-                                .setTitle("GEM CRM")
-                                .setText("No Data Found")
-                                .setBackgroundColor(R.color.Alert_Fail)
-                                .show();
 
                     }
 
@@ -188,6 +265,9 @@ public class Activity_FollowUp extends AppCompatActivity implements  SwipeRefres
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
+
+                params.put("enq_no", str_enq_no);
+
                 return params;
             }
 
@@ -198,7 +278,69 @@ public class Activity_FollowUp extends AppCompatActivity implements  SwipeRefres
     }
 
 
+    /***************************
+     * Function ALert
+     * *************************/
 
+    private void FunctionCAllAlert() {
+
+        LayoutInflater li = LayoutInflater.from(Activity_FollowUp.this);
+        View promptsView = li
+                .inflate(R.layout.alertdialog_followup, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                Activity_FollowUp.this);
+        alertDialogBuilder.setTitle("GEM CRM");
+        alertDialogBuilder.setIcon(R.mipmap.ic_launcher);
+        // alertDialogBuilder.setInverseBackgroundForced(#26A65B);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        txt_msg = (TextView) promptsView
+                .findViewById(R.id.followup_alert_txt_message);
+        txt_process = (TextView) promptsView
+                .findViewById(R.id.followup_alert_txt_process);
+        txt_description = (TextView) promptsView
+                .findViewById(R.id.followup_alert_txt_desc);
+        txt_report = (TextView) promptsView
+                .findViewById(R.id.followup_alert_txt_report);
+        txt_create_on = (TextView) promptsView
+                .findViewById(R.id.followup_alert_txt_date);
+
+        txt_msg.setText("" + str_message);
+        txt_process.setText("" + str_process);
+        txt_description.setText("" + str_description);
+        txt_report.setText("" + str_report);
+        txt_create_on.setText("" + str_createon);
+
+
+        alertDialogBuilder.setCancelable(false)
+
+                .setNeutralButton("Done",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                System.out.println("allert str_message" + str_message);
+                                System.out.println("allert str_process" + str_process);
+                                System.out.println("allert str_description" + str_description);
+                                System.out.println("allert str_report" + str_report);
+                                System.out.println("allert str_createon" + str_createon);
+
+
+
+
+                                dialog.cancel();
+                            }
+                        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
+    }
 
 
 }

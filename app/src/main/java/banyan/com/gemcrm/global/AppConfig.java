@@ -12,9 +12,11 @@ public class AppConfig {
     public static String url_authentication = base_url + "android/user_login_validation.php";
     public static String url_lastlogin = base_url + "android/user_last_login.php";
     public static String url_my_targets  = base_url + "android/user_target.php";
+    public static String url_my_yearly_target  = base_url + "android/dashboard.php";
 
     public static String url_getcampaign = base_url + "android/user_get_campaign_list.php";
     public static String url_addcampaign = base_url + "android/user_create_campaign.php";
+    public static String url_editcampaign = base_url + "android/user_update_campaign.php";
 
     public static String url_getappointment = base_url + "android/user_get_appointment_list.php";
     public static String url_addappointment = base_url + "android/user_create_appointment.php";
@@ -39,6 +41,13 @@ public class AppConfig {
     public static String url_post_Appointment = base_url + "android/enquiry_save_quotation.php";
     public static String url_Quotation  = base_url + "android/view_quotation_date.php";
 
+    public static String url_followups = base_url + "android/enq_follow_ups.php";
+
+    public static String url_catalogue = base_url + "android/get_catalouge.php";
 
     public static String url_my_task = base_url + "android/user_task_list.php";
+
+    public static String url_my_task_edit = base_url + "android/update_task.php";
+
+    public static String url_new_enquiery = base_url + "android/user_new_enquiry_list.php";
 }

@@ -1,11 +1,12 @@
 package banyan.com.gemcrm.activity;
 
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -21,7 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.fabtransitionactivity.SheetLayout;
 import com.tapadoo.alerter.Alerter;
 
 import org.json.JSONArray;
@@ -36,16 +36,13 @@ import banyan.com.gemcrm.R;
 import banyan.com.gemcrm.adapter.Alloted_Complaints_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
- * Created by Jo on 7/27/2016.
+ * Created by steve on 14/3/17.
  */
-public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabAnimationEndListener, SwipeRefreshLayout.OnRefreshListener {
 
-    SheetLayout mSheetLayout;
-    FloatingActionButton mFab;
+public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+
 
     String str_user_name, str_user_id;
     String str_task_name, str_task_des;
@@ -66,7 +63,6 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
     public static final String TAG_ENQ_END_COMP_NAME = "enq_company_name";
     public static final String TAG_ENQ_END_COMP_EMAIL = "enq_company_email";
     public static final String TAG_ENQ_PHONENO = "enq_company_phn_no";
-    public static final String TAG_ENQ_PRODUCT_ID  = "enq_product_id";
     public static final String TAG_ENQ_COMP_ADDRESS = "enq_company_address";
     public static final String TAG_ENQ_PIN = "enq_company_pincode";
     public static final String TAG_ENQ_CON_PERSON_NAME = "enq_contact_person_name";
@@ -95,17 +91,10 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
 
     public Alloted_Complaints_Adapter adapter;
 
-    String str_select_task_id;
-
-    private static final int REQUEST_CODE = 1;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootview = inflater.inflate(R.layout.tab_enquiry_layout, null);
-
-        ButterKnife.bind(getActivity());
-        // setUpToolbarWithTitle(getString(R.string.INBOX), false);
+        View rootview = inflater.inflate(R.layout.fragment_allotment, null);
 
         session = new SessionManager(getActivity());
 
@@ -114,21 +103,8 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
         str_user_name = user.get(SessionManager.KEY_USER);
         str_user_id = user.get(SessionManager.KEY_USER_ID);
 
-        mFab = (FloatingActionButton) rootview.findViewById(R.id.fab_add_task);
-        mSheetLayout = (SheetLayout) rootview.findViewById(R.id.bottom_sheet);
-
-        mSheetLayout.setFab(mFab);
-        mSheetLayout.setFabAnimationEndListener(this);
-
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mSheetLayout.expandFab();
-            }
-        });
-
-        List = (ListView) rootview.findViewById(R.id.alloted_comp_listView);
-        swipeRefreshLayout = (SwipeRefreshLayout) rootview.findViewById(R.id.alloted_comp_swipe_refresh_layout);
+        List = (ListView) rootview.findViewById(R.id.allotment_listView);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootview.findViewById(R.id.allotment_swipe_refresh_layout);
 
         swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -139,7 +115,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
 
                                         try {
                                             queue = Volley.newRequestQueue(getActivity());
-                                            GetMyAllotedEnquiries();
+                                            GetNewEnquries();
 
                                         } catch (Exception e) {
                                             // TODO: handle exceptions
@@ -157,7 +133,14 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
+                System.out.println("POSITION : " + position);
+                System.out.println("POSITION : " + position);
+                System.out.println("POSITION : " + position);
+
                 String enq_no = enquiry_list.get(position).get(TAG_ENQ_ID);
+
+                System.out.println("enq_no asd : " + enq_no);
+
                 String enq_year_id = enquiry_list.get(position).get(TAG_ENQ_YEAR_ID);
                 String enq_month_id = enquiry_list.get(position).get(TAG_ENQ_START_MONTH);
                 String enq_company_name = enquiry_list.get(position).get(TAG_ENQ_END_COMP_NAME);
@@ -167,8 +150,14 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                 String enq_company_pincode = enquiry_list.get(position).get(TAG_ENQ_PIN);
                 String enq_contact_person_name = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_NAME);
                 String enq_contact_person_phone_no = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_PHONE);
-                String enq_product_id = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_ID);
                 String enq_product_series = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_SERIES);
+                String enq_product_model = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_MODEL);
+                String enq_product_model_no = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_MODEL_NO);
+                String enq_product_type = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_TYPE);
+                String enq_product_qty = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_QTY);
+                String enq_product_price = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_PRICE);
+                String enq_alloted_to = enquiry_list.get(position).get(TAG_ENQ_ALLOTED_TO);
+                String enq_team_id = enquiry_list.get(position).get(TAG_ENQ_TEAM_ID);
                 String enq_discount = enquiry_list.get(position).get(TAG_ENQ_DISCOUNT);
                 String enq_description = enquiry_list.get(position).get(TAG_ENQ_DESC);
                 String enquiry_through = enquiry_list.get(position).get(TAG_ENQ_THROUGH);
@@ -178,45 +167,15 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                 String enq_created_on = enquiry_list.get(position).get(TAG_ENQ_CREAATED_ON);
                 String enq_completed_on = enquiry_list.get(position).get(TAG_ENQ_COMPLEED_ON);
 
-                System.out.println("b4" + enq_created_on);
-                System.out.println("b4" + enq_created_on);
-                System.out.println("b4" + enq_created_on);
 
+                FunctionCAllAlert(enq_no);
 
-                SharedPreferences sharedPreferences = PreferenceManager
-                        .getDefaultSharedPreferences(getActivity());
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putString("enq_no", enq_no);
-                editor.putString("enq_year_id", enq_year_id);
-                editor.putString("enq_month_id", enq_month_id);
-                editor.putString("enq_company_name", enq_company_name);
-                editor.putString("enq_company_email", enq_company_email);
-                editor.putString("enq_company_phn_no", enq_company_phn_no);
-                editor.putString("enq_company_address", enq_company_address);
-                editor.putString("enq_company_pincode", enq_company_pincode);
-                editor.putString("enq_contact_person_name", enq_contact_person_name);
-                editor.putString("enq_contact_person_phone_no", enq_contact_person_phone_no);
-                editor.putString("enq_product_id", enq_product_id);
-                editor.putString("enq_product_series", enq_product_series);
-                editor.putString("enq_discount", enq_discount);
-                editor.putString("enq_description", enq_description);
-                editor.putString("enquiry_through", enquiry_through);
-                editor.putString("enquiry_through_description", enquiry_through_description);
-                editor.putString("enq_status", enq_status);
-                editor.putString("enq_remarks", enq_remarks);
-                editor.putString("enq_created_on", enq_created_on);
-                editor.putString("enq_completed_on", enq_completed_on);
-                editor.commit();
-
-                Intent i = new Intent(getActivity(), Activity_Enquiry_Process.class);
-                startActivity(i);
             }
 
         });
 
-
         return rootview;
+
 
     }
 
@@ -228,44 +187,23 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
         try {
             enquiry_list.clear();
             queue = Volley.newRequestQueue(getActivity());
-            GetMyAllotedEnquiries();
+            GetNewEnquries();
 
         } catch (Exception e) {
             // TODO: handle exception
         }
     }
 
-    @OnClick(R.id.fab_add_task)
-    void onFabClick() {
-        mSheetLayout.expandFab();
-    }
-
-
-    @Override
-    public void onFabAnimationEnd() {
-        Intent intent = new Intent(getActivity(), Activity_Enquiry_Add.class);
-        startActivityForResult(intent, REQUEST_CODE);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE) {
-            mSheetLayout.contractFab();
-        }
-    }
-
-
     /*****************************
      * GET My Task
      ***************************/
 
-    public void GetMyAllotedEnquiries() {
+    public void GetNewEnquries() {
 
         String tag_json_obj = "json_obj_req";
         System.out.println("CAME 1");
         StringRequest request = new StringRequest(Request.Method.POST,
-                AppConfig.url_get_alloted_enquiry, new Response.Listener<String>() {
+                AppConfig.url_new_enquiery, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -293,7 +231,6 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             String comp_pin = obj1.getString(TAG_ENQ_PIN);
                             String comp_contact_person_name = obj1.getString(TAG_ENQ_CON_PERSON_NAME);
                             String comp_contactperson_phone = obj1.getString(TAG_ENQ_CON_PERSON_PHONE);
-                            String comp_product_id = obj1.getString(TAG_ENQ_PRODUCT_ID);
                             String enq_product_series = obj1.getString(TAG_ENQ_PRODUCT_SERIES);
                             String enq_product_model = obj1.getString(TAG_ENQ_PRODUCT_MODEL);
                             String enq_product_model_no = obj1.getString(TAG_ENQ_PRODUCT_MODEL_NO);
@@ -311,11 +248,6 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             String enq_created_on = obj1.getString(TAG_ENQ_CREAATED_ON);
                             String enq_completed_on = obj1.getString(TAG_ENQ_COMPLEED_ON);
 
-                            System.out.println("enq_created_on" + enq_created_on);
-                            System.out.println("enq_created_on" + enq_created_on);
-                            System.out.println("enq_created_on" + enq_created_on);
-                            System.out.println("enq_created_on" + enq_created_on);
-
                             // creating new HashMap
                             HashMap<String, String> map = new HashMap<String, String>();
 
@@ -330,7 +262,6 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             map.put(TAG_ENQ_PIN, comp_pin);
                             map.put(TAG_ENQ_CON_PERSON_NAME, comp_contact_person_name);
                             map.put(TAG_ENQ_CON_PERSON_PHONE, comp_contactperson_phone);
-                            map.put(TAG_ENQ_PRODUCT_ID, comp_product_id);
                             map.put(TAG_ENQ_PRODUCT_SERIES, enq_product_series);
                             map.put(TAG_ENQ_PRODUCT_MODEL, enq_product_model);
                             map.put(TAG_ENQ_PRODUCT_MODEL_NO, enq_product_model_no);
@@ -367,7 +298,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
 
                         Alerter.create(getActivity())
                                 .setTitle("GEM CRM")
-                                .setText("Data Not Found \n Try Again")
+                                .setText("Data Not Found :( \n Try Again")
                                 .setBackgroundColor(R.color.Alert_Fail)
                                 .show();
                     }
@@ -387,7 +318,7 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
             public void onErrorResponse(VolleyError error) {
                 swipeRefreshLayout.setRefreshing(false);
 
-                /*Alerter.create(getActivity())
+               /* Alerter.create(getActivity())
                         .setTitle("GEM CRM")
                         .setText("Internal Error !")
                         .setBackgroundColor(R.color.Alert_Warning)
@@ -411,4 +342,41 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
         // Adding request to request queue
         queue.add(request);
     }
+
+    /***************************
+     * Function ALert
+     * *************************/
+
+    private void FunctionCAllAlert(final String str_number) {
+
+        new android.app.AlertDialog.Builder(getActivity())
+                .setTitle("GEM CRM")
+                .setMessage("Self Allot This Enquiry" + str_number + " to Me ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+
+                                dialog.cancel();
+
+                            }
+                        }).setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        try {
+
+
+                        } catch (Exception e) {
+
+                        }
+                    }
+                }).show();
+
+    }
+
+
 }

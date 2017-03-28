@@ -1,6 +1,8 @@
 package banyan.com.gemcrm.activity;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,12 +22,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -44,6 +48,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -116,9 +121,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     int select_product_model = 0;
     int select_product_model_no = 0;
 
-    Spinner spn_group2, spn_group3, spn_group4, spn_group5, spn_group6;
+    Spinner spn_group1, spn_group2, spn_group3, spn_group4, spn_group5, spn_group6;
     ArrayList<String> Arraylist_group2 = null;
     ArrayList<String> Arraylist_group_id2 = null;
+    String str_Selected_group1 = "";
     String str_Selected_group2 = "";
     String str_Selected_group3 = "";
     String str_Selected_group4 = "";
@@ -186,8 +192,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     LinearLayout linear_appointment;
 
     EditText edt_enq_appint_date, edt_enq_appint_time;
+    int from_year, from_month, from_date;
 
-    Button btn_send_catalog, btn_save, btn_save_pre_quote;
+    Button  btn_save, btn_save_pre_quote, btn_send_catalog;
 
     String str_po_en_no, str_po_comp_name, str_po_email, str_po_address, str_po_pin, str_po_phone, str_po_contact_person,
             str_po_contact_person_phone, str_po_product, str_po_enq_through, str_po_enq_description,
@@ -271,6 +278,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_price5 = (EditText) findViewById(R.id.enq_process_edt_price5);
         edt_price6 = (EditText) findViewById(R.id.enq_process_edt_price6);
 
+        spn_group1 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group1);
         spn_group2 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group2);
         spn_group3 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group3);
         spn_group4 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group4);
@@ -927,6 +935,30 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
          *  Spinner Group Interface Ex. DRYER,CHILLER
          * ********************************************/
 
+        spn_group1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                select_product_group = 1;
+                str_Selected_group1 = Arraylist_group_id2.get(arg2);
+
+                dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                dialog.show();
+                queue = Volley.newRequestQueue(getApplicationContext());
+                GetModel_Type();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
         spn_group2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -1375,11 +1407,15 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
         if (str_status.equals("New")) {
 
+            System.out.println("Inside New Spinner Loader");
+
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Enquiry_Process.this, R.array.enq_status, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spn_status.setAdapter(adapter);
 
         } else if (str_status.equals("Process")) {
+
+            System.out.println("Inside Process Spinner Loader");
 
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Enquiry_Process.this, R.array.enq_process, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1416,6 +1452,74 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 //Another interface callback
             }
 
+        });
+
+
+        edt_enq_appint_date.setKeyListener(null);
+        edt_enq_appint_time.setKeyListener(null);
+
+        edt_enq_appint_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Calendar c = Calendar.getInstance();
+                from_year = c.get(Calendar.YEAR);
+                from_month = c.get(Calendar.MONTH);
+                from_date = c.get(Calendar.DAY_OF_MONTH);
+
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(
+                        Activity_Enquiry_Process.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+
+                                int month = monthOfYear + 1;
+                                String formattedMonth = "" + month;
+                                String formattedDayOfMonth = "" + dayOfMonth;
+
+                                if (month < 10) {
+
+                                    formattedMonth = "0" + month;
+                                }
+                                if (dayOfMonth < 10) {
+
+                                    formattedDayOfMonth = "0" + dayOfMonth;
+                                }
+                                edt_enq_appint_date.setText(formattedDayOfMonth + "/"
+                                        + formattedMonth + "/"
+                                        + year);
+
+                            }
+                        }, from_year, from_month, from_date);
+                dpd.show();
+
+            }
+        });
+
+        edt_enq_appint_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(Activity_Enquiry_Process.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        edt_enq_appint_time.setText(selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+
+            }
         });
 
 
@@ -1508,10 +1612,32 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         // TODO: handle exception
                     }
 
+                } else if (str_po_status.equals("Call With TL")) {
+
+                    try {
+                        dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                        dialog.show();
+                        queue = Volley.newRequestQueue(getApplicationContext());
+                        POST_ENQ();
+
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+
                 } else {
 
                 }
 
+
+            }
+        });
+
+        btn_send_catalog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), Activity_Send_Catelog.class);
+                startActivity(i);
 
             }
         });
@@ -1522,7 +1648,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             dialog = new SpotsDialog(Activity_Enquiry_Process.this);
             dialog.show();
             queue = Volley.newRequestQueue(getApplicationContext());
-            GetModel_Type();
+            GetProductGroup();
 
         } catch (Exception e) {
             // TODO: handle exception
@@ -1581,6 +1707,13 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         }
         if (id == R.id.action_followup) {
 
+            SharedPreferences sharedPreferences = PreferenceManager
+                    .getDefaultSharedPreferences(Activity_Enquiry_Process.this);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putString("follow_up_enq_no", str_select_id);
+
+            editor.commit();
 
             Intent i = new Intent(getApplicationContext(), Activity_FollowUp.class);
             startActivity(i);
@@ -1670,7 +1803,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("group_id", str_select_produc_id);
+                params.put("group_id", str_Selected_group1);
 
                 return params;
             }
@@ -1913,12 +2046,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                             }
 
-                            try {
-                                GetProductGroup();
-                            } catch (Exception e) {
-
-                            }
-
                         }
 
                     } else if (success == 0) {
@@ -2008,6 +2135,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 System.out.println("GROUP :: " + Arraylist_group2);
                                 System.out.println("GROUP ID :: " + Arraylist_group_id2);
+
+                                spn_group1
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_group2));
+
                                 spn_group2
                                         .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
                                                 android.R.layout.simple_spinner_dropdown_item,
@@ -2039,6 +2172,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                         }
 
+                        dialog.dismiss();
 
                     } else if (success == 0) {
 
@@ -2049,6 +2183,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                                 .show();
 
                     }
+                    dialog.dismiss();
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -3023,13 +3158,13 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("contact_person_phone", str_po_contact_person_phone);
                 params.put("enq_through", str_po_enq_through);
                 params.put("enq_desc", str_po_enq_description);
-                params.put("remarks", "remarks");
+                params.put("remarks", str_po_spec);
                 params.put("status", str_po_status);
                 params.put("date", str_po_appoint_date);
                 params.put("time", str_po_appoint_time);
-                params.put("appointment_through", "appointment_through");
-                params.put("appointment_location", "appointment_location");
-                params.put("appointment_description", "appointment_description");
+                params.put("appointment_through", str_po_contact_person_phone);
+                params.put("appointment_location", str_po_address);
+                params.put("appointment_description", str_po_contact_person);
                 params.put("user", str_user_id);
 
                 return checkParams(params);
@@ -3075,6 +3210,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
                                     editor.putString("quotation_no", quotation_no);
+
+                                    editor.commit();
 
                                     System.out.println("quotation_no" + quotation_no);
 

@@ -1,6 +1,5 @@
 package banyan.com.gemcrm.activity;
 
-import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -91,7 +90,7 @@ public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
         // name
         str_user_name = user.get(SessionManager.KEY_USER);
         str_user_id = user.get(SessionManager.KEY_USER_ID);
-        str_gcm = user.get(SessionManager.KEY_GCM);
+        str_gcm = user.get(SessionManager.KEY_PERMISSION);
 
         chart = (BarChart) findViewById(R.id.bar_chart);
 

@@ -25,7 +25,6 @@ import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
 import com.tapadoo.alerter.Alerter;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,7 +32,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import banyan.com.gemcrm.R;
-import banyan.com.gemcrm.adapter.Alloted_Complaints_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
 import dmax.dialog.SpotsDialog;
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     SessionManager session;
 
     public static String str_id, str_name;
-    String str_gcm = null;
+    String str_permission = null;
     String GcmId = null;
 
     SpotsDialog dialog;
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // name
         str_name = user.get(SessionManager.KEY_USER);
         str_id = user.get(SessionManager.KEY_USER_ID);
-        str_gcm = user.get(SessionManager.KEY_GCM);
+        str_permission = user.get(SessionManager.KEY_PERMISSION);
 
         try {
             System.out.println("user" + str_id);
@@ -116,8 +114,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         parent_batch = (RelativeLayout) MenuItemCompat.getActionView(item1);
         tv = (TextView) notificationCount1.findViewById(R.id.badge_notification_2);
         tv.setText("0");
-        //str_cart = Integer.toString(count);
-        //tv.setText("" + cart_size);
 
         parent_batch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,23 +167,47 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 title = getString(R.string.title_enquiry);
                 break;
             case 2:
+                try {
+
+                    if (str_permission.equals("yes")){
+                        fragment = new Fragment_Allotment();
+                        title = getString(R.string.title_self_appointment);
+                        break;
+                    }else {
+
+                        Alerter.create(MainActivity.this)
+                                .setTitle("GEM CRM")
+                                .setText("Yout Don't Have a Permission to Acess this Menu!")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+                    }
+
+                }catch (Exception e) {
+
+                }
+
+            case 3:
+                fragment = new Fragment_SendCatalogue();
+                title = getString(R.string.title_send_catalogue);
+                break;
+            case 4:
                 fragment = new Fragment_Appointments();
                 title = getString(R.string.title_appointment);
                 break;
-            case 3:
+            case 5:
                 fragment = new Fragment_Target();
                 title = getString(R.string.title_target);
                 break;
-            case 4:
+            case 6:
                 fragment = new Fragment_Campaign();
                 title = getString(R.string.title_campaign);
                 break;
 
-            case 5:
+            case 7:
                 TastyToast.makeText(getApplicationContext(), "About", TastyToast.LENGTH_LONG, TastyToast.ERROR);
                 break;
 
-            case 6:
+            case 8:
 
                 session.logoutUser();
 

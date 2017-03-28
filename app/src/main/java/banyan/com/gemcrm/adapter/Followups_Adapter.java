@@ -53,11 +53,13 @@ public class Followups_Adapter extends BaseAdapter {
             v = inflater.inflate(R.layout.list_item_followups, null);
 
         TextView title = (TextView) v.findViewById(R.id.followups_list_txt_name);
+        TextView date = (TextView) v.findViewById(R.id.followups_list_txt_date);
 
         HashMap<String, String> result = new HashMap<String, String>();
         result = data.get(position);
 
-        title.setText(result.get(Activity_FollowUp.TAG_PROD_TITLE));
+        title.setText(result.get(Activity_FollowUp.TAG_MESSAGE));
+        date.setText(result.get(Activity_FollowUp.TAG_CREATED_ON));
 
         return v;
 

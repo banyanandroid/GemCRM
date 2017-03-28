@@ -63,7 +63,7 @@ public class MyTask_Adapter extends BaseAdapter {
 
         app_initial.setText(result.get(Fragment_Target.TAG_TASK_NAME).substring(0,1));
         app_with.setText(result.get(Fragment_Target.TAG_TASK_NAME));
-        app_location.setText(result.get(Fragment_Target.TAG_TASK_DES));
+        app_location.setText(result.get(Fragment_Target.TAG_TASK_ABOUT));
         app_des.setText(result.get("Assigned By : "+Fragment_Target.TAG_ASSIGNEDBY));
         app_date.setText(result.get(Fragment_Target.TAG_CREATE_ON));
 

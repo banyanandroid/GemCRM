@@ -5,10 +5,6 @@
     android:background="@drawable/background"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"></include>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +20,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4.5">
+                android:layout_weight="4">
 
 
                 <LinearLayout
@@ -61,7 +57,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="GEM INDIA SERVICES"
                                 android:textColor="@color/black"
-                                android:textSize="16dp"
+                                android:textSize="14dp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -69,7 +65,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Coimbatore, Tamilnadu,\nIndia."
-                                android:textSize="14dp"
+                                android:textSize="12dp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -91,7 +87,7 @@
                                 android:gravity="center|right"
                                 android:text="Quotation"
                                 android:textColor="@color/black"
-                                android:textSize="16dp"
+                                android:textSize="14dp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -102,7 +98,7 @@
                                 android:gravity="center|right"
                                 android:text="Id :GEM-0000000"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="16dp"
+                                android:textSize="14dp"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -132,7 +128,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="Bill To"
+                                android:text="To"
                                 android:textColor="@color/black"
                                 android:textSize="14dp"
                                 android:textStyle="bold" />
@@ -150,7 +146,7 @@
                                     android:gravity="left"
                                     android:text="Comp Name"
                                     android:textColor="@color/album_title"
-                                    android:textSize="14dp"
+                                    android:textSize="12dp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -160,7 +156,7 @@
                                     android:gravity="left"
                                     android:text="Comp Address"
                                     android:textColor="@color/album_title"
-                                    android:textSize="14dp"
+                                    android:textSize="12dp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -170,7 +166,7 @@
                                     android:gravity="left"
                                     android:text="Comp Phone"
                                     android:textColor="@color/album_title"
-                                    android:textSize="14dp"
+                                    android:textSize="12dp"
                                     android:textStyle="bold" />
 
 
@@ -205,7 +201,7 @@
                                 android:gravity="center|right"
                                 android:hint="RS.00.00"
                                 android:textColor="@color/album_title"
-                                android:textSize="16dp"
+                                android:textSize="14dp"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -224,7 +220,7 @@
                                     android:gravity="right|center"
                                     android:text="Quotation Date:"
                                     android:textColor="@color/black"
-                                    android:textSize="16dp"
+                                    android:textSize="14dp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -235,7 +231,7 @@
                                     android:gravity="right|center"
                                     android:hint="DD/MM/YYYY"
                                     android:textColor="@color/album_title"
-                                    android:textSize="16dp"
+                                    android:textSize="14dp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>
@@ -260,7 +256,7 @@
                             android:gravity="right|center"
                             android:hint="Tax"
                             android:textColor="@color/white"
-                            android:textSize="16dp"
+                            android:textSize="14dp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -285,7 +281,7 @@
                     android:gravity="center"
                     android:text="Item"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -296,7 +292,7 @@
                     android:gravity="center"
                     android:text="QTY"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
 
@@ -307,7 +303,7 @@
                     android:gravity="center"
                     android:text="Amount"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:textStyle="bold" />
 
 
@@ -317,7 +313,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3">
+                android:layout_weight="3.5">
 
                 <ListView
                     android:id="@+id/quotation_lst"
@@ -361,7 +357,7 @@
                         android:gravity="right|center"
                         android:hint="RS.00.00"
                         android:textColor="@color/album_title"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -371,6 +367,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:gravity="center"
                 android:layout_weight="1">
 
                 <Button
@@ -380,9 +377,9 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:background="@color/colorAccent"
-                    android:text="Send invoice"
+                    android:text="Send quotation"
                     android:textColor="@color/white"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
 

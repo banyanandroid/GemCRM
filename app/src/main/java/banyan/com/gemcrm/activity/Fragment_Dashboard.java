@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import banyan.com.gemcrm.R;
+import banyan.com.gemcrm.adapter.MyTask_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
 import dmax.dialog.SpotsDialog;
@@ -48,10 +48,11 @@ public class Fragment_Dashboard extends Fragment {
 
     SessionManager session;
     String str_user_name, str_user_id, str_gcm = "";
-    CardView card1, card2, card3, card4;
-    LinearLayout thumbnail1, thumbnail2, thumbnail3, thumbnail4;
+    CardView card1, card2, card3, card4, card5;
+    LinearLayout thumbnail1, thumbnail2, thumbnail3, thumbnail4, thumbnail5;
 
-    TextView txt_fin_achive, txt_fin_target, txt_enq_achive, txt_enq_target, txt_camp_achive, txt_camp_target, txt_prod_achive, txt_prod_target;
+    TextView txt_fin_achive, txt_fin_target, txt_enq_achive, txt_enq_target, txt_camp_achive, txt_camp_target,
+            txt_prod_achive, txt_prod_target, txt_year_achive, txt_year_target;
 
     SpotsDialog dialog;
     public static RequestQueue queue;
@@ -80,6 +81,9 @@ public class Fragment_Dashboard extends Fragment {
     public static final String TAG_CAMP_TARGET = "campaign_target";
     public static final String TAG_CAMP_ACHIVE = "campaign_acheived";
 
+    public static final String TAG_YEARLY_TARGET = "target_amount";
+    public static final String TAG_YEARLY_ACHIVE = "yearly_acheived";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,17 +105,19 @@ public class Fragment_Dashboard extends Fragment {
         // name
         str_user_name = user.get(SessionManager.KEY_USER);
         str_user_id = user.get(SessionManager.KEY_USER_ID);
-        str_gcm = user.get(SessionManager.KEY_GCM);
+        str_gcm = user.get(SessionManager.KEY_PERMISSION);
 
         card1 = (CardView) rootView.findViewById(R.id.dashboard_card_view1);
         card2 = (CardView) rootView.findViewById(R.id.dashboard_card_view2);
         card3 = (CardView) rootView.findViewById(R.id.dashboard_card_view3);
         card4 = (CardView) rootView.findViewById(R.id.dashboard_card_view4);
+        card5 = (CardView) rootView.findViewById(R.id.dashboard_card_view5);
 
         thumbnail1 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail1);
         thumbnail2 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail2);
         thumbnail3 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail3);
         thumbnail4 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail4);
+        thumbnail5 = (LinearLayout) rootView.findViewById(R.id.dashboard_thumbnail5);
 
         txt_fin_achive = (TextView) rootView.findViewById(R.id.dash_txt_fin_achive);
         txt_fin_target = (TextView) rootView.findViewById(R.id.dash_txt_fin_target);
@@ -124,6 +130,9 @@ public class Fragment_Dashboard extends Fragment {
 
         txt_enq_achive = (TextView) rootView.findViewById(R.id.dash_txt_enq_achive);
         txt_enq_target = (TextView) rootView.findViewById(R.id.dash_txt_enq_target);
+
+        txt_year_achive = (TextView) rootView.findViewById(R.id.dash_txt_year_achive);
+        txt_year_target = (TextView) rootView.findViewById(R.id.dash_txt_year_target);
 
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +173,15 @@ public class Fragment_Dashboard extends Fragment {
 
             }
         });
+        card5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getActivity(), Activity_Dashboard_Yearly_Target.class);
+                startActivity(i);
+
+            }
+        });
 
         thumbnail1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,6 +218,15 @@ public class Fragment_Dashboard extends Fragment {
             public void onClick(View v) {
 
                 Intent i = new Intent(getActivity(), Activity_Dashboard_PieChart_Target.class);
+                startActivity(i);
+
+            }
+        });
+        thumbnail5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getActivity(), Activity_Dashboard_Yearly_Target.class);
                 startActivity(i);
 
             }
@@ -342,6 +369,8 @@ public class Fragment_Dashboard extends Fragment {
 
                         }
 
+                        queue = Volley.newRequestQueue(getActivity());
+                        Function_Yearly_Target();
 
                     } else if (success == 0) {
 
@@ -374,6 +403,60 @@ public class Fragment_Dashboard extends Fragment {
                 params.put("user", str_user_id); // replace as str_id
 
                 System.out.println("user_id" + str_user_id);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+    /********************************
+     * User GetCompleted_jobs
+     *********************************/
+
+    private void Function_Yearly_Target() {
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_my_yearly_target, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    String year_achive = obj.getString(TAG_YEARLY_TARGET);
+                    String year_target = obj.getString(TAG_YEARLY_ACHIVE);
+
+                    try {
+                        txt_year_achive.setText("" + year_achive);
+                        txt_year_target.setText("" + year_target);
+                    } catch (Exception e) {
+
+                    }
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_user_id);
 
                 return params;
             }

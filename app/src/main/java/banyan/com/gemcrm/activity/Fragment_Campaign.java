@@ -165,7 +165,7 @@ public class Fragment_Campaign extends Fragment implements SheetLayout.OnFabAnim
 
                 editor.commit();
 
-                Intent i = new Intent(getActivity(), Activity_Campaing_description.class);
+                Intent i = new Intent(getActivity(), Activity_Campaign_description.class);
                 startActivity(i);
                 System.out.println("Clciked");
             }

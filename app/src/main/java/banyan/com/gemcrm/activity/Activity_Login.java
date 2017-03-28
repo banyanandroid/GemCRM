@@ -46,14 +46,14 @@ public class Activity_Login extends Activity {
 
     private static final String TAG_NAME = "user_name";
     private static final String TAG_ID = "user_id";
-    private static final String TAG_GCM = "gcm_id";
+    private static final String TAG_PERMISSION = "permission";
     String TAG = "reg";
 
     SpotsDialog dialog;
     public static RequestQueue queue;
 
 
-    String str_user_name, str_user_id, str_gcm;
+    String str_user_name, str_user_id, str_permission;
 
     // Session Manager Class
     SessionManager session;
@@ -128,14 +128,14 @@ public class Activity_Login extends Activity {
 
                             str_user_name = obj1.getString(TAG_NAME);
                             str_user_id = obj1.getString(TAG_ID);
-                            str_gcm = obj1.getString(TAG_GCM);
+                            str_permission = obj1.getString(TAG_PERMISSION);
                         }
 
                         System.out.println("NAME" + str_user_name);
                         System.out.println("ID" + str_user_id);
-                        System.out.println("ID" + str_gcm);
+                        System.out.println("ID" + str_permission);
 
-                        session.createLoginSession(str_user_name, str_user_id, str_gcm);
+                        session.createLoginSession(str_user_name, str_user_id, str_permission);
 
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);

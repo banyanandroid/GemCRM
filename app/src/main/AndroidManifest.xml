@@ -39,10 +39,20 @@
             android:name=".activity.Activity_Campaign_Add"
             android:label="Add Campaign"></activity>
         <activity
+            android:name=".activity.Activity_Campaign_description"
+            android:label="Campaign Description"></activity>
+        <activity
+            android:name=".activity.Activity_Campaign_Edit"
+            android:label="Edit Campaign"></activity>
+        <activity
             android:name=".activity.Activity_Dashboard_Finance_Target"
             android:label="Finance Target"></activity>
         <activity
             android:name=".activity.Activity_Dashboard_PieChart_Target"
+            android:label="Product Target"></activity>
+
+        <activity
+            android:name=".activity.Activity_Dashboard_Yearly_Target"
             android:label="Product Target"></activity>
 
         <activity
@@ -59,9 +69,6 @@
         <activity
             android:name=".activity.Activity_Appoinment_Edit"
             android:label="Edit Appoinment"></activity>
-        <activity
-            android:name=".activity.Activity_Campaing_description"
-            android:label="Campaign Description"></activity>
 
         <activity
             android:name=".activity.Activity_Enquiry_Description"
@@ -75,11 +82,21 @@
             android:name=".activity.Ativity_Dash"
             android:label="Enquiry Process"></activity>
 
-        <activity android:name=".activity.Activity_FollowUp"
+        <activity
+            android:name=".activity.Activity_FollowUp"
             android:label="Follow Ups"></activity>
 
-        <activity android:name=".activity.Activity_Quotation"
+        <activity
+            android:name=".activity.Activity_Quotation"
             android:label="Quotation Preview"></activity>
+
+        <activity
+            android:name=".activity.Activity_Target_Edit"
+            android:label="Task Update"></activity>
+
+        <activity
+            android:name=".activity.Activity_Send_Catelog"
+            android:label="Task Update"></activity>
 
     </application>
 

@@ -3,25 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:orientation="horizontal">
 
     <com.alorma.timeline.RoundTimelineView
         android:id="@+id/timeline"
         android:layout_width="?android:listPreferredItemHeight"
         android:layout_height="?android:listPreferredItemHeight"
-        timeline:timeline_lineStyle="dashed"/>
+        timeline:timeline_indicatorColor="@color/colorPrimaryDark"
+        timeline:timeline_lineStyle="linear"
+        timeline:timeline_lineColor="@color/Alert_Success"/>
 
-    <TextView
-        android:id="@+id/followups_list_txt_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="?android:listPreferredItemHeight"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:gravity="center_vertical"
-        android:singleLine="true"
-        android:textColor="@color/album_title"
-        android:text="sample"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        tools:ignore="RtlHardcoded"/>
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/followups_list_txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="sample"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/album_title"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/followups_list_txt_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="sample"
+            android:textSize="16dp"
+            android:textColor="@color/album_title"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

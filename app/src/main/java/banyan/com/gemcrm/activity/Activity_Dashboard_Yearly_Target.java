@@ -36,7 +36,7 @@ import dmax.dialog.SpotsDialog;
  * Created by Jo on 3/15/2017.
  */
 
-public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
+public class Activity_Dashboard_Yearly_Target extends AppCompatActivity {
 
     String TAG = "Complaints";
     public static RequestQueue queue;
@@ -45,8 +45,8 @@ public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
     SessionManager session;
     String str_user_name, str_user_id, str_gcm = "";
 
-    public static final String TAG_CAMP_TARGET = "campaign_target";
-    public static final String TAG_CAMP_ACHIVE = "campaign_acheived";
+    public static final String TAG_YEARLY_TARGET = "target_amount";
+    public static final String TAG_YEARLY_ACHIVE = "yearly_acheived";
 
     int target = 0;
     int achive = 0;
@@ -56,12 +56,12 @@ public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_piechart_target);
+        setContentView(R.layout.activity_dashboard_yearly_target);
 
 
-        pieChart = (PieChart) findViewById(R.id.pie_chart);
+        pieChart = (PieChart) findViewById(R.id.yearly_pie_chart);
 
-        session = new SessionManager(Activity_Dashboard_PieChart_Target.this);
+        session = new SessionManager(Activity_Dashboard_Yearly_Target.this);
 
         session.checkLogin();
 
@@ -75,23 +75,14 @@ public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
 
         try {
 
-            dialog = new SpotsDialog(Activity_Dashboard_PieChart_Target.this);
+            dialog = new SpotsDialog(Activity_Dashboard_Yearly_Target.this);
             dialog.show();
-            queue = Volley.newRequestQueue(Activity_Dashboard_PieChart_Target.this);
+            queue = Volley.newRequestQueue(Activity_Dashboard_Yearly_Target.this);
             GetMyTask();
 
         }catch (Exception e) {
 
         }
-
-
-        // mChart.setUnit(" €");
-        // mChart.setDrawUnitsInChart(true);
-
-        // add a selection listener
-
-
-//        pieChart.saveToGallery("/sd/mychart.jpg", 85); // 85 is the quality of the image
 
     }
 
@@ -104,7 +95,7 @@ public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
 
         System.out.println("CAME 1");
         StringRequest request = new StringRequest(Request.Method.POST,
-                AppConfig.url_my_targets, new Response.Listener<String>() {
+                AppConfig.url_my_yearly_target, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -115,24 +106,14 @@ public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
 
                     if (success == 1) {
 
-                        JSONArray arr;
+                        target = obj.getInt(TAG_YEARLY_TARGET);
+                        achive = obj.getInt(TAG_YEARLY_ACHIVE);
 
-                        arr = obj.getJSONArray("campaign_group");
-
-                        for (int i = 0; arr.length() > i; i++) {
-                            JSONObject obj1 = arr.getJSONObject(i);
-
-                            target = obj1.getInt(TAG_CAMP_ACHIVE);
-                            achive = obj1.getInt(TAG_CAMP_TARGET);
-
-                            System.out.println("target" + target);
-                            System.out.println("achive" + achive);
-                            try{
-                                function_piechart();
-                            }catch (Exception e) {
-
-                            }
-
+                        System.out.println("target" + target);
+                        System.out.println("achive" + achive);
+                        try{
+                            function_piechart();
+                        }catch (Exception e) {
 
                         }
 
@@ -153,7 +134,7 @@ public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(Activity_Dashboard_PieChart_Target.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(Activity_Dashboard_Yearly_Target.this, error.getMessage(), Toast.LENGTH_LONG).show();
 
                 dialog.dismiss();
 
@@ -183,15 +164,15 @@ public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
         entries.add(new Entry(target, 0));
         entries.add(new Entry(achive, 1));
 
-        PieDataSet dataset = new PieDataSet(entries, "# of Calls");
+        PieDataSet dataset = new PieDataSet(entries, "");
 
         ArrayList<String> labels = new ArrayList<String>();
-        labels.add("Campaign Target");
-        labels.add("Campaign Achived");
+        labels.add("Yeraly Target");
+        labels.add("Yeraly Achived");
 
         PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.JOYFUL_COLORS); //
-        pieChart.setDescription("Campaign Targer");
+        dataset.setColors(ColorTemplate.PASTEL_COLORS); //
+        pieChart.setDescription("Yearly Target");
         pieChart.setData(data);
 
 
@@ -222,7 +203,7 @@ public class Activity_Dashboard_PieChart_Target extends AppCompatActivity {
 
     private SpannableString generateCenterSpannableText() {
 
-        SpannableString s = new SpannableString("Campaign Target for \n This Month");
+        SpannableString s = new SpannableString("Yeraly Target for \n GEM");
 
         return s;
     }

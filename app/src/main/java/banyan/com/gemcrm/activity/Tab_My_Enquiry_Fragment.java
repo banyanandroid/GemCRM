@@ -371,11 +371,11 @@ public class Tab_My_Enquiry_Fragment extends Fragment implements SwipeRefreshLay
             public void onErrorResponse(VolleyError error) {
                 swipeRefreshLayout.setRefreshing(false);
 
-                Alerter.create(getActivity())
+               /* Alerter.create(getActivity())
                         .setTitle("GEM CRM")
                         .setText("Internal Error !")
                         .setBackgroundColor(R.color.Alert_Warning)
-                        .show();
+                        .show();*/
             }
         }) {
 

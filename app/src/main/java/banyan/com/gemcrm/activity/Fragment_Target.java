@@ -1,7 +1,10 @@
 package banyan.com.gemcrm.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -52,7 +55,7 @@ public class Fragment_Target extends Fragment implements SwipeRefreshLayout.OnRe
     public static final String TAG_ID = "task_id";
     public static final String TAG_TASK_NAME = "task_name";
     public static final String TAG_TASK_ABOUT = "task_about";
-    public static final String TAG_TASK_DES = "task_report_description";
+    public static final String TAG_TASK_REMARKS = "task_report_description";
     public static final String TAG_TASK_STATUS = "task_status";
     public static final String TAG_ASSIGNEDBY = "task_assigned_by";
     public static final String TAG_CREATE_ON = "task_createon";
@@ -115,13 +118,34 @@ public class Fragment_Target extends Fragment implements SwipeRefreshLayout.OnRe
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                System.out.println("POSRRR : " + position );
-                System.out.println("POSRRR : " + position );
-                System.out.println("POSRRR : " + position );
-                System.out.println("POSRRR : " + position );
-                System.out.println("POSRRR : " + position );
-                System.out.println("POSRRR : " + position );
-                System.out.println("POSRRR : " + position );
+
+                String str_task_id = my_task_list.get(position).get(TAG_ID);
+                String str_task_name = my_task_list.get(position).get(TAG_TASK_NAME);
+                String str_task_about = my_task_list.get(position).get(TAG_TASK_ABOUT);
+                String str_task_remarks = my_task_list.get(position).get(TAG_TASK_REMARKS);
+                String str_task_status = my_task_list.get(position).get(TAG_TASK_STATUS);
+                String str_task_assignedBy = my_task_list.get(position).get(TAG_ASSIGNEDBY);
+                String str_createdOn = my_task_list.get(position).get(TAG_CREATE_ON);
+
+
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(getActivity());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("str_task_id", str_task_id);
+                editor.putString("str_task_name", str_task_name);
+                editor.putString("str_task_remarks", str_task_remarks);
+                editor.putString("str_task_about", str_task_about);
+                editor.putString("str_task_status", str_task_status);
+                editor.putString("str_task_assignedBy", str_task_assignedBy);
+                editor.putString("str_createdOn", str_createdOn);
+
+
+                editor.commit();
+
+                Intent i = new Intent(getActivity(), Activity_Target_Edit.class);
+                startActivity(i);
+
             }
         });
 
@@ -182,7 +206,7 @@ public class Fragment_Target extends Fragment implements SwipeRefreshLayout.OnRe
                             String id = obj1.getString(TAG_ID);
                             String task_name = obj1.getString(TAG_TASK_NAME);
                             String about = obj1.getString(TAG_TASK_ABOUT);
-                            String description = obj1.getString(TAG_TASK_DES);
+                            String remarks = obj1.getString(TAG_TASK_REMARKS);
                             String status = obj1.getString(TAG_TASK_STATUS);
                             String assignedby = obj1.getString(TAG_ASSIGNEDBY);
                             String createon = obj1.getString(TAG_CREATE_ON);
@@ -193,7 +217,7 @@ public class Fragment_Target extends Fragment implements SwipeRefreshLayout.OnRe
                             map.put(TAG_ID, id);
                             map.put(TAG_TASK_NAME, task_name);
                             map.put(TAG_TASK_ABOUT, about);
-                            map.put(TAG_TASK_DES, description);
+                            map.put(TAG_TASK_REMARKS, remarks);
                             map.put(TAG_TASK_STATUS, status);
                             map.put(TAG_ASSIGNEDBY, assignedby);
                             map.put(TAG_CREATE_ON, createon);

@@ -364,11 +364,11 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
             public void onErrorResponse(VolleyError error) {
                 swipeRefreshLayout.setRefreshing(false);
 
-                Alerter.create(getActivity())
+               /* Alerter.create(getActivity())
                         .setTitle("GEM CRM")
                         .setText("Internal Error !")
                         .setBackgroundColor(R.color.Alert_Warning)
-                        .show();
+                        .show();*/
             }
         }) {
 

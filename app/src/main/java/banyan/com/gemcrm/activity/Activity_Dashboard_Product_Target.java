@@ -98,7 +98,7 @@ public class Activity_Dashboard_Product_Target extends AppCompatActivity {
         // name
         str_user_name = user.get(SessionManager.KEY_USER);
         str_user_id = user.get(SessionManager.KEY_USER_ID);
-        str_gcm = user.get(SessionManager.KEY_GCM);
+        str_gcm = user.get(SessionManager.KEY_PERMISSION);
 
         chart = (BarChart) findViewById(R.id.product_bar_chart);
 

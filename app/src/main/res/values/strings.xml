@@ -9,6 +9,8 @@
 
         <string name="nav_item_dashboard">Dashboard</string>
         <string name="nav_item_enquiry">Enquiry</string>
+        <string name="nav_item_self_allotment">Self Allotment</string>
+        <string name="nav_item_send_catalogue">Send Catalogue</string>
         <string name="nav_item_appointment">Appointment</string>
         <string name="nav_item_target">My Tasks</string>
         <string name="nav_item_campaign">Campaign</string>
@@ -19,6 +21,8 @@
         <string-array name="nav_drawer_labels">
             <item>@string/nav_item_dashboard</item>
             <item>@string/nav_item_enquiry</item>
+            <item>@string/nav_item_self_allotment</item>
+            <item>@string/nav_item_send_catalogue</item>
             <item>@string/nav_item_appointment</item>
             <item>@string/nav_item_target</item>
             <item>@string/nav_item_campaign</item>
@@ -28,6 +32,8 @@
 
         <string name="title_dashboard">Dashboard</string>
         <string name="title_enquiry">Enquiry</string>
+        <string name="title_self_appointment">Self Allotment</string>
+        <string name="title_send_catalogue">Send Catalogue</string>
         <string name="title_appointment">Appointment</string>
         <string name="title_target">My Tasks</string>
         <string name="title_campaign">Campaign</string>

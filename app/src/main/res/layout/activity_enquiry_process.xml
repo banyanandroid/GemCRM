@@ -533,6 +533,35 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center|left"
+                                android:text="Product Group"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
+
+                            <Spinner
+                                android:id="@+id/enquiry_process_spn_product_group1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_spinner"
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|left"
                                 android:text="Product Model"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp"
@@ -2569,7 +2598,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="left|center"
-                        android:text="Specification"
+                        android:text="Remarks"
                         android:textColor="@color/white"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -2580,7 +2609,7 @@
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_parent_rounded_corner"
-                        android:hint="Spec"
+                        android:hint="Remarks"
                         android:inputType="text"
                         android:singleLine="true" />
 

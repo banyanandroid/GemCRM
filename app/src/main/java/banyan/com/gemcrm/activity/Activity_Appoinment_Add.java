@@ -137,9 +137,10 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
 
                                     formattedDayOfMonth = "0" + dayOfMonth;
                                 }
-                                edt_app_date.setText(year + "-"
-                                        + formattedMonth + "-"
-                                        + formattedDayOfMonth);
+                                edt_app_date.setText(formattedDayOfMonth + "/"
+                                        + formattedMonth + "/"
+                                        + year);
+
 
                             }
                         }, from_year, from_month, from_date);
