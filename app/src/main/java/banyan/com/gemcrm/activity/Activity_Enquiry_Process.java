@@ -117,6 +117,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     public static final String TAG_GROUP_ID = "product_id";
     public static final String TAG_GROUP_TITLE = "product_group_name";
 
+    public static final String TAG_QUOTATION_NO = "quotation_no";
+
     int select_product_group = 0;
     int select_product_model = 0;
     int select_product_model_no = 0;
@@ -188,13 +190,17 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
 
     Spinner spn_status;
+    Spinner spn_enq_no_for_comple_drop;
 
-    LinearLayout linear_appointment;
+    ArrayList<String> Arraylist_quotation_no = null;
+    String str_Selected_quotation_no = "";
+
+    LinearLayout linear_appointment, linear_enq_no;
 
     EditText edt_enq_appint_date, edt_enq_appint_time;
     int from_year, from_month, from_date;
 
-    Button  btn_save, btn_save_pre_quote, btn_send_catalog;
+    Button btn_save, btn_save_pre_quote, btn_send_catalog;
 
     String str_po_en_no, str_po_comp_name, str_po_email, str_po_address, str_po_pin, str_po_phone, str_po_contact_person,
             str_po_contact_person_phone, str_po_product, str_po_enq_through, str_po_enq_description,
@@ -327,11 +333,14 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         card5 = (CardView) findViewById(R.id.card_view_prod6);
 
         linear_appointment = (LinearLayout) findViewById(R.id.enq_process_inear_appointment);
+        linear_enq_no = (LinearLayout) findViewById(R.id.enq_process_enq_no);
 
         edt_enq_appint_date = (EditText) findViewById(R.id.enq_add_appoint_edt_start_date);
         edt_enq_appint_time = (EditText) findViewById(R.id.enq_add_appoint_edt_time);
 
         spn_status = (Spinner) findViewById(R.id.enq_process_spinner_status2);
+
+        spn_enq_no_for_comple_drop = (Spinner) findViewById(R.id.enq_process_spinner_enq_no);
 
         btn_save = (Button) findViewById(R.id.enq_process_btn_save);
         btn_send_catalog = (Button) findViewById(R.id.enq_process_btn_catalog);
@@ -368,6 +377,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         Arraylist_model_price4 = new ArrayList<String>();
         Arraylist_model_price5 = new ArrayList<String>();
         Arraylist_model_price6 = new ArrayList<String>();
+
+        Arraylist_quotation_no = new ArrayList<String>();
 
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
@@ -1440,9 +1451,25 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                     linear_appointment.setVisibility(View.VISIBLE);
 
+                } else if (str_po_status.equals("Completed")) {
+
+                    linear_enq_no.setVisibility(View.VISIBLE);
+
+                    try {
+
+                        dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                        dialog.show();
+                        queue = Volley.newRequestQueue(getApplicationContext());
+                        GetEnq_No();
+
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+
                 } else {
 
                     linear_appointment.setVisibility(View.GONE);
+                    linear_enq_no.setVisibility(View.GONE);
                 }
 
             }
@@ -1453,6 +1480,28 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
 
         });
+
+
+        /*********************************************
+         *  Spinner Get Enq_Quotation Number
+         * ********************************************/
+
+        spn_enq_no_for_comple_drop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                str_Selected_quotation_no = Arraylist_quotation_no.get(arg2);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
 
 
         edt_enq_appint_date.setKeyListener(null);
@@ -1612,6 +1661,19 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         // TODO: handle exception
                     }
 
+                } else if (str_po_status.equals("Another Quotation")) {
+
+                    try {
+
+                        dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                        dialog.show();
+                        queue = Volley.newRequestQueue(getApplicationContext());
+                        POST_ENQ();
+
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+
                 } else if (str_po_status.equals("Call With TL")) {
 
                     try {
@@ -1624,7 +1686,33 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         // TODO: handle exception
                     }
 
-                } else {
+                } else if (str_po_status.equals("Completed")) {
+
+                    try {
+
+                        dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                        dialog.show();
+                        queue = Volley.newRequestQueue(getApplicationContext());
+                        POST_Completed();
+
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+
+                }else if (str_po_status.equals("Dropped")) {
+
+                    try {
+
+                        dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                        dialog.show();
+                        queue = Volley.newRequestQueue(getApplicationContext());
+                        POST_Dropped();
+
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+
+                }else {
 
                 }
 
@@ -2931,6 +3019,103 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
 
     /***************************
+     * GET Enquiry Number
+     ***************************/
+
+    public void GetEnq_No() {
+
+        String tag_json_obj = "json_obj_req";
+        System.out.println("CAME 1");
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_quotation_number, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("quotation");
+
+                        Arraylist_quotation_no.clear();
+
+                        for (int i = 0; arr.length() > i; i++) {
+                            JSONObject obj1 = arr.getJSONObject(i);
+
+                            String product = obj1.getString(TAG_QUOTATION_NO);
+
+                            Arraylist_quotation_no.add(product);
+
+                            try {
+
+                                System.out.println("Quotation no :: " + Arraylist_quotation_no);
+
+                                spn_enq_no_for_comple_drop
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_quotation_no));
+
+                            } catch (Exception e) {
+
+                            }
+
+                        }
+
+                        dialog.dismiss();
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("No Data Found")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+                    dialog.dismiss();
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Alerter.create(Activity_Enquiry_Process.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                str_po_en_no = txt_enq_id.getText().toString();
+
+                params.put("enq_no", str_po_en_no);
+
+                System.out.println("ENQQQQQQ :::::: " + str_po_en_no);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+
+    /***************************
      * POST Enquiry
      * *************************/
     public void POST_ENQ() {
@@ -3166,6 +3351,192 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("appointment_location", str_po_address);
                 params.put("appointment_description", str_po_contact_person);
                 params.put("user", str_user_id);
+
+                return checkParams(params);
+            }
+
+            private Map<String, String> checkParams(Map<String, String> map) {
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+
+    /***************************
+     * POST Completed
+     * *************************/
+    public void POST_Completed() {
+
+        System.out.println("CAME 1" + str_Selected_quotation_no);
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_post_Completed, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+
+                System.out.println("CAME str_url" + response);
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("Enquiry Completed Successfully")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
+
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("Enquiry Completed Failed")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                    dialog.dismiss();
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                dialog.dismiss();
+            }
+
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                dialog.dismiss();
+                Alerter.create(Activity_Enquiry_Process.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_user_id);
+                params.put("enq_no", str_po_en_no);
+                params.put("status", str_po_status);
+                params.put("shows_quotation", str_Selected_quotation_no);
+                params.put("enq_remarks", str_po_spec);
+
+                return checkParams(params);
+            }
+
+            private Map<String, String> checkParams(Map<String, String> map) {
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+    /***************************
+     * POST Dropped
+     * *************************/
+    public void POST_Dropped() {
+
+        System.out.println("CAME 1" + str_Selected_quotation_no);
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_post_Completed, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+
+                System.out.println("CAME str_url" + response);
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("Enquiry Dropped Successfully")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
+
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("Enquiry Dropped Failed")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                    dialog.dismiss();
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                dialog.dismiss();
+            }
+
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                dialog.dismiss();
+                Alerter.create(Activity_Enquiry_Process.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_user_id);
+                params.put("enq_no", str_po_en_no);
+                params.put("status", str_po_status);
+                params.put("enq_remarks", str_po_spec);
 
                 return checkParams(params);
             }

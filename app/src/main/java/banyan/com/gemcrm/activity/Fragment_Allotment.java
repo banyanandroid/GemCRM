@@ -36,6 +36,7 @@ import banyan.com.gemcrm.R;
 import banyan.com.gemcrm.adapter.Alloted_Complaints_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.SessionManager;
+import dmax.dialog.SpotsDialog;
 
 /**
  * Created by steve on 14/3/17.
@@ -47,6 +48,7 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
     String str_user_name, str_user_id;
     String str_task_name, str_task_des;
 
+    SpotsDialog spot_dialog;
     public static RequestQueue queue;
 
     // Session Manager Class
@@ -90,6 +92,8 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
     HashMap<String, String> params = new HashMap<String, String>();
 
     public Alloted_Complaints_Adapter adapter;
+
+    String str_enq_no = "";
 
     @Nullable
     @Override
@@ -138,6 +142,8 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
                 System.out.println("POSITION : " + position);
 
                 String enq_no = enquiry_list.get(position).get(TAG_ENQ_ID);
+                str_enq_no = enq_no;
+
 
                 System.out.println("enq_no asd : " + enq_no);
 
@@ -369,6 +375,10 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
                                         int which) {
                         try {
 
+                            spot_dialog = new SpotsDialog(getActivity());
+                            spot_dialog.show();
+                            queue = Volley.newRequestQueue(getActivity());
+                            Self_Allotment();
 
                         } catch (Exception e) {
 
@@ -376,6 +386,92 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
                     }
                 }).show();
 
+    }
+
+
+    /*****************************
+     * GET My Task
+     ***************************/
+
+    public void Self_Allotment() {
+
+        String tag_json_obj = "json_obj_req";
+        System.out.println("CAME 1");
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_self_allotment, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        Alerter.create(getActivity())
+                                .setTitle("GEM CRM")
+                                .setText("Alloted Sucessfully :)")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
+
+                        try {
+
+                            queue = Volley.newRequestQueue(getActivity());
+                            GetNewEnquries();
+
+                        } catch (Exception e) {
+
+                        }
+
+
+                    } else if (success == 0) {
+
+                        Alerter.create(getActivity())
+                                .setTitle("GEM CRM")
+                                .setText("Data Not Found :( \n Try Again")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+                    }
+
+                    spot_dialog.dismiss();
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                spot_dialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                spot_dialog.dismiss();
+               /* Alerter.create(getActivity())
+                        .setTitle("GEM CRM")
+                        .setText("Internal Error !")
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();*/
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_user_id);
+                params.put("enq_no", str_enq_no);// replace as str_id
+
+                System.out.println("user_id" + str_user_id);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
     }
 
 

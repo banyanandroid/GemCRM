@@ -26,6 +26,7 @@ public class AppConfig {
     public static String url_enquiry_through = base_url + "android/enquiry_through.php";
     public static String url_campaign = base_url + "android/get_campaign_list.php";
     public static String url_add_enquiry = base_url + "android/user_create_enquiry.php";
+    public static String url_quotation_number = base_url + "android/get_all_qoutation.php";
 
     public static String url_get_alloted_enquiry = base_url + "android/get_alloted_enquiries.php";
     public static String url_my_enquiry = base_url + "android/get_my_enquries.php";
@@ -39,6 +40,7 @@ public class AppConfig {
 
     public static String url_post_enq = base_url + "android/enquiry_save_quotation.php";
     public static String url_post_Appointment = base_url + "android/enquiry_save_quotation.php";
+    public static String url_post_Completed = base_url + "android/enquiry_process.php";
     public static String url_Quotation  = base_url + "android/view_quotation_date.php";
 
     public static String url_followups = base_url + "android/enq_follow_ups.php";
@@ -50,4 +52,5 @@ public class AppConfig {
     public static String url_my_task_edit = base_url + "android/update_task.php";
 
     public static String url_new_enquiery = base_url + "android/user_new_enquiry_list.php";
+    public static String url_self_allotment = base_url + "android/enquiry_self_allotment.php";
 }
