@@ -1,11 +1,13 @@
 package banyan.com.gemcrm.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -169,11 +171,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case 2:
                 try {
 
-                    if (str_permission.equals("yes")){
+                    if (str_permission.equals("yes")) {
                         fragment = new Fragment_Allotment();
                         title = getString(R.string.title_self_appointment);
                         break;
-                    }else {
+                    } else {
 
                         Alerter.create(MainActivity.this)
                                 .setTitle("GEM CRM")
@@ -182,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                                 .show();
                     }
 
-                }catch (Exception e) {
+                } catch (Exception e) {
 
                 }
 
@@ -227,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             getSupportActionBar().setTitle(title);
         }
     }
-
 
 
     /********************************
@@ -291,6 +292,47 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         queue.add(request);
     }
 
+    /***********************************
+     *  Back Click Listener
+     * ************************************/
+
+    @Override
+    public void onBackPressed() {
+        // your code.
+        try {
+            String str_status = "Want to Exit?";
+            FunctionAlert(str_status);
+        } catch (Exception e) {
+
+        }
+    }
+
+
+    private void FunctionAlert(String status) {
+
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("GEM CRM")
+                .setMessage(status)
+                .setIcon(R.mipmap.ic_launcher)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+                    }
+                })
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+                                // finish();
+                                finishAffinity();
+                            }
+                        }).show();
+    }
 
 
 }

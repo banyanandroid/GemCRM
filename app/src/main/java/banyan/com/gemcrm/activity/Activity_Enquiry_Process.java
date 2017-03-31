@@ -188,6 +188,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     ArrayList<String> Arraylist_model_price6 = null;
     String str_Selected_model_type6, str_Selected_model_price6 = "";
 
+    Spinner spn_ga_diagram1, spn_ga_diagram2, spn_ga_diagram3, spn_ga_diagram4, spn_ga_diagram5, spn_ga_diagram6;
+    String str_ga_dia1, str_ga_dia2, str_ga_dia3, str_ga_dia4, str_ga_dia5, str_ga_dia6 = "";
 
     Spinner spn_status;
     Spinner spn_enq_no_for_comple_drop;
@@ -339,6 +341,13 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_enq_appint_time = (EditText) findViewById(R.id.enq_add_appoint_edt_time);
 
         spn_status = (Spinner) findViewById(R.id.enq_process_spinner_status2);
+
+        spn_ga_diagram1 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram1);
+        spn_ga_diagram2 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram2);
+        spn_ga_diagram3 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram3);
+        spn_ga_diagram4 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram4);
+        spn_ga_diagram5 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram5);
+        spn_ga_diagram6 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram6);
 
         spn_enq_no_for_comple_drop = (Spinner) findViewById(R.id.enq_process_spinner_enq_no);
 
@@ -956,6 +965,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 select_product_group = 1;
                 str_Selected_group1 = Arraylist_group_id2.get(arg2);
 
+                System.out.println("GROUP :::: " + str_Selected_group1);
+                System.out.println("GROUP :::: " + str_Selected_group1);
+                System.out.println("GROUP :::: " + str_Selected_group1);
+
                 dialog = new SpotsDialog(Activity_Enquiry_Process.this);
                 dialog.show();
                 queue = Volley.newRequestQueue(getApplicationContext());
@@ -1416,7 +1429,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
         // Product and Product Model Spinner
 
-        if (str_status.equals("New")) {
+        if (str_status.equals("Pending")) {
 
             System.out.println("Inside New Spinner Loader");
 
@@ -1483,6 +1496,183 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
 
         /*********************************************
+         *  Spinner Get GA Diagram Status
+         * ********************************************/
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Enquiry_Process.this, R.array.gadiagram, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_ga_diagram1.setAdapter(adapter);
+        spn_ga_diagram2.setAdapter(adapter);
+        spn_ga_diagram3.setAdapter(adapter);
+        spn_ga_diagram4.setAdapter(adapter);
+        spn_ga_diagram5.setAdapter(adapter);
+        spn_ga_diagram6.setAdapter(adapter);
+
+
+        // Spinner GAD Interface
+        spn_ga_diagram1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                String ga_status;
+                ga_status = parent.getItemAtPosition(pos).toString();
+
+                if (ga_status.equals("Yes")) {
+
+                    str_ga_dia1 = "1";
+
+                } else if (ga_status.equals("No")) {
+
+                    str_ga_dia1 = "0";
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+        spn_ga_diagram2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                String ga_status;
+                ga_status = parent.getItemAtPosition(pos).toString();
+
+                if (ga_status.equals("Yes")) {
+
+                    str_ga_dia2 = "1";
+
+                } else if (ga_status.equals("No")) {
+
+                    str_ga_dia2 = "0";
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+        spn_ga_diagram3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                String ga_status;
+                ga_status = parent.getItemAtPosition(pos).toString();
+
+                if (ga_status.equals("Yes")) {
+
+                    str_ga_dia3 = "1";
+
+                } else if (ga_status.equals("No")) {
+
+                    str_ga_dia3 = "0";
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+        spn_ga_diagram4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                String ga_status;
+                ga_status = parent.getItemAtPosition(pos).toString();
+
+                if (ga_status.equals("Yes")) {
+
+                    str_ga_dia4 = "1";
+
+                } else if (ga_status.equals("No")) {
+
+                    str_ga_dia4 = "0";
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+        spn_ga_diagram5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                String ga_status;
+                ga_status = parent.getItemAtPosition(pos).toString();
+
+                if (ga_status.equals("Yes")) {
+
+                    str_ga_dia5 = "1";
+
+                } else if (ga_status.equals("No")) {
+
+                    str_ga_dia5 = "0";
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+        spn_ga_diagram6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                String ga_status;
+                ga_status = parent.getItemAtPosition(pos).toString();
+
+                if (ga_status.equals("Yes")) {
+
+                    str_ga_dia6 = "1";
+
+                } else if (ga_status.equals("No")) {
+
+                    str_ga_dia6 = "0";
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+        /*********************************************
          *  Spinner Get Enq_Quotation Number
          * ********************************************/
 
@@ -1501,7 +1691,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
-
 
 
         edt_enq_appint_date.setKeyListener(null);
@@ -1699,7 +1888,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         // TODO: handle exception
                     }
 
-                }else if (str_po_status.equals("Dropped")) {
+                } else if (str_po_status.equals("Dropped")) {
 
                     try {
 
@@ -1712,7 +1901,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         // TODO: handle exception
                     }
 
-                }else {
+                } else {
 
                 }
 
@@ -1836,6 +2025,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                         arr = obj.getJSONArray("model");
 
+                        Arraylist_model.clear();
                         for (int i = 0; arr.length() > i; i++) {
                             JSONObject obj1 = arr.getJSONObject(i);
 
@@ -1892,6 +2082,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
 
                 params.put("group_id", str_Selected_group1);
+
+                System.out.println("group_id :::: " + str_Selected_group1);
 
                 return params;
             }
@@ -3264,8 +3456,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         // Adding request to request queue
         queue.add(request);
     }
-
-
+    
     /***************************
      * POST Appointment
      * *************************/

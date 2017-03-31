@@ -35,7 +35,6 @@ public class Activity_Appointment_description extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         btn_edit_appoinment =(Button) findViewById(R.id.app_des_btn_edit);
-        btn_delete_appoinment =(Button) findViewById(R.id.app_des_btn_delete);
         txt_created_on = (TextView) findViewById(R.id.appoint_des_txt_app_created_on);
         txt_app_with = (TextView) findViewById(R.id.appoint_des_txt_app_with);
         txt_location = (TextView) findViewById(R.id.appoint_des_txt_app_location);

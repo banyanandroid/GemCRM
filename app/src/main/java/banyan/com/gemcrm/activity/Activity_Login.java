@@ -1,13 +1,17 @@
 package banyan.com.gemcrm.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -97,6 +101,15 @@ public class Activity_Login extends Activity {
             }
         });
 
+        txt_forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FunctionCAllAlert();
+
+            }
+        });
+
     }
 
     /********************************
@@ -176,6 +189,99 @@ public class Activity_Login extends Activity {
 
         // Adding request to request queue
         queue.add(request);
+    }
+
+
+    /***************************
+     * Function ALert
+     * *************************/
+
+    private void FunctionCAllAlert() {
+
+        LayoutInflater li = LayoutInflater.from(Activity_Login.this);
+        View promptsView = li
+                .inflate(R.layout.alertdialog_send_catalogue, null);
+
+        android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(
+                Activity_Login.this);
+        alertDialogBuilder.setTitle("GEM CRM");
+        alertDialogBuilder.setIcon(R.mipmap.ic_launcher);
+        // alertDialogBuilder.setInverseBackgroundForced(#26A65B);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        EditText edt_email = (EditText) promptsView
+                .findViewById(R.id.send_catalog_alert_edt_email);
+
+        String str_select_email = "";
+
+        edt_email.setText("" + str_select_email);
+
+
+        alertDialogBuilder.setCancelable(false)
+
+                .setNeutralButton("Done",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+
+                                // Toast.makeText(getApplicationContext(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
+
+
+                                dialog.cancel();
+                            }
+                        });
+
+        // create alert dialog
+        android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
+    }
+
+
+    /***********************************
+     *  Back Click Listener
+     * ************************************/
+
+    @Override
+    public void onBackPressed() {
+        // your code.
+        try {
+            String str_status = "Want to Exit?";
+            FunctionAlert(str_status);
+        } catch (Exception e) {
+
+        }
+    }
+
+
+    private void FunctionAlert(String status) {
+
+        new AlertDialog.Builder(Activity_Login.this)
+                .setTitle("GEM CRM")
+                .setMessage(status)
+                .setIcon(R.mipmap.ic_launcher)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+                    }
+                })
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+                                // finish();
+                                finishAffinity();
+                            }
+                        }).show();
     }
 
 }

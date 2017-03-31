@@ -42,7 +42,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:gravity="right"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -99,7 +99,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
@@ -114,21 +114,20 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center"
                             android:text="company Name"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/enq_process_txt_company_name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text="company Name"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -137,7 +136,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -153,7 +152,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center"
                             android:text="Email"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -163,11 +162,10 @@
                             android:id="@+id/enq_process_txt_email"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text="Email"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -177,7 +175,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -193,7 +191,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center"
                             android:text="Address"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -203,11 +201,10 @@
                             android:id="@+id/enq_process_txt_address"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text="Address"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -217,7 +214,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -233,7 +230,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center"
                             android:text="Pincode"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -243,10 +240,9 @@
                             android:id="@+id/enq_process_txt_pin"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
-                            android:text="Pin Code"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -255,7 +251,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -271,7 +267,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center"
                             android:text="Phone No"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -281,11 +277,10 @@
                             android:id="@+id/enq_process_txt_comp_phone"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text="Phone No"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -294,7 +289,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -310,7 +305,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center"
                             android:text="Contact Person"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -320,11 +315,10 @@
                             android:id="@+id/enq_process_txt_conact_person"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text="Contact Person"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -333,7 +327,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -349,7 +343,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center"
                             android:text="Phone"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -359,11 +353,10 @@
                             android:id="@+id/enq_process_txt_contact_person_phone"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text="Phone"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -372,7 +365,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -389,6 +382,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left|center"
                             android:text="Product"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -398,10 +392,9 @@
                             android:id="@+id/enq_process_txt_product"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
-                            android:text="Product"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -410,7 +403,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -426,6 +419,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
+                            android:gravity="left|center"
                             android:text="Enq Thorough"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -435,10 +429,9 @@
                             android:id="@+id/enq_process_txt_enq_thro"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
-                            android:text="Enq Thorough"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -447,7 +440,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="2dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:orientation="horizontal"
                         android:weightSum="2">
@@ -473,11 +466,10 @@
                             android:id="@+id/enq_process_txt_enq_thro_desc"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left|center"
-                            android:text="Enquiry Description"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -762,6 +754,39 @@
                                 android:textColor="@color/album_title" />
 
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|left"
+                                android:text="Attach G.A\nDiagram?"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <Spinner
+                                android:id="@+id/enq_process_spinner_ga_diagram1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_login_rounded"
+                                android:entries="@array/gadiagram"
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                        </LinearLayout>
+
 
                         <!--<LinearLayout
                             android:layout_width="match_parent"
@@ -1099,6 +1124,38 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|left"
+                                android:text="Attach G.A\nDiagram?"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <Spinner
+                                android:id="@+id/enq_process_spinner_ga_diagram2"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_login_rounded"
+                                android:entries="@array/gadiagram"
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                        </LinearLayout>
+
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -1433,6 +1490,38 @@
                                 android:inputType="number"
                                 android:singleLine="true"
                                 android:textColor="@color/album_title" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|left"
+                                android:text="Attach G.A\nDiagram?"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <Spinner
+                                android:id="@+id/enq_process_spinner_ga_diagram3"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_login_rounded"
+                                android:entries="@array/gadiagram"
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
 
                         </LinearLayout>
 
@@ -1774,6 +1863,38 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|left"
+                                android:text="Attach G.A\nDiagram?"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <Spinner
+                                android:id="@+id/enq_process_spinner_ga_diagram4"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_login_rounded"
+                                android:entries="@array/gadiagram"
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                        </LinearLayout>
+
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -2107,6 +2228,38 @@
                                 android:inputType="number"
                                 android:singleLine="true"
                                 android:textColor="@color/album_title" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|left"
+                                android:text="Attach G.A\nDiagram?"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <Spinner
+                                android:id="@+id/enq_process_spinner_ga_diagram5"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_login_rounded"
+                                android:entries="@array/gadiagram"
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
 
                         </LinearLayout>
 
@@ -2445,6 +2598,38 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|left"
+                                android:text="Attach G.A\nDiagram?"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <Spinner
+                                android:id="@+id/enq_process_spinner_ga_diagram6"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_login_rounded"
+                                android:entries="@array/gadiagram"
+                                android:popupBackground="@color/colorPrimary"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+
+                        </LinearLayout>
+
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -2520,8 +2705,8 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
                     <TextView

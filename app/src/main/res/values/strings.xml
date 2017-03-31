@@ -68,4 +68,9 @@
         <item>Completed</item>
     </string-array>
 
+    <string-array name="gadiagram">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
 </resources>

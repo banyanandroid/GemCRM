@@ -21,10 +21,12 @@ public class AppConfig {
     public static String url_getappointment = base_url + "android/user_get_appointment_list.php";
     public static String url_addappointment = base_url + "android/user_create_appointment.php";
     public static String url_editappointment = base_url + "android/user_update_appointment.php";
+    public static String url_deleteappointment = base_url + "android/user_delete_appointment.php";
 
     public static String url_product_group = base_url + "android/product_group.php";
     public static String url_enquiry_through = base_url + "android/enquiry_through.php";
     public static String url_campaign = base_url + "android/get_campaign_list.php";
+    public static String url_region = base_url + "android/get_team.php";
     public static String url_add_enquiry = base_url + "android/user_create_enquiry.php";
     public static String url_quotation_number = base_url + "android/get_all_qoutation.php";
 

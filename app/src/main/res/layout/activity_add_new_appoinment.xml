@@ -134,7 +134,7 @@
                     android:background="@color/colorAccent"
                     android:text="Reset"
                     android:textColor="@color/white"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
                 <Button
@@ -147,7 +147,7 @@
                     android:background="@color/colorAccent"
                     android:text="Submit"
                     android:textColor="@color/white"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:textStyle="bold" />
 
 

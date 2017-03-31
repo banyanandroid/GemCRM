@@ -191,7 +191,7 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onRefresh() {
         try {
-            enquiry_list.clear();
+
             queue = Volley.newRequestQueue(getActivity());
             GetNewEnquries();
 
@@ -223,6 +223,8 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
                         JSONArray arr;
 
                         arr = obj.getJSONArray("enquiry");
+
+                        enquiry_list.clear();
 
                         for (int i = 0; arr.length() > i; i++) {
                             JSONObject obj1 = arr.getJSONObject(i);
@@ -298,6 +300,7 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
 
                     } else if (success == 0) {
 
+                        enquiry_list.clear();
                         adapter = new Alloted_Complaints_Adapter(getActivity(),
                                 enquiry_list);
                         List.setAdapter(adapter);
@@ -464,6 +467,7 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
                 params.put("enq_no", str_enq_no);// replace as str_id
 
                 System.out.println("user_id" + str_user_id);
+                System.out.println("enq_no" + str_enq_no);
 
                 return params;
             }

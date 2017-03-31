@@ -73,7 +73,10 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
     public static final String TAG_CAMP_ID = "campaign_id";
     public static final String TAG_CAMP_TITLE = "campaign_title";
 
-    Spinner spn_product, spn_enq_through;
+    public static final String TAG_REGION_ID = "team_id";
+    public static final String TAG_REGION_TITLE = "team_name";
+
+    Spinner spn_product, spn_enq_through, spn_enq_region;
     ArrayList<String> Arraylist_products = null;
     ArrayList<String> Arraylist_product_id = null;
 
@@ -83,12 +86,16 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
     ArrayList<String> Arraylist_camp_id = null;
     ArrayList<String> Arraylist_camp_title = null;
 
+    ArrayList<String> Arraylist_region = null;
+    ArrayList<String> Arraylist_region_id = null;
+
     private ArrayAdapter<String> adapter_contact;
     ArrayList<String> stringArray_contact = null;
 
     String str_selected_product, str_selected_product_id = "";
     String str_selected_enquiry_through, str_selected_enquiry_through_id = "";
     String str_selected_campaign, str_selected_campaign_id = "";
+    String str_selected_team, str_selected_team_id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +126,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
         spn_product = (Spinner) findViewById(R.id.add_enquiry_spn_product_group);
         spn_enq_through = (Spinner) findViewById(R.id.add_enquiry_spn_product_enquiry_through);
+        spn_enq_region = (Spinner) findViewById(R.id.add_enquiry_spn_region);
 
         linear_camp = (LinearLayout) findViewById(R.id.new_enq_linear_camp);
         linear_ref = (LinearLayout) findViewById(R.id.new_enq_linear_ref);
@@ -133,6 +141,9 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
         Arraylist_camp_id = new ArrayList<String>();
         Arraylist_camp_title = new ArrayList<String>();
+
+        Arraylist_region = new ArrayList<String>();
+        Arraylist_region_id = new ArrayList<String>();
 
         spn_product.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -195,6 +206,25 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
             }
         });
 
+        spn_enq_region.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                str_selected_team = Arraylist_region.get(arg2);
+                str_selected_team_id = Arraylist_region_id.get(arg2);
+
+                System.out.println("ID : " + str_selected_team + " :   " + str_selected_team_id);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,15 +248,12 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 if (str_user.equals("")) {
                     edt_user.setError("Please Enter Company Name");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Company Name", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_email.equals("")) {
-                    edt_email.setError("Please Enter Company Email");
+                } else if (str_email.equals("") || str_phoneno.equals("")) {
+                    edt_email.setError("Please Enter Company Email or Phone");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Company Email", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else if (str_address.equals("")) {
-                    edt_address.setError("Please Enter Company Email");
+                    edt_address.setError("Please Enter Company Address");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Company Address", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_phoneno.equals("")) {
-                    edt_phone.setError("Please Enter Company Email");
-                    TastyToast.makeText(getApplicationContext(), "Please Enter Phone Number", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else if (str_contact_person.equals("")) {
                     edt_contact_person.setError("Please Enter the Field");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Contact Person", TastyToast.LENGTH_LONG, TastyToast.WARNING);
@@ -411,6 +438,8 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                             }
                         }
 
+
+
                     } else if (success == 0) {
 
 
@@ -496,6 +525,13 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
                         }
 
+                        try {
+                            queue = Volley.newRequestQueue(getApplicationContext());
+                            GetRegionDetails();
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
+
                     } else if (success == 0) {
 
 
@@ -512,6 +548,89 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 Alerter.create(Activity_Enquiry_Add.this)
                         .setTitle("GEM CRM")
                         .setText(error.getMessage())
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+    /***************************
+     * GET Region Details
+     ***************************/
+
+    public void GetRegionDetails() {
+
+        String tag_json_obj = "json_obj_req";
+        System.out.println("CAME 1");
+        StringRequest request = new StringRequest(Request.Method.GET,
+                AppConfig.url_region, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("team");
+
+                        for (int i = 0; arr.length() > i; i++) {
+                            JSONObject obj1 = arr.getJSONObject(i);
+
+                            String id = obj1.getString(TAG_REGION_ID);
+                            String region = obj1.getString(TAG_REGION_TITLE);
+
+                            Arraylist_region.add(region);
+                            Arraylist_region_id.add(id);
+
+                            try {
+                                spn_enq_region
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_region));
+
+                            } catch (Exception e) {
+
+                            }
+                        }
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Add.this)
+                                .setTitle("GEM CRM")
+                                .setText("No Data Found")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Alerter.create(Activity_Enquiry_Add.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
                         .show();
             }
         }) {
@@ -586,7 +705,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 dialog.dismiss();
                 Alerter.create(Activity_Enquiry_Add.this)
                         .setTitle("GEM CRM")
-                        .setText("Enquiry Post FAiled ! \n"+ error.getMessage())
+                        .setText("Enquiry Post FAiled ! \n" + error.getMessage())
                         .setBackgroundColor(R.color.Alert_Warning)
                         .show();
             }
@@ -608,6 +727,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 params.put("enquiry_through", str_selected_enquiry_through_id);
                 params.put("enquiry_through_description", str_enq_thro_des);
                 params.put("enq_remarks", str_description);
+                params.put("enq_team", str_selected_team_id);
 
                 return params;
             }

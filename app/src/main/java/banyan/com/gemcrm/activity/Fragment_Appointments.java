@@ -1,6 +1,7 @@
 package banyan.com.gemcrm.activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -59,7 +60,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
     String str_task_name, str_task_des;
 
     ProgressDialog pDialog;
-    SpotsDialog dialog;
+    SpotsDialog spotdialog;
     public static RequestQueue queue;
 
     // Session Manager Class
@@ -84,6 +85,7 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
     public Appointment_Adapter adapter;
 
     String str_select_task_id;
+    String str_select_appoint_id;
 
     private static final int REQUEST_CODE = 1;
 
@@ -183,9 +185,14 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                str_select_appoint_id = appointment_list.get(position).get(TAG_Appoint_ID);
+
+                Delete_Task_alert();
+
                 return false;
             }
         });
+
 
         return rootview;
 
@@ -340,5 +347,124 @@ public class Fragment_Appointments extends Fragment implements SheetLayout.OnFab
         // Adding request to request queue
         queue.add(request);
     }
+
+
+    /************************************
+     * Delete My Task Alert Dialog
+     ***********************************/
+
+    private void Delete_Task_alert() {
+
+        new android.support.v7.app.AlertDialog.Builder(getActivity())
+                .setTitle("GEM CRM")
+                .setMessage("Want to Delete This Appointment?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+                    }
+                })
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+
+                                System.out.println("str_select_appoint ID " + str_select_appoint_id);
+
+                                spotdialog = new SpotsDialog(getActivity());
+                                spotdialog.show();
+                                queue = Volley.newRequestQueue(getActivity());
+                                Function_DeleteAppointment();
+
+                            }
+                        }).show();
+    }
+
+
+    /************************************
+     * Delete My Task Function
+     ***********************************/
+
+    private void Function_DeleteAppointment() {
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_deleteappointment, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                Log.d("USER_REGISTER", response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    System.out.println("REG" + success);
+
+                    if (success == 1) {
+
+                        Alerter.create(getActivity())
+                                .setTitle("GEM CRM")
+                                .setText("Appointment Deleted Successfully")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
+
+                        try {
+                            appointment_list.clear();
+                            queue = Volley.newRequestQueue(getActivity());
+                            GetMyAppointment();
+
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
+
+                    } else {
+
+                        Alerter.create(getActivity())
+                                .setTitle("GEM CRM")
+                                .setText("Appointment Can't Delete")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                    spotdialog.dismiss();
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                pDialog.hide();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                spotdialog.dismiss();
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("appoint_id", str_select_appoint_id);
+
+                System.out.println("appoint_id" + str_select_appoint_id);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
 
 }
