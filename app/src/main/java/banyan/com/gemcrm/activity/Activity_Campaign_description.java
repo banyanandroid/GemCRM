@@ -34,7 +34,7 @@ public class Activity_Campaign_description extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        Camp_desc_delete = (Button) findViewById(R.id.camp_des_btn_delete);
+      //  Camp_desc_delete = (Button) findViewById(R.id.camp_des_btn_delete);
         Camp_desc_edit = (Button) findViewById(R.id.camp_des_btn_edit);
 
         Camp_name = (TextView) findViewById(R.id.camp_des_txt_camp_name);

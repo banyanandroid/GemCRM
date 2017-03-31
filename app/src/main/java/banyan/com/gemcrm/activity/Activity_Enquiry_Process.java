@@ -15,6 +15,8 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -93,6 +95,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     int i = 0;
 
     EditText edt_spec, edt_discount, edt_price;
+
+    String actual_discount = "";
 
     EditText edt_price2, edt_price3, edt_price4, edt_price5, edt_price6;
 
@@ -188,8 +192,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     ArrayList<String> Arraylist_model_price6 = null;
     String str_Selected_model_type6, str_Selected_model_price6 = "";
 
-    Spinner spn_ga_diagram1, spn_ga_diagram2, spn_ga_diagram3, spn_ga_diagram4, spn_ga_diagram5, spn_ga_diagram6;
-    String str_ga_dia1, str_ga_dia2, str_ga_dia3, str_ga_dia4, str_ga_dia5, str_ga_dia6 = "";
+    Spinner spn_ga_diagram1;
+    String str_ga_dia1 = "";
 
     Spinner spn_status;
     Spinner spn_enq_no_for_comple_drop;
@@ -343,15 +347,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         spn_status = (Spinner) findViewById(R.id.enq_process_spinner_status2);
 
         spn_ga_diagram1 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram1);
-        spn_ga_diagram2 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram2);
-        spn_ga_diagram3 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram3);
-        spn_ga_diagram4 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram4);
-        spn_ga_diagram5 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram5);
-        spn_ga_diagram6 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram6);
 
         spn_enq_no_for_comple_drop = (Spinner) findViewById(R.id.enq_process_spinner_enq_no);
 
-        btn_save = (Button) findViewById(R.id.enq_process_btn_save);
         btn_send_catalog = (Button) findViewById(R.id.enq_process_btn_catalog);
         btn_save_pre_quote = (Button) findViewById(R.id.enq_process_btn_save_preview_quote);
 
@@ -849,6 +847,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "TYPE : " + str_Selected_model_type + "Price : " + str_Selected_model_price, Toast.LENGTH_LONG).show();
 
+                txt_value.setText("" + 0);
+                edt_price.setText("");
             }
 
             @Override
@@ -866,7 +866,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_type2 = Arraylist_model_type2.get(arg2);
                 str_Selected_model_price2 = Arraylist_model_price2.get(arg2);
 
-                System.out.println("NAME : " + str_Selected_model_type2);
+                txt_value2.setText("" + 0);
+                edt_price.setText("");
+                System.out.println("NAME : " + str_Selected_model_type2 + "PRICE : " + str_Selected_model_price2);
             }
 
             @Override
@@ -883,8 +885,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 str_Selected_model_type3 = Arraylist_model_type3.get(arg2);
                 str_Selected_model_price3 = Arraylist_model_price3.get(arg2);
-
-                System.out.println("NAME : " + str_Selected_model_type3);
+                System.out.println("NAME : " + str_Selected_model_type3 + "PRICE : " + str_Selected_model_price3);
+                txt_value3.setText("" + 0);
+                edt_price.setText("");
 
             }
 
@@ -902,8 +905,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 str_Selected_model_type4 = Arraylist_model_type4.get(arg2);
                 str_Selected_model_price4 = Arraylist_model_price4.get(arg2);
-
-                System.out.println("NAME : " + str_Selected_model_price4);
+                txt_value4.setText("" + 0);
+                edt_price.setText("");
+                System.out.println("NAME : " + str_Selected_model_type4 + "PRICE : " + str_Selected_model_price4);
 
             }
 
@@ -921,8 +925,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 str_Selected_model_type5 = Arraylist_model_type5.get(arg2);
                 str_Selected_model_price5 = Arraylist_model_price5.get(arg2);
-
-                System.out.println("NAME : " + str_Selected_model_type5);
+                txt_value5.setText("" + 0);
+                edt_price.setText("");
+                System.out.println("NAME : " + str_Selected_model_type5 + "PRICE : " + str_Selected_model_price5);
 
             }
 
@@ -940,8 +945,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 str_Selected_model_type6 = Arraylist_model_type6.get(arg2);
                 str_Selected_model_price6 = Arraylist_model_price6.get(arg2);
-
-                System.out.println("NAME : " + str_Selected_model_price6);
+                txt_value6.setText("" + 0);
+                edt_price.setText("");
+                System.out.println("NAME : " + str_Selected_model_type6 + "PRICE : " + str_Selected_model_price6);
 
             }
 
@@ -1502,13 +1508,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Enquiry_Process.this, R.array.gadiagram, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_ga_diagram1.setAdapter(adapter);
-        spn_ga_diagram2.setAdapter(adapter);
-        spn_ga_diagram3.setAdapter(adapter);
-        spn_ga_diagram4.setAdapter(adapter);
-        spn_ga_diagram5.setAdapter(adapter);
-        spn_ga_diagram6.setAdapter(adapter);
-
-
         // Spinner GAD Interface
         spn_ga_diagram1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -1525,141 +1524,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 } else if (ga_status.equals("No")) {
 
                     str_ga_dia1 = "0";
-
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Another interface callback
-            }
-
-        });
-
-        spn_ga_diagram2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-                String ga_status;
-                ga_status = parent.getItemAtPosition(pos).toString();
-
-                if (ga_status.equals("Yes")) {
-
-                    str_ga_dia2 = "1";
-
-                } else if (ga_status.equals("No")) {
-
-                    str_ga_dia2 = "0";
-
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Another interface callback
-            }
-
-        });
-
-        spn_ga_diagram3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-                String ga_status;
-                ga_status = parent.getItemAtPosition(pos).toString();
-
-                if (ga_status.equals("Yes")) {
-
-                    str_ga_dia3 = "1";
-
-                } else if (ga_status.equals("No")) {
-
-                    str_ga_dia3 = "0";
-
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Another interface callback
-            }
-
-        });
-
-        spn_ga_diagram4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-                String ga_status;
-                ga_status = parent.getItemAtPosition(pos).toString();
-
-                if (ga_status.equals("Yes")) {
-
-                    str_ga_dia4 = "1";
-
-                } else if (ga_status.equals("No")) {
-
-                    str_ga_dia4 = "0";
-
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Another interface callback
-            }
-
-        });
-
-        spn_ga_diagram5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-                String ga_status;
-                ga_status = parent.getItemAtPosition(pos).toString();
-
-                if (ga_status.equals("Yes")) {
-
-                    str_ga_dia5 = "1";
-
-                } else if (ga_status.equals("No")) {
-
-                    str_ga_dia5 = "0";
-
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                //Another interface callback
-            }
-
-        });
-
-        spn_ga_diagram6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-                String ga_status;
-                ga_status = parent.getItemAtPosition(pos).toString();
-
-                if (ga_status.equals("Yes")) {
-
-                    str_ga_dia6 = "1";
-
-                } else if (ga_status.equals("No")) {
-
-                    str_ga_dia6 = "0";
 
                 }
 
@@ -1919,6 +1783,40 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
+        edt_discount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (i == 1) {
+
+                    String str_discount = edt_discount.getText().toString();
+
+                    String str_actual_value = actual_discount;
+
+                    int actual_discount = Integer.parseInt(str_actual_value);
+
+                    int discount = Integer.parseInt(str_discount);
+
+                    if (discount >= actual_discount) {
+                        TastyToast.makeText(getApplicationContext(), "Your Discount Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_discount.setText("" + actual_discount);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
 
         try {
 
@@ -2121,10 +2019,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         for (int i = 0; arr.length() > i; i++) {
                             JSONObject obj1 = arr.getJSONObject(i);
 
-                            String discount = obj1.getString(TAG_Discount);
+                            actual_discount = obj1.getString(TAG_Discount);
 
                             try {
-                                edt_discount.setText("" + discount);
+                                edt_discount.setText("" + actual_discount);
 
                             } catch (Exception e) {
 
@@ -3456,7 +3354,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         // Adding request to request queue
         queue.add(request);
     }
-    
+
     /***************************
      * POST Appointment
      * *************************/

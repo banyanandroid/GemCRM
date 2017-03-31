@@ -27,23 +27,29 @@
 
         <activity
             android:name=".activity.Activity_Login"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Enquiry_Add"
-            android:label="Add Enquiry"></activity>
+            android:label="Add Enquiry"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.Activity_Appoinment_Add"
-            android:label="Add Appointment"></activity>
+            android:label="Add Appointment"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.Activity_Campaign_Add"
-            android:label="Add Campaign"></activity>
+            android:label="Add Campaign"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.Activity_Campaign_description"
-            android:label="Campaign Description"></activity>
+            android:label="Campaign Description"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.Activity_Campaign_Edit"
-            android:label="Edit Campaign"></activity>
+            android:label="Edit Campaign"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.Activity_Dashboard_Finance_Target"
             android:label="Finance Target"></activity>
@@ -61,42 +67,52 @@
 
         <activity
             android:name=".activity.Activity_Dashboard_Enquiry_Target"
-            android:label="Product Target"></activity>
+            android:label="Product Target"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Appointment_description"
-            android:label="Appointment Description"></activity>
+            android:label="Appointment Description"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.Activity_Appoinment_Edit"
-            android:label="Edit Appoinment"></activity>
+            android:label="Edit Appoinment"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Enquiry_Description"
-            android:label="Enquiry Description"></activity>
+            android:label="Enquiry Description"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Enquiry_Process"
-            android:label="Enquiry Process"></activity>
+            android:label="Enquiry Process"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Ativity_Dash"
-            android:label="Enquiry Process"></activity>
+            android:label="Enquiry Process"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_FollowUp"
-            android:label="Follow Ups"></activity>
+            android:label="Follow Ups"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Quotation"
-            android:label="Quotation Preview"></activity>
+            android:label="Quotation Preview"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Target_Edit"
-            android:label="Task Update"></activity>
+            android:label="Task Update"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Send_Catelog"
-            android:label="Task Update"></activity>
+            android:label="Task Update"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 

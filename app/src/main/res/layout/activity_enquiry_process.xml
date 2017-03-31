@@ -535,7 +535,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -565,7 +565,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -595,7 +595,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -625,7 +625,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -755,39 +755,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center|left"
-                                android:text="Attach G.A\nDiagram?"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <Spinner
-                                android:id="@+id/enq_process_spinner_ga_diagram1"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_login_rounded"
-                                android:entries="@array/gadiagram"
-                                android:popupBackground="@color/colorPrimary"
-                                android:textColor="@color/white"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
-
-
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -904,7 +871,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -934,7 +901,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -964,7 +931,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -994,7 +961,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1124,38 +1091,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center|left"
-                                android:text="Attach G.A\nDiagram?"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <Spinner
-                                android:id="@+id/enq_process_spinner_ga_diagram2"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_login_rounded"
-                                android:entries="@array/gadiagram"
-                                android:popupBackground="@color/colorPrimary"
-                                android:textColor="@color/white"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
-
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -1273,7 +1208,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -1303,7 +1238,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1333,7 +1268,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1363,7 +1298,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1493,37 +1428,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center|left"
-                                android:text="Attach G.A\nDiagram?"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <Spinner
-                                android:id="@+id/enq_process_spinner_ga_diagram3"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_login_rounded"
-                                android:entries="@array/gadiagram"
-                                android:popupBackground="@color/colorPrimary"
-                                android:textColor="@color/white"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
 
                         <!--<LinearLayout
                             android:layout_width="match_parent"
@@ -1643,7 +1547,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -1673,7 +1577,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1703,7 +1607,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1733,7 +1637,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1863,38 +1767,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center|left"
-                                android:text="Attach G.A\nDiagram?"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <Spinner
-                                android:id="@+id/enq_process_spinner_ga_diagram4"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_login_rounded"
-                                android:entries="@array/gadiagram"
-                                android:popupBackground="@color/colorPrimary"
-                                android:textColor="@color/white"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
-
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -2011,7 +1883,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -2041,7 +1913,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2071,7 +1943,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2101,7 +1973,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2231,38 +2103,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center|left"
-                                android:text="Attach G.A\nDiagram?"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <Spinner
-                                android:id="@+id/enq_process_spinner_ga_diagram5"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_login_rounded"
-                                android:entries="@array/gadiagram"
-                                android:popupBackground="@color/colorPrimary"
-                                android:textColor="@color/white"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
-
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -2378,7 +2218,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -2408,7 +2248,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2438,7 +2278,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2468,7 +2308,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/colorPrimary"
+                                android:popupBackground="@color/trans_black"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2598,37 +2438,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center|left"
-                                android:text="Attach G.A\nDiagram?"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <Spinner
-                                android:id="@+id/enq_process_spinner_ga_diagram6"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_login_rounded"
-                                android:entries="@array/gadiagram"
-                                android:popupBackground="@color/colorPrimary"
-                                android:textColor="@color/white"
-                                android:textSize="16dp" />
-
-                        </LinearLayout>
 
                         <!--<LinearLayout
                             android:layout_width="match_parent"
@@ -2690,9 +2499,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_login_rounded"
+                        android:background="@drawable/bg_parent_rounded_corner"
                         android:entries="@array/enq_status"
-                        android:popupBackground="@color/colorPrimary"
+                        android:popupBackground="@color/trans_black"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -2725,7 +2534,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/bg_login_rounded"
-                        android:popupBackground="@color/colorPrimary"
+                        android:popupBackground="@color/trans_black"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -2805,6 +2614,37 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="Attach G.A\nDiagram?"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/enq_process_spinner_ga_diagram1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:entries="@array/gadiagram"
+                        android:popupBackground="@color/trans_black"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:gravity="center"
@@ -2854,36 +2694,17 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/enq_process_btn_save"
+                        android:id="@+id/enq_process_btn_save_preview_quote"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@color/colorAccent"
-                        android:text="Save"
+                        android:text="Save and\nProceed"
                         android:textColor="@color/white"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <Button
-                        android:id="@+id/enq_process_btn_save_preview_quote"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2"
-                        android:background="@color/colorAccent"
-                        android:text="Save and Preview\nQuatation"
-                        android:textColor="@color/white"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
 

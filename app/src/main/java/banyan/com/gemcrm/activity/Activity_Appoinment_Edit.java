@@ -204,7 +204,7 @@ public class Activity_Appoinment_Edit extends AppCompatActivity {
 
         // Product and Product Model Spinner
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Appoinment_Edit.this, R.array.enq_status, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Appoinment_Edit.this, R.array.appoint_status, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn_appoint_status.setAdapter(adapter);
 

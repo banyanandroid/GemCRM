@@ -145,7 +145,7 @@
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
                         android:layout_weight="1"
                         android:background="@color/colorAccent"
-                        android:text="Submit"
+                        android:text="Update"
                         android:textColor="@color/white"
                         android:textSize="18dp"
                         android:textStyle="bold" />
