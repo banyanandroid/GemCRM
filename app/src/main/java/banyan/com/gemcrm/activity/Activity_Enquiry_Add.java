@@ -49,7 +49,11 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
     AutoCompleteTextView auto_campaign_name;
     EditText edt_user, edt_email, edt_address, edt_phone, edt_contact_person, edt_contact_person_phone, edt_pincode, edt_description, edt_refrence;
 
+    EditText edt_addon_email, edt_addon_email2, edt_addon_email3;
+
     String str_user, str_email, str_address, str_phoneno, str_contact_person, str_contact_person_phone, str_pincode, str_description, str_enq_thro_des = "";
+
+    String str_addon_email, str_addon_email2, str_addon_email3;
 
     Button btn_submit;
 
@@ -123,6 +127,10 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
         edt_pincode = (EditText) findViewById(R.id.add_enquiry_edt_pincode);
         edt_description = (EditText) findViewById(R.id.add_enquiry_edt_description);
         edt_refrence = (EditText) findViewById(R.id.add_enquiry_edt_enquiry_ref);
+
+        edt_addon_email = (EditText) findViewById(R.id.add_enquiry_edt_addon_email);
+        edt_addon_email2 = (EditText) findViewById(R.id.add_enquiry_edt_addon_email2);
+        edt_addon_email3 = (EditText) findViewById(R.id.add_enquiry_edt_addon_email3);
 
         spn_product = (Spinner) findViewById(R.id.add_enquiry_spn_product_group);
         spn_enq_through = (Spinner) findViewById(R.id.add_enquiry_spn_product_enquiry_through);
@@ -237,6 +245,10 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 str_contact_person = edt_contact_person.getText().toString();
                 str_contact_person_phone = edt_contact_person_phone.getText().toString();
                 str_description = edt_description.getText().toString();
+
+                str_addon_email = edt_addon_email.getText().toString();
+                str_addon_email2 = edt_addon_email2.getText().toString();
+                str_addon_email3 = edt_addon_email3.getText().toString();
 
                 if (str_selected_enquiry_through.equals("CAMPAIGN")) {
                     str_enq_thro_des = str_selected_campaign_id;
@@ -437,7 +449,6 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
                             }
                         }
-
 
 
                     } else if (success == 0) {
@@ -718,6 +729,9 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 params.put("user", str_user_id);
                 params.put("enq_name", str_user);
                 params.put("enq_email", str_email);
+                params.put("enq_addon_email", str_addon_email);
+                params.put("enq_addon2_email", str_addon_email2);
+                params.put("enq_addon3_email", str_addon_email3);
                 params.put("enq_address", str_address);
                 params.put("enq_phone", str_phoneno);
                 params.put("enq_contactperson", str_contact_person);

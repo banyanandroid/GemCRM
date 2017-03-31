@@ -95,6 +95,36 @@
                 android:inputType="number"
                 android:singleLine="true" />
 
+            <EditText
+                android:id="@+id/add_enquiry_edt_addon_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Add-on Email 1"
+                android:inputType="number"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/add_enquiry_edt_addon_email2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Add-on Email 2"
+                android:inputType="number"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/add_enquiry_edt_addon_email3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Add-on Email 3"
+                android:inputType="number"
+                android:singleLine="true" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"

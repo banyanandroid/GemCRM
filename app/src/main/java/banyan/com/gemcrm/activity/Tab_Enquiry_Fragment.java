@@ -64,9 +64,12 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
     public static final String TAG_ENQ_YEAR_ID = "enq_year_id";
     public static final String TAG_ENQ_START_MONTH = "enq_month_id";
     public static final String TAG_ENQ_END_COMP_NAME = "enq_company_name";
+    public static final String TAG_ENQ_ADDON_EMAIL = "enq_addon_email";
+    public static final String TAG_ENQ_ADDON2_EMAIL = "enq_addon_email2";
+    public static final String TAG_ENQ_ADDON3_EMAIL = "enq_addon_email3";
     public static final String TAG_ENQ_END_COMP_EMAIL = "enq_company_email";
     public static final String TAG_ENQ_PHONENO = "enq_company_phn_no";
-    public static final String TAG_ENQ_PRODUCT_ID  = "enq_product_id";
+    public static final String TAG_ENQ_PRODUCT_ID = "enq_product_id";
     public static final String TAG_ENQ_COMP_ADDRESS = "enq_company_address";
     public static final String TAG_ENQ_PIN = "enq_company_pincode";
     public static final String TAG_ENQ_CON_PERSON_NAME = "enq_contact_person_name";
@@ -162,6 +165,9 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                 String enq_month_id = enquiry_list.get(position).get(TAG_ENQ_START_MONTH);
                 String enq_company_name = enquiry_list.get(position).get(TAG_ENQ_END_COMP_NAME);
                 String enq_company_email = enquiry_list.get(position).get(TAG_ENQ_END_COMP_EMAIL);
+                String enq_addon_email = enquiry_list.get(position).get(TAG_ENQ_ADDON_EMAIL);
+                String enq_addon_email2 = enquiry_list.get(position).get(TAG_ENQ_ADDON2_EMAIL);
+                String enq_addon_email3 = enquiry_list.get(position).get(TAG_ENQ_ADDON3_EMAIL);
                 String enq_company_phn_no = enquiry_list.get(position).get(TAG_ENQ_PHONENO);
                 String enq_company_address = enquiry_list.get(position).get(TAG_ENQ_COMP_ADDRESS);
                 String enq_company_pincode = enquiry_list.get(position).get(TAG_ENQ_PIN);
@@ -192,6 +198,9 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                 editor.putString("enq_month_id", enq_month_id);
                 editor.putString("enq_company_name", enq_company_name);
                 editor.putString("enq_company_email", enq_company_email);
+                editor.putString("enq_addon_email", enq_addon_email);
+                editor.putString("enq_addon_email2", enq_addon_email2);
+                editor.putString("enq_addon_email3", enq_addon_email3);
                 editor.putString("enq_company_phn_no", enq_company_phn_no);
                 editor.putString("enq_company_address", enq_company_address);
                 editor.putString("enq_company_pincode", enq_company_pincode);
@@ -288,6 +297,9 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             String month_id = obj1.getString(TAG_ENQ_START_MONTH);
                             String comp_name = obj1.getString(TAG_ENQ_END_COMP_NAME);
                             String comp_email = obj1.getString(TAG_ENQ_END_COMP_EMAIL);
+                            String addon_email = obj1.getString(TAG_ENQ_ADDON_EMAIL);
+                            String addon_email2 = obj1.getString(TAG_ENQ_ADDON2_EMAIL);
+                            String addon_email3 = obj1.getString(TAG_ENQ_ADDON3_EMAIL);
                             String comp_phone = obj1.getString(TAG_ENQ_PHONENO);
                             String comp_address = obj1.getString(TAG_ENQ_COMP_ADDRESS);
                             String comp_pin = obj1.getString(TAG_ENQ_PIN);
@@ -325,6 +337,9 @@ public class Tab_Enquiry_Fragment extends Fragment implements SheetLayout.OnFabA
                             map.put(TAG_ENQ_START_MONTH, month_id);
                             map.put(TAG_ENQ_END_COMP_NAME, comp_name);
                             map.put(TAG_ENQ_END_COMP_EMAIL, comp_email);
+                            map.put(TAG_ENQ_ADDON_EMAIL, addon_email);
+                            map.put(TAG_ENQ_ADDON2_EMAIL, addon_email2);
+                            map.put(TAG_ENQ_ADDON3_EMAIL, addon_email3);
                             map.put(TAG_ENQ_PHONENO, comp_phone);
                             map.put(TAG_ENQ_COMP_ADDRESS, comp_address);
                             map.put(TAG_ENQ_PIN, comp_pin);

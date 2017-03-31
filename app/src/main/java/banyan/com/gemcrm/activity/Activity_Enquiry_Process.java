@@ -66,7 +66,7 @@ import dmax.dialog.SpotsDialog;
  */
 public class Activity_Enquiry_Process extends AppCompatActivity {
 
-    String str_select_id, str_select_comp_name, str_select_phoneno, str_select_email, str_select_comp_address, str_select_pin, str_select_person_name,
+    String str_select_id, str_select_comp_name, str_select_phoneno, str_select_email, str_select_addon_email, str_select_addon_email2, str_select_addon_email3, str_select_comp_address, str_select_pin, str_select_person_name,
             str_select_person_number, str_select_produc_id, str_select_produc_series, str_select_desc, str_select_enq_throu, str_status,
             getStr_select_enq_throu_desc, str_select_createdon, str_select_completeon = "";
 
@@ -75,6 +75,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     EditText edt_txt_enq_txt_email, edt_txt_enq_address, edt_txt_enq_pin, edt_txt_enq_phone, edt_txt_enq_conact_person,
             edt_txt_enq_person_phone;
+
+    EditText edt_addon_email, edt_addon_email2, edt_addon_email3;
 
     TextView txt_minus, txt_value, txt_add;
     TextView txt_minus2, txt_value2, txt_add2;
@@ -280,6 +282,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         txt_value6 = (TextView) findViewById(R.id.enq_process_txt_count6);
         txt_add6 = (TextView) findViewById(R.id.enq_process_txt_add6);
 
+        edt_addon_email = (EditText) findViewById(R.id.enq_process_txt_addon_email);
+        edt_addon_email2 = (EditText) findViewById(R.id.enq_process_txt_addon_email2);
+        edt_addon_email3 = (EditText) findViewById(R.id.enq_process_txt_addon_email3);
+
         edt_discount = (EditText) findViewById(R.id.enq_process_edt_discount);
         edt_spec = (EditText) findViewById(R.id.enq_process_edt_remarks2);
         edt_price = (EditText) findViewById(R.id.enq_process_edt_price1);
@@ -395,6 +401,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         str_select_id = sharedPreferences.getString("enq_no", "enq_no");
         str_select_comp_name = sharedPreferences.getString("enq_company_name", "enq_company_name");
         str_select_email = sharedPreferences.getString("enq_company_email", "enq_company_email");
+        str_select_addon_email = sharedPreferences.getString("enq_addon_email", "enq_addon_email");
+        str_select_addon_email2 = sharedPreferences.getString("enq_addon_email2", "enq_addon_email2");
+        str_select_addon_email3 = sharedPreferences.getString("enq_addon_email3", "enq_addon_email3");
         str_select_comp_address = sharedPreferences.getString("enq_company_address", "enq_company_address");
         str_select_pin = sharedPreferences.getString("enq_company_pincode", "enq_company_pincode");
         str_select_phoneno = sharedPreferences.getString("enq_company_phn_no", "enq_company_phn_no");
@@ -426,7 +435,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             txt_enq_enq_through.setText(str_select_enq_throu);
             txt_enq_enq_thro_des.setText(getStr_select_enq_throu_desc);
             edt_spec.setText("" + str_select_desc);
-
+            edt_addon_email.setText("" + str_select_addon_email);
+            edt_addon_email2.setText("" + str_select_addon_email2);
+            edt_addon_email3.setText("" + str_select_addon_email3);
 
         } catch (Exception e) {
 
@@ -1684,6 +1695,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_price6 = edt_price6.getText().toString();
                 str_po_discount = edt_discount.getText().toString();
                 str_po_spec = edt_spec.getText().toString();
+
+                str_select_addon_email = edt_addon_email.getText().toString();
+                str_select_addon_email2 = edt_addon_email2.getText().toString();
+                str_select_addon_email3 = edt_addon_email3.getText().toString();
 
                 str_po_appoint_date = edt_enq_appint_date.getText().toString();
                 str_po_appoint_time = edt_enq_appint_time.getText().toString();
@@ -3287,6 +3302,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("enq_no", str_po_en_no);
                 params.put("companyname", str_po_comp_name);
                 params.put("email", str_po_email);
+                params.put("addon_email", str_select_addon_email);
+                params.put("addon_email2", str_select_addon_email2);
+                params.put("addon_email3", str_select_addon_email3);
                 params.put("address", str_po_address);
                 params.put("pin", str_po_pin);
                 params.put("phone_no", str_po_phone);

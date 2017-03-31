@@ -15,13 +15,16 @@ import banyan.com.gemcrm.R;
 
 public class Activity_Enquiry_Description extends AppCompatActivity {
 
+    // Get from Tab_My_Enq_Frag.java through sharedpref and set those to textviewa
+
     String str_select_id, str_year_id, str_month_id, str_select_comp_name, str_select_phoneno, str_select_email, str_select_comp_address, str_select_pin, str_select_person_name,
             str_select_person_number, str_select_produc_series, str_select_model, str_select_modelno, str_select_pro_type, str_select_prod_qty,
             str_select_price, str_select_allotedto, str_select_team_id, str_select_discount, str_select_desc, str_select_enq_throu,
             getStr_select_enq_throu_desc, str_select_status, str_select_remark, str_select_createdon, str_select_completeon = "";
 
 
-    TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_txt_email, txt_enq_address, txt_enq_pin, txt_enq_phone, txt_enq_conact_person,
+    TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_txt_addon_email, txt_enq_txt_addon_email2,txt_enq_txt_addon_email3,
+            txt_enq_txt_email,txt_enq_address, txt_enq_pin, txt_enq_phone, txt_enq_conact_person,
             txt_enq_person_phone, txt_enq_product, txt_enq_model, txt_enq_model_no, txt_enq_model_type, txt_enq_product_qty,
             txt_enq_price, txt_enq_discount, txt_enq_description, txt_enq_enq_through, txt_enq_enq_thro_des, txt_enq_status, txt_enq_remark;
 
@@ -39,6 +42,9 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
         txt_enq_id = (TextView) findViewById(R.id.appoint_des_txt_enq_id);
         txt_enq_company_name = (TextView) findViewById(R.id.enq_des_txt_company_name);
         txt_enq_txt_email = (TextView) findViewById(R.id.enq_des_txt_email);
+        txt_enq_txt_addon_email = (TextView) findViewById(R.id.enq_des_txt_addon_email);
+        txt_enq_txt_addon_email2 = (TextView) findViewById(R.id.enq_des_txt_addon_email2);
+        txt_enq_txt_addon_email3 = (TextView) findViewById(R.id.enq_des_txt_addon_email3);
         txt_enq_address = (TextView) findViewById(R.id.enq_des_txt_address);
         txt_enq_pin = (TextView) findViewById(R.id.enq_des_txt_pin);
         txt_enq_phone = (TextView) findViewById(R.id.enq_des_txt_comp_phone);
