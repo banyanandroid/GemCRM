@@ -122,14 +122,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Remaining Tasks", Toast.LENGTH_LONG).show();
             }
         });
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "Batch Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Remaining Tasks", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -260,8 +260,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                         // TastyToast.makeText(getApplicationContext(), "Done", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
 
                     } else {
-                        TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                        // TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
                     }
+
+                    try {
+                        queue = Volley.newRequestQueue(MainActivity.this);
+                        Function_Task_Count();
+                    } catch (Exception e) {
+
+                    }
+
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -292,6 +300,63 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // Adding request to request queue
         queue.add(request);
     }
+
+
+    /********************************
+     * User Task Count
+     *********************************/
+
+    private void Function_Task_Count() {
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_target_count, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    String count = obj.getString("count");
+                    try {
+
+                        tv.setText("" + count);
+
+                        System.out.println("SETTTT :::: " + count);
+
+                    } catch (Exception e) {
+
+                    }
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user", str_id);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
 
     /***********************************
      *  Back Click Listener

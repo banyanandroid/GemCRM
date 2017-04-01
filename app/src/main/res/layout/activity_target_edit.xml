@@ -126,7 +126,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:entries="@array/appoint_status"
-                    android:popupBackground="@color/colorPrimary"
+                    android:popupBackground="@color/hash"
                     android:textColor="@color/white"
                     android:textSize="18dp" />
 

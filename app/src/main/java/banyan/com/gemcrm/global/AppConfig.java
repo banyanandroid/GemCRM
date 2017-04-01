@@ -13,6 +13,7 @@ public class AppConfig {
     public static String url_lastlogin = base_url + "android/user_last_login.php";
     public static String url_my_targets  = base_url + "android/user_target.php";
     public static String url_my_yearly_target  = base_url + "android/dashboard.php";
+    public static String url_target_count  = base_url + "android/user_task_count.php";
 
     public static String url_getcampaign = base_url + "android/user_get_campaign_list.php";
     public static String url_addcampaign = base_url + "android/user_create_campaign.php";

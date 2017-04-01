@@ -17,14 +17,14 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
 
     // Get from Tab_My_Enq_Frag.java through sharedpref and set those to textviewa
 
-    String str_select_id, str_year_id, str_month_id, str_select_comp_name, str_select_phoneno, str_select_email, str_select_comp_address, str_select_pin, str_select_person_name,
+    String str_select_id, str_year_id, str_month_id, str_select_comp_name, str_select_phoneno, str_select_email, str_addon_email, str_addon_email2, str_addon_email3, str_select_comp_address, str_select_pin, str_select_person_name,
             str_select_person_number, str_select_produc_series, str_select_model, str_select_modelno, str_select_pro_type, str_select_prod_qty,
             str_select_price, str_select_allotedto, str_select_team_id, str_select_discount, str_select_desc, str_select_enq_throu,
             getStr_select_enq_throu_desc, str_select_status, str_select_remark, str_select_createdon, str_select_completeon = "";
 
 
-    TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_txt_addon_email, txt_enq_txt_addon_email2,txt_enq_txt_addon_email3,
-            txt_enq_txt_email,txt_enq_address, txt_enq_pin, txt_enq_phone, txt_enq_conact_person,
+    TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_txt_addon_email, txt_enq_txt_addon_email2, txt_enq_txt_addon_email3,
+            txt_enq_txt_email, txt_enq_address, txt_enq_pin, txt_enq_phone, txt_enq_conact_person,
             txt_enq_person_phone, txt_enq_product, txt_enq_model, txt_enq_model_no, txt_enq_model_type, txt_enq_product_qty,
             txt_enq_price, txt_enq_discount, txt_enq_description, txt_enq_enq_through, txt_enq_enq_thro_des, txt_enq_status, txt_enq_remark;
 
@@ -72,6 +72,9 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
         str_select_comp_name = sharedPreferences.getString("enq_company_name", "enq_company_name");
         str_select_phoneno = sharedPreferences.getString("enq_company_phn_no", "enq_company_phn_no");
         str_select_email = sharedPreferences.getString("enq_company_email", "enq_company_email");
+        str_addon_email = sharedPreferences.getString("enq_addon_email", "enq_addon_email");
+        str_addon_email2 = sharedPreferences.getString("enq_addon_email2", "enq_addon_email2");
+        str_addon_email3 = sharedPreferences.getString("enq_addon_email3", "enq_addon_email3");
         str_select_comp_address = sharedPreferences.getString("enq_company_address", "enq_company_address");
         str_select_pin = sharedPreferences.getString("enq_company_pincode", "enq_company_pincode");
         str_select_person_name = sharedPreferences.getString("enq_contact_person_name", "enq_contact_person_name");
@@ -126,6 +129,9 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
             txt_enq_id.setText(str_select_id);
             txt_enq_company_name.setText(str_select_comp_name);
             txt_enq_txt_email.setText(str_select_email);
+            txt_enq_txt_addon_email.setText(str_addon_email);
+            txt_enq_txt_addon_email2.setText(str_addon_email2);
+            txt_enq_txt_addon_email3.setText(str_addon_email3);
             txt_enq_address.setText(str_select_comp_address);
             txt_enq_pin.setText(str_select_pin);
             txt_enq_phone.setText(str_select_phoneno);
