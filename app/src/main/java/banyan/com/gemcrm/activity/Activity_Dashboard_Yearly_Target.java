@@ -80,7 +80,7 @@ public class Activity_Dashboard_Yearly_Target extends AppCompatActivity {
             queue = Volley.newRequestQueue(Activity_Dashboard_Yearly_Target.this);
             GetMyTask();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
 
@@ -111,9 +111,9 @@ public class Activity_Dashboard_Yearly_Target extends AppCompatActivity {
 
                         System.out.println("target" + target);
                         System.out.println("achive" + achive);
-                        try{
+                        try {
                             function_piechart();
-                        }catch (Exception e) {
+                        } catch (Exception e) {
 
                         }
 
@@ -158,7 +158,7 @@ public class Activity_Dashboard_Yearly_Target extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void function_piechart(){
+    private void function_piechart() {
 
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(target, 0));
@@ -171,7 +171,7 @@ public class Activity_Dashboard_Yearly_Target extends AppCompatActivity {
         labels.add("Yeraly Achived");
 
         PieData data = new PieData(labels, dataset);
-        dataset.setColors(ColorTemplate.PASTEL_COLORS); //
+        dataset.setColors(ColorTemplate.JOYFUL_COLORS); //
         pieChart.setDescription("Yearly Target");
         pieChart.setData(data);
 

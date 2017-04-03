@@ -167,7 +167,7 @@ public class Activity_Dashboard_Product_Target extends AppCompatActivity {
                             v1e1 = new BarEntry(target_cooler, i+2);
                             Arraylist_target.add(v1e1);
 
-                            xAxis.add("Cooler");
+                            xAxis.add("Cooling Tower");
 
                             v1e1 = new BarEntry(target_var, i+3);
                             Arraylist_target.add(v1e1);

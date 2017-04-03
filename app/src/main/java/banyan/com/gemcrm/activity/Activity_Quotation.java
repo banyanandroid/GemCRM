@@ -71,6 +71,8 @@ public class Activity_Quotation extends AppCompatActivity {
     String str_current_year = "";
     String str_current_month = "";
 
+    String str_current_date = "";
+
     private Toolbar mToolbar;
 
     TextView txt_quote_id, txt_quote_to, txt_quote_address, txt_quote_phone, txt_quote_amt, txt_quote_date, txt_quote_total_amt, txt_discount;
@@ -105,7 +107,9 @@ public class Activity_Quotation extends AppCompatActivity {
 
         str_current_year = "" + calendar.get(Calendar.YEAR);
         str_current_month = "" + calendar.get(Calendar.MONTH);
+        str_current_date = ""  +mdformat;
 
+        txt_quote_date.setText(""+ mdformat);
 
         // Hashmap for ListView
         Quotation_List = new ArrayList<HashMap<String, String>>();

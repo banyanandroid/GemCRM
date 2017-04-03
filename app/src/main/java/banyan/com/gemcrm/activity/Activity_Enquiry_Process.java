@@ -125,6 +125,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     public static final String TAG_QUOTATION_NO = "quotation_no";
 
+    public static final String TAG_TAX = "tax_name";
+    public static final String TAG_TAX_ID = "tax_id";
+
     int select_product_group = 0;
     int select_product_model = 0;
     int select_product_model_no = 0;
@@ -202,6 +205,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     ArrayList<String> Arraylist_quotation_no = null;
     String str_Selected_quotation_no = "";
+
+    Spinner spn_tax;
+    ArrayList<String> Arraylist_tax = null;
+    ArrayList<String> Arraylist_tax_id = null;
+    String str_Selected_tax = "";
 
     LinearLayout linear_appointment, linear_enq_no;
 
@@ -351,7 +359,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_enq_appint_time = (EditText) findViewById(R.id.enq_add_appoint_edt_time);
 
         spn_status = (Spinner) findViewById(R.id.enq_process_spinner_status2);
-
+        spn_tax = (Spinner)  findViewById(R.id.enq_process_spinner_tax);
         spn_ga_diagram1 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram1);
 
         spn_enq_no_for_comple_drop = (Spinner) findViewById(R.id.enq_process_spinner_enq_no);
@@ -390,6 +398,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         Arraylist_model_price4 = new ArrayList<String>();
         Arraylist_model_price5 = new ArrayList<String>();
         Arraylist_model_price6 = new ArrayList<String>();
+
+        Arraylist_tax = new ArrayList<String>();
+        Arraylist_tax_id = new ArrayList<String>();
 
         Arraylist_quotation_no = new ArrayList<String>();
 
@@ -1567,6 +1578,26 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
+        /*********************************************
+         *  Spinner Get Enq_Quotation Number
+         * ********************************************/
+
+        spn_tax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                str_Selected_tax = Arraylist_tax_id.get(arg2);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
+
 
         edt_enq_appint_date.setKeyListener(null);
         edt_enq_appint_time.setKeyListener(null);
@@ -1861,7 +1892,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         notificationCount1 = (RelativeLayout) MenuItemCompat.getActionView(item1);
         parent_batch = (RelativeLayout) MenuItemCompat.getActionView(item1);
         tv = (TextView) notificationCount1.findViewById(R.id.badge_notification_2);
-        tv.setText("0");
+        tv.setText(""+MainActivity.str_count);
         //str_cart = Integer.toString(count);
         //tv.setText("" + cart_size);
 
@@ -2044,6 +2075,15 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                             }
                         }
 
+                        try {
+                            queue = Volley.newRequestQueue(getApplicationContext());
+                            Get_tax_info();
+                        }catch (Exception e) {
+
+                        }
+
+
+
                     } else if (success == 0) {
 
                         Alerter.create(Activity_Enquiry_Process.this)
@@ -2083,6 +2123,98 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         // Adding request to request queue
         queue.add(request);
     }
+
+    /***************************
+     * GET Tax Information
+     ***************************/
+
+    public void Get_tax_info() {
+
+        System.out.println("CAME 1" + str_select_group);
+
+        StringRequest request = new StringRequest(Request.Method.GET,
+                AppConfig.url_tax_info, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        JSONArray arr;
+
+                        arr = obj.getJSONArray("tax");
+
+                        Arraylist_tax.clear();
+                        Arraylist_tax_id.clear();
+
+                        for (int i = 0; arr.length() > i; i++) {
+                            JSONObject obj1 = arr.getJSONObject(i);
+
+                            String tax = obj1.getString(TAG_TAX);
+                            String tax_id = obj1.getString(TAG_TAX_ID);
+
+                            Arraylist_tax.add(tax);
+                            Arraylist_tax_id.add(tax_id);
+
+                            try {
+                                spn_tax
+                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                android.R.layout.simple_spinner_dropdown_item,
+                                                Arraylist_tax));
+
+                            } catch (Exception e) {
+
+                            }
+
+                        }
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Enquiry_Process.this)
+                                .setTitle("GEM CRM")
+                                .setText("No Data Found")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                dialog.dismiss();
+                Alerter.create(Activity_Enquiry_Process.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+
 
     /***************************
      * GET Product Model No
@@ -3124,7 +3256,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
 
     /***************************
-     * GET Enquiry Number
+     * GET Quotation Number
      ***************************/
 
     public void GetEnq_No() {
@@ -3352,6 +3484,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("remarks", str_po_spec);
                 params.put("status", str_po_status);
                 params.put("user", str_user_id);
+
+                System.out.println("tax" + str_Selected_tax);
+                System.out.println("gadia" + str_ga_dia1);
 
                 return checkParams(params);
             }

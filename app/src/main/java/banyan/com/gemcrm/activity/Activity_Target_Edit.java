@@ -141,11 +141,11 @@ public class Activity_Target_Edit extends AppCompatActivity {
 
                 } else if (str_target_status.equals("Completed")) {
 
-                    str_tsk_status = "0";
+                    str_tsk_status = "1";
 
                 } else {
 
-                    str_tsk_status = "1";
+                    str_tsk_status = "0";
 
                 }
 

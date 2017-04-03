@@ -38,6 +38,7 @@ import java.util.Map;
 
 import banyan.com.gemcrm.R;
 import banyan.com.gemcrm.adapter.Alloted_Complaints_Adapter;
+import banyan.com.gemcrm.adapter.MyTask_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.Pojo_Catalog;
 import banyan.com.gemcrm.global.SessionManager;
@@ -340,6 +341,68 @@ public class Activity_Send_Catelog extends AppCompatActivity {
         // show it
         alertDialog.show();
 
+    }
+
+    /********************************
+     * User Send Catalogue
+     *********************************/
+
+    private void Function_SendCatalogue() {
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_my_task, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        Alerter.create(Activity_Send_Catelog.this)
+                                .setTitle("GEM CRM")
+                                .setText("Catalogue Sent Successfully :)")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Send_Catelog.this)
+                                .setTitle("GEM CRM")
+                                .setText("Catalogue Sent Failed :(")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                //params.put("user", str_user_id);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
     }
 
 }

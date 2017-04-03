@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private static String TAG = MainActivity.class.getSimpleName();
 
+    public static String str_count = "";
+
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
 
@@ -101,6 +103,26 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         // display the first navigation drawer view on app launch
         displayView(0);
     }
+
+    /**
+     * This method is called when swipe refresh is pulled down
+     */
+    @Override
+    public void onResume(){
+        super.onResume();
+        // put your code here...
+
+        try {
+
+            queue = Volley.newRequestQueue(MainActivity.this);
+            Function_Task_Count();
+
+        }catch (Exception e){
+
+        }
+
+    }
+
 
 
     /**********************************
@@ -317,12 +339,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 try {
                     JSONObject obj = new JSONObject(response);
 
-                    String count = obj.getString("count");
+                    str_count = obj.getString("count");
                     try {
 
-                        tv.setText("" + count);
+                        tv.setText("" + str_count);
 
-                        System.out.println("SETTTT :::: " + count);
+                        System.out.println("SETTTT :::: " + str_count);
 
                     } catch (Exception e) {
 

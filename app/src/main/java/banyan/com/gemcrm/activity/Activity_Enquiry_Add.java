@@ -260,8 +260,9 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 if (str_user.equals("")) {
                     edt_user.setError("Please Enter Company Name");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Company Name", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_email.equals("") || str_phoneno.equals("")) {
+                } else if (str_email.equals("") && str_phoneno.equals("")) {
                     edt_email.setError("Please Enter Company Email or Phone");
+                    edt_phone.setError("Please Enter Company Email or Phone");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Company Email", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else if (str_address.equals("")) {
                     edt_address.setError("Please Enter Company Address");

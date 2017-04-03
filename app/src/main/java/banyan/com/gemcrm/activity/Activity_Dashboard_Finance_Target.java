@@ -228,8 +228,8 @@ public class Activity_Dashboard_Finance_Target extends AppCompatActivity {
         barDataSet2.setColors(ColorTemplate.JOYFUL_COLORS);
         barDataSet3 = new BarDataSet(Arraylist_ytd, "YTD");
         barDataSet3.setColors(ColorTemplate.COLORFUL_COLORS);
-        barDataSet4 = new BarDataSet(Arraylist_totaltodayamount, "Today's Target");
-        barDataSet4.setColor(Color.rgb(204, 0, 204));
+        barDataSet4 = new BarDataSet(Arraylist_totaltodayamount, "YTD Achived");
+        barDataSet4.setColor(Color.rgb(0, 153, 0));
 
         dataSets = new ArrayList<>();
         dataSets.add(barDataSet1);
