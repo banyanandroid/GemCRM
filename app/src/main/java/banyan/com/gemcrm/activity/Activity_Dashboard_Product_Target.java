@@ -52,8 +52,8 @@ public class Activity_Dashboard_Product_Target extends AppCompatActivity {
     public static final String TAG_ACHIVE_COOLER = "user_acheived_cooler";
     public static final String TAG_TARGET_VAR = "user_target_var";
     public static final String TAG_ACHIVE_VAR = "user_acheived_var";
-    public static final String TAG_TARGET_SMALL_PROD = "user_target_small_products";
-    public static final String TAG_ACHIVE_SMALL_PROD = "user_small_products";
+    public static final String TAG_TARGET_SMALL_PROD = "user_small_products";
+    public static final String TAG_ACHIVE_SMALL_PROD = "user_acheived_small";
 
     String month = "";
     int target_dryer = 0;
