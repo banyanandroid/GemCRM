@@ -125,8 +125,8 @@ public class Fragment_SendCatalogue extends Fragment {
                     }
                 }
 
-                Toast.makeText(getActivity(),
-                        str_selected, Toast.LENGTH_LONG).show();
+              /*  Toast.makeText(getActivity(),
+                        str_selected, Toast.LENGTH_LONG).show();*/
 
                 FunctionCAllAlert();
 
@@ -276,10 +276,10 @@ public class Fragment_SendCatalogue extends Fragment {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v;
                         Pojo_Catalog country = (Pojo_Catalog) cb.getTag();
-                        Toast.makeText(getActivity(),
+                       /* Toast.makeText(getActivity(),
                                 "Clicked on Checkbox: " + cb.getText() +
                                         " is " + cb.isChecked(),
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();*/
                         country.setSelected(cb.isChecked());
                     }
                 });
@@ -331,7 +331,7 @@ public class Fragment_SendCatalogue extends Fragment {
 
                                 str_select_email = edt_email.getText().toString();
 
-                                Toast.makeText(getActivity(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
+                                // Toast.makeText(getActivity(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
                                 try {
 
                                     spot_dialog = new SpotsDialog(getActivity());
@@ -390,15 +390,20 @@ public class Fragment_SendCatalogue extends Fragment {
 
                     }
 
+                    spot_dialog.dismiss();
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+
+                spot_dialog.dismiss();
             }
         }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                spot_dialog.dismiss();
 
             }
         }) {

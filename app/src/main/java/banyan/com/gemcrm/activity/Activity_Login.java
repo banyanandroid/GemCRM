@@ -168,7 +168,7 @@ public class Activity_Login extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 dialog.dismiss();
-                TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+               // TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         }) {
 

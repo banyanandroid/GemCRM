@@ -246,10 +246,10 @@ public class Activity_Send_Catelog extends AppCompatActivity {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v;
                         Pojo_Catalog country = (Pojo_Catalog) cb.getTag();
-                        Toast.makeText(getApplicationContext(),
+                       /* Toast.makeText(getApplicationContext(),
                                 "Clicked on Checkbox: " + cb.getText() +
                                         " is " + cb.isChecked(),
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_LONG).show();*/
                         country.setSelected(cb.isChecked());
                     }
                 });
@@ -289,8 +289,8 @@ public class Activity_Send_Catelog extends AppCompatActivity {
                     }
                 }
 
-                Toast.makeText(getApplicationContext(),
-                        str_selected, Toast.LENGTH_LONG).show();
+                /*Toast.makeText(getApplicationContext(),
+                        str_selected, Toast.LENGTH_LONG).show();*/
 
                 FunctionCAllAlert();
 
@@ -331,7 +331,7 @@ public class Activity_Send_Catelog extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
 
 
-                                Toast.makeText(getApplicationContext(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
+                               // Toast.makeText(getApplicationContext(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
 
                                 try {
 
@@ -391,15 +391,21 @@ public class Activity_Send_Catelog extends AppCompatActivity {
 
                     }
 
+                    spot_dialog.dismiss();
+
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+
+                spot_dialog.dismiss();
             }
         }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                spot_dialog.dismiss();
 
             }
         }) {

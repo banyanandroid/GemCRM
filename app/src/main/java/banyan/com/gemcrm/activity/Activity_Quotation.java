@@ -117,9 +117,9 @@ public class Activity_Quotation extends AppCompatActivity {
 
         str_current_year = "" + calendar.get(Calendar.YEAR);
         str_current_month = "" + calendar.get(Calendar.MONTH);
-        str_current_date = ""  +mdformat;
+        str_current_date = "" + mdformat;
 
-        txt_quote_date.setText(""+ strDate);
+        txt_quote_date.setText("" + strDate);
 
         // Hashmap for ListView
         Quotation_List = new ArrayList<HashMap<String, String>>();
@@ -315,6 +315,9 @@ public class Activity_Quotation extends AppCompatActivity {
                                 .setText("Quotation Sent Sucessfully !")
                                 .setBackgroundColor(R.color.Alert_Success)
                                 .show();
+
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(i);
 
 
                     } else if (success == 0) {

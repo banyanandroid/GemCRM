@@ -889,7 +889,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_price2 = Arraylist_model_price2.get(arg2);
 
                 txt_value2.setText("" + 0);
-                edt_price.setText("");
+                edt_price2.setText("");
                 System.out.println("NAME : " + str_Selected_model_type2 + "PRICE : " + str_Selected_model_price2);
             }
 
@@ -909,7 +909,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_price3 = Arraylist_model_price3.get(arg2);
                 System.out.println("NAME : " + str_Selected_model_type3 + "PRICE : " + str_Selected_model_price3);
                 txt_value3.setText("" + 0);
-                edt_price.setText("");
+                edt_price3.setText("");
 
             }
 
@@ -928,7 +928,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_type4 = Arraylist_model_type4.get(arg2);
                 str_Selected_model_price4 = Arraylist_model_price4.get(arg2);
                 txt_value4.setText("" + 0);
-                edt_price.setText("");
+                edt_price4.setText("");
                 System.out.println("NAME : " + str_Selected_model_type4 + "PRICE : " + str_Selected_model_price4);
 
             }
@@ -948,7 +948,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_type5 = Arraylist_model_type5.get(arg2);
                 str_Selected_model_price5 = Arraylist_model_price5.get(arg2);
                 txt_value5.setText("" + 0);
-                edt_price.setText("");
+                edt_price5.setText("");
                 System.out.println("NAME : " + str_Selected_model_type5 + "PRICE : " + str_Selected_model_price5);
 
             }
@@ -968,7 +968,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_type6 = Arraylist_model_type6.get(arg2);
                 str_Selected_model_price6 = Arraylist_model_price6.get(arg2);
                 txt_value6.setText("" + 0);
-                edt_price.setText("");
+                edt_price6.setText("");
                 System.out.println("NAME : " + str_Selected_model_type6 + "PRICE : " + str_Selected_model_price6);
 
             }
@@ -3377,6 +3377,13 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                     JSONObject obj = new JSONObject(response);
 
                     int success = obj.getInt("success");
+
+                    quotation_no = obj.getString("quotation_no");
+
+                    FunctionCAllAlert(quotation_no);
+
+
+
 
                     if (success == 1) {
 
