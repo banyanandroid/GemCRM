@@ -1541,11 +1541,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                 if (ga_status.equals("Yes")) {
 
-                    str_ga_dia1 = "1";
+                    str_ga_dia1 = ga_status;
 
                 } else if (ga_status.equals("No")) {
 
-                    str_ga_dia1 = "0";
+                    str_ga_dia1 = ga_status;
 
                 }
 
@@ -3484,6 +3484,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("remarks", str_po_spec);
                 params.put("status", str_po_status);
                 params.put("user", str_user_id);
+                params.put("tax", str_Selected_tax);
+                params.put("ga", str_ga_dia1);
 
                 System.out.println("tax" + str_Selected_tax);
                 System.out.println("gadia" + str_ga_dia1);

@@ -70,7 +70,7 @@ public class Fragment_Dashboard extends Fragment {
     public static final String TAG_ACHIVE_COOLER = "user_acheived_cooler";
     public static final String TAG_TARGET_VAR = "user_target_var";
     public static final String TAG_ACHIVE_VAR = "user_acheived_var";
-    public static final String TAG_TARGET_SMALL_PROD = "user_target_small_products";
+    public static final String TAG_TARGET_SMALL_PROD = "user_small_products";
     public static final String TAG_ACHIVE_SMALL_PROD = "user_small_products";
 
     public static final String TAG_ENQ_TARGET = "enquiry_target";
