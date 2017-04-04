@@ -581,7 +581,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
     }
 
     /***************************
-     * GET Region Details
+     * GET Region Detailss
      ***************************/
 
     public void GetRegionDetails() {
