@@ -7,16 +7,21 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
+import com.tapadoo.alerter.Alerter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import banyan.com.gemcrm.R;
@@ -73,6 +79,8 @@ public class Activity_Quotation extends AppCompatActivity {
 
     String str_current_date = "";
 
+    Button btn_send_quote;
+
     private Toolbar mToolbar;
 
     TextView txt_quote_id, txt_quote_to, txt_quote_address, txt_quote_phone, txt_quote_amt, txt_quote_date, txt_quote_total_amt, txt_discount;
@@ -96,6 +104,8 @@ public class Activity_Quotation extends AppCompatActivity {
         txt_quote_total_amt = (TextView) findViewById(R.id.quotation_total_amt);
         txt_discount = (TextView) findViewById(R.id.quotation_txt_tax);
 
+        btn_send_quote = (Button) findViewById(R.id.quotation_send_invoice);
+
 
         /********************************
          *  Load Current Day
@@ -109,7 +119,7 @@ public class Activity_Quotation extends AppCompatActivity {
         str_current_month = "" + calendar.get(Calendar.MONTH);
         str_current_date = ""  +mdformat;
 
-        txt_quote_date.setText(""+ mdformat);
+        txt_quote_date.setText(""+ strDate);
 
         // Hashmap for ListView
         Quotation_List = new ArrayList<HashMap<String, String>>();
@@ -148,6 +158,24 @@ public class Activity_Quotation extends AppCompatActivity {
             }
 
         }
+
+        btn_send_quote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+
+                    dialog = new SpotsDialog(Activity_Quotation.this);
+                    dialog.show();
+                    queue = Volley.newRequestQueue(Activity_Quotation.this);
+                    POST_Quotation();
+
+                } catch (Exception e) {
+
+                }
+
+            }
+        });
 
     }
 
@@ -253,6 +281,100 @@ public class Activity_Quotation extends AppCompatActivity {
 
         };
 
+        // Adding request to request queue
+        queue.add(request);
+    }
+
+
+    /***************************
+     * POST Quotation
+     * *************************/
+    public void POST_Quotation() {
+
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_send_quotation, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+
+                System.out.println("CAME str_url" + response);
+                System.out.println("CAME str_url" + response);
+                System.out.println("CAME str_url" + response);
+                System.out.println("CAME str_url" + response);
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    int success = obj.getInt("success");
+
+                    if (success == 1) {
+
+                        Alerter.create(Activity_Quotation.this)
+                                .setTitle("GEM CRM")
+                                .setText("Quotation Sent Sucessfully !")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
+
+
+                    } else if (success == 0) {
+
+                        Alerter.create(Activity_Quotation.this)
+                                .setTitle("GEM CRM")
+                                .setText("No Data Found")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+
+                    }
+
+                    dialog.dismiss();
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                dialog.dismiss();
+            }
+
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                dialog.dismiss();
+                Alerter.create(Activity_Quotation.this)
+                        .setTitle("GEM CRM")
+                        .setText(error.getMessage())
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("id", str_quotation_no);
+
+                return checkParams(params);
+            }
+
+            private Map<String, String> checkParams(Map<String, String> map) {
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
+            }
+
+        };
+
+        int socketTimeout = 60000;//30 seconds - change to what you want
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(policy);
         // Adding request to request queue
         queue.add(request);
     }

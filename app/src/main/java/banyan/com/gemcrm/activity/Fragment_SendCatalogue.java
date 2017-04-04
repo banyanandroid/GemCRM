@@ -26,9 +26,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -41,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import banyan.com.gemcrm.R;
@@ -68,7 +71,7 @@ public class Fragment_SendCatalogue extends Fragment {
 
     String str_selected, str_select_email = "";
 
-    SpotsDialog dialog;
+    SpotsDialog spot_dialog;
     public static RequestQueue queue;
 
     ArrayList<Pojo_Catalog> countryList;
@@ -95,8 +98,8 @@ public class Fragment_SendCatalogue extends Fragment {
 
         try {
 
-            dialog = new SpotsDialog(getActivity());
-            dialog.show();
+            spot_dialog = new SpotsDialog(getActivity());
+            spot_dialog.show();
             queue = Volley.newRequestQueue(getActivity());
             GetCatalogue();
 
@@ -202,19 +205,19 @@ public class Fragment_SendCatalogue extends Fragment {
 
                     }
 
-                    dialog.dismiss();
+                    spot_dialog.dismiss();
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                dialog.dismiss();
+                spot_dialog.dismiss();
             }
         }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                dialog.dismiss();
+                spot_dialog.dismiss();
                /* Alerter.create(getActivity())
                         .setTitle("GEM CRM")
                         .setText("Internal Error !")
@@ -326,9 +329,19 @@ public class Fragment_SendCatalogue extends Fragment {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
+                                str_select_email = edt_email.getText().toString();
 
                                 Toast.makeText(getActivity(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
+                                try {
 
+                                    spot_dialog = new SpotsDialog(getActivity());
+                                    spot_dialog.show();
+                                    queue = Volley.newRequestQueue(getActivity());
+                                    Function_SendCatalogue();
+
+                                } catch (Exception e) {
+                                    // TODO: handle exceptions
+                                }
 
                                 dialog.cancel();
                             }
@@ -350,7 +363,7 @@ public class Fragment_SendCatalogue extends Fragment {
     private void Function_SendCatalogue() {
 
         StringRequest request = new StringRequest(Request.Method.POST,
-                AppConfig.url_my_task, new Response.Listener<String>() {
+                AppConfig.url_send_catalogue, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -394,13 +407,27 @@ public class Fragment_SendCatalogue extends Fragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                //params.put("user", str_user_id);
+                params.put("mail", str_select_email);
+                params.put("type", str_selected);
 
-                return params;
+                return checkParams(params);
+            }
+
+            private Map<String, String> checkParams(Map<String, String> map) {
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
             }
 
         };
-
+        int socketTimeout = 60000;//30 seconds - change to what you want
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(policy);
         // Adding request to request queue
         queue.add(request);
     }

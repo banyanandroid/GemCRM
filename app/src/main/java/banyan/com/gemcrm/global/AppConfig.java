@@ -46,10 +46,12 @@ public class AppConfig {
     public static String url_post_Appointment = base_url + "android/enquiry_save_quotation.php";
     public static String url_post_Completed = base_url + "android/enquiry_process.php";
     public static String url_Quotation  = base_url + "android/view_quotation_date.php";
+    public static String url_send_quotation  = base_url + "android/send_quotation.php";
 
     public static String url_followups = base_url + "android/enq_follow_ups.php";
 
     public static String url_catalogue = base_url + "android/get_catalouge.php";
+    public static String url_send_catalogue = base_url + "android/mail_catalogue.php";
 
     public static String url_my_task = base_url + "android/user_task_list.php";
 

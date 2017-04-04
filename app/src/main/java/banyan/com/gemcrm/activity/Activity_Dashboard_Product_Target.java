@@ -103,7 +103,7 @@ public class Activity_Dashboard_Product_Target extends AppCompatActivity {
         chart = (BarChart) findViewById(R.id.product_bar_chart);
 
         Arraylist_target = new ArrayList<BarEntry>();
-        Arraylist_acheived= new ArrayList<BarEntry>();
+        Arraylist_acheived = new ArrayList<BarEntry>();
         xAxis = new ArrayList<String>();
 
         try {
@@ -159,22 +159,22 @@ public class Activity_Dashboard_Product_Target extends AppCompatActivity {
 
                             xAxis.add("Dryer");
 
-                            v1e1 = new BarEntry(target_chiller, i+1);
+                            v1e1 = new BarEntry(target_chiller, i + 1);
                             Arraylist_target.add(v1e1);
 
                             xAxis.add("Chiller");
 
-                            v1e1 = new BarEntry(target_cooler, i+2);
+                            v1e1 = new BarEntry(target_cooler, i + 2);
                             Arraylist_target.add(v1e1);
 
                             xAxis.add("Cooling Tower");
 
-                            v1e1 = new BarEntry(target_var, i+3);
+                            v1e1 = new BarEntry(target_var, i + 3);
                             Arraylist_target.add(v1e1);
 
                             xAxis.add("Var");
 
-                            v1e1 = new BarEntry(target_small_pro, i+4);
+                            v1e1 = new BarEntry(target_small_pro, i + 4);
                             Arraylist_target.add(v1e1);
 
                             xAxis.add("Small Products");
@@ -182,16 +182,16 @@ public class Activity_Dashboard_Product_Target extends AppCompatActivity {
                             v2e1 = new BarEntry(achived_dryer, i);
                             Arraylist_acheived.add(v2e1);
 
-                            v2e1 = new BarEntry(achived_chiller, i+1);
+                            v2e1 = new BarEntry(achived_chiller, i + 1);
                             Arraylist_acheived.add(v2e1);
 
-                            v2e1 = new BarEntry(achived_cooler, i+2);
+                            v2e1 = new BarEntry(achived_cooler, i + 2);
                             Arraylist_acheived.add(v2e1);
 
-                            v2e1 = new BarEntry(achived_var, i+3);
+                            v2e1 = new BarEntry(achived_var, i + 3);
                             Arraylist_acheived.add(v2e1);
 
-                            v2e1 = new BarEntry(achived_small_pro, i+4);
+                            v2e1 = new BarEntry(achived_small_pro, i + 4);
                             Arraylist_acheived.add(v2e1);
 
 
