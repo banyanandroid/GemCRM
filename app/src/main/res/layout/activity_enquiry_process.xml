@@ -872,6 +872,38 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center"
+                                android:text="Additional Price"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/enq_process_edt_add_price1"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_parent_rounded_corner"
+                                android:hint=""
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColor="@color/album_title" />
+
+                        </LinearLayout>
+
+
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -1202,6 +1234,37 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_parent_rounded_corner"
                                 android:hint="Price"
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColor="@color/album_title" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center"
+                                android:text="Additional Price"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/enq_process_edt_add_price2"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_parent_rounded_corner"
+                                android:hint=""
                                 android:inputType="number"
                                 android:singleLine="true"
                                 android:textColor="@color/album_title" />
@@ -1539,6 +1602,37 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_parent_rounded_corner"
                                 android:hint="Price"
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColor="@color/album_title" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center"
+                                android:text="Additional Price"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/enq_process_edt_add_price3"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_parent_rounded_corner"
+                                android:hint=""
                                 android:inputType="number"
                                 android:singleLine="true"
                                 android:textColor="@color/album_title" />
@@ -1884,6 +1978,37 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center"
+                                android:text="Additional Price"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/enq_process_edt_add_price4"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_parent_rounded_corner"
+                                android:hint=""
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColor="@color/album_title" />
+
+                        </LinearLayout>
+
                         <!--<LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -2214,6 +2339,37 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_parent_rounded_corner"
                                 android:hint="Price"
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColor="@color/album_title" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center"
+                                android:text="Additional Price"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/enq_process_edt_add_price5"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_parent_rounded_corner"
+                                android:hint=""
                                 android:inputType="number"
                                 android:singleLine="true"
                                 android:textColor="@color/album_title" />
@@ -2555,6 +2711,37 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="left|center"
+                                android:text="Additional Price"
+                                android:textColor="@color/album_title"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/enq_process_edt_add_price6"
+                                android:layout_width="0dp"
+                                android:layout_height="50dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/bg_parent_rounded_corner"
+                                android:hint=""
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:textColor="@color/album_title" />
+
+                        </LinearLayout>
+
 
                         <!--<LinearLayout
                             android:layout_width="match_parent"
@@ -2730,35 +2917,35 @@
                 </LinearLayout>
 
                 <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center|left"
-                    android:text="Attach G.A\nDiagram?"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="Attach G.A\nDiagram?"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-                <Spinner
-                    android:id="@+id/enq_process_spinner_ga_diagram1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_parent_rounded_corner"
-                    android:entries="@array/gadiagram"
-                    android:popupBackground="@color/hash"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
+                    <Spinner
+                        android:id="@+id/enq_process_spinner_ga_diagram1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:entries="@array/gadiagram"
+                        android:popupBackground="@color/hash"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
 
-            </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -2817,6 +3004,37 @@
                         android:hint="Remarks"
                         android:inputType="text"
                         android:singleLine="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_image_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:background="@drawable/bg_parent_rounded_corner"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Select a Image"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <ImageView
+                        android:id="@+id/complaintupdate_img_post"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_placeholder" />
+
 
                 </LinearLayout>
 

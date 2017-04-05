@@ -2,21 +2,31 @@ package banyan.com.gemcrm.activity;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +52,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.sdsmdg.tastytoast.TastyToast;
 import com.tapadoo.alerter.Alerter;
 
@@ -49,20 +63,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 
 import banyan.com.gemcrm.R;
 import banyan.com.gemcrm.adapter.Appointment_Adapter;
 import banyan.com.gemcrm.global.AppConfig;
+import banyan.com.gemcrm.global.Config;
 import banyan.com.gemcrm.global.SessionManager;
 import dmax.dialog.SpotsDialog;
 
 /**
  * Created by User on 3/20/2017.
+ * Rise of the emporor...
  */
 public class Activity_Enquiry_Process extends AppCompatActivity {
 
@@ -101,6 +126,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     String actual_discount = "";
 
     EditText edt_price2, edt_price3, edt_price4, edt_price5, edt_price6;
+    EditText edt_add_price,edt_add_price2, edt_add_price3, edt_add_price4, edt_add_price5, edt_add_price6;
 
     String str_select_group;
 
@@ -220,12 +246,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     String str_po_en_no, str_po_comp_name, str_po_email, str_po_address, str_po_pin, str_po_phone, str_po_contact_person,
             str_po_contact_person_phone, str_po_product, str_po_enq_through, str_po_enq_description,
-            str_po_group1, str_po_model1, str_po_model_no1, str_po_model_type, str_po_qty1, str_po_price1,
-            str_po_group2, str_po_model2, str_po_model_no2, str_po_mode2_type, str_po_qty2, str_po_price2,
-            str_po_group3, str_po_model3, str_po_model_no3, str_po_mode3_type, str_po_qty3, str_po_price3,
-            str_po_group4, str_po_model4, str_po_model_no4, str_po_mode4_type, str_po_qty4, str_po_price4,
-            str_po_group5, str_po_model5, str_po_model_no5, str_po_mode5_type, str_po_qty5, str_po_price5,
-            str_po_group6, str_po_model6, str_po_model_no6, str_po_mode6_type, str_po_qty6, str_po_price6,
+            str_po_group1, str_po_model1, str_po_model_no1, str_po_model_type, str_po_qty1, str_po_price1,str_po_add_price1,
+            str_po_group2, str_po_model2, str_po_model_no2, str_po_mode2_type, str_po_qty2, str_po_price2,str_po_add_price2,
+            str_po_group3, str_po_model3, str_po_model_no3, str_po_mode3_type, str_po_qty3, str_po_price3,str_po_add_price3,
+            str_po_group4, str_po_model4, str_po_model_no4, str_po_mode4_type, str_po_qty4, str_po_price4,str_po_add_price4,
+            str_po_group5, str_po_model5, str_po_model_no5, str_po_mode5_type, str_po_qty5, str_po_price5,str_po_add_price5,
+            str_po_group6, str_po_model6, str_po_model_no6, str_po_mode6_type, str_po_qty6, str_po_price6,str_po_add_price6,
             str_po_status, str_po_appoint_date, str_po_appoint_time, str_po_discount, str_po_spec = null;
 
     private Toolbar mToolbar;
@@ -237,6 +263,44 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     String quotation_no = "";
 
+
+    // Completed Image capture process
+
+    LinearLayout linear_image_layout;
+
+    ImageView img_post_image;
+
+    String imagepath1 = "";
+    String str_function = "";
+
+    /*************************************
+     * For Image Capture
+     *****************************************/
+
+    private static final int PERMISSION_CALLBACK_CONSTANT = 100;
+    private static final int REQUEST_PERMISSION_SETTING = 101;
+    private SharedPreferences permissionStatus;
+    String[] permissionsRequired = new String[]{Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.RECORD_AUDIO};
+    private boolean sentToSettings = false;
+
+    // Camera activity request codes
+    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
+
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    private final static int RESULT_LOAD_IMAGE = 3;
+    private static final int REQUEST_CAMERA1 = 4;
+
+    Uri photoPath, mImageUri;
+    String encodedstring = "";
+
+    private Uri fileUri;
+
+    private GoogleApiClient client;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -244,6 +308,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         session = new SessionManager(getApplicationContext());
 
@@ -304,6 +373,13 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_price5 = (EditText) findViewById(R.id.enq_process_edt_price5);
         edt_price6 = (EditText) findViewById(R.id.enq_process_edt_price6);
 
+        edt_add_price = (EditText)  findViewById(R.id.enq_process_edt_add_price1);
+        edt_add_price2 = (EditText)  findViewById(R.id.enq_process_edt_add_price2);
+        edt_add_price3 = (EditText)  findViewById(R.id.enq_process_edt_add_price3);
+        edt_add_price4 = (EditText)  findViewById(R.id.enq_process_edt_add_price4);
+        edt_add_price5 = (EditText)  findViewById(R.id.enq_process_edt_add_price5);
+        edt_add_price6 = (EditText)  findViewById(R.id.enq_process_edt_add_price6);
+
         spn_group1 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group1);
         spn_group2 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group2);
         spn_group3 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group3);
@@ -363,6 +439,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         spn_ga_diagram1 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram1);
 
         spn_enq_no_for_comple_drop = (Spinner) findViewById(R.id.enq_process_spinner_enq_no);
+
+        linear_image_layout = (LinearLayout) findViewById(R.id.linear_image_layout);
+        img_post_image = (ImageView) findViewById(R.id.complaintupdate_img_post);
 
         btn_send_catalog = (Button) findViewById(R.id.enq_process_btn_catalog);
         btn_save_pre_quote = (Button) findViewById(R.id.enq_process_btn_save_preview_quote);
@@ -430,6 +509,26 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         System.out.println("IN _ enq_created_on" + str_select_createdon);
         System.out.println("IN _enq_created_on " + str_select_createdon);
         System.out.println("IN _ enq_created_on" + str_select_createdon);
+
+        try {
+            Check_Permission();
+        } catch (Exception e) {
+
+        }
+
+        img_post_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (imagepath1.equals("")) {
+                    str_function = "image";
+                    proceedAfterPermission();
+                } else {
+                    TastyToast.makeText(Activity_Enquiry_Process.this, "Img is already is der", TastyToast.LENGTH_LONG, TastyToast.INFO);
+                }
+
+            }
+        });
 
         try {
 
@@ -1495,6 +1594,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 } else if (str_po_status.equals("Completed")) {
 
                     linear_enq_no.setVisibility(View.VISIBLE);
+                    linear_image_layout.setVisibility(View.VISIBLE);
 
                     try {
 
@@ -1511,6 +1611,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                     linear_appointment.setVisibility(View.GONE);
                     linear_enq_no.setVisibility(View.GONE);
+                    linear_image_layout.setVisibility(View.GONE);
                 }
 
             }
@@ -1667,6 +1768,221 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         });
 
 
+        edt_discount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (i == 1) {
+
+                    String str_discount = edt_discount.getText().toString();
+
+                    String str_actual_value = actual_discount;
+
+                    int actual_discount = Integer.parseInt(str_actual_value);
+
+                    int discount = Integer.parseInt(str_discount);
+
+                    if (discount >= actual_discount) {
+                        TastyToast.makeText(getApplicationContext(), "Your Discount Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_discount.setText("25");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+        edt_add_price.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (i == 1) {
+
+                    String str_add_price = edt_add_price.getText().toString();
+
+                    int actual_price = Integer.parseInt(str_add_price);
+
+                    if (actual_price >= 26) {
+                        TastyToast.makeText(getApplicationContext(), "Your Discount Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_add_price.setText("25");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+        edt_add_price2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (i == 1) {
+
+                    String str_add_price = edt_add_price2.getText().toString();
+
+                    int actual_price = Integer.parseInt(str_add_price);
+
+                    if (actual_price >= 26) {
+                        TastyToast.makeText(getApplicationContext(), "Your Discount Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_add_price2.setText("25");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+        edt_add_price3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (i == 1) {
+
+                    String str_add_price = edt_add_price3.getText().toString();
+
+                    int actual_price = Integer.parseInt(str_add_price);
+
+                    if (actual_price >= 25) {
+                        TastyToast.makeText(getApplicationContext(), "Your Discount Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_add_price3.setText("25");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+        edt_add_price4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (i == 1) {
+
+                    String str_add_price = edt_add_price4.getText().toString();
+
+                    int actual_price = Integer.parseInt(str_add_price);
+
+                    if (actual_price >= 25) {
+                        TastyToast.makeText(getApplicationContext(), "Your Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_add_price4.setText("25");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+        edt_add_price5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (i == 1) {
+
+                    String str_add_price = edt_add_price5.getText().toString();
+
+                    int actual_price = Integer.parseInt(str_add_price);
+
+                    if (actual_price >= 25) {
+                        TastyToast.makeText(getApplicationContext(), "Your Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_add_price5.setText("25");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+        edt_add_price6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if (i == 1) {
+
+                    String str_add_price = edt_add_price6.getText().toString();
+
+                    int actual_price = Integer.parseInt(str_add_price);
+
+                    if (actual_price >= 25) {
+                        TastyToast.makeText(getApplicationContext(), "Your Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_add_price6.setText("25");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+
         btn_save_pre_quote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1689,6 +2005,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_model_type = str_Selected_model_type;
                 str_po_qty1 = txt_value.getText().toString();
                 str_po_price1 = edt_price.getText().toString();
+                str_po_add_price1 = edt_add_price.getText().toString();
 
                 str_po_group2 = str_Selected_group2;
                 str_po_model2 = str_Selected_model2;
@@ -1696,6 +2013,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_mode2_type = str_Selected_model_type2;
                 str_po_qty2 = txt_value2.getText().toString();
                 str_po_price2 = edt_price2.getText().toString();
+                str_po_add_price2 = edt_add_price2.getText().toString();
 
                 str_po_group3 = str_Selected_group3;
                 str_po_model3 = str_Selected_model3;
@@ -1703,6 +2021,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_mode3_type = str_Selected_model_type3;
                 str_po_qty3 = txt_value3.getText().toString();
                 str_po_price3 = edt_price3.getText().toString();
+                str_po_add_price3 = edt_add_price3.getText().toString();
 
                 str_po_group4 = str_Selected_group4;
                 str_po_model4 = str_Selected_model4;
@@ -1710,6 +2029,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_mode4_type = str_Selected_model_type4;
                 str_po_qty4 = txt_value4.getText().toString();
                 str_po_price4 = edt_price4.getText().toString();
+                str_po_add_price4 = edt_add_price4.getText().toString();
 
                 str_po_group5 = str_Selected_group5;
                 str_po_model5 = str_Selected_model5;
@@ -1717,6 +2037,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_mode5_type = str_Selected_model_type5;
                 str_po_qty5 = txt_value5.getText().toString();
                 str_po_price5 = edt_price5.getText().toString();
+                str_po_add_price5 = edt_add_price5.getText().toString();
 
                 str_po_group6 = str_Selected_group6;
                 str_po_model6 = str_Selected_model6;
@@ -1726,6 +2047,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_price6 = edt_price6.getText().toString();
                 str_po_discount = edt_discount.getText().toString();
                 str_po_spec = edt_spec.getText().toString();
+                str_po_add_price6 = edt_add_price6.getText().toString();
 
                 str_select_addon_email = edt_addon_email.getText().toString();
                 str_select_addon_email2 = edt_addon_email2.getText().toString();
@@ -1829,41 +2151,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             }
         });
 
-        edt_discount.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if (i == 1) {
-
-                    String str_discount = edt_discount.getText().toString();
-
-                    String str_actual_value = actual_discount;
-
-                    int actual_discount = Integer.parseInt(str_actual_value);
-
-                    int discount = Integer.parseInt(str_discount);
-
-                    if (discount >= actual_discount) {
-                        TastyToast.makeText(getApplicationContext(), "Your Discount Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                        edt_discount.setText("" + actual_discount);
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-
-            }
-        });
-
-
         try {
 
             dialog = new SpotsDialog(Activity_Enquiry_Process.this);
@@ -1875,8 +2162,159 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             // TODO: handle exception
         }
 
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
     }
+
+
+    /*************************************
+     * Runtime Permission call
+     *****************************************/
+
+    public void Check_Permission() {
+
+        if (ActivityCompat.checkSelfPermission(Activity_Enquiry_Process.this, permissionsRequired[0]) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(Activity_Enquiry_Process.this, permissionsRequired[1]) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(Activity_Enquiry_Process.this, permissionsRequired[2]) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(Activity_Enquiry_Process.this, permissionsRequired[3]) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Activity_Enquiry_Process.this, permissionsRequired[0])
+                    || ActivityCompat.shouldShowRequestPermissionRationale(Activity_Enquiry_Process.this, permissionsRequired[1])
+                    || ActivityCompat.shouldShowRequestPermissionRationale(Activity_Enquiry_Process.this, permissionsRequired[2])
+                    || ActivityCompat.shouldShowRequestPermissionRationale(Activity_Enquiry_Process.this, permissionsRequired[3])) {
+                //Show Information about why you need the permission
+                AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Enquiry_Process.this);
+                builder.setTitle("Need Multiple Permissions");
+                builder.setMessage("This app needs Camera and Location permissions.");
+                builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        ActivityCompat.requestPermissions(Activity_Enquiry_Process.this, permissionsRequired, PERMISSION_CALLBACK_CONSTANT);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            } else if (permissionStatus.getBoolean(permissionsRequired[0], false)) {
+                //Previously Permission Request was cancelled with 'Dont Ask Again',
+                // Redirect to Settings after showing Information about why you need the permission
+                AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Enquiry_Process.this);
+                builder.setTitle("Need Multiple Permissions");
+                builder.setMessage("This app needs Camera and Location permissions.");
+                builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        sentToSettings = true;
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivityForResult(intent, REQUEST_PERMISSION_SETTING);
+                        Toast.makeText(getBaseContext(), "Go to Permissions to Grant  Camera and Location", Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            } else {
+                //just request the permission
+                ActivityCompat.requestPermissions(Activity_Enquiry_Process.this, permissionsRequired, PERMISSION_CALLBACK_CONSTANT);
+            }
+
+            Toast.makeText(getApplicationContext(), "Need a Permission", Toast.LENGTH_LONG).show();
+
+            SharedPreferences.Editor editor = permissionStatus.edit();
+            editor.putBoolean(permissionsRequired[0], true);
+            editor.commit();
+        } else {
+            //You already have the permission, just go ahead.
+            proceedAfterPermission();
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_CALLBACK_CONSTANT) {
+            //check if all permissions are granted
+            boolean allgranted = false;
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    allgranted = true;
+                } else {
+                    allgranted = false;
+                    break;
+                }
+            }
+
+            if (allgranted) {
+                proceedAfterPermission();
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale(Activity_Enquiry_Process.this, permissionsRequired[0])
+                    || ActivityCompat.shouldShowRequestPermissionRationale(Activity_Enquiry_Process.this, permissionsRequired[1])
+                    || ActivityCompat.shouldShowRequestPermissionRationale(Activity_Enquiry_Process.this, permissionsRequired[2])
+                    || ActivityCompat.shouldShowRequestPermissionRationale(Activity_Enquiry_Process.this, permissionsRequired[3])) {
+//                txtPermissions.setText("Permissions Required");
+                AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Enquiry_Process.this);
+                builder.setTitle("Need Multiple Permissions");
+                builder.setMessage("This app needs Camera and Location permissions.");
+                builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        ActivityCompat.requestPermissions(Activity_Enquiry_Process.this, permissionsRequired, PERMISSION_CALLBACK_CONSTANT);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            } else {
+                Toast.makeText(getBaseContext(), "Unable to get Permission", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if (sentToSettings) {
+            if (ActivityCompat.checkSelfPermission(Activity_Enquiry_Process.this, permissionsRequired[0]) == PackageManager.PERMISSION_GRANTED) {
+                //Got Permission
+                proceedAfterPermission();
+            }
+        }
+    }
+
+
+    public void proceedAfterPermission() {
+
+        if (str_function.equals("image")) {
+
+            if (imagepath1.equals("")) {
+                Function_capture_Image();
+            } else {
+                TastyToast.makeText(Activity_Enquiry_Process.this, "Internal Error", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+            }
+
+        } else {
+
+        }
+
+    }
+
 
 
     /**********************************
@@ -1944,6 +2382,213 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /*************************************
+     * Image Capture Functio Begins
+     *****************************************/
+
+    public void Function_capture_Image() {
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // save file url in bundle as it will be null on screen orientation
+        // changes
+        outState.putParcelable("file_uri", fileUri);
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        // get the file url
+        fileUri = savedInstanceState.getParcelable("file_uri");
+    }
+
+    /*     * Receiving activity result method will be called after closing the camera*/
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // if the result is capturing Image
+        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
+            if (resultCode == Activity_Enquiry_Process.this.RESULT_OK) {
+
+                // successfully captured the image
+                // launching upload activity
+                launchUploadActivity(true);
+
+
+            } else if (resultCode == Activity_Enquiry_Process.this.RESULT_CANCELED) {
+
+                // user cancelled Image capture
+                Toast.makeText(Activity_Enquiry_Process.this,
+                        "User cancelled image capture", Toast.LENGTH_SHORT)
+                        .show();
+
+            } else {
+                // failed to capture image
+                Toast.makeText(Activity_Enquiry_Process.this,
+                        "Sorry! Failed to capture image", Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+        } else if (requestCode == REQUEST_CAMERA1) {
+
+            File f2 = new File(Environment.getExternalStorageDirectory()
+                    .toString());
+            for (File temp : f2.listFiles()) {
+                if (temp.getName().equals("temp.jpg")) {
+                    f2 = temp;
+                    break;
+                }
+            }
+            try {
+                Bitmap bm;
+                BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
+
+                bm = BitmapFactory.decodeFile(f2.getAbsolutePath(),
+                        btmapOptions);
+
+                bm = Bitmap.createScaledBitmap(bm, 170, 170, true);
+                img_post_image.setImageBitmap(bm);
+
+                String path = Environment
+                        .getExternalStorageDirectory()
+                        + File.separator
+                        + "Phoenix" + File.separator + "default";
+                f2.delete();
+                OutputStream fOut = null;
+                File file = new File(path, String.valueOf(System
+                        .currentTimeMillis()) + ".jpg");
+
+                imagepath1 = file.getPath();
+
+                try {
+                    fOut = new FileOutputStream(file);
+                    bm.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
+                    fOut.flush();
+                    fOut.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void launchUploadActivity(boolean isImage) {
+
+        imagepath1 = fileUri.getPath();
+
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+
+        // Image location URL
+        imagepath1 = fileUri.getPath();
+        Log.e("path", "----------------" + imagepath1);
+
+        // Image
+        Bitmap bmBitmap = BitmapFactory.decodeFile(imagepath1);
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        bmBitmap.compress(Bitmap.CompressFormat.JPEG, 25, bao);
+        byte[] ba = bao.toByteArray();
+        encodedstring = Base64.encodeToString(ba, 0);
+        img_post_image.setImageBitmap(bmBitmap);
+        Log.e("base64", "-----" + encodedstring);
+
+
+    }
+
+    /* * ------------ Helper Methods ----------------------*/
+
+
+/*     * Creating file uri to store image/video*/
+
+    public Uri getOutputMediaFileUri(int type) {
+        return Uri.fromFile(getOutputMediaFile(type));
+    }
+
+
+/*     * returning image / video*/
+
+    private static File getOutputMediaFile(int type) {
+
+        // External sdcard location
+        File mediaStorageDir = new File(
+                Environment
+                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                Config.IMAGE_DIRECTORY_NAME);
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
+                Locale.getDefault()).format(new Date());
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator
+                    + "IMG_" + timeStamp + ".jpg");
+        } else {
+            return null;
+        }
+
+        return mediaFile;
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Activity_Pending_Complaint_Update Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
+
 
     /***************************
      * GET Model Ex. 2KD, 2KW
@@ -3494,8 +4139,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("tax", str_Selected_tax);
                 params.put("ga", str_ga_dia1);
 
-                System.out.println("tax" + str_Selected_tax);
-                System.out.println("gadia" + str_ga_dia1);
+                System.out.println("tax" + str_po_add_price6);
+                System.out.println("gadia" + str_po_add_price5);
 
                 return checkParams(params);
             }

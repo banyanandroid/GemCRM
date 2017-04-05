@@ -49,4 +49,5 @@ dependencies {
     compile 'com.tapadoo.android:alerter:1.0.6'     //Alerter Lib
     compile 'com.github.clans:fab:1.6.4'
     compile 'com.github.alorma:timelineview:2.3.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
