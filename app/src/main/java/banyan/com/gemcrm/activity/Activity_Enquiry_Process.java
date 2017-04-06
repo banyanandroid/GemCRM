@@ -126,7 +126,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     String actual_discount = "";
 
     EditText edt_price2, edt_price3, edt_price4, edt_price5, edt_price6;
-    EditText edt_add_price,edt_add_price2, edt_add_price3, edt_add_price4, edt_add_price5, edt_add_price6;
+    EditText edt_add_price, edt_add_price2, edt_add_price3, edt_add_price4, edt_add_price5, edt_add_price6;
 
     String str_select_group;
 
@@ -246,12 +246,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     String str_po_en_no, str_po_comp_name, str_po_email, str_po_address, str_po_pin, str_po_phone, str_po_contact_person,
             str_po_contact_person_phone, str_po_product, str_po_enq_through, str_po_enq_description,
-            str_po_group1, str_po_model1, str_po_model_no1, str_po_model_type, str_po_qty1, str_po_price1,str_po_add_price1,
-            str_po_group2, str_po_model2, str_po_model_no2, str_po_mode2_type, str_po_qty2, str_po_price2,str_po_add_price2,
-            str_po_group3, str_po_model3, str_po_model_no3, str_po_mode3_type, str_po_qty3, str_po_price3,str_po_add_price3,
-            str_po_group4, str_po_model4, str_po_model_no4, str_po_mode4_type, str_po_qty4, str_po_price4,str_po_add_price4,
-            str_po_group5, str_po_model5, str_po_model_no5, str_po_mode5_type, str_po_qty5, str_po_price5,str_po_add_price5,
-            str_po_group6, str_po_model6, str_po_model_no6, str_po_mode6_type, str_po_qty6, str_po_price6,str_po_add_price6,
+            str_po_group1, str_po_model1, str_po_model_no1, str_po_model_type, str_po_qty1, str_po_price1, str_po_add_price1,
+            str_po_group2, str_po_model2, str_po_model_no2, str_po_mode2_type, str_po_qty2, str_po_price2, str_po_add_price2,
+            str_po_group3, str_po_model3, str_po_model_no3, str_po_mode3_type, str_po_qty3, str_po_price3, str_po_add_price3,
+            str_po_group4, str_po_model4, str_po_model_no4, str_po_mode4_type, str_po_qty4, str_po_price4, str_po_add_price4,
+            str_po_group5, str_po_model5, str_po_model_no5, str_po_mode5_type, str_po_qty5, str_po_price5, str_po_add_price5,
+            str_po_group6, str_po_model6, str_po_model_no6, str_po_mode6_type, str_po_qty6, str_po_price6, str_po_add_price6,
             str_po_status, str_po_appoint_date, str_po_appoint_time, str_po_discount, str_po_spec = null;
 
     private Toolbar mToolbar;
@@ -373,12 +373,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_price5 = (EditText) findViewById(R.id.enq_process_edt_price5);
         edt_price6 = (EditText) findViewById(R.id.enq_process_edt_price6);
 
-        edt_add_price = (EditText)  findViewById(R.id.enq_process_edt_add_price1);
-        edt_add_price2 = (EditText)  findViewById(R.id.enq_process_edt_add_price2);
-        edt_add_price3 = (EditText)  findViewById(R.id.enq_process_edt_add_price3);
-        edt_add_price4 = (EditText)  findViewById(R.id.enq_process_edt_add_price4);
-        edt_add_price5 = (EditText)  findViewById(R.id.enq_process_edt_add_price5);
-        edt_add_price6 = (EditText)  findViewById(R.id.enq_process_edt_add_price6);
+        edt_add_price = (EditText) findViewById(R.id.enq_process_edt_add_price1);
+        edt_add_price2 = (EditText) findViewById(R.id.enq_process_edt_add_price2);
+        edt_add_price3 = (EditText) findViewById(R.id.enq_process_edt_add_price3);
+        edt_add_price4 = (EditText) findViewById(R.id.enq_process_edt_add_price4);
+        edt_add_price5 = (EditText) findViewById(R.id.enq_process_edt_add_price5);
+        edt_add_price6 = (EditText) findViewById(R.id.enq_process_edt_add_price6);
 
         spn_group1 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group1);
         spn_group2 = (Spinner) findViewById(R.id.enquiry_process_spn_product_group2);
@@ -435,7 +435,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_enq_appint_time = (EditText) findViewById(R.id.enq_add_appoint_edt_time);
 
         spn_status = (Spinner) findViewById(R.id.enq_process_spinner_status2);
-        spn_tax = (Spinner)  findViewById(R.id.enq_process_spinner_tax);
+        spn_tax = (Spinner) findViewById(R.id.enq_process_spinner_tax);
         spn_ga_diagram1 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram1);
 
         spn_enq_no_for_comple_drop = (Spinner) findViewById(R.id.enq_process_spinner_enq_no);
@@ -2316,7 +2316,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     }
 
 
-
     /**********************************
      * Main Menu
      *********************************/
@@ -2330,7 +2329,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         notificationCount1 = (RelativeLayout) MenuItemCompat.getActionView(item1);
         parent_batch = (RelativeLayout) MenuItemCompat.getActionView(item1);
         tv = (TextView) notificationCount1.findViewById(R.id.badge_notification_2);
-        tv.setText(""+MainActivity.str_count);
+        tv.setText("" + MainActivity.str_count);
         //str_cart = Integer.toString(count);
         //tv.setText("" + cart_size);
 
@@ -2723,10 +2722,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         try {
                             queue = Volley.newRequestQueue(getApplicationContext());
                             Get_tax_info();
-                        }catch (Exception e) {
+                        } catch (Exception e) {
 
                         }
-
 
 
                     } else if (success == 0) {
@@ -2858,7 +2856,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         // Adding request to request queue
         queue.add(request);
     }
-
 
 
     /***************************
@@ -4028,8 +4025,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                     FunctionCAllAlert(quotation_no);
 
 
-
-
                     if (success == 1) {
 
                         quotation_no = obj.getString("quotation_no");
@@ -4102,36 +4097,42 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("pro_model_type", str_po_model_type);
                 params.put("pro_qty", str_po_qty1);
                 params.put("pro_price", str_po_price1);
+                params.put("price_add", str_po_add_price1);
                 params.put("pro_group2", str_po_group2);
                 params.put("pro_model2", str_po_model2);
                 params.put("pro_model_no2", str_po_model_no2);
                 params.put("pro_model_type2", str_po_mode2_type);
                 params.put("pro_qty2", str_po_qty2);
                 params.put("pro_price2", str_po_price2);
+                params.put("price_add2", str_po_add_price2);
                 params.put("pro_group3", str_po_group3);
                 params.put("pro_model3", str_po_model3);
                 params.put("pro_model_no3", str_po_model_no3);
                 params.put("pro_model_type3", str_po_mode3_type);
                 params.put("pro_qty3", str_po_qty3);
                 params.put("pro_price3", str_po_price3);
+                params.put("price_add3", str_po_add_price3);
                 params.put("pro_group4", str_po_group4);
                 params.put("pro_model4", str_po_model4);
                 params.put("pro_model_no4", str_po_model_no4);
                 params.put("pro_model_type4", str_po_mode4_type);
                 params.put("pro_qty4", str_po_qty4);
                 params.put("pro_price4", str_po_price4);
+                params.put("price_add4", str_po_add_price4);
                 params.put("pro_group5", str_po_group5);
                 params.put("pro_model5", str_po_model5);
                 params.put("pro_model_no5", str_po_model_no5);
                 params.put("pro_model_type5", str_po_mode5_type);
                 params.put("pro_qty5", str_po_qty5);
                 params.put("pro_price5", str_po_price5);
+                params.put("price_add5", str_po_add_price5);
                 params.put("pro_group6", str_po_group6);
                 params.put("pro_model6", str_po_model6);
                 params.put("pro_model_no6", str_po_model_no6);
                 params.put("pro_model_type6", str_po_mode6_type);
                 params.put("pro_qty6", str_po_qty6);
                 params.put("pro_price6", str_po_price6);
+                params.put("price_add6", str_po_add_price6);
                 params.put("discount", str_po_discount);
                 params.put("remarks", str_po_spec);
                 params.put("status", str_po_status);
@@ -4342,6 +4343,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("user", str_user_id);
                 params.put("enq_no", str_po_en_no);
                 params.put("status", str_po_status);
+                params.put("image", encodedstring);
                 params.put("shows_quotation", str_Selected_quotation_no);
                 params.put("enq_remarks", str_po_spec);
 
