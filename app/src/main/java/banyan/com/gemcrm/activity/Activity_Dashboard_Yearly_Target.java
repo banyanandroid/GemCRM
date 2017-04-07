@@ -1,7 +1,10 @@
 package banyan.com.gemcrm.activity;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.util.Log;
@@ -58,6 +61,7 @@ public class Activity_Dashboard_Yearly_Target extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_yearly_target);
 
+        isInternetOn();
 
         pieChart = (PieChart) findViewById(R.id.yearly_pie_chart);
 
@@ -206,6 +210,48 @@ public class Activity_Dashboard_Yearly_Target extends AppCompatActivity {
         SpannableString s = new SpannableString("Yeraly Target for \n GEM");
 
         return s;
+    }
+
+    /***********************************
+     *  Internet Connection
+     * ************************************/
+
+    public final boolean isInternetOn() {
+
+        // get Connectivity Manager object to check connection
+        ConnectivityManager connec =
+                (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+
+        // Check for network connections
+        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+
+            // if connected with internet
+
+            //Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+            return true;
+
+        } else if (
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+
+            new AlertDialog.Builder(Activity_Dashboard_Yearly_Target.this)
+                    .setTitle("GEM CRM")
+                    .setMessage("Oops no internet !")
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    // TODO Auto-generated method stub
+                                }
+                            }).show();
+            return false;
+        }
+        return false;
     }
 
 }

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -83,6 +84,8 @@ public class Activity_FollowUp extends AppCompatActivity implements SwipeRefresh
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        isInternetOn();
 
         txt_created_on = (TextView) findViewById(R.id.followup_txt_created_on);
         txt_created_by = (TextView) findViewById(R.id.followup_txt_created_by);
@@ -340,6 +343,49 @@ public class Activity_FollowUp extends AppCompatActivity implements SwipeRefresh
         // show it
         alertDialog.show();
 
+    }
+
+
+    /***********************************
+     *  Internet Connection
+     * ************************************/
+
+    public final boolean isInternetOn() {
+
+        // get Connectivity Manager object to check connection
+        ConnectivityManager connec =
+                (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+
+        // Check for network connections
+        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+
+            // if connected with internet
+
+            //Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+            return true;
+
+        } else if (
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+
+            new android.support.v7.app.AlertDialog.Builder(Activity_FollowUp.this)
+                    .setTitle("GEM CRM")
+                    .setMessage("Oops no internet !")
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    // TODO Auto-generated method stub
+                                }
+                            }).show();
+            return false;
+        }
+        return false;
     }
 
 

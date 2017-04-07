@@ -59,4 +59,6 @@ public class AppConfig {
 
     public static String url_new_enquiery = base_url + "android/user_new_enquiry_list.php";
     public static String url_self_allotment = base_url + "android/enquiry_self_allotment.php";
+
+
 }

@@ -2,7 +2,10 @@ package banyan.com.gemcrm.activity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
@@ -76,6 +79,8 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_appoinment);
         setUpToolbarWithTitle(getString(R.string.COMPOSE), true);
+
+        isInternetOn();
 
         edt_app_with = (EditText) findViewById(R.id.add_appoint_edt_name);
         edt_app_company_name = (EditText) findViewById(R.id.add_appoint_edt_company_name);
@@ -356,5 +361,48 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
             return null;
         }
     };
+
+    /***********************************
+     *  Internet Connection
+     * ************************************/
+
+    public final boolean isInternetOn() {
+
+        // get Connectivity Manager object to check connection
+        ConnectivityManager connec =
+                (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+
+        // Check for network connections
+        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+
+            // if connected with internet
+
+            //Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+            return true;
+
+        } else if (
+                connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+
+            new AlertDialog.Builder(Activity_Appoinment_Add.this)
+                    .setTitle("GEM CRM")
+                    .setMessage("Oops no internet !")
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    // TODO Auto-generated method stub
+                                    finishAffinity();
+                                }
+                            }).show();
+            return false;
+        }
+        return false;
+    }
 
 }

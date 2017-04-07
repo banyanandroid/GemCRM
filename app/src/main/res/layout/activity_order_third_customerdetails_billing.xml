@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/trans_black">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.8"
+                    android:text="Same the above"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/customer_details_billing_same_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:layout_marginLeft="190dp"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/customer_details_billing_address_line1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Address Line1 *"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_address_line2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="AddressLine 2 *"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_city"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="City *"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_state"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="State *"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_pincode"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Pincode *"
+                android:inputType="number"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_tinno"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="TIN no *"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_cstno"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="CST no *"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_eccno"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="ECC no *"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_panno"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="PAN no *"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_contact_person"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Name of contact person "
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/customer_details_billing_contactno"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Contact number "
+                android:inputType="number"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/order_customer_billing_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_parent_rounded_corner"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:singleLine="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/customer_details_billing_previous"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/colorAccent"
+                android:text="Previous"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <Button
+                android:id="@+id/customer_details_billing_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/colorAccent"
+                android:text="Next"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"/>
+            </LinearLayout>
+           </LinearLayout>
+    </ScrollView>
+
+
+        </LinearLayout>

@@ -4,6 +4,7 @@ package banyan.com.gemcrm.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -99,6 +100,7 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.fragment_allotment, null);
+
 
         session = new SessionManager(getActivity());
 
@@ -477,6 +479,9 @@ public class Fragment_Allotment extends Fragment implements SwipeRefreshLayout.O
         // Adding request to request queue
         queue.add(request);
     }
+
+
+
 
 
 }

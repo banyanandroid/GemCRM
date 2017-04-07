@@ -78,6 +78,8 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
     public static final String TAG_ENQ_THROUGH = "enquiry_through";
     public static final String TAG_ENQ_THROUGH_DESC = "enquiry_through_description";
     public static final String TAG_ENQ_STATUS = "enq_status";
+    public static final String TAG_ENQ_QUOTATION = "enq_quotation";
+    public static final String TAG_ENQ_IMAGE = "enq_po";
     public static final String TAG_ENQ_REMARK = "enq_remarks";
     public static final String TAG_ENQ_CREAATED_ON = "enq_created_on";
     public static final String TAG_ENQ_COMPLEED_ON = "enq_completed_on";
@@ -153,10 +155,12 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                 String enq_alloted_to = enquiry_list.get(position).get(TAG_ENQ_ALLOTED_TO);
                 String enq_team_id = enquiry_list.get(position).get(TAG_ENQ_TEAM_ID);
                 String enq_discount = enquiry_list.get(position).get(TAG_ENQ_DISCOUNT);
+                String enq_quote = enquiry_list.get(position).get(TAG_ENQ_QUOTATION);
                 String enq_description = enquiry_list.get(position).get(TAG_ENQ_DESC);
                 String enquiry_through = enquiry_list.get(position).get(TAG_ENQ_THROUGH);
                 String enquiry_through_description = enquiry_list.get(position).get(TAG_ENQ_THROUGH_DESC);
                 String enq_status = enquiry_list.get(position).get(TAG_ENQ_STATUS);
+                String enq_image = enquiry_list.get(position).get(TAG_ENQ_IMAGE);
                 String enq_remarks = enquiry_list.get(position).get(TAG_ENQ_REMARK);
                 String enq_created_on = enquiry_list.get(position).get(TAG_ENQ_CREAATED_ON);
                 String enq_completed_on = enquiry_list.get(position).get(TAG_ENQ_COMPLEED_ON);
@@ -188,10 +192,12 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                 editor.putString("enq_alloted_to", enq_alloted_to);
                 editor.putString("enq_team_id", enq_team_id);
                 editor.putString("enq_discount", enq_discount);
+                editor.putString("enq_quote", enq_quote);
                 editor.putString("enq_description", enq_description);
                 editor.putString("enquiry_through", enquiry_through);
                 editor.putString("enquiry_through_description", enquiry_through_description);
                 editor.putString("enq_status", enq_status);
+                editor.putString("enq_image", enq_image);
                 editor.putString("enq_remarks", enq_remarks);
                 editor.putString("enq_created_on", enq_created_on);
                 editor.putString("enq_completed_on", enq_completed_on);
@@ -224,7 +230,7 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                 System.out.println("enq_created_on" + enq_created_on);
                 System.out.println("enq_completed_on" + enq_completed_on);
 
-                Intent i = new Intent(getActivity(), Activity_Enquiry_Description.class);
+                Intent i = new Intent(getActivity(), Activity_Enquiry_Completed_Description.class);
                 startActivity(i);
             }
 
@@ -298,10 +304,12 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                             String enq_alloted_to = obj1.getString(TAG_ENQ_ALLOTED_TO);
                             String enq_team_id = obj1.getString(TAG_ENQ_TEAM_ID);
                             String enq_discount = obj1.getString(TAG_ENQ_DISCOUNT);
+                            String enq_quote = obj1.getString(TAG_ENQ_QUOTATION);
                             String enq_description = obj1.getString(TAG_ENQ_DESC);
                             String enquiry_through = obj1.getString(TAG_ENQ_THROUGH);
                             String enquiry_through_description = obj1.getString(TAG_ENQ_THROUGH_DESC);
                             String enq_status = obj1.getString(TAG_ENQ_STATUS);
+                            String enq_image = obj1.getString(TAG_ENQ_IMAGE);
                             String enq_remarks = obj1.getString(TAG_ENQ_REMARK);
                             String enq_created_on = obj1.getString(TAG_ENQ_CREAATED_ON);
                             String enq_completed_on = obj1.getString(TAG_ENQ_COMPLEED_ON);
@@ -333,9 +341,11 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                             map.put(TAG_ENQ_TEAM_ID, enq_team_id);
                             map.put(TAG_ENQ_DISCOUNT, enq_discount);
                             map.put(TAG_ENQ_DESC, enq_description);
+                            map.put(TAG_ENQ_QUOTATION, enq_quote);
                             map.put(TAG_ENQ_THROUGH, enquiry_through);
                             map.put(TAG_ENQ_THROUGH_DESC, enquiry_through_description);
                             map.put(TAG_ENQ_STATUS, enq_status);
+                            map.put(TAG_ENQ_IMAGE, enq_image);
                             map.put(TAG_ENQ_REMARK, enq_remarks);
                             map.put(TAG_ENQ_CREAATED_ON, enq_created_on);
                             map.put(TAG_ENQ_COMPLEED_ON, enq_completed_on);

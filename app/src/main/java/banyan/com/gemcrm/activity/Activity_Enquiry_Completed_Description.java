@@ -1,6 +1,7 @@
 package banyan.com.gemcrm.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -8,7 +9,13 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import banyan.com.gemcrm.R;
 
@@ -16,14 +23,14 @@ import banyan.com.gemcrm.R;
  * Created by Jo on 3/20/2017.
  */
 
-public class Activity_Enquiry_Description extends AppCompatActivity {
+public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
 
     // Get from Tab_My_Enq_Frag.java through sharedpref and set those to textviewa
 
     String str_select_id, str_year_id, str_month_id, str_select_comp_name, str_select_phoneno, str_select_email, str_addon_email, str_addon_email2, str_addon_email3, str_select_comp_address, str_select_pin, str_select_person_name,
             str_select_person_number, str_select_produc_series, str_select_model, str_select_modelno, str_select_pro_type, str_select_prod_qty,
-            str_select_price, str_select_allotedto, str_select_team_id, str_select_discount, str_select_desc, str_select_enq_throu,
-            getStr_select_enq_throu_desc, str_select_status, str_select_remark, str_select_createdon, str_select_completeon = "";
+            str_select_price, str_select_allotedto, str_select_team_id, str_select_discount,str_select_quote, str_select_desc, str_select_enq_throu,
+            getStr_select_enq_throu_desc, str_select_status, str_select_image, str_select_remark, str_select_createdon, str_select_completeon = "";
 
 
     TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_txt_addon_email, txt_enq_txt_addon_email2, txt_enq_txt_addon_email3,
@@ -31,12 +38,16 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
             txt_enq_person_phone, txt_enq_product, txt_enq_model, txt_enq_model_no, txt_enq_model_type, txt_enq_product_qty,
             txt_enq_price, txt_enq_discount, txt_enq_description, txt_enq_enq_through, txt_enq_enq_thro_des, txt_enq_status, txt_enq_remark;
 
+    ImageView img_completed;
+
+    Button btn_proceed;
+
     private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enquiry_description);
+        setContentView(R.layout.activity_enquiry_completed_description);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -56,10 +67,10 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
         txt_enq_conact_person = (TextView) findViewById(R.id.enq_des_txt_conact_person);
         txt_enq_person_phone = (TextView) findViewById(R.id.enq_des_txt_contact_person_phone);
         txt_enq_product = (TextView) findViewById(R.id.enq_des_txt_product);
-        txt_enq_model = (TextView) findViewById(R.id.enq_des_txt_product_model);
+        /*txt_enq_model = (TextView) findViewById(R.id.enq_des_txt_product_model);
         txt_enq_model_no = (TextView) findViewById(R.id.enq_des_txt_model_no);
         txt_enq_model_type = (TextView) findViewById(R.id.enq_des_txt_model_type);
-        txt_enq_product_qty = (TextView) findViewById(R.id.enq_des_txt_product_qty);
+        txt_enq_product_qty = (TextView) findViewById(R.id.enq_des_txt_product_qty);*/
         txt_enq_price = (TextView) findViewById(R.id.enq_des_txt_price);
         txt_enq_discount = (TextView) findViewById(R.id.enq_des_txt_discount);
         txt_enq_description = (TextView) findViewById(R.id.enq_des_txt_description);
@@ -67,6 +78,10 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
         txt_enq_enq_thro_des = (TextView) findViewById(R.id.enq_des_txt_enq_thro_des);
         txt_enq_status = (TextView) findViewById(R.id.enq_des_txt_status);
         txt_enq_remark = (TextView) findViewById(R.id.enq_des_txt_remark);
+
+        img_completed = (ImageView) findViewById(R.id.complaint_complete_img);
+
+        btn_proceed = (Button) findViewById(R.id.completed_btn_proceed_ofm);
 
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
@@ -93,10 +108,12 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
         str_select_allotedto = sharedPreferences.getString("enq_alloted_to", "enq_alloted_to");
         str_select_team_id = sharedPreferences.getString("enq_team_id", "enq_team_id");
         str_select_discount = sharedPreferences.getString("enq_discount", "enq_discount");
+        str_select_quote = sharedPreferences.getString("enq_quote", "enq_quote");
         str_select_desc = sharedPreferences.getString("enq_description", "enq_description");
         str_select_enq_throu = sharedPreferences.getString("enquiry_through", "enquiry_through");
         getStr_select_enq_throu_desc = sharedPreferences.getString("enquiry_through_description", "enquiry_through_description");
         str_select_status = sharedPreferences.getString("enq_status", "enq_status");
+        str_select_image = sharedPreferences.getString("enq_image", "enq_image");
         str_select_remark = sharedPreferences.getString("enq_remarks", "enq_remarks");
         str_select_createdon = sharedPreferences.getString("enq_created_on", "enq_created_on");
         str_select_completeon = sharedPreferences.getString("enq_completed_on", "enq_completed_on");
@@ -130,6 +147,19 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
 
         try {
 
+            String str_img_path = "http://gemservice.in/crm/po/" + str_select_image;
+            Glide.with(getApplicationContext()).load(str_img_path)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(img_completed);
+
+        } catch (Exception e) {
+
+        }
+
+        try {
+
             txt_created_on.setText(str_select_completeon);
             txt_enq_id.setText(str_select_id);
             txt_enq_company_name.setText(str_select_comp_name);
@@ -143,11 +173,7 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
             txt_enq_conact_person.setText(str_select_person_name);
             txt_enq_person_phone.setText(str_select_person_number);
             txt_enq_product.setText(str_select_produc_series);
-            txt_enq_model.setText(str_select_model);
-            txt_enq_model_no.setText(str_select_modelno);
-            txt_enq_model_type.setText(str_select_pro_type);
-            txt_enq_product_qty.setText(str_select_prod_qty);
-            txt_enq_price.setText(str_select_price);
+            txt_enq_price.setText(str_select_quote);
             txt_enq_discount.setText(str_select_discount);
             txt_enq_description.setText(str_select_desc);
             txt_enq_enq_through.setText(str_select_enq_throu);
@@ -160,7 +186,19 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
         }
 
 
+        btn_proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), Activity_Order_One_Forwarding_Memo.class);
+                startActivity(i);
+
+            }
+        });
+
+
     }
+
 
     /***********************************
      *  Internet Connection
@@ -170,13 +208,13 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
 
         // get Connectivity Manager object to check connection
         ConnectivityManager connec =
-                (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+                (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
         // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
 
             // if connected with internet
 
@@ -185,9 +223,9 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
 
         } else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
 
-            new AlertDialog.Builder(Activity_Enquiry_Description.this)
+            new AlertDialog.Builder(Activity_Enquiry_Completed_Description.this)
                     .setTitle("GEM CRM")
                     .setMessage("Oops no internet !")
                     .setIcon(R.mipmap.ic_launcher)
@@ -203,5 +241,6 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
         }
         return false;
     }
+
 
 }
