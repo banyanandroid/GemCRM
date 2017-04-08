@@ -203,6 +203,13 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                         // TODO: handle exception
                     }
 
+                    try {
+                        queue = Volley.newRequestQueue(getApplicationContext());
+                        GetRegionDetails();
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+
                 } else if (str_selected_enquiry_through.equals("REFERENCE")) {
                     linear_camp.setVisibility(View.GONE);
                     linear_ref.setVisibility(View.VISIBLE);
@@ -545,12 +552,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
                         }
 
-                        try {
-                            queue = Volley.newRequestQueue(getApplicationContext());
-                            GetRegionDetails();
-                        } catch (Exception e) {
-                            // TODO: handle exception
-                        }
+
 
                     } else if (success == 0) {
 

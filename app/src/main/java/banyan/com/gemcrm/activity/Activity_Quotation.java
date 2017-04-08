@@ -105,7 +105,7 @@ public class Activity_Quotation extends AppCompatActivity {
         txt_quote_address = (TextView) findViewById(R.id.quotation_comp_address);
         txt_quote_phone = (TextView) findViewById(R.id.quotation_comp_phone);
         txt_quote_amt = (TextView) findViewById(R.id.quotation_amt);
-        txt_quote_date = (TextView) findViewById(R.id.quotation_date);
+        txt_quote_date = (TextView) findViewById(R.id.quotation_new_date);
         txt_quote_total_amt = (TextView) findViewById(R.id.quotation_total_amt);
         txt_discount = (TextView) findViewById(R.id.quotation_txt_tax);
 
@@ -123,6 +123,14 @@ public class Activity_Quotation extends AppCompatActivity {
         str_current_year = "" + calendar.get(Calendar.YEAR);
         str_current_month = "" + calendar.get(Calendar.MONTH);
         str_current_date = "" + mdformat;
+
+
+        String str_date_new = str_current_date + "/" + str_current_month + "/" + str_current_date;
+
+        System.out.println("DATTTEEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + strDate);
+        System.out.println("DATTTEEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + strDate);
+        System.out.println("DATTTEEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + str_date_new);
+        System.out.println("DATTTEEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + str_date_new);
 
         txt_quote_date.setText("" + strDate);
 
@@ -321,9 +329,11 @@ public class Activity_Quotation extends AppCompatActivity {
                                 .setBackgroundColor(R.color.Alert_Success)
                                 .show();
 
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(i);
+                        try {
+                            FunctionAlert();
+                        }catch (Exception e) {
 
+                        }
 
                     } else if (success == 0) {
 
@@ -427,6 +437,30 @@ public class Activity_Quotation extends AppCompatActivity {
             return false;
         }
         return false;
+    }
+
+    private void FunctionAlert() {
+
+        new android.app.AlertDialog.Builder(Activity_Quotation.this)
+                .setTitle("GEM CRM")
+                .setMessage("Quotation Sent Successfully :)")
+                .setIcon(R.mipmap.ic_launcher)
+
+                .setPositiveButton("Done",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+
+                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                                finish();
+
+                                dialog.dismiss();
+
+
+                            }
+                        }).show();
     }
 
 }

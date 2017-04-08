@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -232,7 +233,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
 
             case 7:
-                TastyToast.makeText(getApplicationContext(), "About", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                try {
+                    AlertDialogfun();
+                }catch (Exception e){
+
+                }
                 break;
 
             case 8:
@@ -305,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                //TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         }) {
 
@@ -466,6 +471,35 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             return false;
         }
         return false;
+    }
+
+
+    /**************************
+     * Custom Alert
+     *********************************/
+
+    public void AlertDialogfun() {
+        LayoutInflater li = LayoutInflater.from(MainActivity.this);
+        View promptsView = li.inflate(R.layout.dialog_about_alert, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                MainActivity.this);
+        alertDialogBuilder.setTitle("About");
+        alertDialogBuilder.setIcon(R.drawable.logo);
+        // alertDialogBuilder.setInverseBackgroundForced(#26A65B);
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        alertDialogBuilder.setCancelable(false)
+                .setNeutralButton("Done", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
     }
 
 

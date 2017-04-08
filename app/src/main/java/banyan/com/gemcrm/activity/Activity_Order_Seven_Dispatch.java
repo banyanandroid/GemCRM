@@ -1,11 +1,16 @@
 package banyan.com.gemcrm.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -18,14 +23,16 @@ import dmax.dialog.SpotsDialog;
 
 public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
 
-    TextView txt_dispatch_contact_person_name,txt_dispatch_contact_number,txt_dispatch_address_line1,txt_dispatch_address_line2,txt_dispatch_city,txt_dispatch_state,txt_dispatch_pincode,txt_dispatch_commissioning_instructions,txt_dispatch_prepared,txt_dispatch_checked,txt_dispatch_approved;
+    EditText edt_dispatch_contact_person_name, edt_dispatch_contact_number, edt_dispatch_address_line1, edt_dispatch_address_line2, edt_dispatch_city, edt_dispatch_state, edt_dispatch_pincode, edt_dispatch_commissioning_instructions, edt_dispatch_prepared, edt_dispatch_checked, edt_dispatch_approved;
 
-    Button btn_dispatch_submit;
 
-    String str_dispatch_contact_person_name,str_dispatch_contact_number,str_dispatch_address_line1,str_dispatch_address_line2,str_dispatch_city,str_dispatch_state,str_dispatch_pincode,str_customer_commissioning_instructions,str_dispatch_prepared,str_dispatch_checked,str_dispatch_approved;
+    Button btn_dispatch_submit,btn_dispatch_previous;
+
+    String str_dispatch_contact_person_name, str_dispatch_contact_number, str_dispatch_address_line1, str_dispatch_address_line2, str_dispatch_city, str_dispatch_state, str_dispatch_pincode, str_customer_commissioning_instructions, str_dispatch_prepared, str_dispatch_checked, str_dispatch_approved = "";
 
     SpotsDialog dialog;
 
+    private Toolbar mToolbar;
 
 
     @Override
@@ -33,100 +40,129 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_seventh_dispatch);
 
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         btn_dispatch_submit = (Button) findViewById(R.id.order_dispatch_submit);
+        btn_dispatch_previous=(Button)findViewById(R.id.order_dispatch_previous);
 
-        txt_dispatch_contact_person_name = (TextView) findViewById(R.id.customer_dispatch_contact_person_name);
-        txt_dispatch_contact_number = (TextView) findViewById(R.id.customer_dispatch_contact_number);
-        txt_dispatch_address_line1=(TextView)findViewById(R.id.customer_dispatch_address_line1);
-        txt_dispatch_address_line2=(TextView)findViewById(R.id.customer_dispatch_address_line2);
-        txt_dispatch_city=(TextView)findViewById(R.id.customer_dispatch_city);
-        txt_dispatch_state=(TextView)findViewById(R.id.customer_dispatch_state);
-        txt_dispatch_pincode=(TextView)findViewById(R.id.order_customer_dispatch_pincode);
-        txt_dispatch_commissioning_instructions=(TextView)findViewById(R.id.customer_dispatch_commissioning_instruction);
-        txt_dispatch_prepared=(TextView)findViewById(R.id.dispatch_prepared);
-        txt_dispatch_checked=(TextView)findViewById(R.id.dispatch_checked);
-        txt_dispatch_approved=(TextView)findViewById(R.id.dispatch_approved);
+        edt_dispatch_contact_person_name = (EditText) findViewById(R.id.customer_dispatch_contact_person_name);
+        edt_dispatch_contact_number = (EditText) findViewById(R.id.customer_dispatch_contact_number);
+        edt_dispatch_address_line1 = (EditText) findViewById(R.id.customer_dispatch_address_line1);
+        edt_dispatch_address_line2 = (EditText) findViewById(R.id.customer_dispatch_address_line2);
+        edt_dispatch_city = (EditText) findViewById(R.id.customer_dispatch_city);
+        edt_dispatch_state = (EditText) findViewById(R.id.customer_dispatch_state);
+        edt_dispatch_pincode = (EditText) findViewById(R.id.order_customer_dispatch_pincode);
+        edt_dispatch_commissioning_instructions = (EditText) findViewById(R.id.customer_dispatch_commissioning_instruction);
+        edt_dispatch_prepared = (EditText) findViewById(R.id.dispatch_prepared);
+        edt_dispatch_checked = (EditText) findViewById(R.id.dispatch_checked);
+        edt_dispatch_approved = (EditText) findViewById(R.id.dispatch_approved);
 
 
-        try {
 
-            txt_dispatch_contact_person_name.setText(str_dispatch_contact_person_name);
-            txt_dispatch_contact_number.setText(str_dispatch_contact_number);
-            txt_dispatch_address_line1.setText(str_dispatch_address_line1);
-            txt_dispatch_address_line2.setText(str_dispatch_address_line2);
-            txt_dispatch_city.setText(str_dispatch_city);
-            txt_dispatch_state.setText(str_dispatch_state);
-            txt_dispatch_pincode.setText(str_dispatch_pincode);
-            txt_dispatch_commissioning_instructions.setText(str_customer_commissioning_instructions);
-            txt_dispatch_prepared.setText(str_dispatch_prepared);
-            txt_dispatch_checked.setText(str_dispatch_checked);
-            txt_dispatch_approved.setText(str_dispatch_approved);
 
-        } catch (Exception e) {
-
-        }
         btn_dispatch_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* if (str_dispatch_contact_person_name.equals("")) {
-                    txt_dispatch_contact_person_name.setError("Please Enter Contact person name");
+
+                str_dispatch_contact_person_name = edt_dispatch_contact_person_name.getText().toString();
+                str_dispatch_contact_number = edt_dispatch_contact_number.getText().toString();
+                str_dispatch_address_line1 = edt_dispatch_address_line1.getText().toString();
+                str_dispatch_address_line2 = edt_dispatch_address_line2.getText().toString();
+                str_dispatch_city = edt_dispatch_city.getText().toString();
+                str_dispatch_state = edt_dispatch_state.getText().toString();
+                str_dispatch_pincode = edt_dispatch_pincode.getText().toString();
+                str_customer_commissioning_instructions = edt_dispatch_commissioning_instructions.getText().toString();
+                str_dispatch_prepared = edt_dispatch_prepared.getText().toString();
+                str_dispatch_checked = edt_dispatch_checked.toString();
+                str_dispatch_approved = edt_dispatch_approved.getText().toString();
+
+                if (str_dispatch_contact_person_name.equals("")) {
+                    edt_dispatch_contact_person_name.setError("Please Enter Contact person name");
                     TastyToast.makeText(getApplicationContext(), "Contact person name is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
                 } else if (str_dispatch_contact_number.equals("")) {
 
-                    txt_dispatch_contact_number.setError("Please Enter Contact number");
+                    edt_dispatch_contact_number.setError("Please Enter Contact number");
                     TastyToast.makeText(getApplicationContext(), "Contact number is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if(str_dispatch_address_line1.equals("")){
+                } else if (str_dispatch_address_line1.equals("")) {
 
-                    txt_dispatch_address_line1.setError("Please Enter dispatch address line1");
+                    edt_dispatch_address_line1.setError("Please Enter dispatch address line1");
                     TastyToast.makeText(getApplicationContext(), "dispatch address line1 is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if (str_dispatch_address_line2.equals("")){
+                } else if (str_dispatch_address_line2.equals("")) {
 
-                    txt_dispatch_address_line2.setError("Please Enter dispatch address line1");
+                    edt_dispatch_address_line2.setError("Please Enter dispatch address line1");
                     TastyToast.makeText(getApplicationContext(), " dispatch address line1 is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if(str_dispatch_city.equals("")){
+                } else if (str_dispatch_city.equals("")) {
 
-                    txt_dispatch_city.setError("Please Enter dispatch city");
+                    edt_dispatch_city.setError("Please Enter dispatch city");
                     TastyToast.makeText(getApplicationContext(), "dispatch city is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if(str_dispatch_state.equals("")){
-                    txt_dispatch_state.setError("Please Enter Customer  state");
+                } else if (str_dispatch_state.equals("")) {
+                    edt_dispatch_state.setError("Please Enter Customer  state");
                     TastyToast.makeText(getApplicationContext(), "Customer  state is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if(str_dispatch_pincode.equals("")){
-                    txt_dispatch_pincode.setError("Please Enter Customer pincode");
+                } else if (str_dispatch_pincode.equals("")) {
+                    edt_dispatch_pincode.setError("Please Enter Customer pincode");
                     TastyToast.makeText(getApplicationContext(), "Customer pincode is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if(str_customer_commissioning_instructions.equals("")){
-                    txt_dispatch_commissioning_instructions.setError("Please Enter Commissioning instructions");
+                } else if (str_customer_commissioning_instructions.equals("")) {
+                    edt_dispatch_commissioning_instructions.setError("Please Enter Commissioning instructions");
                     TastyToast.makeText(getApplicationContext(), "Commissioning instructions is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if (str_dispatch_prepared.equals("")){
-                    txt_dispatch_prepared.setError("Please Enter dispatch prepared");
+                } else if (str_dispatch_prepared.equals("")) {
+                    edt_dispatch_prepared.setError("Please Enter dispatch prepared");
                     TastyToast.makeText(getApplicationContext(), "dispatch prepared is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if (str_dispatch_checked.equals("")){
-                    txt_dispatch_checked.setError("Please Enter dispatch checked");
+                } else if (str_dispatch_checked.equals("")) {
+                    edt_dispatch_checked.setError("Please Enter dispatch checked");
                     TastyToast.makeText(getApplicationContext(), " dispatch checked id empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else if (str_dispatch_approved.equals("")){
-                    txt_dispatch_approved.setError("Please Enter  dispatch approved");
+                } else if (str_dispatch_approved.equals("")) {
+                    edt_dispatch_approved.setError("Please Enter  dispatch approved");
                     TastyToast.makeText(getApplicationContext(), "dispatch approved is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                }else {
-                    dialog = new SpotsDialog(Activity_Order_Seven_Dispatch.this);
-                    dialog.show();
+                } else {
 
-                }*/
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("str_dispatch_contact_person_name", str_dispatch_contact_person_name);
+                    editor.putString("str_dispatch_contact_number", str_dispatch_contact_number);
+                    editor.putString("str_dispatch_address_line1", str_dispatch_address_line1);
+                    editor.putString("str_dispatch_address_line2", str_dispatch_address_line2);
+                    editor.putString("str_dispatch_city", str_dispatch_city);
+                    editor.putString("str_dispatch_state", str_dispatch_state);
+                    editor.putString("str_dispatch_pincode", str_dispatch_pincode);
+                    editor.putString("str_customer_commissioning_instructions", str_customer_commissioning_instructions);
+                    editor.putString("str_dispatch_prepared", str_dispatch_prepared);
+                    editor.putString("str_dispatch_checked", str_dispatch_checked);
+                    editor.putString("str_dispatch_approved", str_dispatch_approved);
+
+                    editor.commit();
+
+
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(i);
+                    finish();
+
+
+                }
+
+
+            }
+        });
+
+        btn_dispatch_previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), Activity_Order_Six_Product_details.class);
                 startActivity(i);
                 finish();
-
 
 
             }
@@ -135,4 +171,34 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
 
     }
 
+    /**********************************
+     * Main Menu
+     *********************************/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main_ofm, menu);
+
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStateme
+        if (id == R.id.action_refresh) {
+
+
+            // GET And Set
+
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+}

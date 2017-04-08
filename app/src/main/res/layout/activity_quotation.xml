@@ -224,12 +224,11 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/quotation_date"
+                                    android:id="@+id/quotation_new_date"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right|center"
-                                    android:hint="DD/MM/YYYY"
                                     android:textColor="@color/album_title"
                                     android:textSize="14dp"
                                     android:textStyle="bold" />

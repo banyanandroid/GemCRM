@@ -28,8 +28,7 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
 
     TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_txt_addon_email, txt_enq_txt_addon_email2, txt_enq_txt_addon_email3,
             txt_enq_txt_email, txt_enq_address, txt_enq_pin, txt_enq_phone, txt_enq_conact_person,
-            txt_enq_person_phone, txt_enq_product, txt_enq_model, txt_enq_model_no, txt_enq_model_type, txt_enq_product_qty,
-            txt_enq_price, txt_enq_discount, txt_enq_description, txt_enq_enq_through, txt_enq_enq_thro_des, txt_enq_status, txt_enq_remark;
+            txt_enq_person_phone, txt_enq_product, txt_enq_discount, txt_enq_description, txt_enq_enq_through, txt_enq_enq_thro_des, txt_enq_status, txt_enq_remark;
 
     private Toolbar mToolbar;
 
@@ -55,13 +54,7 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
         txt_enq_phone = (TextView) findViewById(R.id.enq_des_txt_comp_phone);
         txt_enq_conact_person = (TextView) findViewById(R.id.enq_des_txt_conact_person);
         txt_enq_person_phone = (TextView) findViewById(R.id.enq_des_txt_contact_person_phone);
-        txt_enq_product = (TextView) findViewById(R.id.enq_des_txt_product);
-        txt_enq_model = (TextView) findViewById(R.id.enq_des_txt_product_model);
-        txt_enq_model_no = (TextView) findViewById(R.id.enq_des_txt_model_no);
-        txt_enq_model_type = (TextView) findViewById(R.id.enq_des_txt_model_type);
-        txt_enq_product_qty = (TextView) findViewById(R.id.enq_des_txt_product_qty);
-        txt_enq_price = (TextView) findViewById(R.id.enq_des_txt_price);
-        txt_enq_discount = (TextView) findViewById(R.id.enq_des_txt_discount);
+        txt_enq_product = (TextView) findViewById(R.id.enq_des_txt_product);        txt_enq_discount = (TextView) findViewById(R.id.enq_des_txt_discount);
         txt_enq_description = (TextView) findViewById(R.id.enq_des_txt_description);
         txt_enq_enq_through = (TextView) findViewById(R.id.enq_des_txt_enq_through);
         txt_enq_enq_thro_des = (TextView) findViewById(R.id.enq_des_txt_enq_thro_des);
@@ -143,11 +136,6 @@ public class Activity_Enquiry_Description extends AppCompatActivity {
             txt_enq_conact_person.setText(str_select_person_name);
             txt_enq_person_phone.setText(str_select_person_number);
             txt_enq_product.setText(str_select_produc_series);
-            txt_enq_model.setText(str_select_model);
-            txt_enq_model_no.setText(str_select_modelno);
-            txt_enq_model_type.setText(str_select_pro_type);
-            txt_enq_product_qty.setText(str_select_prod_qty);
-            txt_enq_price.setText(str_select_price);
             txt_enq_discount.setText(str_select_discount);
             txt_enq_description.setText(str_select_desc);
             txt_enq_enq_through.setText(str_select_enq_throu);

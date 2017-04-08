@@ -2827,7 +2827,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center|left"
-                        android:text="Enquiry Number"
+                        android:text="Quotation Number"
                         android:textColor="@color/white"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -3008,14 +3008,47 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/enq_process_linear_ponumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="P.O Number"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/enq_process_po_number"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:hint=""
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textColor="@color/album_title" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/linear_image_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:background="@drawable/bg_parent_rounded_corner"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:orientation="vertical"
+                    android:visibility="gone"
                     android:weightSum="2">
 
                     <TextView
@@ -3053,7 +3086,7 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_weight="1"
                         android:background="@color/colorAccent"
-                        android:text="Send Catalog"
+                        android:text="Send Catalogue"
                         android:textColor="@color/white"
                         android:textSize="16dp"
                         android:textStyle="bold" />

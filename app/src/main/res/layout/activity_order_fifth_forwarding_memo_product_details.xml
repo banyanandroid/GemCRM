@@ -46,6 +46,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_application"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -74,6 +75,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_insurance"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -102,6 +104,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_freight_terms"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -130,6 +133,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_payment_terms"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -158,6 +162,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_credit_days"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -178,8 +183,7 @@
                     android:text="Others"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/edt_others"
@@ -187,7 +191,7 @@
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_parent_rounded_corner"
-                    android:hint="Please mention here" />
+                    android:hint="     Please mention here" />
 
             </LinearLayout>
 
@@ -213,6 +217,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_PBG_ABG"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -241,6 +246,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_inspesction"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -269,6 +275,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_LD_clause"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -289,8 +296,7 @@
                     android:text="If LD Clause Applicable "
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/edt_ld_clause_description"
@@ -298,7 +304,7 @@
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_parent_rounded_corner"
-                    android:hint="Please describe here in detail" />
+                    android:hint="    Please describe here" />
 
             </LinearLayout>
 
@@ -324,6 +330,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_permit"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -352,6 +359,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:entries="@array/form5_commission_to"
                     android:popupBackground="@color/colorPrimary"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
@@ -426,7 +434,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    />
 
                 <EditText
                     android:id="@+id/edt_logistics_preferred"
@@ -434,7 +442,8 @@
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_parent_rounded_corner"
-                    android:hint="Please describe here in detail" />
+                    android:hint="    Please describe here"
+                    android:inputType="text" />
 
             </LinearLayout>
 

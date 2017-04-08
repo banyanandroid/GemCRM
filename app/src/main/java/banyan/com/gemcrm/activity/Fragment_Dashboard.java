@@ -71,7 +71,7 @@ public class Fragment_Dashboard extends Fragment {
     public static final String TAG_TARGET_VAR = "user_target_var";
     public static final String TAG_ACHIVE_VAR = "user_acheived_var";
     public static final String TAG_TARGET_SMALL_PROD = "user_small_products";
-    public static final String TAG_ACHIVE_SMALL_PROD = "user_small_products";
+    public static final String TAG_ACHIVE_SMALL_PROD = "user_acheived_small";
 
     public static final String TAG_ENQ_TARGET = "enquiry_target";
     public static final String TAG_TOTAL_ENQUIRY = "totalenq";
@@ -428,8 +428,8 @@ public class Fragment_Dashboard extends Fragment {
                 try {
                     JSONObject obj = new JSONObject(response);
 
-                    String year_achive = obj.getString(TAG_YEARLY_TARGET);
-                    String year_target = obj.getString(TAG_YEARLY_ACHIVE);
+                    String year_achive = obj.getString(TAG_YEARLY_ACHIVE);
+                    String year_target = obj.getString(TAG_YEARLY_TARGET);
 
                     try {
                         txt_year_achive.setText("" + year_achive);

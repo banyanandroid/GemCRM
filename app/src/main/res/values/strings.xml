@@ -55,7 +55,6 @@
     </string-array>
 
     <string-array name="enq_process">
-        <item>New Quotation</item>
         <item>Another Quotation</item>
         <item>Appointment</item>
         <item>Call With TL</item>
@@ -71,6 +70,72 @@
     <string-array name="gadiagram">
         <item>Yes</item>
         <item>No</item>
+    </string-array>
+
+    <string-array name="form5_application">
+        <item>NA</item>
+        <item>C-FORM</item>
+        <item>FORM-H</item>
+        <item>FORM-I</item>
+        <item>CT-1</item>
+        <item>CT-3</item>
+        <item>SEZ</item>
+        <item>100% EOU</item>
+    </string-array>
+
+    <string-array name="form5_insurance">
+        <item>Applicable</item>
+        <item>Not Applicable</item>
+    </string-array>
+    <string-array name="form5_freight_terms">
+        <item>CFR/TOPAY</item>
+        <item>CIF/FRIEGHT &amp; INSURANCE PAID</item>
+        <item>CIP/CARRIAGE &amp;INSURANCE PAID TO</item>
+        <item>FOB/FREE ON BOARD</item>
+        <item>EXW/EX-WORKS</item>
+        <item>OTH/OTHERS</item>
+    </string-array>
+    <string-array name="form5_payment_terms">
+        <item>30 ADV ,70 PROFORMA</item>
+        <item>100 PROFORMA</item>
+    </string-array>
+    <string-array name="form5_credit_days">
+        <item>7</item>
+        <item>15</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+        <item>90</item>
+    </string-array>
+    <string-array name="form5_PBG_ABG">
+        <item>Applicable</item>
+        <item>Not Applicable</item>
+    </string-array>
+
+    <string-array name="form5_inspesction">
+        <item>Applicable</item>
+        <item>Not Applicable</item>
+    </string-array>
+
+    <string-array name="form5_LD_clause">
+        <item>Applicable</item>
+        <item>Not Applicable</item>
+    </string-array>
+
+    <string-array name="form5_permit">
+        <item>NA</item>
+        <item>Road Permit</item>
+        <item>E-Sugam</item>
+        <item>Form 403</item>
+        <item>Form 8</item>
+        <item>Declaration</item>
+    </string-array>
+
+    <string-array name="form5_commission_to">
+        <item>NA</item>
+        <item>TPC</item>
+        <item>Dealer</item>
+        <item>Customer</item>
     </string-array>
 
 </resources>

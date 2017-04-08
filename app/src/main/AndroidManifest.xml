@@ -118,7 +118,7 @@
 
         <activity
             android:name=".activity.Activity_Send_Catelog"
-            android:label="Task Update"
+            android:label="Send Catalogue"
             android:screenOrientation="portrait"></activity>
 
 

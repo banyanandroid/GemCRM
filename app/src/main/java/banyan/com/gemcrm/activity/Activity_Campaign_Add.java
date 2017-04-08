@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
@@ -66,11 +67,16 @@ public class Activity_Campaign_Add extends BaseActivity_Appoinment implements Ad
     SpotsDialog dialog;
     public static RequestQueue queue;
 
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         enterFromBottomAnimation();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_campaign);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         isInternetOn();
 

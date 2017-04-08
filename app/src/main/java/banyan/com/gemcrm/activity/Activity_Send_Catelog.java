@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +76,8 @@ public class Activity_Send_Catelog extends AppCompatActivity {
 
     String TAG = "add task";
 
+    private Toolbar mToolbar;
+
     public static final String TAG_CAT_ID = "catlogue_id";
     public static final String TAG_CAT_Name = "catlogue_name";
 
@@ -82,6 +85,9 @@ public class Activity_Send_Catelog extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_catalog);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         isInternetOn();
 

@@ -61,7 +61,14 @@ public class Appointment_Adapter extends BaseAdapter {
         HashMap<String, String> result = new HashMap<String, String>();
         result = data.get(position);
 
-        app_initial.setText(result.get(Fragment_Appointments.TAG_Appoint_with).substring(0,1));
+        try {
+
+            app_initial.setText(result.get(Fragment_Appointments.TAG_Appoint_with).substring(0,1));
+
+        }catch (Exception e) {
+
+        }
+
         app_with.setText(result.get(Fragment_Appointments.TAG_Appoint_with));
         app_location.setText(result.get(Fragment_Appointments.TAG_Appoint_Location));
         app_des.setText(result.get(Fragment_Appointments.TAG_Appoint_Des));
