@@ -9,8 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -18,439 +22,259 @@ import banyan.com.gemcrm.R;
 
 /**
  * Created by Schan on 26-Mar-17.
- */
+ **/
 
 public class Activity_Order_Six_Product_details extends AppCompatActivity {
 
-    EditText edt_model_one, edt_model_two, edt_model_three, edt_model_four, edt_model_five, edt_model_six,
-            edt_sap_code_one, edt_sap_code_two, edt_sap_code_three, edt_sap_code_four, edt_sap_code_five, edt_sap_code_six,
-            edt_desc_one, edt_desc_two, edt_desc_three, edt_desc_four, edt_desc_five, edt_desc_six,
-            edt_quantity_one, edt_quantity_two, edt_quantity_three, edt_quantity_four, edt_quantity_five, edt_quantity_six,
-            edt_list_price_one, edt_list_price_two, edt_list_price_three, edt_list_price_four, edt_list_price_five, edt_list_price_six,
-            edt_discount_one, edt_discount_two, edt_discount_three, edt_discount_four, edt_discount_five, edt_discount_six,
-            edt_actual_price_one, edt_actual_price_two, edt_actual_price_three, edt_actual_price_four, edt_actual_price_five, edt_actual_price_six,
-            edt_req_date_one, edt_req_date_two, edt_req_date_three, edt_req_date_four, edt_req_date_five, edt_req_date_six,
+    Button btn_next, btn_previous;
 
-    edt_note, edt_total_value, edt_p_and_f, edt_VAT_CET, edt_BET, edt_freight_amount, edt_insurance, edt_grand_total;
+    EditText edt_others, edt_ld_clause_desc, edt_commission, edt_commission_value, edt_logistics_preferred;
 
-    Button btn_previous, btn_next;
+    Spinner spn_form_applicable, spn_insurance, spn_freight_terms,
+            spn_payment_terms, spn_credit_days, spn_pbg_abg, spn_inspection,
+            spn_ld_clause, spn_permit, spn_commission_to;
 
-    String str_model_one, str_model_two, str_model_three, str_model_four, str_model_five, str_model_six,
-            str_sap_code_one, str_sap_code_two, str_sap_code_three, str_sap_code_four, str_sap_code_five, str_sap_code_six,
-            str_desc_one, str_desc_two, str_desc_three, str_desc_four, str_desc_five, str_desc_six,
-            str_quantity_one, str_quantity_two, str_quantity_three, str_quantity_four, str_quantity_five, str_quantity_six,
-            str_list_price_one, str_list_price_two, str_list_price_three, str_list_price_four, str_list_price_five, str_list_price_six,
-            str_discount_one, str_discount_two, str_discount_three, str_discount_four, str_discount_five, str_discount_six,
-            str_actual_price_one, str_actual_price_two, str_actual_price_three, str_actual_price_four, str_actual_price_five, str_actual_price_six,
-            str_req_date_one, str_req_date_two, str_req_date_three, str_req_date_four, str_req_date_five, str_req_date_six,
+    String str_others, str_ld_clause_desc, str_commission, str_commission_value, str_logistics_preferred,
+            str_form_applicable, str_form_five_insurance, str_freight_terms, str_payment_terms, str_credit_days,
+            str_pbg_abg, str_inspection, str_ld_clause, str_permit, str_commission_to = "";
 
-    str_note, str_total_value, str_p_and_f, str_VAT_CET, str_BET, str_freight_amount, str_form_six_insurance, str_grand_total = "";
+    String str_others_up, str_ld_clause_desc_up, str_commission_up, str_commission_value_up, str_logistics_preferred_up,
+            str_form_applicable_up, str_form_five_insurance_up, str_freight_terms_up, str_payment_terms_up, str_credit_days_up,
+            str_pbg_abg_up, str_inspection_up, str_ld_clause_up, str_permit_up, str_commission_to_up = "";
+
+
+    LinearLayout linear_other, linear_credit_days , linear_ld_claues ,
+            linear_commission_percent , linear_commission_value;
+
 
     private Toolbar mToolbar;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_sixth_forwarding_memo_product_details);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        edt_model_one = (EditText) findViewById(R.id.prod_dtl_edt_model_one);
-        edt_model_two = (EditText) findViewById(R.id.prod_dtl_edt_model_two);
-        edt_model_three = (EditText) findViewById(R.id.prod_dtl_edt_model_three);
-        edt_model_four = (EditText) findViewById(R.id.prod_dtl_edt_model_four);
-        edt_model_five = (EditText) findViewById(R.id.prod_dtl_edt_model_five);
-        edt_model_six = (EditText) findViewById(R.id.prod_dtl_edt_model_six);
+        //EditText
+        edt_others = (EditText) findViewById(R.id.edt_others);
+        edt_ld_clause_desc = (EditText) findViewById(R.id.edt_ld_clause_description);
+        edt_commission = (EditText) findViewById(R.id.edt_commission_percent);
+        edt_commission_value = (EditText) findViewById(R.id.edt_commission_value);
+        edt_logistics_preferred = (EditText) findViewById(R.id.edt_logistics_preferred);
 
-        edt_sap_code_one = (EditText) findViewById(R.id.prod_dtl_edt_sap_code_one);
-        edt_sap_code_two = (EditText) findViewById(R.id.prod_dtl_edt_sap_code_two);
-        edt_sap_code_three = (EditText) findViewById(R.id.prod_dtl_edt_sap_code_three);
-        edt_sap_code_four = (EditText) findViewById(R.id.prod_dtl_edt_sap_code_four);
-        edt_sap_code_five = (EditText) findViewById(R.id.prod_dtl_edt_sap_code_five);
-        edt_sap_code_six = (EditText) findViewById(R.id.prod_dtl_edt_sap_code_six);
+        linear_credit_days = (LinearLayout) findViewById(R.id.form_sixth_linear_credit_days);
+        linear_other = (LinearLayout) findViewById(R.id.form_sixth_linear_credit_others);
 
-        edt_desc_one = (EditText) findViewById(R.id.prod_dtl_edt_desc_one);
-        edt_desc_two = (EditText) findViewById(R.id.prod_dtl_edt_desc_two);
-        edt_desc_three = (EditText) findViewById(R.id.prod_dtl_edt_desc_three);
-        edt_desc_four = (EditText) findViewById(R.id.prod_dtl_edt_desc_four);
-        edt_desc_five = (EditText) findViewById(R.id.prod_dtl_edt_desc_five);
-        edt_desc_six = (EditText) findViewById(R.id.prod_dtl_edt_desc_six);
+        linear_ld_claues = (LinearLayout) findViewById(R.id.form_six_linear_if_ld_clause_applicable);
+        linear_commission_percent = (LinearLayout) findViewById(R.id.form_six_linear_commission_percent);
+        linear_commission_value = (LinearLayout) findViewById(R.id.form_six_linear_commission_value);
 
-        edt_quantity_one = (EditText) findViewById(R.id.prod_dtl_edt_quantity_one);
-        edt_quantity_two = (EditText) findViewById(R.id.prod_dtl_edt_quantity_two);
-        edt_quantity_three = (EditText) findViewById(R.id.prod_dtl_edt_quantity_three);
-        edt_quantity_four = (EditText) findViewById(R.id.prod_dtl_edt_quantity_four);
-        edt_quantity_five = (EditText) findViewById(R.id.prod_dtl_edt_quantity_five);
-        edt_quantity_six = (EditText) findViewById(R.id.prod_dtl_edt_quantity_six);
 
-        edt_list_price_one = (EditText) findViewById(R.id.prod_dtl_edt_list_price_one);
-        edt_list_price_two = (EditText) findViewById(R.id.prod_dtl_edt_list_price_two);
-        edt_list_price_three = (EditText) findViewById(R.id.prod_dtl_edt_list_price_three);
-        edt_list_price_four = (EditText) findViewById(R.id.prod_dtl_edt_list_price_four);
-        edt_list_price_five = (EditText) findViewById(R.id.prod_dtl_edt_list_price_five);
-        edt_list_price_six = (EditText) findViewById(R.id.prod_dtl_edt_list_price_six);
+        //Button
+        btn_previous = (Button) findViewById(R.id.btn_previous);
+        btn_next = (Button) findViewById(R.id.btn_next);
+        //Spinner
+        spn_form_applicable = (Spinner) findViewById(R.id.spn_form_applicable);
+        spn_insurance = (Spinner) findViewById(R.id.spn_insurance);
+        spn_freight_terms = (Spinner) findViewById(R.id.spn_freight_terms);
+        spn_payment_terms = (Spinner) findViewById(R.id.spn_payment_terms);
+        spn_credit_days = (Spinner) findViewById(R.id.spn_credit_days);
+        spn_pbg_abg = (Spinner) findViewById(R.id.spn_pbg_abg);
+        spn_inspection = (Spinner) findViewById(R.id.spn_inspesction);
+        spn_ld_clause = (Spinner) findViewById(R.id.spn_ld_clause);
+        spn_permit = (Spinner) findViewById(R.id.spn_permit);
+        spn_commission_to = (Spinner) findViewById(R.id.spn_commission_to);
 
-        edt_discount_one = (EditText) findViewById(R.id.prod_dtl_edt_discount_one);
-        edt_discount_two = (EditText) findViewById(R.id.prod_dtl_edt_discount_two);
-        edt_discount_three = (EditText) findViewById(R.id.prod_dtl_edt_discount_three);
-        edt_discount_four = (EditText) findViewById(R.id.prod_dtl_edt_discount_four);
-        edt_discount_five = (EditText) findViewById(R.id.prod_dtl_edt_discount_five);
-        edt_discount_six = (EditText) findViewById(R.id.prod_dtl_edt_discount_six);
 
-        edt_actual_price_one = (EditText) findViewById(R.id.prod_dtl_edt_actual_price_one);
-        edt_actual_price_two = (EditText) findViewById(R.id.prod_dtl_edt_actual_price_two);
-        edt_actual_price_three = (EditText) findViewById(R.id.prod_dtl_edt_actual_price_three);
-        edt_actual_price_four = (EditText) findViewById(R.id.prod_dtl_edt_actual_price_four);
-        edt_actual_price_five = (EditText) findViewById(R.id.prod_dtl_edt_actual_price_five);
-        edt_actual_price_six = (EditText) findViewById(R.id.prod_dtl_edt_actual_price_six);
+        /*********************************************
+         *  Spinner Onclick
+         * ********************************************/
 
-        edt_req_date_one = (EditText) findViewById(R.id.prod_dtl_edt_req_date_one);
-        edt_req_date_two = (EditText) findViewById(R.id.prod_dtl_edt_req_date_two);
-        edt_req_date_three = (EditText) findViewById(R.id.prod_dtl_edt_req_date_three);
-        edt_req_date_four = (EditText) findViewById(R.id.prod_dtl_edt_req_date_four);
-        edt_req_date_five = (EditText) findViewById(R.id.prod_dtl_edt_req_date_five);
-        edt_req_date_six = (EditText) findViewById(R.id.prod_dtl_edt_req_date_six);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Activity_Order_Six_Product_details.this, R.array.form5_payment_terms, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_payment_terms.setAdapter(adapter);
+        // Spinner GAD Interface
+        spn_payment_terms.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-        edt_note = (EditText) findViewById(R.id.prod_dtl_edt_note);
-        edt_total_value = (EditText) findViewById(R.id.prod_dtl_edt_total_value);
-        edt_p_and_f = (EditText) findViewById(R.id.prod_dtl_edt_pf);
-        edt_VAT_CET = (EditText) findViewById(R.id.prod_dtl_edt_vat_cst);
-        edt_BET = (EditText) findViewById(R.id.prod_dtl_edt_bed);
-        edt_freight_amount = (EditText) findViewById(R.id.prod_dtl_edt_freight_amount);
-        edt_insurance = (EditText) findViewById(R.id.prod_dtl_edt_insurance);
-        edt_grand_total = (EditText) findViewById(R.id.prod_dtl_edt_grand_total);
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-        btn_previous = (Button) findViewById(R.id.prod_dtl_btn_previous);
-        btn_next = (Button) findViewById(R.id.prod_dtl_btn_next);
+                str_payment_terms = parent.getItemAtPosition(pos).toString();
+
+                if (str_payment_terms.equals("Credit days")){
+
+                    linear_credit_days.setVisibility(View.VISIBLE);
+                    linear_other.setVisibility(View.GONE);
+
+                    str_credit_days = String.valueOf(spn_credit_days.getSelectedItem());
+
+                }else  if(str_payment_terms.equals("Others")){
+
+                    linear_credit_days.setVisibility(View.GONE);
+                    linear_other.setVisibility(View.VISIBLE);
+
+                    str_others = edt_others.getText().toString();
+
+                }else {
+
+                    linear_credit_days.setVisibility(View.GONE);
+                    linear_other.setVisibility(View.GONE);
+
+                    str_credit_days = "Nil";
+                    str_others = "Nil";
+
+
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+        ArrayAdapter<CharSequence> adapter_two = ArrayAdapter.createFromResource(Activity_Order_Six_Product_details.this, R.array.form5_LD_clause, android.R.layout.simple_spinner_item);
+        adapter_two.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_ld_clause.setAdapter(adapter_two);
+        // Spinner GAD Interface
+        spn_ld_clause.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                str_ld_clause = parent.getItemAtPosition(pos).toString();
+
+                if (str_ld_clause.equals("Applicable")){
+
+                    linear_ld_claues.setVisibility(View.VISIBLE);
+
+                    str_ld_clause_desc = edt_ld_clause_desc.getText().toString();
+
+
+                }else if (str_ld_clause.equals("Not Applicable")) {
+
+                    linear_ld_claues.setVisibility(View.GONE);
+
+                    str_ld_clause_desc = "Nil";
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+
+        ArrayAdapter<CharSequence> adapter_commission = ArrayAdapter.createFromResource(Activity_Order_Six_Product_details.this, R.array.form5_commission_to, android.R.layout.simple_spinner_item);
+        adapter_commission.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_commission_to.setAdapter(adapter_commission);
+        // Spinner GAD Interface
+        spn_commission_to.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                str_commission_to = parent.getItemAtPosition(pos).toString();
+
+                if (str_commission_to.equals("NA")){
+
+                    linear_commission_percent.setVisibility(View.GONE);
+                    linear_commission_value.setVisibility(View.GONE);
+
+                    str_commission = "Nil";
+                    str_commission_value = "Nil";
+                    str_logistics_preferred = "Nil";
+
+
+                }else {
+
+                    linear_commission_percent.setVisibility(View.VISIBLE);
+                    linear_commission_value.setVisibility(View.VISIBLE);
+
+                    str_commission = edt_commission.getText().toString();
+                    str_commission_value = edt_commission_value.getText().toString();
+                    str_logistics_preferred = edt_logistics_preferred.getText().toString();
+
+
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Another interface callback
+            }
+
+        });
+
+
 
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                str_model_one = edt_model_one.getText().toString();
-                str_model_two = edt_model_two.getText().toString();
-                str_model_three = edt_model_three.getText().toString();
-                str_model_four = edt_model_four.getText().toString();
-                str_model_five = edt_model_five.getText().toString();
-                str_model_six = edt_model_six.getText().toString();
-
-                str_sap_code_one = edt_sap_code_one.getText().toString();
-                str_sap_code_two = edt_sap_code_two.getText().toString();
-                str_sap_code_three = edt_sap_code_three.getText().toString();
-                str_sap_code_four = edt_sap_code_four.getText().toString();
-                str_sap_code_five = edt_sap_code_five.getText().toString();
-                str_sap_code_six = edt_sap_code_six.getText().toString();
-
-                str_desc_one = edt_desc_one.getText().toString();
-                str_desc_two = edt_desc_two.getText().toString();
-                str_desc_three = edt_desc_three.getText().toString();
-                str_desc_four = edt_desc_four.getText().toString();
-                str_desc_five = edt_desc_five.getText().toString();
-                str_desc_six = edt_desc_six.getText().toString();
-
-                str_quantity_one = edt_quantity_one.getText().toString();
-                str_quantity_two = edt_quantity_two.getText().toString();
-                str_quantity_three = edt_quantity_three.getText().toString();
-                str_quantity_four = edt_quantity_four.getText().toString();
-                str_quantity_five = edt_quantity_five.getText().toString();
-                str_quantity_six = edt_quantity_six.getText().toString();
-
-                str_list_price_one = edt_list_price_one.getText().toString();
-                str_list_price_two = edt_list_price_two.getText().toString();
-                str_list_price_three = edt_list_price_three.getText().toString();
-                str_list_price_four = edt_list_price_four.getText().toString();
-                str_list_price_five = edt_list_price_five.getText().toString();
-                str_list_price_six = edt_list_price_six.getText().toString();
-
-                str_discount_one = edt_discount_one.getText().toString();
-                str_discount_two = edt_discount_two.getText().toString();
-                str_discount_three = edt_discount_three.getText().toString();
-                str_discount_four = edt_discount_four.getText().toString();
-                str_discount_five = edt_discount_five.getText().toString();
-                str_discount_six = edt_discount_six.getText().toString();
-
-                str_actual_price_one = edt_actual_price_one.getText().toString();
-                str_actual_price_two = edt_actual_price_two.getText().toString();
-                str_actual_price_three = edt_actual_price_three.getText().toString();
-                str_actual_price_four = edt_actual_price_four.getText().toString();
-                str_actual_price_five = edt_actual_price_five.getText().toString();
-                str_actual_price_six = edt_actual_price_six.getText().toString();
-
-                str_req_date_one = edt_req_date_one.getText().toString();
-                str_req_date_two = edt_req_date_two.getText().toString();
-                str_req_date_three = edt_req_date_three.getText().toString();
-                str_req_date_four = edt_req_date_four.getText().toString();
-                str_req_date_five = edt_req_date_five.getText().toString();
-                str_req_date_six = edt_req_date_six.getText().toString();
-
-                str_note = edt_note.getText().toString();
-                str_total_value = edt_total_value.getText().toString();
-                str_p_and_f = edt_p_and_f.getText().toString();
-                str_VAT_CET = edt_VAT_CET.getText().toString();
-                str_BET = edt_BET.getText().toString();
-                str_freight_amount = edt_freight_amount.getText().toString();
-                str_form_six_insurance = edt_insurance.getText().toString();
-                str_grand_total = edt_grand_total.getText().toString();
+                //Getting SPINNER values in String
+                str_form_applicable = String.valueOf(spn_form_applicable.getSelectedItem());
+                str_form_five_insurance = String.valueOf(spn_insurance.getSelectedItem());
+                str_freight_terms = String.valueOf(spn_freight_terms.getSelectedItem());
 
 
-                if (str_model_one.equals("")) {
-                    edt_model_one.setError("Please Enter Model name for Product One");
-                    TastyToast.makeText(getApplicationContext(), "Model name for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_model_two.equals("")) {
-                    edt_model_two.setError("Please Enter Model name for Product Two");
-                    TastyToast.makeText(getApplicationContext(), "Model name for Product Two is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_model_three.equals("")) {
-                    edt_model_three.setError("Please Enter Model name for Product Three");
-                    TastyToast.makeText(getApplicationContext(), "Model name for Product Three is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_model_four.equals("")) {
-                    edt_model_four.setError("Please Enter Model name for Product Four");
-                    TastyToast.makeText(getApplicationContext(), "Model name for Product Four is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_model_five.equals("")) {
-                    edt_model_five.setError("Please Enter Model name for Product Five");
-                    TastyToast.makeText(getApplicationContext(), "Model name for Product Five is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_model_six.equals("")) {
-                    edt_model_six.setError("Please Enter Model name for Product Six");
-                    TastyToast.makeText(getApplicationContext(), "Model name for Product Six is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                // SAP CODE
-                else if (str_sap_code_one.equals("")) {
-                    edt_sap_code_one.setError("Please Enter SAP Code for Product One");
-                    TastyToast.makeText(getApplicationContext(), "SAP Code for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_sap_code_two.equals("")) {
-                    edt_sap_code_two.setError("Please Enter SAP Code for Product Two");
-                    TastyToast.makeText(getApplicationContext(), "SAP Code for Product Two is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_sap_code_three.equals("")) {
-                    edt_sap_code_three.setError("Please Enter SAP Code for Product Three");
-                    TastyToast.makeText(getApplicationContext(), "SAP Code for Product Three is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_sap_code_four.equals("")) {
-                    edt_sap_code_four.setError("Please Enter SAP Code for Product Four");
-                    TastyToast.makeText(getApplicationContext(), "SAP Code for Product Four is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_sap_code_five.equals("")) {
-                    edt_sap_code_five.setError("Please Enter SAP Code for Product Five");
-                    TastyToast.makeText(getApplicationContext(), "SAP Code for Product Five is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_sap_code_six.equals("")) {
-                    edt_sap_code_six.setError("Please Enter SAP Code for Product Six");
-                    TastyToast.makeText(getApplicationContext(), "SAP Code for Product Six is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                // DESCRIPTION
-                else if (str_desc_one.equals("")) {
-                    edt_desc_one.setError("Please Enter Description for Product One");
-                    TastyToast.makeText(getApplicationContext(), "Description for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_desc_two.equals("")) {
-                    edt_desc_two.setError("Please Enter Description for Product Two");
-                    TastyToast.makeText(getApplicationContext(), "Description for Product Two is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_desc_three.equals("")) {
-                    edt_desc_three.setError("Please Enter Description for Product Three");
-                    TastyToast.makeText(getApplicationContext(), "Description for Product Three is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_desc_four.equals("")) {
-                    edt_desc_four.setError("Please Enter Description for Product Four");
-                    TastyToast.makeText(getApplicationContext(), "Description for Product Four is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_desc_five.equals("")) {
-                    edt_desc_five.setError("Please Enter Description for Product Five");
-                    TastyToast.makeText(getApplicationContext(), "Description for Product Five is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_desc_six.equals("")) {
-                    edt_desc_six.setError("Please Enter Description for Product Six");
-                    TastyToast.makeText(getApplicationContext(), "Description for Product Six is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                //QUANTITY
-                else if (str_quantity_one.equals("")) {
-                    edt_quantity_one.setError("Please Enter Qunatity for Product One");
-                    TastyToast.makeText(getApplicationContext(), "Qunatity for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_quantity_two.equals("")) {
-                    edt_quantity_two.setError("Please Enter Qunatity for Product Two");
-                    TastyToast.makeText(getApplicationContext(), "Qunatity for Product Two is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_quantity_three.equals("")) {
-                    edt_quantity_three.setError("Please Enter Qunatity for Product Three");
-                    TastyToast.makeText(getApplicationContext(), "Qunatity for Product Three is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_quantity_four.equals("")) {
-                    edt_quantity_four.setError("Please Enter Qunatity for Product Four");
-                    TastyToast.makeText(getApplicationContext(), "Qunatity for Product Four is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_quantity_five.equals("")) {
-                    edt_quantity_five.setError("Please Enter Qunatity for Product Five");
-                    TastyToast.makeText(getApplicationContext(), "Qunatity for Product Five is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_quantity_six.equals("")) {
-                    edt_quantity_six.setError("Please Enter Qunatity for Product Six");
-                    TastyToast.makeText(getApplicationContext(), "Qunatity for Product Six is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                //LIST_PRICE
-                else if (str_list_price_one.equals("")) {
-                    edt_list_price_one.setError("Please Enter List Price for Product One");
-                    TastyToast.makeText(getApplicationContext(), "List Price for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_list_price_two.equals("")) {
-                    edt_list_price_two.setError("Please Enter List Price for Product Two");
-                    TastyToast.makeText(getApplicationContext(), "List Price for Product Two is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_list_price_three.equals("")) {
-                    edt_list_price_three.setError("Please Enter List Price for Product Three");
-                    TastyToast.makeText(getApplicationContext(), "List Price for Product Three is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_list_price_four.equals("")) {
-                    edt_list_price_four.setError("Please Enter List Price for Product Four");
-                    TastyToast.makeText(getApplicationContext(), "List Price for Product Four is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_list_price_five.equals("")) {
-                    edt_list_price_five.setError("Please Enter List Price for Product Five");
-                    TastyToast.makeText(getApplicationContext(), "List Price for Product Five is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_list_price_six.equals("")) {
-                    edt_list_price_six.setError("Please Enter List Price for Product Six");
-                    TastyToast.makeText(getApplicationContext(), "List Price for Product Six is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                //DISCOUNT
-                else if (str_discount_one.equals("")) {
-                    edt_discount_one.setError("Please Enter Discount for Product One");
-                    TastyToast.makeText(getApplicationContext(), "Discount for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_discount_two.equals("")) {
-                    edt_discount_two.setError("Please Enter Discount for Product Two");
-                    TastyToast.makeText(getApplicationContext(), "Discount for Product Two is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_discount_three.equals("")) {
-                    edt_discount_three.setError("Please Enter Discount for Product Three");
-                    TastyToast.makeText(getApplicationContext(), "Discount for Product Three is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_discount_four.equals("")) {
-                    edt_discount_four.setError("Please Enter Discount for Product Four");
-                    TastyToast.makeText(getApplicationContext(), "Discount for Product Four is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_discount_five.equals("")) {
-                    edt_discount_five.setError("Please Enter Discount for Product Five");
-                    TastyToast.makeText(getApplicationContext(), "Discount for Product Five is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_discount_six.equals("")) {
-                    edt_discount_six.setError("Please Enter Discount for Product Six");
-                    TastyToast.makeText(getApplicationContext(), "Discount for Product Six is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                //ACTUAL_PRICE
-                else if (str_actual_price_one.equals("")) {
-                    edt_actual_price_one.setError("Please Enter Actual Price for Product One");
-                    TastyToast.makeText(getApplicationContext(), "Actual Price for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_actual_price_two.equals("")) {
-                    edt_actual_price_two.setError("Please Enter Actual Price for Product Two");
-                    TastyToast.makeText(getApplicationContext(), "Actual Price for Product Two is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_actual_price_three.equals("")) {
-                    edt_actual_price_three.setError("Please Enter Actual Price for Product Three");
-                    TastyToast.makeText(getApplicationContext(), "Actual Price for Product Three is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_actual_price_four.equals("")) {
-                    edt_actual_price_four.setError("Please Enter Actual Price for Product Four");
-                    TastyToast.makeText(getApplicationContext(), "Actual Price for Product Four is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_actual_price_five.equals("")) {
-                    edt_actual_price_five.setError("Please Enter Actual Price for Product Five");
-                    TastyToast.makeText(getApplicationContext(), "Actual Price for Product Five is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_actual_price_six.equals("")) {
-                    edt_actual_price_six.setError("Please Enter Actual Price for Product Six");
-                    TastyToast.makeText(getApplicationContext(), "Actual Price for Product Six is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                //REQUIRED_DATE
-                else if (str_req_date_one.equals("")) {
-                    edt_req_date_one.setError("Please Enter Recquired Date for Product One");
-                    TastyToast.makeText(getApplicationContext(), "Recquired Date for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_req_date_two.equals("")) {
-                    edt_req_date_two.setError("Please Enter Recquired Date for Product Two");
-                    TastyToast.makeText(getApplicationContext(), "Recquired Date for Product Two is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_req_date_three.equals("")) {
-                    edt_req_date_three.setError("Please Enter Recquired Date for Product Three");
-                    TastyToast.makeText(getApplicationContext(), "Recquired Date for Product Three is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_req_date_four.equals("")) {
-                    edt_req_date_four.setError("Please Enter Recquired Date for Product Four");
-                    TastyToast.makeText(getApplicationContext(), "Recquired Date for Product Four is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_req_date_five.equals("")) {
-                    edt_req_date_five.setError("Please Enter Recquired Date for Product Five");
-                    TastyToast.makeText(getApplicationContext(), "Recquired Date for Product Five is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_req_date_six.equals("")) {
-                    edt_req_date_six.setError("Please Enter Recquired Date for Product Six");
-                    TastyToast.makeText(getApplicationContext(), "Recquired Date for Product Six is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                //OTHERS
-                else if (str_note.equals("")) {
-                    edt_note.setError("Please Enter Note");
-                    TastyToast.makeText(getApplicationContext(), "Note One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_total_value.equals("")) {
-                    edt_total_value.setError("Please Enter Total Value");
-                    TastyToast.makeText(getApplicationContext(), "Total Value is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_p_and_f.equals("")) {
-                    edt_p_and_f.setError("Please Enter P and F");
-                    TastyToast.makeText(getApplicationContext(), "P and F is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_VAT_CET.equals("")) {
-                    edt_VAT_CET.setError("Please Enter VAT and CET");
-                    TastyToast.makeText(getApplicationContext(), "VAT and CET is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_BET.equals("")) {
-                    edt_BET.setError("Please Enter BET");
-                    TastyToast.makeText(getApplicationContext(), "BET is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_freight_amount.equals("")) {
-                    edt_freight_amount.setError("Please Enter Freight Amount");
-                    TastyToast.makeText(getApplicationContext(), "Freight Amount is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_form_six_insurance.equals("")) {
-                    edt_insurance.setError("Please Enter Insurance");
-                    TastyToast.makeText(getApplicationContext(), "Insurance is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                } else if (str_grand_total.equals("")) {
-                    edt_grand_total.setError("Please Enter Grand Total");
-                    TastyToast.makeText(getApplicationContext(), "Grand Total is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                }
-                //Else For FUNCTION
-                else {
+                str_pbg_abg = String.valueOf(spn_pbg_abg.getSelectedItem());
+                str_inspection = String.valueOf(spn_inspection.getSelectedItem());
+                str_permit = String.valueOf(spn_permit.getSelectedItem());
 
 
+
+
+                if (str_others.equals("")) {
+                    edt_others.setError("Please Fill Others");
+                    TastyToast.makeText(getApplicationContext(), "Others is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                } else if (str_ld_clause_desc.equals("")) {
+                    edt_ld_clause_desc.setError("Please Enter LD Clause");
+                    TastyToast.makeText(getApplicationContext(), "LD Clause is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                } else if (str_commission.equals("")) {
+                    edt_commission.setError("Please Enter Commission");
+                    TastyToast.makeText(getApplicationContext(), "Commission is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                } else if (str_commission_value.equals("")) {
+                    edt_commission_value.setError("Please Enter Commission Value");
+                    TastyToast.makeText(getApplicationContext(), "Commission Value is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                } else if (str_logistics_preferred.equals("")) {
+                    edt_logistics_preferred.setError("Please Enter Logistics Preferred");
+                    TastyToast.makeText(getApplicationContext(), "Logistics Preferred is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                } else {
                     SharedPreferences sharedPreferences = PreferenceManager
                             .getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //Model
-                    editor.putString("str_model_one", str_model_one);
-                    editor.putString("str_model_two", str_model_two);
-                    editor.putString("str_model_three", str_model_three);
-                    editor.putString("str_model_four", str_model_four);
-                    editor.putString("str_model_five", str_model_five);
-                    editor.putString("str_model_six", str_model_six);
-                    //SAP Code
-                    editor.putString("str_sap_code_one", str_sap_code_one);
-                    editor.putString("str_sap_code_two", str_sap_code_two);
-                    editor.putString("str_sap_code_three", str_sap_code_three);
-                    editor.putString("str_sap_code_four", str_sap_code_four);
-                    editor.putString("str_sap_code_five", str_sap_code_five);
-                    editor.putString("str_sap_code_six", str_sap_code_six);
-                    //Description
-                    editor.putString("str_desc_one", str_desc_one);
-                    editor.putString("str_desc_two", str_desc_two);
-                    editor.putString("str_desc_three", str_desc_three);
-                    editor.putString("str_desc_four", str_desc_four);
-                    editor.putString("str_desc_five", str_desc_five);
-                    editor.putString("str_desc_six", str_desc_six);
-                    //Quantity
-                    editor.putString("str_quantity_one", str_quantity_one);
-                    editor.putString("str_quantity_two", str_quantity_two);
-                    editor.putString("str_quantity_three", str_quantity_three);
-                    editor.putString("str_quantity_four", str_quantity_four);
-                    editor.putString("str_quantity_five", str_quantity_five);
-                    editor.putString("str_quantity_six", str_quantity_six);
-                    //List Price
-                    editor.putString("str_list_price_one", str_list_price_one);
-                    editor.putString("str_list_price_two", str_list_price_two);
-                    editor.putString("str_list_price_three", str_list_price_three);
-                    editor.putString("str_list_price_four", str_list_price_four);
-                    editor.putString("str_list_price_five", str_list_price_five);
-                    editor.putString("str_list_price_six", str_list_price_six);
-                    //Discount
-                    editor.putString("str_discount_one", str_discount_one);
-                    editor.putString("str_discount_two", str_discount_two);
-                    editor.putString("str_discount_three", str_discount_three);
-                    editor.putString("str_discount_four", str_discount_four);
-                    editor.putString("str_discount_five", str_discount_five);
-                    editor.putString("str_discount_six", str_discount_six);
-                    //Actual Price
-                    editor.putString("str_actual_price_one", str_actual_price_one);
-                    editor.putString("str_actual_price_two", str_actual_price_two);
-                    editor.putString("str_actual_price_three", str_actual_price_three);
-                    editor.putString("str_actual_price_four", str_actual_price_four);
-                    editor.putString("str_actual_price_five", str_actual_price_five);
-                    editor.putString("str_actual_price_six", str_actual_price_six);
-                    //Required Date
-                    editor.putString("str_req_date_one", str_req_date_one);
-                    editor.putString("str_req_date_two", str_req_date_two);
-                    editor.putString("str_req_date_three", str_req_date_three);
-                    editor.putString("str_req_date_four", str_req_date_four);
-                    editor.putString("str_req_date_five", str_req_date_five);
-                    editor.putString("str_req_date_six", str_req_date_six);
-                    //Others
-                    editor.putString("str_note", str_note);
-                    editor.putString("str_total_value", str_total_value);
-                    editor.putString("str_p_and_f", str_p_and_f);
-                    editor.putString("str_VAT_CET", str_VAT_CET);
-                    editor.putString("str_BET", str_BET);
-                    editor.putString("str_freight_amount", str_freight_amount);
-                    editor.putString("str_form_six_insurance", str_form_six_insurance);
-                    editor.putString("str_grand_total", str_grand_total);
+
+                    //EditText
+                    editor.putString("str_others", str_others);
+                    editor.putString("str_ld_clause_desc", str_ld_clause_desc);
+                    editor.putString("str_commission", str_commission);
+                    editor.putString("str_commission_value", str_commission_value);
+                    editor.putString("str_logistics_preferred", str_logistics_preferred);
+                    //Spinner
+                    editor.putString("str_form_applicable", str_form_applicable);
+                    editor.putString("str_form_five_insurance", str_form_five_insurance);
+                    editor.putString("str_freight_terms", str_freight_terms);
+                    editor.putString("str_payment_terms", str_payment_terms);
+                    editor.putString("str_credit_days", str_credit_days);
+                    editor.putString("str_pbg_abg", str_pbg_abg);
+                    editor.putString("str_inspection", str_inspection);
+                    editor.putString("str_ld_clause", str_ld_clause);
+                    editor.putString("str_permit", str_permit);
+                    editor.putString("str_commission_to", str_commission_to);
 
                     editor.commit();
 
@@ -460,12 +284,32 @@ public class Activity_Order_Six_Product_details extends AppCompatActivity {
 
 
                 }
+
+
             }
         });
+
+
+
 
         btn_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+               /* String[] applicable = getResources().getStringArray(R.array.form5_application);
+
+                for (String s : applicable){
+                    int i = s.indexOf("FORM-I");
+
+                    if (i > 0){
+                        System.out.println("POSITION OF I : " + i);
+                        System.out.println("POSITION OF I : " + i);
+                        System.out.println("POSITION OF I : " + i);
+                        System.out.println("POSITION OF I : " + i);
+                        System.out.println("POSITION OF I : " + i);
+                        System.out.println("POSITION OF I : " + i);
+                    }
+                }*/
 
                 Intent i = new Intent(getApplicationContext(), Activity_Order_Five_Product_details.class);
                 startActivity(i);
@@ -473,6 +317,7 @@ public class Activity_Order_Six_Product_details extends AppCompatActivity {
 
             }
         });
+
 
     }
 
@@ -497,139 +342,33 @@ public class Activity_Order_Six_Product_details extends AppCompatActivity {
             // GET
             SharedPreferences sharedPreferences = PreferenceManager
                     .getDefaultSharedPreferences(getApplicationContext());
-            //MODEL
-            str_model_one = sharedPreferences.getString("str_model_one", "str_model_one");
-            str_model_two = sharedPreferences.getString("str_model_two", "str_model_two");
-            str_model_three = sharedPreferences.getString("str_model_three", "str_model_three");
-            str_model_four = sharedPreferences.getString("str_model_four", "str_model_four");
-            str_model_five = sharedPreferences.getString("str_model_five", "str_model_five");
-            str_model_six = sharedPreferences.getString("str_model_six", "str_model_six");
-            //SAP CODE
-            str_sap_code_one = sharedPreferences.getString("str_sap_code_one", "str_sap_code_one");
-            str_sap_code_two = sharedPreferences.getString("str_sap_code_two", "str_sap_code_two");
-            str_sap_code_three = sharedPreferences.getString("str_sap_code_three", "str_sap_code_three");
-            str_sap_code_four = sharedPreferences.getString("str_sap_code_four", "str_sap_code_four");
-            str_sap_code_five = sharedPreferences.getString("str_sap_code_five", "str_sap_code_five");
-            str_sap_code_six = sharedPreferences.getString("str_sap_code_six", "str_sap_code_six");
-            //DESCRIPTION
-            str_desc_one = sharedPreferences.getString("str_desc_one", "str_desc_one");
-            str_desc_two = sharedPreferences.getString("str_desc_two", "str_desc_two");
-            str_desc_three = sharedPreferences.getString("str_desc_three", "str_desc_three");
-            str_desc_four = sharedPreferences.getString("str_desc_four", "str_desc_four");
-            str_desc_five = sharedPreferences.getString("str_desc_five", "str_desc_five");
-            str_desc_six = sharedPreferences.getString("str_desc_six", "str_desc_six");
-            //QUANTITY
-            str_quantity_one = sharedPreferences.getString("str_quantity_one", "str_quantity_one");
-            str_quantity_two = sharedPreferences.getString("str_quantity_two", "str_quantity_two");
-            str_quantity_three = sharedPreferences.getString("str_quantity_three", "str_quantity_three");
-            str_quantity_four = sharedPreferences.getString("str_quantity_four", "str_quantity_four");
-            str_quantity_five = sharedPreferences.getString("str_quantity_five", "str_quantity_five");
-            str_quantity_six = sharedPreferences.getString("str_quantity_six", "str_quantity_six");
-            //LIST PRICE
-            str_list_price_one = sharedPreferences.getString("str_list_price_one", "str_list_price_one");
-            str_list_price_two = sharedPreferences.getString("str_list_price_two", "str_list_price_two");
-            str_list_price_three = sharedPreferences.getString("str_list_price_three", "str_list_price_three");
-            str_list_price_four = sharedPreferences.getString("str_list_price_four", "str_list_price_four");
-            str_list_price_five = sharedPreferences.getString("str_list_price_five", "str_list_price_five");
-            str_list_price_six = sharedPreferences.getString("str_list_price_six", "str_list_price_six");
-            //DISCOUNT
-            str_discount_one = sharedPreferences.getString("str_discount_one", "str_discount_one");
-            str_discount_two = sharedPreferences.getString("str_discount_two", "str_discount_two");
-            str_discount_three = sharedPreferences.getString("str_discount_three", "str_discount_three");
-            str_discount_four = sharedPreferences.getString("str_discount_four", "str_discount_four");
-            str_discount_five = sharedPreferences.getString("str_discount_five", "str_discount_five");
-            str_discount_six = sharedPreferences.getString("str_discount_six", "str_discount_six");
-            //ACTUAL PRICE
-            str_actual_price_one = sharedPreferences.getString("str_actual_price_one", "str_actual_price_one");
-            str_actual_price_two = sharedPreferences.getString("str_actual_price_two", "str_actual_price_two");
-            str_actual_price_three = sharedPreferences.getString("str_actual_price_three", "str_actual_price_three");
-            str_actual_price_four = sharedPreferences.getString("str_actual_price_four", "str_actual_price_four");
-            str_actual_price_five = sharedPreferences.getString("str_actual_price_five", "str_actual_price_five");
-            str_actual_price_six = sharedPreferences.getString("str_actual_price_six", "str_actual_price_six");
-            //REQUIRED DATE
-            str_req_date_one = sharedPreferences.getString("str_req_date_one", "str_req_date_one");
-            str_req_date_two = sharedPreferences.getString("str_req_date_two", "str_req_date_two");
-            str_req_date_three = sharedPreferences.getString("str_req_date_three", "str_req_date_three");
-            str_req_date_four = sharedPreferences.getString("str_req_date_four", "str_req_date_four");
-            str_req_date_five = sharedPreferences.getString("str_req_date_five", "str_req_date_five");
-            str_req_date_six = sharedPreferences.getString("str_req_date_six", "str_req_date_six");
-            //OTHERS
-            str_note = sharedPreferences.getString("str_note", "str_note");
-            str_total_value = sharedPreferences.getString("str_total_value", "str_total_value");
-            str_p_and_f = sharedPreferences.getString("str_p_and_f", "str_p_and_f");
-            str_VAT_CET = sharedPreferences.getString("str_VAT_CET", "str_VAT_CET");
-            str_BET = sharedPreferences.getString("str_BET", "str_BET");
-            str_freight_amount = sharedPreferences.getString("str_freight_amount", "str_freight_amount");
-            str_form_six_insurance = sharedPreferences.getString("str_form_six_insurance", "str_form_six_insurance");
-            str_grand_total = sharedPreferences.getString("str_grand_total", "str_grand_total");
-
+            //EditText
+            str_others_up = sharedPreferences.getString("str_others", "str_others");
+            str_ld_clause_desc_up = sharedPreferences.getString("str_ld_clause_desc", "str_ld_clause_desc");
+            str_commission_up = sharedPreferences.getString("str_commission", "str_commission");
+            str_commission_value_up = sharedPreferences.getString("str_commission_value", "str_commission_value");
+            str_logistics_preferred_up = sharedPreferences.getString("str_logistics_preferred", "str_logistics_preferred");
+            //Spinner
+            str_form_applicable_up = sharedPreferences.getString("str_form_applicable", "str_form_applicable");
+            str_form_five_insurance_up = sharedPreferences.getString("str_form_five_insurance", "str_form_five_insurance");
+            str_freight_terms_up = sharedPreferences.getString("str_freight_terms", "str_freight_terms");
+            str_payment_terms_up = sharedPreferences.getString("str_payment_terms", "str_payment_terms");
+            str_credit_days_up = sharedPreferences.getString("str_credit_days", "str_credit_days");
+            str_pbg_abg_up = sharedPreferences.getString("str_pbg_abg", "str_pbg_abg");
+            str_inspection_up = sharedPreferences.getString("str_inspection", "str_inspection");
+            str_ld_clause_up = sharedPreferences.getString("str_ld_clause", "str_ld_clause");
+            str_permit_up = sharedPreferences.getString("str_permit", "str_permit");
+            str_commission_to_up = sharedPreferences.getString("str_commission_to", "str_commission_to");
             //SET
             try {
-                //MODEL
-                edt_model_one.setText(str_model_one);
-                edt_model_two.setText(str_model_two);
-                edt_model_three.setText(str_model_three);
-                edt_model_four.setText(str_model_four);
-                edt_model_five.setText(str_model_five);
-                edt_model_six.setText(str_model_six);
-                //SAP CODE
-                edt_sap_code_one.setText(str_sap_code_one);
-                edt_sap_code_two.setText(str_sap_code_two);
-                edt_sap_code_three.setText(str_sap_code_three);
-                edt_sap_code_four.setText(str_sap_code_four);
-                edt_sap_code_five.setText(str_sap_code_five);
-                edt_sap_code_six.setText(str_sap_code_six);
-                //DESCRIPTION
-                edt_desc_one.setText(str_desc_one);
-                edt_desc_two.setText(str_desc_two);
-                edt_desc_three.setText(str_desc_three);
-                edt_desc_four.setText(str_desc_four);
-                edt_desc_five.setText(str_desc_five);
-                edt_desc_six.setText(str_desc_six);
-                //QUANTITY
-                edt_quantity_one.setText(str_quantity_one);
-                edt_quantity_two.setText(str_quantity_two);
-                edt_quantity_three.setText(str_quantity_three);
-                edt_quantity_four.setText(str_quantity_four);
-                edt_quantity_five.setText(str_quantity_five);
-                edt_quantity_six.setText(str_quantity_six);
-                //LIST PRICE
-                edt_list_price_one.setText(str_list_price_one);
-                edt_list_price_two.setText(str_list_price_two);
-                edt_list_price_three.setText(str_list_price_three);
-                edt_list_price_four.setText(str_list_price_four);
-                edt_list_price_five.setText(str_list_price_five);
-                edt_list_price_six.setText(str_list_price_six);
-                //DISCOUNT
-                edt_discount_one.setText(str_discount_one);
-                edt_discount_two.setText(str_discount_two);
-                edt_discount_three.setText(str_discount_three);
-                edt_discount_four.setText(str_discount_four);
-                edt_discount_five.setText(str_discount_five);
-                edt_discount_six.setText(str_discount_six);
-                //ACTUAL PRICE
-                edt_actual_price_one.setText(str_actual_price_one);
-                edt_actual_price_two.setText(str_actual_price_two);
-                edt_actual_price_three.setText(str_actual_price_three);
-                edt_actual_price_four.setText(str_actual_price_four);
-                edt_actual_price_five.setText(str_actual_price_five);
-                edt_actual_price_six.setText(str_actual_price_six);
-                //REQUIRED DATE
-                edt_req_date_one.setText(str_req_date_one);
-                edt_req_date_two.setText(str_req_date_two);
-                edt_req_date_three.setText(str_req_date_three);
-                edt_req_date_four.setText(str_req_date_four);
-                edt_req_date_five.setText(str_req_date_five);
-                edt_req_date_six.setText(str_req_date_six);
-                //OTHERS
-                edt_note.setText(str_note);
-                edt_total_value.setText(str_total_value);
-                edt_p_and_f.setText(str_p_and_f);
-                edt_VAT_CET.setText(str_VAT_CET);
-                edt_BET.setText(str_BET);
-                edt_freight_amount.setText(str_freight_amount);
-                edt_insurance.setText(str_form_six_insurance);
-                edt_grand_total.setText(str_grand_total);
+                edt_others.setText(str_others_up);
+                edt_ld_clause_desc.setText(str_ld_clause_desc_up);
+                edt_commission.setText(str_commission_up);
+                edt_commission_value.setText(str_commission_value_up);
+                edt_logistics_preferred.setText(str_logistics_preferred_up);
+
+
+
             } catch (Exception e) {
 
             }

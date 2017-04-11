@@ -48,7 +48,7 @@
                         android:weightSum="4">
 
                         <RadioGroup
-                            android:id="@+id/rg_ofm_price"
+                            android:id="@+id/rg_ofm_price_group"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
@@ -103,7 +103,37 @@
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="Q.REF-Date"
+                            android:text="Q.REF"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/order_forwarding_memo_q_ref"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_login_rounded"
+                            android:popupBackground="@color/hash"
+                            android:textColor="@color/white"
+                            android:textSize="16dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="Date"
                             android:textColor="@color/white"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -116,7 +146,41 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:hint="Q.REF-Date"
+                            android:hint="Date"
+                            android:inputType="date"
+                            android:textColor="@color/album_title"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="PO-REF"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/order_forwarding_memo_po_ref"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_parent_rounded_corner"
+                            android:gravity="left"
+                            android:hint="PO.REF"
                             android:inputType="date"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -136,7 +200,7 @@
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="PO.REF-Date"
+                            android:text="Date"
                             android:textColor="@color/white"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -149,12 +213,13 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:hint="PO.REF-Date"
+                            android:hint="Date"
                             android:inputType="date"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
                     </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -179,18 +244,28 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                                 android:layout_weight="1"
                                 android:gravity="left"
                                 android:text="FROM"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
+
+                            <Spinner
+                                android:id="@+id/form1_from_spn"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:entries="@array/form1_from">
+
+                            </Spinner>
 
                         </LinearLayout>
 
@@ -205,7 +280,6 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                                 android:layout_weight="1"
                                 android:gravity="left"
                                 android:text="SAP Code"
@@ -222,172 +296,6 @@
                                 android:background="@drawable/bg_parent_rounded_corner"
                                 android:gravity="left"
                                 android:hint="SAP code"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:gravity="left"
-                                android:text="Project"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <EditText
-                                android:id="@+id/order_forwarding_memo_project"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_parent_rounded_corner"
-                                android:gravity="left"
-                                android:hint="project"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:gravity="left"
-                                android:text="OEM"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <EditText
-                                android:id="@+id/order_forwarding_memo_oem"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_parent_rounded_corner"
-                                android:gravity="left"
-                                android:hint="OEM"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:gravity="left"
-                                android:text="Dealer"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <EditText
-                                android:id="@+id/order_forwarding_memo_dealer"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_parent_rounded_corner"
-                                android:gravity="left"
-                                android:hint="Dealer"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:gravity="left"
-                                android:text="SocketList"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <EditText
-                                android:id="@+id/order_forwarding_memo_socketlist"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_parent_rounded_corner"
-                                android:gravity="left"
-                                android:hint="SocketList"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:gravity="left"
-                                android:text="Region"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <EditText
-                                android:id="@+id/order_forwarding_memo_region"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_parent_rounded_corner"
-                                android:gravity="left"
-                                android:hint="Region"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
@@ -425,42 +333,10 @@
                                 android:gravity="left"
                                 android:text="TO"
                                 android:textColor="@color/album_title"
-                                android:textSize="16dp"
+                                android:textSize="17dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:gravity="left"
-                                android:text="To"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-
-                            <EditText
-                                android:id="@+id/order_forwarding_memo_to"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                                android:layout_weight="1"
-                                android:background="@drawable/bg_parent_rounded_corner"
-                                android:gravity="left"
-                                android:hint="TO"
-                                android:textColor="@color/album_title"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -477,73 +353,70 @@
                                 android:layout_margin="5dp"
                                 android:layout_marginTop="@dimen/activity_vertical_margin"
                                 android:layout_weight="1.5"
-                                android:weightSum="3"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:weightSum="3">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:gravity="center"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
                                     android:text="GEM EQUIPMENT(P) LTD,COIMBATORE"
                                     android:textColor="@color/album_title"
                                     android:textSize="14dp"
-                                    android:layout_weight="1"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:gravity="center"
+                                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
                                     android:text="GEM EQUIPMENTS(P) LTD,MUMBAI"
                                     android:textColor="@color/album_title"
                                     android:textSize="14dp"
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="@dimen/activity_vertical_margin"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:gravity="center"
+                                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical|left"
                                     android:text="GOM"
                                     android:textColor="@color/album_title"
                                     android:textSize="14dp"
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="@dimen/activity_vertical_margin"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="right"
                                 android:layout_margin="5dp"
                                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                                android:layout_gravity="right"
                                 android:orientation="vertical">
 
                                 <RadioGroup
-                                    android:id="@+id/order_forwarding_memo_radiogroup"
+                                    android:id="@+id/rg_ofm_to"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content">
 
                                     <RadioButton
                                         android:id="@+id/order_forwarding_memo_gem_cbe"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        />
+                                        android:layout_height="wrap_content" />
 
 
                                     <RadioButton
                                         android:id="@+id/order_forwarding_memo_gem_mumbai"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        />
+                                        android:layout_height="wrap_content" />
 
                                     <RadioButton
                                         android:id="@+id/order_forwarding_memo_gem_gom"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        />
+                                        android:layout_height="wrap_content" />
 
 
                                 </RadioGroup>

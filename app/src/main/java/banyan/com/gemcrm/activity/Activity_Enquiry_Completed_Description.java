@@ -190,6 +190,16 @@ public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String str_enq_no = txt_enq_id.getText().toString();
+
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(Activity_Enquiry_Completed_Description.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("ofm_enq_no", str_enq_no);
+
+                editor.commit();
+
                 Intent i = new Intent(getApplicationContext(), Activity_Order_One_Forwarding_Memo.class);
                 startActivity(i);
 

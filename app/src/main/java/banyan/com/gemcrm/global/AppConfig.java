@@ -29,12 +29,12 @@ public class AppConfig {
     public static String url_campaign = base_url + "android/get_campaign_list.php";
     public static String url_region = base_url + "android/get_team.php";
     public static String url_add_enquiry = base_url + "android/user_create_enquiry.php";
-    public static String url_quotation_number = base_url + "android/get_all_qoutation.php";
+    public static String url_quotation_number = base_url + "android1/get_all_qoutation.php"; // Change it
     public static String url_tax_info = base_url + "android/user_get_tax.php";
 
     public static String url_get_alloted_enquiry = base_url + "android/get_alloted_enquiries.php";
     public static String url_my_enquiry = base_url + "android/get_my_enquries.php";
-    public static String url_my_succeed_enquiry = base_url + "android/get_my_suceed_enquiries.php";
+    public static String url_my_succeed_enquiry = base_url + "android1/get_my_suceed_enquiries.php"; // Change it
     public static String url_my_failure_enquiry = base_url + "android/get_my_failed_enquiries.php";
 
     public static String url_enq_model = base_url + "android/user_get_model.php";
@@ -59,6 +59,8 @@ public class AppConfig {
 
     public static String url_new_enquiery = base_url + "android/user_new_enquiry_list.php";
     public static String url_self_allotment = base_url + "android/enquiry_self_allotment.php";
+
+    public static String url_ofm_quotation_products = base_url + "android1/get_ofm_quotation.php";
 
 
 }

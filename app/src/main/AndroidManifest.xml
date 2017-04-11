@@ -121,7 +121,6 @@
             android:label="Send Catalogue"
             android:screenOrientation="portrait"></activity>
 
-
         <activity
             android:name=".activity.Activity_Enquiry_Completed_Description"
             android:label="Completed Description"

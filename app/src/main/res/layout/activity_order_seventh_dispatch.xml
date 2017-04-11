@@ -91,7 +91,7 @@
                     android:singleLine="true" />
 
                 <EditText
-                    android:id="@+id/order_customer_dispatch_pincode"
+                    android:id="@+id/customer_dispatch_pincode"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -111,7 +111,7 @@
 
             </LinearLayout>
 
-        <android.support.v7.widget.CardView
+        <!--<android.support.v7.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -246,7 +246,7 @@
 
         </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>-->
 
             <LinearLayout
                 android:layout_width="match_parent"

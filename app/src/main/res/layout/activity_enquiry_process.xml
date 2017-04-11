@@ -2793,7 +2793,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center|left"
-                        android:text="Complaint Status"
+                        android:text="Enquiry Status"
                         android:textColor="@color/white"
                         android:textSize="16dp"
                         android:textStyle="bold" />

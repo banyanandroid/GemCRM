@@ -6,15 +6,27 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.sdsmdg.tastytoast.TastyToast;
+import com.tapadoo.alerter.Alerter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import banyan.com.gemcrm.R;
+import banyan.com.gemcrm.global.AppConfig;
 import dmax.dialog.SpotsDialog;
 
 /**
@@ -23,17 +35,59 @@ import dmax.dialog.SpotsDialog;
 
 public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
 
-    EditText edt_dispatch_contact_person_name, edt_dispatch_contact_number, edt_dispatch_address_line1, edt_dispatch_address_line2, edt_dispatch_city, edt_dispatch_state, edt_dispatch_pincode, edt_dispatch_commissioning_instructions, edt_dispatch_prepared, edt_dispatch_checked, edt_dispatch_approved;
+    EditText edt_dispatch_contact_person_name, edt_dispatch_contact_number, edt_dispatch_address_line1, edt_dispatch_address_line2, edt_dispatch_city,
+            edt_dispatch_state, edt_dispatch_pincode, edt_dispatch_commissioning_instructions;
 
 
-    Button btn_dispatch_submit,btn_dispatch_previous;
+    Button btn_dispatch_submit, btn_dispatch_previous;
 
-    String str_dispatch_contact_person_name, str_dispatch_contact_number, str_dispatch_address_line1, str_dispatch_address_line2, str_dispatch_city, str_dispatch_state, str_dispatch_pincode, str_customer_commissioning_instructions, str_dispatch_prepared, str_dispatch_checked, str_dispatch_approved = "";
+    String str_dispatch_contact_person_name, str_dispatch_contact_number, str_dispatch_address_line1, str_dispatch_address_line2, str_dispatch_city,
+            str_dispatch_state, str_dispatch_pincode, str_customer_commissioning_instructions = "";
+
+    //Strings to get values from other forms
+    // FORM 1
+    String str_price_list, str_send_to, str_txt_q_ref, str_txt_q_date,
+            str_txt_po_ref, str_txt_po_date, str_txt_sapcode, str_order_from = "";
+
+    // FORM 2
+    String str_customer_name, str_customer_address_line1, str_customer_address_line2, str_customer_city, str_customer_state, str_customer_pincode, str_customer_tincode, str_customer_cstno,
+            str_customer_eccno, str_customer_panno, str_customer_contact_person, str_customer_contact_number, str_customer_email = "";
+
+    //FORM 3
+    String str_customer_billing_address_line1, str_customer_billing_address_line2, str_customer_billing_city, str_customer_billing_state, str_customer_billing_pincode,
+            str_customer_billing_tincode, str_customer_billing_cstno, str_customer_billing_eccno, str_customer_billing_panno, str_customer_billing_contact_person, str_customer_billing_contact_number, str_customer_billing_email = "";
+
+    //FORM 4
+    String str_customer_shipping_address_line1, str_customer_shipping_address_line2, str_customer_shipping_city, str_customer_shipping_state, str_customer_shipping_pincode,
+            str_customer_shipping_tincode, str_customer_shipping_cstno, str_customer_shipping_eccno, str_customer_shipping_panno, str_customer_shipping_contact_person, str_customer_shipping_contact_number, str_customer_shipping_email = "";
+
+    //FORM 5
+    String str_model_one, str_model_two, str_model_three, str_model_four, str_model_five, str_model_six,
+            str_sap_code_one, str_sap_code_two, str_sap_code_three, str_sap_code_four, str_sap_code_five, str_sap_code_six,
+            str_desc_one, str_desc_two, str_desc_three, str_desc_four, str_desc_five, str_desc_six,
+            str_quantity_one, str_quantity_two, str_quantity_three, str_quantity_four, str_quantity_five, str_quantity_six,
+            str_list_price_one, str_list_price_two, str_list_price_three, str_list_price_four, str_list_price_five, str_list_price_six,
+            str_discount_one, str_discount_two, str_discount_three, str_discount_four, str_discount_five, str_discount_six,
+            str_actual_price_one, str_actual_price_two, str_actual_price_three, str_actual_price_four, str_actual_price_five, str_actual_price_six,
+            str_req_date_one, str_req_date_two, str_req_date_three, str_req_date_four, str_req_date_five, str_req_date_six,
+
+    str_note, str_total_value, str_p_and_f, str_VAT_CET, str_BET, str_p_and_f_value,
+            str_VAT_CET_value, str_BET_value, str_grand_total = "";
+
+    //FORM 6
+
+    String str_others, str_ld_clause_desc, str_commission, str_commission_value, str_logistics_preferred,
+            str_form_applicable, str_form_five_insurance, str_freight_terms, str_payment_terms, str_credit_days,
+            str_pbg_abg, str_inspection, str_ld_clause, str_permit, str_commission_to = "";
+
 
     SpotsDialog dialog;
 
     private Toolbar mToolbar;
 
+    String TAG = "reg";
+
+    public static RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +98,7 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         btn_dispatch_submit = (Button) findViewById(R.id.order_dispatch_submit);
-        btn_dispatch_previous=(Button)findViewById(R.id.order_dispatch_previous);
+        btn_dispatch_previous = (Button) findViewById(R.id.order_dispatch_previous);
 
         edt_dispatch_contact_person_name = (EditText) findViewById(R.id.customer_dispatch_contact_person_name);
         edt_dispatch_contact_number = (EditText) findViewById(R.id.customer_dispatch_contact_number);
@@ -52,13 +106,8 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
         edt_dispatch_address_line2 = (EditText) findViewById(R.id.customer_dispatch_address_line2);
         edt_dispatch_city = (EditText) findViewById(R.id.customer_dispatch_city);
         edt_dispatch_state = (EditText) findViewById(R.id.customer_dispatch_state);
-        edt_dispatch_pincode = (EditText) findViewById(R.id.order_customer_dispatch_pincode);
+        edt_dispatch_pincode = (EditText) findViewById(R.id.customer_dispatch_pincode);
         edt_dispatch_commissioning_instructions = (EditText) findViewById(R.id.customer_dispatch_commissioning_instruction);
-        edt_dispatch_prepared = (EditText) findViewById(R.id.dispatch_prepared);
-        edt_dispatch_checked = (EditText) findViewById(R.id.dispatch_checked);
-        edt_dispatch_approved = (EditText) findViewById(R.id.dispatch_approved);
-
-
 
 
         btn_dispatch_submit.setOnClickListener(new View.OnClickListener() {
@@ -73,9 +122,6 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                 str_dispatch_state = edt_dispatch_state.getText().toString();
                 str_dispatch_pincode = edt_dispatch_pincode.getText().toString();
                 str_customer_commissioning_instructions = edt_dispatch_commissioning_instructions.getText().toString();
-                str_dispatch_prepared = edt_dispatch_prepared.getText().toString();
-                str_dispatch_checked = edt_dispatch_checked.toString();
-                str_dispatch_approved = edt_dispatch_approved.getText().toString();
 
                 if (str_dispatch_contact_person_name.equals("")) {
                     edt_dispatch_contact_person_name.setError("Please Enter Contact person name");
@@ -93,7 +139,7 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
 
                 } else if (str_dispatch_address_line2.equals("")) {
 
-                    edt_dispatch_address_line2.setError("Please Enter dispatch address line1");
+                    edt_dispatch_address_line2.setError("Please Enter dispatch address line2");
                     TastyToast.makeText(getApplicationContext(), " dispatch address line1 is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
                 } else if (str_dispatch_city.equals("")) {
@@ -113,41 +159,178 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                     edt_dispatch_commissioning_instructions.setError("Please Enter Commissioning instructions");
                     TastyToast.makeText(getApplicationContext(), "Commissioning instructions is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                } else if (str_dispatch_prepared.equals("")) {
-                    edt_dispatch_prepared.setError("Please Enter dispatch prepared");
-                    TastyToast.makeText(getApplicationContext(), "dispatch prepared is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-
-                } else if (str_dispatch_checked.equals("")) {
-                    edt_dispatch_checked.setError("Please Enter dispatch checked");
-                    TastyToast.makeText(getApplicationContext(), " dispatch checked id empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-
-                } else if (str_dispatch_approved.equals("")) {
-                    edt_dispatch_approved.setError("Please Enter  dispatch approved");
-                    TastyToast.makeText(getApplicationContext(), "dispatch approved is empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-
                 } else {
+
 
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("str_dispatch_contact_person_name", str_dispatch_contact_person_name);
-                    editor.putString("str_dispatch_contact_number", str_dispatch_contact_number);
+
                     editor.putString("str_dispatch_address_line1", str_dispatch_address_line1);
                     editor.putString("str_dispatch_address_line2", str_dispatch_address_line2);
                     editor.putString("str_dispatch_city", str_dispatch_city);
                     editor.putString("str_dispatch_state", str_dispatch_state);
                     editor.putString("str_dispatch_pincode", str_dispatch_pincode);
                     editor.putString("str_customer_commissioning_instructions", str_customer_commissioning_instructions);
-                    editor.putString("str_dispatch_prepared", str_dispatch_prepared);
-                    editor.putString("str_dispatch_checked", str_dispatch_checked);
-                    editor.putString("str_dispatch_approved", str_dispatch_approved);
+                    editor.putString("str_dispatch_contact_person_name", str_dispatch_contact_person_name);
+                    editor.putString("str_dispatch_contact_number", str_dispatch_contact_number);
 
                     editor.commit();
 
+                    try {
 
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
-                    finish();
+                        SharedPreferences sharedPreferences_two = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+                        //from FORM 1
+                        str_price_list = sharedPreferences.getString("str_price_list", "str_price_list");
+                        str_send_to = sharedPreferences.getString("str_send_to", "str_send_to");
+                        str_txt_q_ref = sharedPreferences.getString("str_txt_q_ref", "str_txt_q_ref");
+                        str_txt_q_date = sharedPreferences.getString("str_txt_q_date", "str_txt_q_date");
+                        str_txt_po_ref = sharedPreferences.getString("str_txt_po_ref", "str_txt_po_ref");
+                        str_txt_po_date = sharedPreferences.getString("str_txt_po_date", "str_txt_po_date");
+                        str_txt_sapcode = sharedPreferences.getString("str_txt_sapcode", "str_txt_sapcode");
+                        str_order_from = sharedPreferences.getString("str_order_from", "str_order_from");
+
+                        //from FORM 2
+                        str_customer_name = sharedPreferences.getString("str_customer_name", "str_customer_name");
+                        str_customer_address_line1 = sharedPreferences.getString("str_customer_address_line1", "str_customer_address_line1");
+                        str_customer_address_line2 = sharedPreferences.getString("str_customer_address_line2", "str_customer_address_line2");
+                        str_customer_city = sharedPreferences.getString("str_customer_city", "str_customer_city");
+                        str_customer_state = sharedPreferences.getString("str_customer_state", "str_customer_state");
+                        str_customer_pincode = sharedPreferences.getString("str_customer_pincode", "str_customer_pincode");
+                        str_customer_tincode = sharedPreferences.getString("str_customer_tincode", "str_customer_tincode");
+                        str_customer_cstno = sharedPreferences.getString("str_customer_cstno", "str_customer_cstno");
+                        str_customer_eccno = sharedPreferences.getString("str_customer_eccno", "str_customer_eccno");
+                        str_customer_panno = sharedPreferences.getString("str_customer_panno", "str_customer_panno");
+                        str_customer_contact_person = sharedPreferences.getString("str_customer_contact_person", "str_customer_contact_person");
+                        str_customer_contact_number = sharedPreferences.getString("str_customer_contact_number", "str_customer_contact_number");
+                        str_customer_email = sharedPreferences.getString("str_customer_email", "str_customer_email");
+
+                        //from FORM 3
+                        str_customer_billing_address_line1 = sharedPreferences.getString("str_customer_address_line1", "str_customer_address_line1");
+                        str_customer_billing_address_line2 = sharedPreferences.getString("str_customer_address_line2", "str_customer_address_line2");
+                        str_customer_billing_city = sharedPreferences.getString("str_customer_city", "str_customer_city");
+                        str_customer_billing_state = sharedPreferences.getString("str_customer_state", "str_customer_state");
+                        str_customer_billing_pincode = sharedPreferences.getString("str_customer_pincode", "str_customer_pincode");
+                        str_customer_billing_tincode = sharedPreferences.getString("str_customer_tincode", "str_customer_tincode");
+                        str_customer_billing_cstno = sharedPreferences.getString("str_customer_cstno", "str_customer_cstno");
+                        str_customer_billing_eccno = sharedPreferences.getString("str_customer_eccno", "str_customer_eccno");
+                        str_customer_billing_panno = sharedPreferences.getString("str_customer_panno", "str_customer_panno");
+                        str_customer_billing_contact_person = sharedPreferences.getString("str_customer_contact_person", "str_customer_contact_person");
+                        str_customer_billing_contact_number = sharedPreferences.getString("str_customer_contact_number", "str_customer_contact_number");
+                        str_customer_billing_email = sharedPreferences.getString("str_customer_email", "str_customer_email");
+
+                        //from FORM 4
+                        str_customer_shipping_address_line1 = sharedPreferences.getString("str_customer_billing_address_line1", "str_customer_billing_address_line1");
+                        str_customer_shipping_address_line2 = sharedPreferences.getString("str_customer_billing_address_line2", "str_customer_billing_address_line2");
+                        str_customer_shipping_city = sharedPreferences.getString("str_customer_billing_city", "str_customer_billing_city");
+                        str_customer_shipping_state = sharedPreferences.getString("str_customer_billing_state", "str_customer_billing_state");
+                        str_customer_shipping_pincode = sharedPreferences.getString("str_customer_billing_pincode", "str_customer_billing_pincode");
+                        str_customer_shipping_tincode = sharedPreferences.getString("str_customer_billing_tincode", "str_customer_billing_tincode");
+                        str_customer_shipping_cstno = sharedPreferences.getString("str_customer_billing_cstno", "str_customer_billing_cstno");
+                        str_customer_shipping_eccno = sharedPreferences.getString("str_customer_billing_eccno", "str_customer_billing_eccno");
+                        str_customer_shipping_panno = sharedPreferences.getString("str_customer_billing_panno", "str_customer_billing_panno");
+                        str_customer_shipping_contact_person = sharedPreferences.getString("str_customer_billing_contact_person", "str_customer_billing_contact_person");
+                        str_customer_shipping_contact_number = sharedPreferences.getString("str_customer_billing_contact_number", "str_customer_billing_contact_number");
+                        str_customer_shipping_email = sharedPreferences.getString("str_customer_billing_email", "str_customer_billing_email");
+
+                        //from FORM 5
+                        //MODEL
+                        str_model_one = sharedPreferences.getString("str_model_one", "str_model_one");
+                        str_model_two = sharedPreferences.getString("str_model_two", "str_model_two");
+                        str_model_three = sharedPreferences.getString("str_model_three", "str_model_three");
+                        str_model_four = sharedPreferences.getString("str_model_four", "str_model_four");
+                        str_model_five = sharedPreferences.getString("str_model_five", "str_model_five");
+                        str_model_six = sharedPreferences.getString("str_model_six", "str_model_six");
+                        //SAP CODE
+                        str_sap_code_one = sharedPreferences.getString("str_sap_code_one", "str_sap_code_one");
+                        str_sap_code_two = sharedPreferences.getString("str_sap_code_two", "str_sap_code_two");
+                        str_sap_code_three = sharedPreferences.getString("str_sap_code_three", "str_sap_code_three");
+                        str_sap_code_four = sharedPreferences.getString("str_sap_code_four", "str_sap_code_four");
+                        str_sap_code_five = sharedPreferences.getString("str_sap_code_five", "str_sap_code_five");
+                        str_sap_code_six = sharedPreferences.getString("str_sap_code_six", "str_sap_code_six");
+                        //DESCRIPTION
+                        str_desc_one = sharedPreferences.getString("str_desc_one", "str_desc_one");
+                        str_desc_two = sharedPreferences.getString("str_desc_two", "str_desc_two");
+                        str_desc_three = sharedPreferences.getString("str_desc_three", "str_desc_three");
+                        str_desc_four = sharedPreferences.getString("str_desc_four", "str_desc_four");
+                        str_desc_five = sharedPreferences.getString("str_desc_five", "str_desc_five");
+                        str_desc_six = sharedPreferences.getString("str_desc_six", "str_desc_six");
+                        //QUANTITY
+                        str_quantity_one = sharedPreferences.getString("str_quantity_one", "str_quantity_one");
+                        str_quantity_two = sharedPreferences.getString("str_quantity_two", "str_quantity_two");
+                        str_quantity_three = sharedPreferences.getString("str_quantity_three", "str_quantity_three");
+                        str_quantity_four = sharedPreferences.getString("str_quantity_four", "str_quantity_four");
+                        str_quantity_five = sharedPreferences.getString("str_quantity_five", "str_quantity_five");
+                        str_quantity_six = sharedPreferences.getString("str_quantity_six", "str_quantity_six");
+                        //LIST PRICE
+                        str_list_price_one = sharedPreferences.getString("str_list_price_one", "str_list_price_one");
+                        str_list_price_two = sharedPreferences.getString("str_list_price_two", "str_list_price_two");
+                        str_list_price_three = sharedPreferences.getString("str_list_price_three", "str_list_price_three");
+                        str_list_price_four = sharedPreferences.getString("str_list_price_four", "str_list_price_four");
+                        str_list_price_five = sharedPreferences.getString("str_list_price_five", "str_list_price_five");
+                        str_list_price_six = sharedPreferences.getString("str_list_price_six", "str_list_price_six");
+                        //DISCOUNT
+                        str_discount_one = sharedPreferences.getString("str_discount_one", "str_discount_one");
+                        str_discount_two = sharedPreferences.getString("str_discount_two", "str_discount_two");
+                        str_discount_three = sharedPreferences.getString("str_discount_three", "str_discount_three");
+                        str_discount_four = sharedPreferences.getString("str_discount_four", "str_discount_four");
+                        str_discount_five = sharedPreferences.getString("str_discount_five", "str_discount_five");
+                        str_discount_six = sharedPreferences.getString("str_discount_six", "str_discount_six");
+                        //ACTUAL PRICE
+                        str_actual_price_one = sharedPreferences.getString("str_actual_price_one", "str_actual_price_one");
+                        str_actual_price_two = sharedPreferences.getString("str_actual_price_two", "str_actual_price_two");
+                        str_actual_price_three = sharedPreferences.getString("str_actual_price_three", "str_actual_price_three");
+                        str_actual_price_four = sharedPreferences.getString("str_actual_price_four", "str_actual_price_four");
+                        str_actual_price_five = sharedPreferences.getString("str_actual_price_five", "str_actual_price_five");
+                        str_actual_price_six = sharedPreferences.getString("str_actual_price_six", "str_actual_price_six");
+                        //REQUIRED DATE
+                        str_req_date_one = sharedPreferences.getString("str_req_date_one", "str_req_date_one");
+                        str_req_date_two = sharedPreferences.getString("str_req_date_two", "str_req_date_two");
+                        str_req_date_three = sharedPreferences.getString("str_req_date_three", "str_req_date_three");
+                        str_req_date_four = sharedPreferences.getString("str_req_date_four", "str_req_date_four");
+                        str_req_date_five = sharedPreferences.getString("str_req_date_five", "str_req_date_five");
+                        str_req_date_six = sharedPreferences.getString("str_req_date_six", "str_req_date_six");
+                        //OTHERS
+                        str_note = sharedPreferences.getString("str_note", "str_note");
+                        str_total_value = sharedPreferences.getString("str_total_value", "str_total_value");
+                        str_p_and_f = sharedPreferences.getString("str_p_and_f", "str_p_and_f");
+                        str_p_and_f_value = sharedPreferences.getString("str_p_and_f_value", "str_p_and_f_value");
+                        str_VAT_CET = sharedPreferences.getString("str_VAT_CET", "str_VAT_CET");
+                        str_VAT_CET_value = sharedPreferences.getString("str_VAT_CET_value", "str_VAT_CET_value");
+                        str_BET = sharedPreferences.getString("str_BET", "str_BET");
+                        str_BET_value = sharedPreferences.getString("str_BET_value", "str_BET_value");
+                        str_grand_total = sharedPreferences.getString("str_grand_total", "str_grand_total");
+
+                        //FORM 6
+                        str_others = sharedPreferences.getString("str_others", "str_others");
+                        str_ld_clause_desc = sharedPreferences.getString("str_ld_clause_desc", "str_ld_clause_desc");
+                        str_commission = sharedPreferences.getString("str_commission", "str_commission");
+                        str_commission_value = sharedPreferences.getString("str_commission_value", "str_commission_value");
+                        str_logistics_preferred = sharedPreferences.getString("str_logistics_preferred", "str_logistics_preferred");
+                        //Spinner
+                        str_form_applicable = sharedPreferences.getString("str_form_applicable", "str_form_applicable");
+                        str_form_five_insurance = sharedPreferences.getString("str_form_five_insurance", "str_form_five_insurance");
+                        str_freight_terms = sharedPreferences.getString("str_freight_terms", "str_freight_terms");
+                        str_payment_terms = sharedPreferences.getString("str_payment_terms", "str_payment_terms");
+                        str_credit_days = sharedPreferences.getString("str_credit_days", "str_credit_days");
+                        str_pbg_abg = sharedPreferences.getString("str_pbg_abg", "str_pbg_abg");
+                        str_inspection = sharedPreferences.getString("str_inspection", "str_inspection");
+                        str_ld_clause = sharedPreferences.getString("str_ld_clause", "str_ld_clause");
+                        str_permit = sharedPreferences.getString("str_permit", "str_permit");
+                        str_commission_to = sharedPreferences.getString("str_commission_to", "str_commission_to");
+
+
+                    } catch (Exception e) {
+
+                    }
+
+
+//                   Intent i = new Intent(getApplicationContext(), MainActivity.class);
+//                    startActivity(i);
+//                    finish();
+
+                    Function_Submit_OFM();
 
 
                 }
@@ -171,33 +354,78 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
 
     }
 
-    /**********************************
-     * Main Menu
-     *********************************/
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_ofm, menu);
+    private void Function_Submit_OFM() {
 
-        return true;
-    }
+        StringRequest request = new StringRequest(Request.Method.POST,
+                AppConfig.url_addappointment, new Response.Listener<String>() {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                Log.d("USER_LOGIN", response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    int success = obj.getInt("success");
 
-        int id = item.getItemId();
+                    System.out.println("Appointment" + success);
 
-        //noinspection SimplifiableIfStateme
-        if (id == R.id.action_refresh) {
+                    if (success == 1) {
 
 
-            // GET And Set
+                        Alerter.create(Activity_Order_Seven_Dispatch.this)
+                                .setTitle("GEM CRM")
+                                .setText("OFM Submitted Sucessfully :)")
+                                .setBackgroundColor(R.color.Alert_Success)
+                                .show();
+
+                    } else {
+
+                        Alerter.create(Activity_Order_Seven_Dispatch.this)
+                                .setTitle("GEM CRM")
+                                .setText("Oops..! OFM Submission Failed :(")
+                                .setBackgroundColor(R.color.Alert_Fail)
+                                .show();
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                dialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
+                Alerter.create(Activity_Order_Seven_Dispatch.this)
+                        .setTitle("GEM CRM")
+                        .setText("Internal Error !")
+                        .setBackgroundColor(R.color.Alert_Warning)
+                        .show();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+               /*
+
+                params.put("user", str_user_id);
+
+                System.out.println("user : " + str_user_id);
 
 
-            return true;
-        }
+               */
 
-        return super.onOptionsItemSelected(item);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        queue.add(request);
     }
 
 

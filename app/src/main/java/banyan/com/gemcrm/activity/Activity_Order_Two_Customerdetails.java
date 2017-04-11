@@ -26,7 +26,7 @@ public class Activity_Order_Two_Customerdetails extends AppCompatActivity {
 
     EditText edt_customer_name, edt_customer_address_line1, edt_customer_address_line2, edt_customer_city, edt_customer_state,
             edt_customer_pincode, edt_customer_tincode, edt_customer_cstno, edt_customer_eccno, edt_customer_panno,
-            edt_customer_contact_person, edt_customer_contact_number, edt_customer_email;
+            edt_customer_contact_person_name, edt_customer_contact_number, edt_customer_email;
 
     Button btn_customer_next, btn_customer_previous;
 
@@ -63,7 +63,7 @@ public class Activity_Order_Two_Customerdetails extends AppCompatActivity {
         edt_customer_cstno = (EditText) findViewById(R.id.customer_details_cstno);
         edt_customer_eccno = (EditText) findViewById(R.id.customer_details_eccno);
         edt_customer_panno = (EditText) findViewById(R.id.customer_details_panno);
-        edt_customer_contact_person = (EditText) findViewById(R.id.customer_details_contact_person);
+        edt_customer_contact_person_name = (EditText) findViewById(R.id.customer_details_contact_person_name);
         edt_customer_contact_number = (EditText) findViewById(R.id.customer_details_contactno);
         edt_customer_email = (EditText) findViewById(R.id.customer_details_email);
 
@@ -82,7 +82,7 @@ public class Activity_Order_Two_Customerdetails extends AppCompatActivity {
                 str_customer_cstno = edt_customer_cstno.getText().toString();
                 str_customer_eccno = edt_customer_eccno.getText().toString();
                 str_customer_panno = edt_customer_panno.getText().toString();
-                str_customer_contact_person = edt_customer_contact_person.toString();
+                str_customer_contact_person = edt_customer_contact_person_name.getText().toString();
                 str_customer_contact_number = edt_customer_contact_number.getText().toString();
                 str_customer_email = edt_customer_email.getText().toString();
 
@@ -131,7 +131,7 @@ public class Activity_Order_Two_Customerdetails extends AppCompatActivity {
                     TastyToast.makeText(getApplicationContext(), "Customer cstno", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
                 } else if (str_customer_contact_person.equals("")) {
-                    edt_customer_contact_person.setError("Please Enter Customer contact person");
+                    edt_customer_contact_person_name.setError("Please Enter Customer contact person");
                     TastyToast.makeText(getApplicationContext(), "Customer contact person", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
                 } else if (str_customer_contact_number.equals("")) {
@@ -235,7 +235,7 @@ public class Activity_Order_Two_Customerdetails extends AppCompatActivity {
                 edt_customer_cstno.setText(str_customer_cstno);
                 edt_customer_eccno.setText(str_customer_eccno);
                 edt_customer_panno.setText(str_customer_panno);
-                edt_customer_contact_person.setText(str_customer_contact_person);
+                edt_customer_contact_person_name.setText(str_customer_contact_person);
                 edt_customer_contact_number.setText(str_customer_contact_number);
                 edt_customer_email.setText(str_customer_email);
 

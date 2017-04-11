@@ -10,8 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -23,17 +23,19 @@ import dmax.dialog.SpotsDialog;
  */
 
 public class Activity_Order_Four_Shipping extends AppCompatActivity {
+
     EditText edt_shipping_customer_name, edt_customer_shipping_address_line1, edt_customer_shipping_address_line2, edt_customer_shipping_city, edt_customer_shipping_state, edt_customer_shipping_pincode,
             edt_customer_shipping_tincode, edt_customer_shipping_cstno, edt_customer_shipping_eccno, edt_customer_shipping_panno, edt_customer_shipping_contact_person, edt_customer_shipping_contact_number, edt_customer_shipping_email;
 
     Button btn_customer_shipping_next, btn_customer_shipping_previous;
 
-    RadioButton ratio_same;
 
     String str_customer_shipping_name, str_customer_shipping_address_line1, str_customer_shipping_address_line2, str_customer_shipping_city, str_customer_shipping_state, str_customer_shipping_pincode,
             str_customer_shipping_tincode, str_customer_shipping_cstno, str_customer_shipping_eccno, str_customer_shipping_panno, str_customer_shipping_contact_person, str_customer_shipping_contact_number, str_customer_shipping_email="";
 
     SpotsDialog dialog;
+
+    CheckBox shipping_same_as_previous;
 
     private Toolbar mToolbar;
 
@@ -47,7 +49,8 @@ public class Activity_Order_Four_Shipping extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
 
-        ratio_same = (RadioButton) findViewById(R.id.customer_shipping_same_address);
+        shipping_same_as_previous = (CheckBox) findViewById(R.id.customer_details_shipping_same_previous);
+
 
         btn_customer_shipping_next = (Button) findViewById(R.id.customer_shipping_next);
         btn_customer_shipping_previous = (Button) findViewById(R.id.customer_shipping_previous);
@@ -66,45 +69,80 @@ public class Activity_Order_Four_Shipping extends AppCompatActivity {
         edt_customer_shipping_email = (EditText) findViewById(R.id.customer_shipping_email);
 
 
-        ratio_same.setOnClickListener(new View.OnClickListener() {
+        shipping_same_as_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                str_customer_shipping_address_line1 = sharedPreferences.getString("str_customer_address_line1", "str_customer_address_line1");
-                str_customer_shipping_address_line2 = sharedPreferences.getString("str_customer_address_line2", "str_customer_address_line2");
-                str_customer_shipping_city = sharedPreferences.getString("str_customer_city", "str_customer_city");
-                str_customer_shipping_state = sharedPreferences.getString("str_customer_state", "str_customer_state");
-                str_customer_shipping_pincode = sharedPreferences.getString("str_customer_pincode", "str_customer_pincode");
-                str_customer_shipping_tincode = sharedPreferences.getString("str_customer_tincode", "str_customer_tincode");
-                str_customer_shipping_cstno = sharedPreferences.getString("str_customer_cstno", "str_customer_cstno");
-                str_customer_shipping_eccno = sharedPreferences.getString("str_customer_eccno", "str_customer_eccno");
-                str_customer_shipping_panno = sharedPreferences.getString("str_customer_panno", "str_customer_panno");
-                str_customer_shipping_contact_person = sharedPreferences.getString("str_customer_contact_person", "str_customer_contact_person");
-                str_customer_shipping_contact_number = sharedPreferences.getString("str_customer_contact_number", "str_customer_contact_number");
-                str_customer_shipping_email = sharedPreferences.getString("str_customer_email", "str_customer_email");
+                if (shipping_same_as_previous.isChecked()){
 
+                    System.out.println("CHECKED");
+
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+
+                    str_customer_shipping_address_line1 = sharedPreferences.getString("str_customer_billing_address_line1", "str_customer_billing_address_line1");
+                    str_customer_shipping_address_line2 = sharedPreferences.getString("str_customer_billing_address_line2", "str_customer_billing_address_line2");
+                    str_customer_shipping_city = sharedPreferences.getString("str_customer_billing_city", "str_customer_billing_city");
+                    str_customer_shipping_state = sharedPreferences.getString("str_customer_billing_state", "str_customer_billing_state");
+                    str_customer_shipping_pincode = sharedPreferences.getString("str_customer_billing_pincode", "str_customer_billing_pincode");
+                    str_customer_shipping_tincode = sharedPreferences.getString("str_customer_billing_tincode", "str_customer_billing_tincode");
+                    str_customer_shipping_cstno = sharedPreferences.getString("str_customer_billing_cstno", "str_customer_billing_cstno");
+                    str_customer_shipping_eccno = sharedPreferences.getString("str_customer_billing_eccno", "str_customer_billing_eccno");
+                    str_customer_shipping_panno = sharedPreferences.getString("str_customer_billing_panno", "str_customer_billing_panno");
+                    str_customer_shipping_contact_person = sharedPreferences.getString("str_customer_billing_contact_person", "str_customer_billing_contact_person");
+                    str_customer_shipping_contact_number = sharedPreferences.getString("str_customer_billing_contact_number", "str_customer_billing_contact_number");
+                    str_customer_shipping_email = sharedPreferences.getString("str_customer_billing_email", "str_customer_billing_email");
+
+
+                    try {
+
+
+                        edt_customer_shipping_address_line1.setText(str_customer_shipping_address_line1);
+                        edt_customer_shipping_address_line2.setText(str_customer_shipping_address_line2);
+                        edt_customer_shipping_city.setText(str_customer_shipping_city);
+                        edt_customer_shipping_state.setText(str_customer_shipping_state);
+                        edt_customer_shipping_pincode.setText(str_customer_shipping_pincode);
+                        edt_customer_shipping_tincode.setText(str_customer_shipping_tincode);
+                        edt_customer_shipping_cstno.setText(str_customer_shipping_cstno);
+                        edt_customer_shipping_eccno.setText(str_customer_shipping_eccno);
+                        edt_customer_shipping_panno.setText(str_customer_shipping_panno);
+                        edt_customer_shipping_contact_person.setText(str_customer_shipping_contact_person);
+                        edt_customer_shipping_contact_number.setText(str_customer_shipping_contact_number);
+                        edt_customer_shipping_email.setText(str_customer_shipping_email);
+
+                    } catch (Exception e) {
+
+                    }
+
+                }else {
+
+                    try {
+
+
+                        edt_customer_shipping_address_line1.setText("");
+                        edt_customer_shipping_address_line2.setText("");
+                        edt_customer_shipping_city.setText("");
+                        edt_customer_shipping_state.setText("");
+                        edt_customer_shipping_pincode.setText("");
+                        edt_customer_shipping_tincode.setText("");
+                        edt_customer_shipping_cstno.setText("");
+                        edt_customer_shipping_eccno.setText("");
+                        edt_customer_shipping_panno.setText("");
+                        edt_customer_shipping_contact_person.setText("");
+                        edt_customer_shipping_contact_number.setText("");
+                        edt_customer_shipping_email.setText("");
+
+
+                    } catch (Exception e) {
+
+                    }
+
+                }
 
             }
         });
-        try {
 
 
-            edt_customer_shipping_address_line1.setText(str_customer_shipping_address_line1);
-            edt_customer_shipping_address_line2.setText(str_customer_shipping_address_line2);
-            edt_customer_shipping_city.setText(str_customer_shipping_city);
-            edt_customer_shipping_state.setText(str_customer_shipping_state);
-            edt_customer_shipping_pincode.setText(str_customer_shipping_pincode);
-            edt_customer_shipping_tincode.setText(str_customer_shipping_tincode);
-            edt_customer_shipping_cstno.setText(str_customer_shipping_cstno);
-            edt_customer_shipping_eccno.setText(str_customer_shipping_eccno);
-            edt_customer_shipping_panno.setText(str_customer_shipping_panno);
-            edt_customer_shipping_contact_person.setText(str_customer_shipping_contact_person);
-            edt_customer_shipping_contact_number.setText(str_customer_shipping_contact_number);
-            edt_customer_shipping_email.setText(str_customer_shipping_email);
-        } catch (Exception e) {
-
-        }
         btn_customer_shipping_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +156,7 @@ public class Activity_Order_Four_Shipping extends AppCompatActivity {
                 str_customer_shipping_cstno = edt_customer_shipping_cstno.getText().toString();
                 str_customer_shipping_eccno = edt_customer_shipping_eccno.getText().toString();
                 str_customer_shipping_panno = edt_customer_shipping_panno.getText().toString();
-                str_customer_shipping_contact_person = edt_customer_shipping_contact_person.toString();
+                str_customer_shipping_contact_person = edt_customer_shipping_contact_person.getText().toString();
                 str_customer_shipping_contact_number = edt_customer_shipping_contact_number.getText().toString();
                 str_customer_shipping_email = edt_customer_shipping_email.getText().toString();
 
@@ -240,7 +278,7 @@ public class Activity_Order_Four_Shipping extends AppCompatActivity {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
             str_customer_shipping_address_line1 = sharedPreferences.getString("str_customer_shipping_address_line1", "str_customer_shipping_address_line1");
-            str_customer_shipping_address_line2 = sharedPreferences.getString("(str_customer_shipping_address_line2", "(str_customer_shipping_address_line2");
+            str_customer_shipping_address_line2 = sharedPreferences.getString("str_customer_shipping_address_line2", "str_customer_shipping_address_line2");
             str_customer_shipping_city = sharedPreferences.getString("str_customer_shipping_city", "str_customer_shipping_city");
             str_customer_shipping_state = sharedPreferences.getString("str_customer_shipping_state", "str_customer_shipping_state");
             str_customer_shipping_pincode = sharedPreferences.getString("str_customer_shipping_pincode", "str_customer_shipping_pincode");

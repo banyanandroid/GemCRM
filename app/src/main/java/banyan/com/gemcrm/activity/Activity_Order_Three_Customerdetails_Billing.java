@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
@@ -28,10 +29,12 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
 
     Button btn_customer_billing_next, btn_customer_billing_previous;
 
-    RadioButton ratio_same;
+    RadioButton radio_same;
+
+    CheckBox same_as_previous;
 
     String str_customer_billing_name, str_customer_billing_address_line1, str_customer_billing_address_line2, str_customer_billing_city, str_customer_billing_state, str_customer_billing_pincode,
-            str_customer_billing_tincode, str_customer_billing_cstno, str_customer_billing_eccno, str_customer_billing_panno, str_customer_billing_contact_person_three, str_customer_billing_contact_number, str_customer_billing_email = "";
+            str_customer_billing_tincode, str_customer_billing_cstno, str_customer_billing_eccno, str_customer_billing_panno, str_customer_billing_contact_person, str_customer_billing_contact_number, str_customer_billing_email = "";
 
     SpotsDialog dialog;
 
@@ -46,7 +49,8 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
         setSupportActionBar(mToolbar);
 
 
-        ratio_same = (RadioButton) findViewById(R.id.customer_details_billing_same_address);
+        //radio_same = (RadioButton) findViewById(R.id.customer_details_billing_same_above);
+        same_as_previous = (CheckBox) findViewById(R.id.customer_details_billing_same_above);
 
         btn_customer_billing_next = (Button) findViewById(R.id.customer_details_billing_next);
         btn_customer_billing_previous = (Button) findViewById(R.id.customer_details_billing_previous);
@@ -64,48 +68,76 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
         edt_customer_billing_contact_number = (EditText) findViewById(R.id.customer_details_billing_contactno);
         edt_customer_billing_email = (EditText) findViewById(R.id.order_customer_billing_email);
 
-
-        ratio_same.setOnClickListener(new View.OnClickListener() {
+        same_as_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                if (same_as_previous.isChecked()){
 
-                str_customer_billing_address_line1 = sharedPreferences.getString("str_customer_address_line1", "str_customer_address_line1");
-                str_customer_billing_address_line2 = sharedPreferences.getString("str_customer_address_line2", "str_customer_address_line2");
-                str_customer_billing_city = sharedPreferences.getString("str_customer_city", "str_customer_city");
-                str_customer_billing_state = sharedPreferences.getString("str_customer_state", "str_customer_state");
-                str_customer_billing_pincode = sharedPreferences.getString("str_customer_pincode", "str_customer_pincode");
-                str_customer_billing_tincode = sharedPreferences.getString("str_customer_tincode", "str_customer_tincode");
-                str_customer_billing_cstno = sharedPreferences.getString("str_customer_cstno", "str_customer_cstno");
-                str_customer_billing_eccno = sharedPreferences.getString("str_customer_eccno", "str_customer_eccno");
-                str_customer_billing_panno = sharedPreferences.getString("str_customer_panno", "str_customer_panno");
-                str_customer_billing_contact_person_three = sharedPreferences.getString("str_customer_contact_person_three", "str_customer_contact_person_three");
-                str_customer_billing_contact_number = sharedPreferences.getString("str_customer_contact_number", "str_customer_contact_number");
-                str_customer_billing_email = sharedPreferences.getString("str_customer_email", "str_customer_email");
+                    System.out.println("CHECKED");
 
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+
+                    str_customer_billing_address_line1 = sharedPreferences.getString("str_customer_address_line1", "str_customer_address_line1");
+                    str_customer_billing_address_line2 = sharedPreferences.getString("str_customer_address_line2", "str_customer_address_line2");
+                    str_customer_billing_city = sharedPreferences.getString("str_customer_city", "str_customer_city");
+                    str_customer_billing_state = sharedPreferences.getString("str_customer_state", "str_customer_state");
+                    str_customer_billing_pincode = sharedPreferences.getString("str_customer_pincode", "str_customer_pincode");
+                    str_customer_billing_tincode = sharedPreferences.getString("str_customer_tincode", "str_customer_tincode");
+                    str_customer_billing_cstno = sharedPreferences.getString("str_customer_cstno", "str_customer_cstno");
+                    str_customer_billing_eccno = sharedPreferences.getString("str_customer_eccno", "str_customer_eccno");
+                    str_customer_billing_panno = sharedPreferences.getString("str_customer_panno", "str_customer_panno");
+                    str_customer_billing_contact_person = sharedPreferences.getString("str_customer_contact_person", "str_customer_contact_person");
+                    str_customer_billing_contact_number = sharedPreferences.getString("str_customer_contact_number", "str_customer_contact_number");
+                    str_customer_billing_email = sharedPreferences.getString("str_customer_email", "str_customer_email");
+
+                    try {
+
+
+                        edt_customer_billing_address_line1.setText(str_customer_billing_address_line1);
+                        edt_customer_billing_address_line2.setText(str_customer_billing_address_line2);
+                        edt_customer_billing_city.setText(str_customer_billing_city);
+                        edt_customer_billing_state.setText(str_customer_billing_state);
+                        edt_customer_billing_pincode.setText(str_customer_billing_pincode);
+                        edt_customer_billing_tincode.setText(str_customer_billing_tincode);
+                        edt_customer_billing_cstno.setText(str_customer_billing_cstno);
+                        edt_customer_billing_eccno.setText(str_customer_billing_eccno);
+                        edt_customer_billing_panno.setText(str_customer_billing_panno);
+                        edt_customer_billing_contact_person.setText(str_customer_billing_contact_person);
+                        edt_customer_billing_contact_number.setText(str_customer_billing_contact_number);
+                        edt_customer_billing_email.setText(str_customer_billing_email);
+
+                    } catch (Exception e) {
+
+                    }
+
+                }else {
+
+                    try {
+
+
+                        edt_customer_billing_address_line1.setText("");
+                        edt_customer_billing_address_line2.setText("");
+                        edt_customer_billing_city.setText("");
+                        edt_customer_billing_state.setText("");
+                        edt_customer_billing_pincode.setText("");
+                        edt_customer_billing_tincode.setText("");
+                        edt_customer_billing_cstno.setText("");
+                        edt_customer_billing_eccno.setText("");
+                        edt_customer_billing_panno.setText("");
+                        edt_customer_billing_contact_person.setText("");
+                        edt_customer_billing_contact_number.setText("");
+                        edt_customer_billing_email.setText("");
+
+                    } catch (Exception e) {
+
+                    }
+
+                }
 
             }
         });
-        try {
-
-
-            edt_customer_billing_address_line1.setText(str_customer_billing_address_line1);
-            edt_customer_billing_address_line2.setText(str_customer_billing_address_line2);
-            edt_customer_billing_city.setText(str_customer_billing_city);
-            edt_customer_billing_state.setText(str_customer_billing_state);
-            edt_customer_billing_pincode.setText(str_customer_billing_pincode);
-            edt_customer_billing_tincode.setText(str_customer_billing_tincode);
-            edt_customer_billing_cstno.setText(str_customer_billing_cstno);
-            edt_customer_billing_eccno.setText(str_customer_billing_eccno);
-            edt_customer_billing_panno.setText(str_customer_billing_panno);
-            edt_customer_billing_contact_person.setText(str_customer_billing_contact_person_three);
-            edt_customer_billing_contact_number.setText(str_customer_billing_contact_number);
-            edt_customer_billing_email.setText(str_customer_billing_email);
-        } catch (Exception e) {
-
-        }
-
 
         btn_customer_billing_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +152,7 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
                 str_customer_billing_cstno = edt_customer_billing_cstno.getText().toString();
                 str_customer_billing_eccno = edt_customer_billing_eccno.getText().toString();
                 str_customer_billing_panno = edt_customer_billing_panno.getText().toString();
-                str_customer_billing_contact_person_three = edt_customer_billing_contact_person.toString();
+                str_customer_billing_contact_person = edt_customer_billing_contact_person.getText().toString();
                 str_customer_billing_contact_number = edt_customer_billing_contact_number.getText().toString();
                 str_customer_billing_email = edt_customer_billing_email.getText().toString();
 
@@ -164,7 +196,7 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
                     edt_customer_billing_panno.setError("Please Enter Customer cstno");
                     TastyToast.makeText(getApplicationContext(), "Customer cstno", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                } else if (str_customer_billing_contact_person_three.equals("")) {
+                } else if (str_customer_billing_contact_person.equals("")) {
                     edt_customer_billing_contact_person.setError("Please Enter Customer contact person");
                     TastyToast.makeText(getApplicationContext(), "Customer contact person", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
@@ -181,6 +213,7 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
+
                     editor.putString("str_customer_billing_address_line1", str_customer_billing_address_line1);
                     editor.putString("str_customer_billing_address_line2", str_customer_billing_address_line2);
                     editor.putString("str_customer_billing_city", str_customer_billing_city);
@@ -190,7 +223,7 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
                     editor.putString("str_customer_billing_cstno", str_customer_billing_cstno);
                     editor.putString("str_customer_billing_eccno", str_customer_billing_eccno);
                     editor.putString("str_customer_billing_panno", str_customer_billing_panno);
-                    editor.putString("str_customer_contact_person_three", str_customer_billing_contact_person_three);
+                    editor.putString("str_customer_billing_contact_person", str_customer_billing_contact_person);
                     editor.putString("str_customer_billing_contact_number", str_customer_billing_contact_number);
                     editor.putString("str_customer_billing_email", str_customer_billing_email);
 
@@ -241,18 +274,19 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-            str_customer_billing_address_line1 = sharedPreferences.getString("str_customer_address_line1", "str_customer_address_line1");
-            str_customer_billing_address_line2 = sharedPreferences.getString("(str_customer_address_line2", "(str_customer_address_line2");
-            str_customer_billing_city = sharedPreferences.getString("str_customer_city", "str_customer_city");
-            str_customer_billing_state = sharedPreferences.getString("str_customer_state", "str_customer_state");
-            str_customer_billing_pincode = sharedPreferences.getString("str_customer_pincode", "str_customer_pincode");
-            str_customer_billing_tincode = sharedPreferences.getString("str_customer_tincode", "str_customer_tincode");
-            str_customer_billing_cstno = sharedPreferences.getString("str_customer_cstno", "str_customer_cstno");
-            str_customer_billing_eccno = sharedPreferences.getString("str_customer_eccno", "str_customer_eccno");
-            str_customer_billing_panno = sharedPreferences.getString("str_customer_panno", "str_customer_panno");
-            str_customer_billing_contact_person_three = sharedPreferences.getString("str_customer_contact_person_three", "str_customer_contact_person_three");
-            str_customer_billing_contact_number = sharedPreferences.getString("str_customer_contact_number", "str_customer_contact_number");
-            str_customer_billing_email = sharedPreferences.getString("str_customer_email", "str_customer_email");
+
+            str_customer_billing_address_line1 = sharedPreferences.getString("str_customer_billing_address_line1", "str_customer_billing_address_line1");
+            str_customer_billing_address_line2 = sharedPreferences.getString("str_customer_billing_address_line2", "str_customer_billing_address_line2");
+            str_customer_billing_city = sharedPreferences.getString("str_customer_billing_city", "str_customer_billing_city");
+            str_customer_billing_state = sharedPreferences.getString("str_customer_billing_state", "str_customer_billing_state");
+            str_customer_billing_pincode = sharedPreferences.getString("str_customer_billing_pincode", "str_customer_billing_pincode");
+            str_customer_billing_tincode = sharedPreferences.getString("str_customer_billing_tincode", "str_customer_billing_tincode");
+            str_customer_billing_cstno = sharedPreferences.getString("str_customer_billing_cstno", "str_customer_billing_cstno");
+            str_customer_billing_eccno = sharedPreferences.getString("str_customer_billing_eccno", "str_customer_billing_eccno");
+            str_customer_billing_panno = sharedPreferences.getString("str_customer_billing_panno", "str_customer_billing_panno");
+            str_customer_billing_contact_person = sharedPreferences.getString("str_customer_billing_contact_person", "str_customer_billing_contact_person");
+            str_customer_billing_contact_number = sharedPreferences.getString("str_customer_billing_contact_number", "str_customer_billing_contact_number");
+            str_customer_billing_email = sharedPreferences.getString("str_customer_billing_email", "str_customer_billing_email");
 
 
             try {
@@ -267,7 +301,7 @@ public class Activity_Order_Three_Customerdetails_Billing extends AppCompatActiv
                 edt_customer_billing_cstno.setText(str_customer_billing_cstno);
                 edt_customer_billing_eccno.setText(str_customer_billing_eccno);
                 edt_customer_billing_panno.setText(str_customer_billing_panno);
-                edt_customer_billing_contact_person.setText(str_customer_billing_contact_person_three);
+                edt_customer_billing_contact_person.setText(str_customer_billing_contact_person);
                 edt_customer_billing_contact_number.setText(str_customer_billing_contact_number);
                 edt_customer_billing_email.setText(str_customer_billing_email);
             } catch (Exception e) {

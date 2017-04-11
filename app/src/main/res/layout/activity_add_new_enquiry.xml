@@ -102,7 +102,7 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
                 android:hint="Add-on Email 1"
-                android:inputType="number"
+                android:inputType="textEmailAddress"
                 android:singleLine="true" />
 
             <EditText
@@ -112,7 +112,7 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
                 android:hint="Add-on Email 2"
-                android:inputType="number"
+                android:inputType="textEmailAddress"
                 android:singleLine="true" />
 
             <EditText
@@ -122,7 +122,7 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_parent_rounded_corner"
                 android:hint="Add-on Email 3"
-                android:inputType="number"
+                android:inputType="textEmailAddress"
                 android:singleLine="true" />
 
 
