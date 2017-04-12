@@ -62,8 +62,11 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
 
     Button btn_order_next, btn_order_previous;
 
-    String str_price_list, str_send_to, str_txt_q_ref, str_txt_q_date,
+    String str_txt_q_ref, str_txt_q_date,
             str_txt_po_ref, str_txt_po_date, str_txt_sapcode, str_order_from = "";
+
+    String str_price_list = "null";
+    String str_send_to = "null";
 
     Spinner spn_order_from, spn_order_q_ref;
 
@@ -182,6 +185,9 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
 
                     str_price_list = "As per OEM price list";
 
+                } else {
+
+                    str_price_list = "null";
                 }
 
             }
@@ -211,6 +217,9 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
 
                     str_send_to = "GOM";
 
+                } else {
+
+                    str_send_to = "null";
                 }
             }
 
@@ -228,12 +237,12 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
                 str_txt_po_date = edt_order_po_date.getText().toString();
                 str_txt_sapcode = edt_order_sapcode.getText().toString();
 
-                if (str_price_list.equals("")) {
+                if (str_price_list.equals("null")) {
 
                     /*ratio_order_master_date.setError("Please Select any One");*/
                     TastyToast.makeText(getApplicationContext(), "Price Type is Not Selected", TastyToast.LENGTH_LONG, TastyToast.WARNING);
 
-                } else if (str_send_to.equals("")) {
+                } else if (str_send_to.equals("null")) {
 
                    /* ratio_order_cbe.setError("Please Select any One");*/
                     TastyToast.makeText(getApplicationContext(), "To is Not Selected", TastyToast.LENGTH_LONG, TastyToast.WARNING);
@@ -315,8 +324,10 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
                 String[] separated = str_quo.split(":");
                 str_Selected_quotation_no = separated[0];
                 String str_quote_date = separated[1];
+                String str_quote_date111111 = separated[2];
+                String str_quote_date222222 = separated[3];
 
-                edt_order_po_ref.setText("" + str_quote_date);
+                edt_order_q_date.setText("" + str_quote_date222222);
 
                 SharedPreferences sharedPreferences = PreferenceManager
                         .getDefaultSharedPreferences(Activity_Order_One_Forwarding_Memo.this);
@@ -435,7 +446,7 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
                             String quote_price = obj1.getString(TAG_QUOTATION_PRICE);
                             String quote_date = obj1.getString(TAG_QUOTATION_DATE);
 
-                            String product = quote_no + ": " + "Price : " + quote_price + ", " + "Date : " + quote_date;
+                            String product = quote_no + ": " + "Price : " + quote_price + ", " + "Date :" + quote_date + ":";
 
                             Arraylist_quotation_no.add(product);
 

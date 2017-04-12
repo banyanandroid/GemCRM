@@ -1,5 +1,6 @@
 package banyan.com.gemcrm.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,12 +8,15 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.android.volley.Request;
@@ -28,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +58,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
     edt_note, edt_total_value, edt_p_and_f, edt_VAT_CET, edt_BET, edt_p_and_f_value,
             edt_VAT_CET_value, edt_BET_value, edt_grand_total;
 
+    Button btn_recalculate;
+
     CardView card1, card2, card3, card4, card5, card6;
 
     Button btn_previous, btn_next;
@@ -72,6 +79,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
     SpotsDialog dialog;
 
+    String str_list_price1, str_list_price2, str_list_price3, str_list_price4, str_list_price5, str_list_price6 = "0";
+
     int from_year, from_month, from_date;
 
     public static final String TAG_QUOTATION_NO = "quotation_no";
@@ -85,6 +94,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
     String str_count, str_total, str_create_on;
 
     int int_count;
+
+    long long_pf_value, long_bed_value, long_vat_value, long_total, long_grant_total = 0;
 
     private Toolbar mToolbar;
 
@@ -168,8 +179,652 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
         card5 = (CardView) findViewById(R.id.product_details_card_view_five);
         card6 = (CardView) findViewById(R.id.product_details_card_view_six);
 
+        btn_recalculate = (Button) findViewById(R.id.btn_recalculate_price);
         btn_previous = (Button) findViewById(R.id.prod_dtl_btn_previous);
         btn_next = (Button) findViewById(R.id.prod_dtl_btn_next);
+
+        edt_total_value.setFocusable(false);
+        edt_p_and_f_value.setFocusable(false);
+        edt_VAT_CET_value.setFocusable(false);
+        edt_BET_value.setFocusable(false);
+        edt_grand_total.setFocusable(false);
+
+        edt_req_date_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Calendar c = Calendar.getInstance();
+                from_year = c.get(Calendar.YEAR);
+                from_month = c.get(Calendar.MONTH);
+                from_date = c.get(Calendar.DAY_OF_MONTH);
+
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(
+                        Activity_Order_Five_Product_details.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+
+                                int month = monthOfYear + 1;
+                                String formattedMonth = "" + month;
+                                String formattedDayOfMonth = "" + dayOfMonth;
+
+                                if (month < 10) {
+
+                                    formattedMonth = "0" + month;
+                                }
+                                if (dayOfMonth < 10) {
+
+                                    formattedDayOfMonth = "0" + dayOfMonth;
+                                }
+                                edt_req_date_one.setText(formattedDayOfMonth + "/"
+                                        + formattedMonth + "/"
+                                        + year);
+
+
+                            }
+                        }, from_year, from_month, from_date);
+                dpd.show();
+
+            }
+        });
+
+
+        edt_req_date_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Calendar c = Calendar.getInstance();
+                from_year = c.get(Calendar.YEAR);
+                from_month = c.get(Calendar.MONTH);
+                from_date = c.get(Calendar.DAY_OF_MONTH);
+
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(
+                        Activity_Order_Five_Product_details.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+
+                                int month = monthOfYear + 1;
+                                String formattedMonth = "" + month;
+                                String formattedDayOfMonth = "" + dayOfMonth;
+
+                                if (month < 10) {
+
+                                    formattedMonth = "0" + month;
+                                }
+                                if (dayOfMonth < 10) {
+
+                                    formattedDayOfMonth = "0" + dayOfMonth;
+                                }
+                                edt_req_date_two.setText(formattedDayOfMonth + "/"
+                                        + formattedMonth + "/"
+                                        + year);
+
+
+                            }
+                        }, from_year, from_month, from_date);
+                dpd.show();
+
+            }
+        });
+
+        edt_req_date_three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Calendar c = Calendar.getInstance();
+                from_year = c.get(Calendar.YEAR);
+                from_month = c.get(Calendar.MONTH);
+                from_date = c.get(Calendar.DAY_OF_MONTH);
+
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(
+                        Activity_Order_Five_Product_details.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+
+                                int month = monthOfYear + 1;
+                                String formattedMonth = "" + month;
+                                String formattedDayOfMonth = "" + dayOfMonth;
+
+                                if (month < 10) {
+
+                                    formattedMonth = "0" + month;
+                                }
+                                if (dayOfMonth < 10) {
+
+                                    formattedDayOfMonth = "0" + dayOfMonth;
+                                }
+                                edt_req_date_three.setText(formattedDayOfMonth + "/"
+                                        + formattedMonth + "/"
+                                        + year);
+
+
+                            }
+                        }, from_year, from_month, from_date);
+                dpd.show();
+
+            }
+        });
+
+
+        edt_req_date_four.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Calendar c = Calendar.getInstance();
+                from_year = c.get(Calendar.YEAR);
+                from_month = c.get(Calendar.MONTH);
+                from_date = c.get(Calendar.DAY_OF_MONTH);
+
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(
+                        Activity_Order_Five_Product_details.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+
+                                int month = monthOfYear + 1;
+                                String formattedMonth = "" + month;
+                                String formattedDayOfMonth = "" + dayOfMonth;
+
+                                if (month < 10) {
+
+                                    formattedMonth = "0" + month;
+                                }
+                                if (dayOfMonth < 10) {
+
+                                    formattedDayOfMonth = "0" + dayOfMonth;
+                                }
+                                edt_req_date_four.setText(formattedDayOfMonth + "/"
+                                        + formattedMonth + "/"
+                                        + year);
+
+
+                            }
+                        }, from_year, from_month, from_date);
+                dpd.show();
+
+            }
+        });
+
+        edt_req_date_five.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Calendar c = Calendar.getInstance();
+                from_year = c.get(Calendar.YEAR);
+                from_month = c.get(Calendar.MONTH);
+                from_date = c.get(Calendar.DAY_OF_MONTH);
+
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(
+                        Activity_Order_Five_Product_details.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+
+                                int month = monthOfYear + 1;
+                                String formattedMonth = "" + month;
+                                String formattedDayOfMonth = "" + dayOfMonth;
+
+                                if (month < 10) {
+
+                                    formattedMonth = "0" + month;
+                                }
+                                if (dayOfMonth < 10) {
+
+                                    formattedDayOfMonth = "0" + dayOfMonth;
+                                }
+                                edt_req_date_five.setText(formattedDayOfMonth + "/"
+                                        + formattedMonth + "/"
+                                        + year);
+
+
+                            }
+                        }, from_year, from_month, from_date);
+                dpd.show();
+
+            }
+        });
+
+
+        edt_req_date_six.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Calendar c = Calendar.getInstance();
+                from_year = c.get(Calendar.YEAR);
+                from_month = c.get(Calendar.MONTH);
+                from_date = c.get(Calendar.DAY_OF_MONTH);
+
+                // Launch Date Picker Dialog
+                DatePickerDialog dpd = new DatePickerDialog(
+                        Activity_Order_Five_Product_details.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // Display Selected date in textbox
+
+                                int month = monthOfYear + 1;
+                                String formattedMonth = "" + month;
+                                String formattedDayOfMonth = "" + dayOfMonth;
+
+                                if (month < 10) {
+
+                                    formattedMonth = "0" + month;
+                                }
+                                if (dayOfMonth < 10) {
+
+                                    formattedDayOfMonth = "0" + dayOfMonth;
+                                }
+                                edt_req_date_six.setText(formattedDayOfMonth + "/"
+                                        + formattedMonth + "/"
+                                        + year);
+
+
+                            }
+                        }, from_year, from_month, from_date);
+                dpd.show();
+
+            }
+        });
+
+
+        edt_p_and_f.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                System.out.println(" ::::::::::::: onTextChanged ::::::::::: ");
+
+                if (i == 1) {
+
+                    String str_pandf = edt_p_and_f.getText().toString();
+
+                    String str_actual_pandf = "26";
+
+                    double actual_pandf = Double.parseDouble(str_actual_pandf);
+
+                    Double pandf = Double.parseDouble(str_pandf);
+
+                    if (pandf >= actual_pandf) {
+                        TastyToast.makeText(getApplicationContext(), "Your P and F Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_p_and_f.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                System.out.println(" ::::::::::::: afterTextChanged ::::::::::: ");
+
+                String str_pandf = edt_p_and_f.getText().toString();
+                String total_value = edt_total_value.getText().toString();
+
+                if (str_pandf.equals("")) {
+                    TastyToast.makeText(getApplicationContext(), "Please Enter Some Value", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    edt_p_and_f_value.setText("");
+                } else if (str_pandf.equals("0")) {
+                    TastyToast.makeText(getApplicationContext(), "P & F Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    edt_p_and_f_value.setText("");
+                } else {
+
+                    try {
+
+                        Double pnf_percent = Double.parseDouble(str_pandf);
+                        Double pnf_total_value = Double.parseDouble(total_value);
+
+                        Double pnf_value = pnf_percent / 100 * pnf_total_value;
+
+                        System.out.println("P&F : " + pnf_value);
+                        System.out.println("P&F : " + pnf_value);
+                        System.out.println("P&F : " + pnf_value);
+
+                        long_pf_value = Math.round(pnf_value);
+
+                        edt_p_and_f_value.setText("" + long_pf_value);
+
+                        long_total = Math.round(pnf_total_value);
+
+                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_total;
+
+                        edt_grand_total.setText("" + long_grant_total);
+
+                    } catch (Exception e) {
+
+                    }
+                }
+
+            }
+        });
+
+        edt_BET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                System.out.println(" ::::::::::::: onTextChanged ::::::::::: ");
+
+                if (i == 1) {
+
+                    String str_bed = edt_BET.getText().toString();
+
+                    String str_actual_bed = "26";
+
+                    double actual_bed = Double.parseDouble(str_actual_bed);
+
+                    Double bed = Double.parseDouble(str_bed);
+
+                    if (bed >= actual_bed) {
+                        TastyToast.makeText(getApplicationContext(), "Your B.E.D Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_BET.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                System.out.println(" ::::::::::::: afterTextChanged ::::::::::: ");
+
+                String str_bed = edt_BET.getText().toString();
+                String total_value = edt_total_value.getText().toString();
+
+                if (str_bed.equals("")) {
+                    TastyToast.makeText(getApplicationContext(), "Please Enter Some Value", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    edt_BET_value.setText("");
+                } else if (str_bed.equals("0")) {
+                    TastyToast.makeText(getApplicationContext(), "B.E.D Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    edt_BET_value.setText("");
+                } else {
+
+                    try {
+
+                        Double bed_percent = Double.parseDouble(str_bed);
+                        Double bed_total_value = Double.parseDouble(total_value);
+
+                        Double bed_value = bed_percent / 100 * bed_total_value;
+
+                        System.out.println("P&F : " + bed_value);
+                        System.out.println("P&F : " + bed_value);
+                        System.out.println("P&F : " + bed_value);
+
+                        long_bed_value = Math.round(bed_value);
+
+                        edt_BET_value.setText("" + long_bed_value);
+
+                        long_total = Math.round(bed_total_value);
+
+                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_total;
+
+                        edt_grand_total.setText("" + long_grant_total);
+
+                    } catch (Exception e) {
+
+                    }
+                }
+
+            }
+        });
+
+        edt_VAT_CET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                System.out.println(" ::::::::::::: onTextChanged ::::::::::: ");
+
+                if (i == 1) {
+
+                    String str_vat = edt_VAT_CET.getText().toString();
+
+                    String str_actual_vat = "25";
+
+                    double actual_vat = Double.parseDouble(str_actual_vat);
+
+                    Double vat = Double.parseDouble(str_vat);
+
+                    if (vat >= actual_vat) {
+                        TastyToast.makeText(getApplicationContext(), "Your VAT/CST % Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_VAT_CET.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                System.out.println(" ::::::::::::: afterTextChanged ::::::::::: ");
+
+                String str_vat = edt_VAT_CET.getText().toString();
+                String total_value = edt_total_value.getText().toString();
+
+                if (str_vat.equals("")) {
+                    TastyToast.makeText(getApplicationContext(), "Please Enter Some Value", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    edt_VAT_CET_value.setText("");
+                } else if (str_vat.equals("0")) {
+                    TastyToast.makeText(getApplicationContext(), "VAT/CST % Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    edt_VAT_CET_value.setText("");
+                } else {
+
+                    try {
+
+                        Double vat_percent = Double.parseDouble(str_vat);
+                        Double vat_total_value = Double.parseDouble(total_value);
+
+                        Double vat_value = vat_percent / 100 * vat_total_value;
+
+                        System.out.println("vat : " + vat_value);
+                        System.out.println("vat : " + vat_value);
+                        System.out.println("vat : " + vat_value);
+
+                        long_vat_value = Math.round(vat_value);
+
+                        edt_VAT_CET_value.setText("" + long_vat_value);
+
+                        long_total = Math.round(vat_total_value);
+
+                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_total;
+
+                        edt_grand_total.setText("" + long_grant_total);
+
+                    } catch (Exception e) {
+
+                    }
+
+                }
+
+            }
+        });
+
+
+        btn_recalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                str_list_price1 = edt_list_price_one.getText().toString();
+                str_list_price2 = edt_list_price_two.getText().toString();
+                str_list_price3 = edt_list_price_three.getText().toString();
+                str_list_price4 = edt_list_price_four.getText().toString();
+                str_list_price5 = edt_list_price_five.getText().toString();
+                str_list_price6 = edt_list_price_six.getText().toString();
+
+                if (int_count == 1) {
+                    if (str_list_price1.equals("") || str_list_price1.equals("0")) {
+                        str_list_price1 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 1 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else {
+                        int price1 = Integer.parseInt(str_list_price1);
+                        edt_total_value.setText("" + price1);
+                    }
+                } else if (int_count == 2) {
+
+                    if (str_list_price1.equals("") || str_list_price1.equals("0")) {
+                        str_list_price1 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 1 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price2.equals("") || str_list_price2.equals("0")) {
+                        str_list_price2 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 2 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else {
+                        int price1 = Integer.parseInt(str_list_price1);
+                        int price2 = Integer.parseInt(str_list_price2);
+
+                        int total_price = price1 + price2;
+
+                        edt_total_value.setText("" + total_price);
+                    }
+
+                } else if (int_count == 3) {
+
+                    if (str_list_price1.equals("") || str_list_price1.equals("0")) {
+                        str_list_price1 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 1 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price2.equals("") || str_list_price2.equals("0")) {
+                        str_list_price2 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 2 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price3.equals("") || str_list_price3.equals("0")) {
+                        str_list_price3 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 3 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else {
+                        int price1 = Integer.parseInt(str_list_price1);
+                        int price2 = Integer.parseInt(str_list_price2);
+                        int price3 = Integer.parseInt(str_list_price3);
+
+
+                        int total_price = price1 + price2 + price3;
+
+                        edt_total_value.setText("" + total_price);
+                    }
+
+
+                } else if (int_count == 4) {
+
+                    if (str_list_price1.equals("") || str_list_price1.equals("0")) {
+                        str_list_price1 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 1 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price2.equals("") || str_list_price2.equals("0")) {
+                        str_list_price2 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 2 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price3.equals("") || str_list_price3.equals("0")) {
+                        str_list_price3 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 3 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price4.equals("") || str_list_price4.equals("0")) {
+                        str_list_price4 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 4 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else {
+                        int price1 = Integer.parseInt(str_list_price1);
+                        int price2 = Integer.parseInt(str_list_price2);
+                        int price3 = Integer.parseInt(str_list_price3);
+                        int price4 = Integer.parseInt(str_list_price4);
+
+                        int total_price = price1 + price2 + price3 + price4;
+
+                        edt_total_value.setText("" + total_price);
+                    }
+
+                } else if (int_count == 5) {
+
+                    if (str_list_price1.equals("") || str_list_price1.equals("0")) {
+                        str_list_price1 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 1 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price2.equals("") || str_list_price2.equals("0")) {
+                        str_list_price2 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 2 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price3.equals("") || str_list_price3.equals("0")) {
+                        str_list_price3 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 3 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price4.equals("") || str_list_price4.equals("0")) {
+                        str_list_price4 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 4 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price5.equals("") || str_list_price5.equals("0")) {
+                        str_list_price5 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 5 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else {
+                        int price1 = Integer.parseInt(str_list_price1);
+                        int price2 = Integer.parseInt(str_list_price2);
+                        int price3 = Integer.parseInt(str_list_price3);
+                        int price4 = Integer.parseInt(str_list_price4);
+                        int price5 = Integer.parseInt(str_list_price5);
+
+                        int total_price = price1 + price2 + price3 + price4 + price5;
+
+                        edt_total_value.setText("" + total_price);
+                    }
+
+                } else if (int_count == 6) {
+
+                    if (str_list_price1.equals("") || str_list_price1.equals("0")) {
+                        str_list_price1 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 1 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price2.equals("") || str_list_price2.equals("0")) {
+                        str_list_price2 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 2 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price3.equals("") || str_list_price3.equals("0")) {
+                        str_list_price3 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 3 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price4.equals("") || str_list_price4.equals("0")) {
+                        str_list_price4 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 4 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price5.equals("") || str_list_price5.equals("0")) {
+                        str_list_price5 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 5 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_list_price6.equals("") || str_list_price6.equals("0")) {
+                        str_list_price6 = "0";
+                        TastyToast.makeText(getApplicationContext(), "Product 6 Price cannot be Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else {
+                        int price1 = Integer.parseInt(str_list_price1);
+                        int price2 = Integer.parseInt(str_list_price2);
+                        int price3 = Integer.parseInt(str_list_price3);
+                        int price4 = Integer.parseInt(str_list_price4);
+                        int price5 = Integer.parseInt(str_list_price5);
+                        int price6 = Integer.parseInt(str_list_price6);
+
+                        int total_price = price1 + price2 + price3 + price4 + price5 + price6;
+
+                        edt_total_value.setText("" + total_price);
+                    }
+
+                }
+
+            }
+        });
 
 
         btn_next.setOnClickListener(new View.OnClickListener() {
@@ -764,6 +1419,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                                     edt_discount_one.setText(str_discount_one);
                                     edt_actual_price_one.setText(str_actual_price_one);
 
+                                    edt_total_value.setText(str_list_price_one);
+
                                 }
 
                             } else if (int_count == 2) {
@@ -822,6 +1479,31 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                                         edt_actual_price_two.setText(str_actual_price_two);
 
                                     }
+
+                                }
+
+                                try {
+
+                                    if (str_list_price_one.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 1 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_two.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 2 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else {
+
+                                        int price1 = Integer.parseInt(str_list_price_one);
+                                        int price2 = Integer.parseInt(str_list_price_two);
+
+                                        if (price1 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 1 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price2 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 2 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else {
+                                            int result = price1 + price2;
+                                            edt_total_value.setText("" + result);
+                                        }
+                                    }
+
+                                } catch (Exception e) {
 
                                 }
 
@@ -898,6 +1580,35 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                                         edt_actual_price_three.setText(str_actual_price_three);
 
                                     }
+
+                                }
+
+                                try {
+                                    if (str_list_price_one.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 1 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_two.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 2 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_three.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 3 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else {
+
+                                        int price1 = Integer.parseInt(str_list_price_one);
+                                        int price2 = Integer.parseInt(str_list_price_two);
+                                        int price3 = Integer.parseInt(str_list_price_three);
+
+                                        if (price1 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 1 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price2 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 2 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price3 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 3 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else {
+                                            int result = price1 + price2 + price3;
+                                            edt_total_value.setText("" + result);
+                                        }
+                                    }
+
+                                } catch (Exception e) {
 
                                 }
 
@@ -992,6 +1703,42 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                                         edt_actual_price_four.setText(str_actual_price_four);
 
                                     }
+
+                                }
+
+                                try {
+                                    if (str_list_price_one.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 1 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_two.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 2 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_three.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 3 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_four.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 4 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else {
+
+                                        int price1 = Integer.parseInt(str_list_price_one);
+                                        int price2 = Integer.parseInt(str_list_price_two);
+                                        int price3 = Integer.parseInt(str_list_price_three);
+                                        int price4 = Integer.parseInt(str_list_price_four);
+
+                                        if (price1 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 1 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price2 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 2 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price3 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 3 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price4 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 4 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else {
+                                            int result = price1 + price2 + price3 + price4;
+                                            edt_total_value.setText("" + result);
+                                        }
+                                    }
+
+                                    edt_total_value.setText("" + str_total);
+
+                                } catch (Exception e) {
 
                                 }
 
@@ -1104,6 +1851,45 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                                         edt_actual_price_five.setText(str_actual_price_five);
 
                                     }
+
+                                }
+
+                                try {
+                                    if (str_list_price_one.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 1 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_two.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 2 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_three.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 3 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_four.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 4 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_five.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 5 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else {
+
+                                        int price1 = Integer.parseInt(str_list_price_one);
+                                        int price2 = Integer.parseInt(str_list_price_two);
+                                        int price3 = Integer.parseInt(str_list_price_three);
+                                        int price4 = Integer.parseInt(str_list_price_four);
+                                        int price5 = Integer.parseInt(str_list_price_five);
+
+                                        if (price1 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 1 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price2 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 2 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price3 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 3 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price4 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 4 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price5 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 5 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else {
+                                            int result = price1 + price2 + price3 + price4 + price5;
+                                            edt_total_value.setText("" + result);
+                                        }
+                                    }
+
+                                } catch (Exception e) {
 
                                 }
 
@@ -1237,8 +2023,51 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                 }
 
-                            }
+                                try {
+                                    if (str_list_price_one.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 1 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_two.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 2 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_three.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 3 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_four.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 4 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_five.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 5 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else if (str_list_price_six.equals("")) {
+                                        TastyToast.makeText(getApplicationContext(), "Error in Product 6 Price", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                    } else {
 
+                                        int price1 = Integer.parseInt(str_list_price_one);
+                                        int price2 = Integer.parseInt(str_list_price_two);
+                                        int price3 = Integer.parseInt(str_list_price_three);
+                                        int price4 = Integer.parseInt(str_list_price_four);
+                                        int price5 = Integer.parseInt(str_list_price_five);
+                                        int price6 = Integer.parseInt(str_list_price_six);
+
+                                        if (price1 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 1 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price2 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 2 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price3 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 3 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price4 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 4 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price5 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 5 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else if (price6 == 0) {
+                                            TastyToast.makeText(getApplicationContext(), "Product Price 6 Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                                        } else {
+                                            int result = price1 + price2 + price3 + price4 + price5 + price6;
+                                            edt_total_value.setText("" + result);
+                                        }
+                                    }
+
+                                } catch (Exception e) {
+
+                                }
+
+                            }
 
                         } else {
 

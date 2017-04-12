@@ -191,6 +191,21 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                         str_txt_sapcode = sharedPreferences.getString("str_txt_sapcode", "str_txt_sapcode");
                         str_order_from = sharedPreferences.getString("str_order_from", "str_order_from");
 
+                        /*$cfirst_names = $_POST['cfirst_name'];
+                        $c_address_line_1s = $_POST['c_address_line_1'];
+                        $c_citys = $_POST['c_city'];
+                        $c_pin_codes = $_POST['c_pin_code'];
+                        $c_cst_nos = $_POST['c_cst_no'];
+                        $c_pan_nos = $_POST['c_pan_no'];
+                        $c_contact_nos = $_POST['c_contact_no'];
+                        $c_last_names = $_POST['c_last_name'];
+                        $c_address_line_2s = $_POST['c_address_line_2'];
+                        $c_states = $_POST['c_state'];
+                        $c_tin_nos = $_POST['c_tin_no'];
+                        $c_ecc_nos = $_POST['c_ecc_no'];
+                        $c_name_contact_persions = $_POST['c_name_contact_persion'];
+                        $c_emails = $_POST['c_email'];*/
+
                         //from FORM 2
                         str_customer_name = sharedPreferences.getString("str_customer_name", "str_customer_name");
                         str_customer_address_line1 = sharedPreferences.getString("str_customer_address_line1", "str_customer_address_line1");
@@ -409,14 +424,16 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-               /*
+                params.put("price_lst", str_price_list);
+                params.put("qref", str_txt_q_ref);
+                params.put("qdate", str_txt_q_date);
+                params.put("sap_cd", str_txt_sapcode);
+                params.put("poref", str_txt_po_ref);
+                params.put("podate", str_txt_po_date);
+                params.put("from_prc", str_order_from);
+                params.put("to_gem", str_send_to);
 
-                params.put("user", str_user_id);
 
-                System.out.println("user : " + str_user_id);
-
-
-               */
 
 
                 return params;

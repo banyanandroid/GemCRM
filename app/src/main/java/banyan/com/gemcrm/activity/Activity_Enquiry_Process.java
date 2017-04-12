@@ -1818,7 +1818,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                     if (discount >= actual_discount) {
                         TastyToast.makeText(getApplicationContext(), "Your Discount Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                        edt_discount.setText("25");
+                        edt_discount.setText(actual_discount);
                     }
                 }
             }
