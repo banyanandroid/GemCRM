@@ -340,16 +340,12 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
 
                     }
 
-
-//                   Intent i = new Intent(getApplicationContext(), MainActivity.class);
+//                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
 //                    startActivity(i);
 //                    finish();
 
                     Function_Submit_OFM();
-
-
                 }
-
 
             }
         });
@@ -432,9 +428,6 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                 params.put("podate", str_txt_po_date);
                 params.put("from_prc", str_order_from);
                 params.put("to_gem", str_send_to);
-
-
-
 
                 return params;
             }

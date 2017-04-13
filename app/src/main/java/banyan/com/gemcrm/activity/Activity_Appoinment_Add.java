@@ -90,8 +90,6 @@ public class Activity_Appoinment_Add extends BaseActivity_Appoinment implements 
         edt_app_date = (EditText) findViewById(R.id.add_appoint_edt_start_date);
         edt_app_time = (EditText) findViewById(R.id.add_appoint_edt_time);
 
-
-
         edt_app_with.setFilters(new InputFilter[]{filter});
         edt_app_location.setFilters(new InputFilter[]{filter});
         edt_app_through.setFilters(new InputFilter[]{filter});

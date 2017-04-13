@@ -33,6 +33,7 @@ public class SessionManager {
 	public static final String KEY_USER = "name";
 	public static final String KEY_USER_ID = "id";
 	public static final String KEY_PERMISSION = "gcm";
+	public static final String KEY_IMAGE = "image";
 
 	// Constructor
 	public SessionManager(Context context){
@@ -44,7 +45,7 @@ public class SessionManager {
 	/**
 	 * Create login session
 	 * */
-	public void createLoginSession(String name, String id, String gcm){
+	public void createLoginSession(String name, String id, String gcm, String image){
 		// Storing login value as TRUE
 		editor.putBoolean(IS_LOGIN, true);
 
@@ -52,6 +53,7 @@ public class SessionManager {
 		editor.putString(KEY_USER, name);
 		editor.putString(KEY_USER_ID, id);
 		editor.putString(KEY_PERMISSION, gcm);
+		editor.putString(KEY_IMAGE, image);
 
 
 
@@ -96,6 +98,9 @@ public class SessionManager {
 
 		//GCM
 		user.put(KEY_PERMISSION, pref.getString(KEY_PERMISSION, null));
+
+		// IMAGE
+		user.put(KEY_IMAGE, pref.getString(KEY_IMAGE, null));
 
 
 

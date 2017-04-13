@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     // Session Manager Class
     SessionManager session;
 
-    public static String str_id, str_name;
+    public static String str_id, str_name,str_image;
     String str_permission = null;
     String GcmId = null;
 
@@ -86,6 +86,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         str_name = user.get(SessionManager.KEY_USER);
         str_id = user.get(SessionManager.KEY_USER_ID);
         str_permission = user.get(SessionManager.KEY_PERMISSION);
+        str_image = user.get(SessionManager.KEY_IMAGE);
+
+        String str_img_path = "http://gemservice.in/crm/executive/" + str_image;
+
+        System.out.println("IMAGEEEEE " + str_img_path);
+        System.out.println("IMAGEEEEE " + str_img_path);
+        System.out.println("IMAGEEEEE " + str_img_path);
+        System.out.println("IMAGEEEEE " + str_img_path);
 
         try {
             System.out.println("user" + str_id);

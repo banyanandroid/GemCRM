@@ -17,7 +17,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +37,9 @@ public class FragmentDrawer extends Fragment {
     private static String TAG = FragmentDrawer.class.getSimpleName();
 
     TextView txt_username;
-    public static String str_id, str_name;
+    ImageView img_image;
+
+    public static String str_id, str_name, str_image;
     // Session Manager Class
     SessionManager session;
 
@@ -81,6 +87,7 @@ public class FragmentDrawer extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
         txt_username = (TextView) layout.findViewById(R.id.drawer_txtview_username);
+        img_image = (ImageView) layout.findViewById(R.id.drawer_image);
 
         session = new SessionManager(getActivity());
 
@@ -92,8 +99,22 @@ public class FragmentDrawer extends Fragment {
         // name
         str_name = user.get(SessionManager.KEY_USER);
         str_id = user.get(SessionManager.KEY_USER_ID);
+        str_image = user.get(SessionManager.KEY_IMAGE);
 
-        txt_username.setText(""+str_name);
+        txt_username.setText("" + str_name);
+
+        try {
+
+            String str_img_path = "http://gemservice.in/crm/executive/" + str_image;
+            Glide.with(getActivity()).load(str_img_path)
+                    .thumbnail(0.5f)
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(img_image);
+
+        } catch (Exception e) {
+
+        }
 
         adapter = new NavigationDrawerAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);

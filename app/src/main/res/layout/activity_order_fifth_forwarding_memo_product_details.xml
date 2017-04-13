@@ -262,9 +262,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner" />
 
-
                     </LinearLayout>
-
 
                 </LinearLayout>
 

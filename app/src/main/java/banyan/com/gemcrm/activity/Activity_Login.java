@@ -52,13 +52,14 @@ public class Activity_Login extends Activity {
     private static final String TAG_NAME = "user_name";
     private static final String TAG_ID = "user_id";
     private static final String TAG_PERMISSION = "permission";
+    private static final String TAG_USER_IMAGE = "user_image";
     String TAG = "reg";
 
     SpotsDialog dialog;
     public static RequestQueue queue;
 
 
-    String str_user_name, str_user_id, str_permission;
+    String str_user_name, str_user_id, str_permission, str_image;
 
     // Session Manager Class
     SessionManager session;
@@ -145,13 +146,17 @@ public class Activity_Login extends Activity {
                             str_user_name = obj1.getString(TAG_NAME);
                             str_user_id = obj1.getString(TAG_ID);
                             str_permission = obj1.getString(TAG_PERMISSION);
+                            str_image = obj1.getString(TAG_USER_IMAGE);
                         }
 
                         System.out.println("NAME" + str_user_name);
                         System.out.println("ID" + str_user_id);
                         System.out.println("ID" + str_permission);
+                        System.out.println("IMAGEEE" + str_image);
+                        System.out.println("IMAGEEE" + str_image);
+                        System.out.println("IMAGEEE" + str_image);
 
-                        session.createLoginSession(str_user_name, str_user_id, str_permission);
+                        session.createLoginSession(str_user_name, str_user_id, str_permission, str_image);
 
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
@@ -171,7 +176,7 @@ public class Activity_Login extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 dialog.dismiss();
-               // TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                // TastyToast.makeText(getApplicationContext(), "Internal Error :(", TastyToast.LENGTH_LONG, TastyToast.ERROR);
             }
         }) {
 
@@ -252,13 +257,13 @@ public class Activity_Login extends Activity {
 
         // get Connectivity Manager object to check connection
         ConnectivityManager connec =
-                (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+                (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
         // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
 
             // if connected with internet
 
@@ -267,7 +272,7 @@ public class Activity_Login extends Activity {
 
         } else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
 
             new AlertDialog.Builder(Activity_Login.this)
                     .setTitle("GEM CRM")
