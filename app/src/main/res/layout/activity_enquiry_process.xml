@@ -205,6 +205,7 @@
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
                             android:text=""
+                            android:inputType="textEmailAddress"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -244,6 +245,7 @@
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
                             android:text=""
+                            android:inputType="textEmailAddress"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -283,6 +285,7 @@
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
                             android:text=""
+                            android:inputType="textEmailAddress"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -2947,7 +2950,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -2973,6 +2976,97 @@
                         android:background="@drawable/bg_spinner"
                         android:popupBackground="@color/hash"
                         android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                </LinearLayout>-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="Tax : P&amp;F % "
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/enq_process_edt_tax_pnf"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:hint="P&amp;F %"
+                        android:textSize="16dp"
+                        android:inputType="number|text"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="Tax : VAT/CST"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/enq_process_edt_tax_vat_cst"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:hint="VAT/CST %"
+                        android:inputType="number|text"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="Tax : Exice Duty % "
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/enq_process_edt_tax_exice_duty"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:hint="Exice Duty %"
+                        android:inputType="number|text"
                         android:textSize="16dp" />
 
                 </LinearLayout>

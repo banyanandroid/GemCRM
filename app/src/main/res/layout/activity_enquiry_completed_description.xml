@@ -192,7 +192,7 @@
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="Addd on Email"
+                            android:text="Add on Email"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -823,17 +823,33 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/completed_btn_ofm_preview"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:text="Preview OFM"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:visibility="gone"
+                            android:textStyle="bold" />
 
                         <Button
                             android:id="@+id/completed_btn_proceed_ofm"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:background="@color/colorPrimary"
-                            android:textColor="@color/white"
                             android:text="Proceed With OFM"
+                            android:textColor="@color/white"
                             android:textSize="16dp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
+
 
                     </LinearLayout>
 

@@ -236,10 +236,14 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     ArrayList<String> Arraylist_quotation_no = null;
     String str_Selected_quotation_no = "";
 
-    Spinner spn_tax;
+    /*Spinner spn_tax;
     ArrayList<String> Arraylist_tax = null;
     ArrayList<String> Arraylist_tax_id = null;
-    String str_Selected_tax = "";
+    String str_Selected_tax = "";*/
+
+    EditText edt_tax_pnf, edt_tax_vat_cst, edt_tax_exduty;
+
+    String str_tax_pnf, str_tax_vat_cst, str_tax_exduty = "";
 
     LinearLayout linear_appointment, linear_enq_no;
 
@@ -448,7 +452,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_enq_appint_time = (EditText) findViewById(R.id.enq_add_appoint_edt_time);
 
         spn_status = (Spinner) findViewById(R.id.enq_process_spinner_status2);
-        spn_tax = (Spinner) findViewById(R.id.enq_process_spinner_tax);
+        /*spn_tax = (Spinner) findViewById(R.id.enq_process_spinner_tax);*/
         spn_ga_diagram1 = (Spinner) findViewById(R.id.enq_process_spinner_ga_diagram1);
 
         spn_enq_no_for_comple_drop = (Spinner) findViewById(R.id.enq_process_spinner_enq_no);
@@ -494,8 +498,13 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         Arraylist_model_price5 = new ArrayList<String>();
         Arraylist_model_price6 = new ArrayList<String>();
 
-        Arraylist_tax = new ArrayList<String>();
-        Arraylist_tax_id = new ArrayList<String>();
+
+        edt_tax_pnf = (EditText) findViewById(R.id.enq_process_edt_tax_pnf);
+        edt_tax_vat_cst = (EditText) findViewById(R.id.enq_process_edt_tax_vat_cst);
+        edt_tax_exduty = (EditText) findViewById(R.id.enq_process_edt_tax_exice_duty);
+
+       /* Arraylist_tax = new ArrayList<String>();
+        Arraylist_tax_id = new ArrayList<String>();*/
 
         Arraylist_quotation_no = new ArrayList<String>();
 
@@ -984,8 +993,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "TYPE : " + str_Selected_model_type + "Price : " + str_Selected_model_price, Toast.LENGTH_LONG).show();
 
-                txt_value.setText("" + 0);
-                edt_price.setText("");
+                txt_value.setText("" + 1);
+                edt_price.setText("" + str_Selected_model_price);
             }
 
             @Override
@@ -1003,8 +1012,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_type2 = Arraylist_model_type2.get(arg2);
                 str_Selected_model_price2 = Arraylist_model_price2.get(arg2);
 
-                txt_value2.setText("" + 0);
-                edt_price2.setText("");
+                txt_value2.setText("" + 1);
+                edt_price2.setText(""+str_Selected_model_price2);
                 System.out.println("NAME : " + str_Selected_model_type2 + "PRICE : " + str_Selected_model_price2);
             }
 
@@ -1023,8 +1032,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_type3 = Arraylist_model_type3.get(arg2);
                 str_Selected_model_price3 = Arraylist_model_price3.get(arg2);
                 System.out.println("NAME : " + str_Selected_model_type3 + "PRICE : " + str_Selected_model_price3);
-                txt_value3.setText("" + 0);
-                edt_price3.setText("");
+                txt_value3.setText("" + 1);
+                edt_price3.setText(""+str_Selected_model_price3);
 
             }
 
@@ -1042,8 +1051,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 str_Selected_model_type4 = Arraylist_model_type4.get(arg2);
                 str_Selected_model_price4 = Arraylist_model_price4.get(arg2);
-                txt_value4.setText("" + 0);
-                edt_price4.setText("");
+                txt_value4.setText("" + 1);
+                edt_price4.setText(""+ str_Selected_model_price4);
                 System.out.println("NAME : " + str_Selected_model_type4 + "PRICE : " + str_Selected_model_price4);
 
             }
@@ -1062,8 +1071,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 str_Selected_model_type5 = Arraylist_model_type5.get(arg2);
                 str_Selected_model_price5 = Arraylist_model_price5.get(arg2);
-                txt_value5.setText("" + 0);
-                edt_price5.setText("");
+                txt_value5.setText("" + 1);
+                edt_price5.setText("" + str_Selected_model_price5);
                 System.out.println("NAME : " + str_Selected_model_type5 + "PRICE : " + str_Selected_model_price5);
 
             }
@@ -1082,8 +1091,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 str_Selected_model_type6 = Arraylist_model_type6.get(arg2);
                 str_Selected_model_price6 = Arraylist_model_price6.get(arg2);
-                txt_value6.setText("" + 0);
-                edt_price6.setText("");
+                txt_value6.setText("" + 1);
+                edt_price6.setText("" + str_Selected_model_price6);
                 System.out.println("NAME : " + str_Selected_model_type6 + "PRICE : " + str_Selected_model_price6);
 
             }
@@ -1711,7 +1720,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
          *  Spinner Get Enq_Quotation Number
          * ********************************************/
 
-        spn_tax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       /* spn_tax.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -1725,7 +1734,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
             }
-        });
+        });*/
 
 
         edt_enq_appint_date.setKeyListener(null);
@@ -2027,7 +2036,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_enq_through = txt_enq_enq_through.getText().toString();
                 str_po_enq_description = txt_enq_enq_thro_des.getText().toString();
 
-                str_po_group1 = txt_enq_product.getText().toString();
+                str_po_group1 = str_Selected_group1;
                 str_po_model1 = str_Selected_model;
                 str_po_model_no1 = str_Selected_model_no;
                 str_po_model_type = str_Selected_model_type;
@@ -2084,15 +2093,19 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_appoint_date = edt_enq_appint_date.getText().toString();
                 str_po_appoint_time = edt_enq_appint_time.getText().toString();
 
+                str_tax_pnf = edt_tax_pnf.getText().toString();
+                str_tax_vat_cst = edt_tax_vat_cst.getText().toString();
+                str_tax_exduty = edt_tax_exduty.getText().toString();
+
                 if (str_po_status.equals("Appointment")) {
 
                     try {
 
-                        if (str_status.equals("Pending")){
+                        if (str_status.equals("Pending")) {
 
                             str_appoint_url = AppConfig.url_post_enq;
 
-                        }else if (str_status.equals("Process")) {
+                        } else if (str_status.equals("Process")) {
 
                             str_appoint_url = AppConfig.url_post_Completed;
                         }
@@ -2108,39 +2121,57 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                 } else if (str_po_status.equals("New Quotation")) {
 
-                    try {
 
-                        dialog = new SpotsDialog(Activity_Enquiry_Process.this);
-                        dialog.show();
-                        queue = Volley.newRequestQueue(getApplicationContext());
-                        POST_ENQ();
+                    if (str_tax_pnf.equals("")){
+                        TastyToast.makeText(getApplicationContext(), "Please Enter P & F %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    }else if (str_tax_vat_cst.equals("")){
+                        TastyToast.makeText(getApplicationContext(), "Please Enter VAT / CST %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    }else if (str_tax_exduty.equals("")){
+                        TastyToast.makeText(getApplicationContext(), "Please Enter Exice Duty %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    }else {
+                        try {
 
-                    } catch (Exception e) {
-                        // TODO: handle exception
+                            dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                            dialog.show();
+                            queue = Volley.newRequestQueue(getApplicationContext());
+                            POST_ENQ();
+
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
                     }
 
                 } else if (str_po_status.equals("Another Quotation")) {
 
-                    try {
+                    if (str_tax_pnf.equals("")){
+                        TastyToast.makeText(getApplicationContext(), "Please Enter P & F %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    }else if (str_tax_vat_cst.equals("")){
+                        TastyToast.makeText(getApplicationContext(), "Please Enter VAT / CST %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    }else if (str_tax_exduty.equals("")){
+                        TastyToast.makeText(getApplicationContext(), "Please Enter Exice Duty %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    }else {
+                        try {
 
-                        dialog = new SpotsDialog(Activity_Enquiry_Process.this);
-                        dialog.show();
-                        queue = Volley.newRequestQueue(getApplicationContext());
-                        POST_ANOTHER_ENQ();
+                            dialog = new SpotsDialog(Activity_Enquiry_Process.this);
+                            dialog.show();
+                            queue = Volley.newRequestQueue(getApplicationContext());
+                            POST_ANOTHER_ENQ();
 
-                    } catch (Exception e) {
-                        // TODO: handle exception
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
                     }
+
 
                 } else if (str_po_status.equals("Call With TL")) {
 
                     try {
 
-                        if (str_status.equals("Pending")){
+                        if (str_status.equals("Pending")) {
 
                             str_call_TL_url = AppConfig.url_post_enq;
 
-                        }else if (str_status.equals("Process")) {
+                        } else if (str_status.equals("Process")) {
 
                             str_call_TL_url = AppConfig.url_post_Completed;
                         }
@@ -2768,12 +2799,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                             }
                         }
 
-                        try {
+                       /* try {
                             queue = Volley.newRequestQueue(getApplicationContext());
                             Get_tax_info();
                         } catch (Exception e) {
 
-                        }
+                        }*/
 
 
                     } else if (success == 0) {
@@ -2820,7 +2851,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
      * GET Tax Information
      ***************************/
 
-    public void Get_tax_info() {
+    /*public void Get_tax_info() {
 
         System.out.println("CAME 1" + str_select_group);
 
@@ -2904,7 +2935,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
         // Adding request to request queue
         queue.add(request);
-    }
+    }*/
 
 
     /***************************
@@ -4144,7 +4175,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("contact_person_phone", str_po_contact_person_phone);
                 params.put("enq_through", str_po_enq_through);
                 params.put("enq_desc", str_po_enq_description);
-                params.put("pro_group", str_po_group1);
+                params.put("pro_group", str_Selected_group1);
                 params.put("pro_model", str_po_model1);
                 params.put("pro_model_no", str_po_model_no1);
                 params.put("pro_model_type", str_po_model_type);
@@ -4190,7 +4221,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("remarks", str_po_spec);
                 params.put("status", str_po_status);
                 params.put("user", str_user_id);
-                params.put("tax", str_Selected_tax);
+                params.put("tax1", str_tax_pnf);
+                params.put("tax2", str_tax_vat_cst);
+                params.put("tax3", str_tax_exduty);
                 params.put("ga", str_ga_dia1);
 
                 System.out.println("tax" + str_po_add_price6);
@@ -4362,7 +4395,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("remarks", str_po_spec);
                 params.put("status", str_po_status);
                 params.put("user", str_user_id);
-                params.put("tax", str_Selected_tax);
+                params.put("tax1", str_tax_pnf);
+                params.put("tax2", str_tax_vat_cst);
+                params.put("tax3", str_tax_exduty);
                 params.put("ga", str_ga_dia1);
 
                 System.out.println("tax" + str_po_add_price6);
@@ -4628,7 +4663,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("remarks", str_po_spec);
                 params.put("status", str_po_status);
                 params.put("user", str_user_id);
-                params.put("tax", str_Selected_tax);
                 params.put("ga", str_ga_dia1);
 
                 System.out.println("tax" + str_po_add_price6);
@@ -4849,7 +4883,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         // Adding request to request queue
         queue.add(request);
     }
-
 
     /***************************
      * Function ALert

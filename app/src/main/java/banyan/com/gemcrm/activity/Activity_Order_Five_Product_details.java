@@ -76,6 +76,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
     str_note, str_total_value, str_p_and_f, str_VAT_CET, str_BET, str_p_and_f_value,
             str_VAT_CET_value, str_BET_value, str_grand_total = "";
 
+    String str_qid1, str_qid2, str_qid3, str_qid4, str_qid5, str_qid6 = "";
+
 
     SpotsDialog dialog;
 
@@ -188,6 +190,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
         edt_VAT_CET_value.setFocusable(false);
         edt_BET_value.setFocusable(false);
         edt_grand_total.setFocusable(false);
+
 
         edt_req_date_one.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -615,7 +618,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                     String str_vat = edt_VAT_CET.getText().toString();
 
-                    String str_actual_vat = "25";
+                    String str_actual_vat = "26";
 
                     double actual_vat = Double.parseDouble(str_actual_vat);
 
@@ -679,12 +682,12 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                str_list_price1 = edt_list_price_one.getText().toString();
-                str_list_price2 = edt_list_price_two.getText().toString();
-                str_list_price3 = edt_list_price_three.getText().toString();
-                str_list_price4 = edt_list_price_four.getText().toString();
-                str_list_price5 = edt_list_price_five.getText().toString();
-                str_list_price6 = edt_list_price_six.getText().toString();
+                str_list_price1 = edt_actual_price_one.getText().toString();
+                str_list_price2 = edt_actual_price_two.getText().toString();
+                str_list_price3 = edt_actual_price_three.getText().toString();
+                str_list_price4 = edt_actual_price_four.getText().toString();
+                str_list_price5 = edt_actual_price_five.getText().toString();
+                str_list_price6 = edt_actual_price_six.getText().toString();
 
                 if (int_count == 1) {
                     if (str_list_price1.equals("") || str_list_price1.equals("0")) {
@@ -898,7 +901,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                 str_grand_total = edt_grand_total.getText().toString();
 
 
-                if (str_model_one.equals("")) {
+                /*if (str_model_one.equals("")) {
                     edt_model_one.setError("Please Enter Model name for Product One");
                     TastyToast.makeText(getApplicationContext(), "Model name for Product One is Empty", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else if (str_model_two.equals("")) {
@@ -1080,85 +1083,93 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                 //Else For FUNCTION
                 else {
 
-
-                    SharedPreferences sharedPreferences = PreferenceManager
-                            .getDefaultSharedPreferences(getApplicationContext());
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //Model
-                    editor.putString("str_model_one", str_model_one);
-                    editor.putString("str_model_two", str_model_two);
-                    editor.putString("str_model_three", str_model_three);
-                    editor.putString("str_model_four", str_model_four);
-                    editor.putString("str_model_five", str_model_five);
-                    editor.putString("str_model_six", str_model_six);
-                    //SAP Code
-                    editor.putString("str_sap_code_one", str_sap_code_one);
-                    editor.putString("str_sap_code_two", str_sap_code_two);
-                    editor.putString("str_sap_code_three", str_sap_code_three);
-                    editor.putString("str_sap_code_four", str_sap_code_four);
-                    editor.putString("str_sap_code_five", str_sap_code_five);
-                    editor.putString("str_sap_code_six", str_sap_code_six);
-                    //Description
-                    editor.putString("str_desc_one", str_desc_one);
-                    editor.putString("str_desc_two", str_desc_two);
-                    editor.putString("str_desc_three", str_desc_three);
-                    editor.putString("str_desc_four", str_desc_four);
-                    editor.putString("str_desc_five", str_desc_five);
-                    editor.putString("str_desc_six", str_desc_six);
-                    //Quantity
-                    editor.putString("str_quantity_one", str_quantity_one);
-                    editor.putString("str_quantity_two", str_quantity_two);
-                    editor.putString("str_quantity_three", str_quantity_three);
-                    editor.putString("str_quantity_four", str_quantity_four);
-                    editor.putString("str_quantity_five", str_quantity_five);
-                    editor.putString("str_quantity_six", str_quantity_six);
-                    //List Price
-                    editor.putString("str_list_price_one", str_list_price_one);
-                    editor.putString("str_list_price_two", str_list_price_two);
-                    editor.putString("str_list_price_three", str_list_price_three);
-                    editor.putString("str_list_price_four", str_list_price_four);
-                    editor.putString("str_list_price_five", str_list_price_five);
-                    editor.putString("str_list_price_six", str_list_price_six);
-                    //Discount
-                    editor.putString("str_discount_one", str_discount_one);
-                    editor.putString("str_discount_two", str_discount_two);
-                    editor.putString("str_discount_three", str_discount_three);
-                    editor.putString("str_discount_four", str_discount_four);
-                    editor.putString("str_discount_five", str_discount_five);
-                    editor.putString("str_discount_six", str_discount_six);
-                    //Actual Price
-                    editor.putString("str_actual_price_one", str_actual_price_one);
-                    editor.putString("str_actual_price_two", str_actual_price_two);
-                    editor.putString("str_actual_price_three", str_actual_price_three);
-                    editor.putString("str_actual_price_four", str_actual_price_four);
-                    editor.putString("str_actual_price_five", str_actual_price_five);
-                    editor.putString("str_actual_price_six", str_actual_price_six);
-                    //Required Date
-                    editor.putString("str_req_date_one", str_req_date_one);
-                    editor.putString("str_req_date_two", str_req_date_two);
-                    editor.putString("str_req_date_three", str_req_date_three);
-                    editor.putString("str_req_date_four", str_req_date_four);
-                    editor.putString("str_req_date_five", str_req_date_five);
-                    editor.putString("str_req_date_six", str_req_date_six);
-                    //Others
-                    editor.putString("str_note", str_note);
-                    editor.putString("str_total_value", str_total_value);
-                    editor.putString("str_p_and_f", str_p_and_f);
-                    editor.putString("str_p_and_f_value", str_p_and_f_value);
-                    editor.putString("str_VAT_CET", str_VAT_CET);
-                    editor.putString("str_VAT_CET_value", str_VAT_CET_value);
-                    editor.putString("str_BET", str_BET);
-                    editor.putString("str_BET_value", str_BET_value);
-                    editor.putString("str_grand_total", str_grand_total);
-
-                    editor.commit();
-
-                    Intent i = new Intent(getApplicationContext(), Activity_Order_Six_Product_details.class);
-                    startActivity(i);
-                    finish();
+                }*/
 
 
-                }
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                //Model
+                editor.putString("str_model_one", str_model_one);
+                editor.putString("str_model_two", str_model_two);
+                editor.putString("str_model_three", str_model_three);
+                editor.putString("str_model_four", str_model_four);
+                editor.putString("str_model_five", str_model_five);
+                editor.putString("str_model_six", str_model_six);
+                //SAP Code
+                editor.putString("str_sap_code_one", str_sap_code_one);
+                editor.putString("str_sap_code_two", str_sap_code_two);
+                editor.putString("str_sap_code_three", str_sap_code_three);
+                editor.putString("str_sap_code_four", str_sap_code_four);
+                editor.putString("str_sap_code_five", str_sap_code_five);
+                editor.putString("str_sap_code_six", str_sap_code_six);
+                //Description
+                editor.putString("str_desc_one", str_desc_one);
+                editor.putString("str_desc_two", str_desc_two);
+                editor.putString("str_desc_three", str_desc_three);
+                editor.putString("str_desc_four", str_desc_four);
+                editor.putString("str_desc_five", str_desc_five);
+                editor.putString("str_desc_six", str_desc_six);
+                //Quantity
+                editor.putString("str_quantity_one", str_quantity_one);
+                editor.putString("str_quantity_two", str_quantity_two);
+                editor.putString("str_quantity_three", str_quantity_three);
+                editor.putString("str_quantity_four", str_quantity_four);
+                editor.putString("str_quantity_five", str_quantity_five);
+                editor.putString("str_quantity_six", str_quantity_six);
+                //List Price
+                editor.putString("str_list_price_one", str_list_price_one);
+                editor.putString("str_list_price_two", str_list_price_two);
+                editor.putString("str_list_price_three", str_list_price_three);
+                editor.putString("str_list_price_four", str_list_price_four);
+                editor.putString("str_list_price_five", str_list_price_five);
+                editor.putString("str_list_price_six", str_list_price_six);
+                //Discount
+                editor.putString("str_discount_one", str_discount_one);
+                editor.putString("str_discount_two", str_discount_two);
+                editor.putString("str_discount_three", str_discount_three);
+                editor.putString("str_discount_four", str_discount_four);
+                editor.putString("str_discount_five", str_discount_five);
+                editor.putString("str_discount_six", str_discount_six);
+                //Actual Price
+                editor.putString("str_actual_price_one", str_actual_price_one);
+                editor.putString("str_actual_price_two", str_actual_price_two);
+                editor.putString("str_actual_price_three", str_actual_price_three);
+                editor.putString("str_actual_price_four", str_actual_price_four);
+                editor.putString("str_actual_price_five", str_actual_price_five);
+                editor.putString("str_actual_price_six", str_actual_price_six);
+                //Required Date
+                editor.putString("str_req_date_one", str_req_date_one);
+                editor.putString("str_req_date_two", str_req_date_two);
+                editor.putString("str_req_date_three", str_req_date_three);
+                editor.putString("str_req_date_four", str_req_date_four);
+                editor.putString("str_req_date_five", str_req_date_five);
+                editor.putString("str_req_date_six", str_req_date_six);
+                //QID
+                editor.putString("str_qid1", str_qid1);
+                editor.putString("str_qid2", str_qid2);
+                editor.putString("str_qid3", str_qid3);
+                editor.putString("str_qid4", str_qid4);
+                editor.putString("str_qid5", str_qid5);
+                editor.putString("str_qid6", str_qid6);
+                //Others
+                editor.putString("str_note", str_note);
+                editor.putString("str_total_value", str_total_value);
+                editor.putString("str_p_and_f", str_p_and_f);
+                editor.putString("str_p_and_f_value", str_p_and_f_value);
+                editor.putString("str_VAT_CET", str_VAT_CET);
+                editor.putString("str_VAT_CET_value", str_VAT_CET_value);
+                editor.putString("str_BET", str_BET);
+                editor.putString("str_BET_value", str_BET_value);
+                editor.putString("str_grand_total", str_grand_total);
+
+                editor.commit();
+
+                Intent i = new Intent(getApplicationContext(), Activity_Order_Six_Product_details.class);
+                startActivity(i);
+                finish();
+
+
             }
         });
 
@@ -1402,6 +1413,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     JSONObject obj1 = arr.getJSONObject(i);
 
+                                    str_qid1 = obj1.getString("qid0");
                                     str_model_one = obj1.getString("enq_product_model_no0");
                                     str_quantity_one = obj1.getString("enq_product_qty0");
                                     str_list_price_one = obj1.getString("enq_product_price0");
@@ -1443,6 +1455,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     if (i == 0) {
 
+                                        str_qid1 = obj1.getString("qid0");
                                         str_model_one = obj1.getString("enq_product_model_no0");
                                         str_quantity_one = obj1.getString("enq_product_qty0");
                                         str_list_price_one = obj1.getString("enq_product_price0");
@@ -1462,6 +1475,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 1) {
 
+                                        str_qid2 = obj1.getString("qid1");
                                         str_model_two = obj1.getString("enq_product_model_no1");
                                         str_quantity_two = obj1.getString("enq_product_qty1");
                                         str_list_price_two = obj1.getString("enq_product_price1");
@@ -1526,6 +1540,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     if (i == 0) {
 
+                                        str_qid1 = obj1.getString("qid0");
                                         str_model_one = obj1.getString("enq_product_model_no0");
                                         str_quantity_one = obj1.getString("enq_product_qty0");
                                         str_list_price_one = obj1.getString("enq_product_price0");
@@ -1545,6 +1560,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 1) {
 
+                                        str_qid2 = obj1.getString("qid1");
                                         str_model_two = obj1.getString("enq_product_model_no1");
                                         str_quantity_two = obj1.getString("enq_product_qty1");
                                         str_list_price_two = obj1.getString("enq_product_price1");
@@ -1563,6 +1579,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 2) {
 
+                                        str_qid3 = obj1.getString("qid2");
                                         str_model_three = obj1.getString("enq_product_model_no2");
                                         str_quantity_three = obj1.getString("enq_product_qty2");
                                         str_list_price_three = obj1.getString("enq_product_price2");
@@ -1631,6 +1648,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     if (i == 0) {
 
+                                        str_qid1 = obj1.getString("qid0");
                                         str_model_one = obj1.getString("enq_product_model_no0");
                                         str_quantity_one = obj1.getString("enq_product_qty0");
                                         str_list_price_one = obj1.getString("enq_product_price0");
@@ -1650,6 +1668,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 1) {
 
+                                        str_qid2 = obj1.getString("qid1");
                                         str_model_two = obj1.getString("enq_product_model_no1");
                                         str_quantity_two = obj1.getString("enq_product_qty1");
                                         str_list_price_two = obj1.getString("enq_product_price1");
@@ -1668,6 +1687,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 2) {
 
+                                        str_qid3 = obj1.getString("qid2");
                                         str_model_three = obj1.getString("enq_product_model_no2");
                                         str_quantity_three = obj1.getString("enq_product_qty2");
                                         str_list_price_three = obj1.getString("enq_product_price2");
@@ -1686,6 +1706,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 3) {
 
+                                        str_qid4 = obj1.getString("qid3");
                                         str_model_four = obj1.getString("enq_product_model_no3");
                                         str_quantity_four = obj1.getString("enq_product_qty3");
                                         str_list_price_four = obj1.getString("enq_product_price3");
@@ -1761,6 +1782,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     if (i == 0) {
 
+                                        str_qid1 = obj1.getString("qid0");
                                         str_model_one = obj1.getString("enq_product_model_no0");
                                         str_quantity_one = obj1.getString("enq_product_qty0");
                                         str_list_price_one = obj1.getString("enq_product_price0");
@@ -1780,6 +1802,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 1) {
 
+                                        str_qid2 = obj1.getString("qid1");
                                         str_model_two = obj1.getString("enq_product_model_no1");
                                         str_quantity_two = obj1.getString("enq_product_qty1");
                                         str_list_price_two = obj1.getString("enq_product_price1");
@@ -1798,6 +1821,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 2) {
 
+                                        str_qid3 = obj1.getString("qid2");
                                         str_model_three = obj1.getString("enq_product_model_no2");
                                         str_quantity_three = obj1.getString("enq_product_qty2");
                                         str_list_price_three = obj1.getString("enq_product_price2");
@@ -1816,6 +1840,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 3) {
 
+                                        str_qid4 = obj1.getString("qid3");
                                         str_model_four = obj1.getString("enq_product_model_no3");
                                         str_quantity_four = obj1.getString("enq_product_qty3");
                                         str_list_price_four = obj1.getString("enq_product_price3");
@@ -1834,6 +1859,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 4) {
 
+                                        str_qid5 = obj1.getString("qid4");
                                         str_model_five = obj1.getString("enq_product_model_no4");
                                         str_quantity_five = obj1.getString("enq_product_qty4");
                                         str_list_price_five = obj1.getString("enq_product_price4");
@@ -1912,6 +1938,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     if (i == 0) {
 
+                                        str_qid1 = obj1.getString("qid0");
                                         str_model_one = obj1.getString("enq_product_model_no0");
                                         str_quantity_one = obj1.getString("enq_product_qty0");
                                         str_list_price_one = obj1.getString("enq_product_price0");
@@ -1931,6 +1958,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 1) {
 
+                                        str_qid2 = obj1.getString("qid1");
                                         str_model_two = obj1.getString("enq_product_model_no1");
                                         str_quantity_two = obj1.getString("enq_product_qty1");
                                         str_list_price_two = obj1.getString("enq_product_price1");
@@ -1949,6 +1977,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 2) {
 
+                                        str_qid3 = obj1.getString("qid2");
                                         str_model_three = obj1.getString("enq_product_model_no2");
                                         str_quantity_three = obj1.getString("enq_product_qty2");
                                         str_list_price_three = obj1.getString("enq_product_price2");
@@ -1967,6 +1996,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 3) {
 
+                                        str_qid4 = obj1.getString("qid3");
                                         str_model_four = obj1.getString("enq_product_model_no3");
                                         str_quantity_four = obj1.getString("enq_product_qty3");
                                         str_list_price_four = obj1.getString("enq_product_price3");
@@ -1985,6 +2015,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 4) {
 
+                                        str_qid5 = obj1.getString("qid4");
                                         str_model_five = obj1.getString("enq_product_model_no4");
                                         str_quantity_five = obj1.getString("enq_product_qty4");
                                         str_list_price_five = obj1.getString("enq_product_price4");
@@ -2003,6 +2034,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                                     } else if (i == 5) {
 
+                                        str_qid6 = obj1.getString("qid5");
                                         str_model_six = obj1.getString("enq_product_model_no5");
                                         str_quantity_six = obj1.getString("enq_product_qty5");
                                         str_list_price_six = obj1.getString("enq_product_price5");
@@ -2112,7 +2144,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("quotation_no", "10038");
+                params.put("quotation_no", str_ofm_quotation_no);
 
                 System.out.println("quotation_no :::::: " + str_ofm_quotation_no);
 

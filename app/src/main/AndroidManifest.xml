@@ -161,6 +161,11 @@
             android:label="OFM"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".activity.Activity_OFM_Preview"
+            android:label="OFM Preview"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>

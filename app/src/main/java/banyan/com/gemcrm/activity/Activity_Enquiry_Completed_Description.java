@@ -1,5 +1,6 @@
 package banyan.com.gemcrm.activity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,8 +30,8 @@ public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
 
     String str_select_id, str_year_id, str_month_id, str_select_comp_name, str_select_phoneno, str_select_email, str_addon_email, str_addon_email2, str_addon_email3, str_select_comp_address, str_select_pin, str_select_person_name,
             str_select_person_number, str_select_produc_series, str_select_model, str_select_modelno, str_select_pro_type, str_select_prod_qty,
-            str_select_price, str_select_allotedto, str_select_team_id, str_select_discount,str_select_quote, str_select_desc, str_select_enq_throu,
-            getStr_select_enq_throu_desc, str_select_status, str_select_image, str_select_remark, str_select_createdon, str_select_completeon = "";
+            str_select_price, str_select_allotedto, str_select_team_id, str_select_discount, str_select_quote, str_select_desc, str_select_enq_throu,
+            getStr_select_enq_throu_desc, str_select_status, str_select_image, str_select_remark, str_select_createdon, str_select_completeon, str_select_ofm = "";
 
 
     TextView txt_created_on, txt_enq_id, txt_enq_company_name, txt_enq_txt_addon_email, txt_enq_txt_addon_email2, txt_enq_txt_addon_email3,
@@ -40,7 +41,7 @@ public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
 
     ImageView img_completed;
 
-    Button btn_proceed;
+    Button btn_proceed, btn_preview;
 
     private Toolbar mToolbar;
 
@@ -82,6 +83,7 @@ public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
         img_completed = (ImageView) findViewById(R.id.complaint_complete_img);
 
         btn_proceed = (Button) findViewById(R.id.completed_btn_proceed_ofm);
+        btn_preview = (Button) findViewById(R.id.completed_btn_ofm_preview);
 
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
@@ -99,6 +101,7 @@ public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
         str_select_pin = sharedPreferences.getString("enq_company_pincode", "enq_company_pincode");
         str_select_person_name = sharedPreferences.getString("enq_contact_person_name", "enq_contact_person_name");
         str_select_person_number = sharedPreferences.getString("enq_contact_person_phone_no", "enq_contact_person_phone_no");
+        str_select_ofm = sharedPreferences.getString("enq_ofm", "enq_ofm");
         str_select_produc_series = sharedPreferences.getString("enq_product_series", "enq_product_series");
         str_select_model = sharedPreferences.getString("str_select_model", "str_select_model");
         str_select_modelno = sharedPreferences.getString("enq_product_model_no", "enq_product_model_no");
@@ -181,6 +184,15 @@ public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
             txt_enq_status.setText(str_select_status);
             txt_enq_remark.setText(str_select_remark);
 
+            if (str_select_ofm.equals("0")) {
+
+                btn_preview.setVisibility(View.GONE);
+
+            } else {
+
+                btn_preview.setVisibility(View.VISIBLE);
+            }
+
         } catch (Exception e) {
 
         }
@@ -201,6 +213,24 @@ public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
                 editor.commit();
 
                 Intent i = new Intent(getApplicationContext(), Activity_Order_One_Forwarding_Memo.class);
+                startActivity(i);
+
+            }
+        });
+
+        btn_preview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(Activity_Enquiry_Completed_Description.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("str_select_ofm", str_select_ofm);
+
+                editor.commit();
+
+                Intent i = new Intent(getApplicationContext(),Activity_OFM_Preview.class);
                 startActivity(i);
 
             }

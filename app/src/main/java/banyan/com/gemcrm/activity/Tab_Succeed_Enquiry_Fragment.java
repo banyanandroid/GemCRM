@@ -83,6 +83,7 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
     public static final String TAG_ENQ_REMARK = "enq_remarks";
     public static final String TAG_ENQ_CREAATED_ON = "enq_created_on";
     public static final String TAG_ENQ_COMPLEED_ON = "enq_completed_on";
+    public static final String TAG_ENQ_OFM = "ofm_id";
 
 
     static ArrayList<HashMap<String, String>> enquiry_list;
@@ -146,6 +147,7 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                 String enq_company_pincode = enquiry_list.get(position).get(TAG_ENQ_PIN);
                 String enq_contact_person_name = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_NAME);
                 String enq_contact_person_phone_no = enquiry_list.get(position).get(TAG_ENQ_CON_PERSON_PHONE);
+                String enq_ofm = enquiry_list.get(position).get(TAG_ENQ_OFM);
                 String enq_product_series = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_SERIES);
                 String enq_product_model = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_MODEL);
                 String enq_product_model_no = enquiry_list.get(position).get(TAG_ENQ_PRODUCT_MODEL_NO);
@@ -183,6 +185,7 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                 editor.putString("enq_company_pincode", enq_company_pincode);
                 editor.putString("enq_contact_person_name", enq_contact_person_name);
                 editor.putString("enq_contact_person_phone_no", enq_contact_person_phone_no);
+                editor.putString("enq_ofm", enq_ofm);
                 editor.putString("enq_product_series", enq_product_series);
                 editor.putString("str_select_model", enq_product_model);
                 editor.putString("enq_product_model_no", enq_product_model_no);
@@ -295,6 +298,7 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                             String comp_pin = obj1.getString(TAG_ENQ_PIN);
                             String comp_contact_person_name = obj1.getString(TAG_ENQ_CON_PERSON_NAME);
                             String comp_contactperson_phone = obj1.getString(TAG_ENQ_CON_PERSON_PHONE);
+                            String enq_ofm = obj1.getString(TAG_ENQ_OFM);
                             String enq_product_series = obj1.getString(TAG_ENQ_PRODUCT_SERIES);
                             String enq_product_model = obj1.getString(TAG_ENQ_PRODUCT_MODEL);
                             String enq_product_model_no = obj1.getString(TAG_ENQ_PRODUCT_MODEL_NO);
@@ -331,6 +335,7 @@ public class Tab_Succeed_Enquiry_Fragment extends Fragment implements SwipeRefre
                             map.put(TAG_ENQ_PIN, comp_pin);
                             map.put(TAG_ENQ_CON_PERSON_NAME, comp_contact_person_name);
                             map.put(TAG_ENQ_CON_PERSON_PHONE, comp_contactperson_phone);
+                            map.put(TAG_ENQ_OFM, enq_ofm);
                             map.put(TAG_ENQ_PRODUCT_SERIES, enq_product_series);
                             map.put(TAG_ENQ_PRODUCT_MODEL, enq_product_model);
                             map.put(TAG_ENQ_PRODUCT_MODEL_NO, enq_product_model_no);

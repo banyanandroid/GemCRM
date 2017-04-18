@@ -230,7 +230,7 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //str_order_from = String.valueOf(spn_order_from.getSelectedItem());
+                str_order_from = String.valueOf(spn_order_from.getSelectedItem());
 
                 str_txt_q_date = edt_order_q_date.getText().toString();
                 str_txt_po_ref = edt_order_po_ref.getText().toString();
@@ -274,7 +274,7 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
 
 
                     //edit text value strings
-                    editor.putString("str_txt_q_ref", str_txt_q_ref);
+                    editor.putString("str_txt_q_ref", str_Selected_quotation_no);
                     editor.putString("str_txt_q_date", str_txt_q_date);
                     editor.putString("str_txt_po_ref", str_txt_po_ref);
                     editor.putString("str_txt_po_date", str_txt_po_date);
@@ -498,7 +498,7 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("enq_no", "1006");
+                params.put("enq_no", str_enq_no);
 
                 System.out.println("ENQQQQQQ :::::: " + str_enq_no);
 

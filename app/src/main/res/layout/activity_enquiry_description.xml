@@ -192,7 +192,7 @@
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
                             android:gravity="left|center_vertical"
-                            android:text="Addd on Email"
+                            android:text="Add on Email"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />

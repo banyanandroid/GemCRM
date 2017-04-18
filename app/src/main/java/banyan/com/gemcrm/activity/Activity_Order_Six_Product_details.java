@@ -154,8 +154,6 @@ public class Activity_Order_Six_Product_details extends AppCompatActivity {
 
                     linear_ld_claues.setVisibility(View.VISIBLE);
 
-                    str_ld_clause_desc = edt_ld_clause_desc.getText().toString();
-
 
                 }else if (str_ld_clause.equals("Not Applicable")) {
 
@@ -236,6 +234,7 @@ public class Activity_Order_Six_Product_details extends AppCompatActivity {
                 str_permit = String.valueOf(spn_permit.getSelectedItem());
 
 
+                str_ld_clause_desc = edt_ld_clause_desc.getText().toString();
 
 
                 if (str_others.equals("")) {

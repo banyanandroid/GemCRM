@@ -1,5 +1,6 @@
 package banyan.com.gemcrm.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,11 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.sdsmdg.tastytoast.TastyToast;
 import com.tapadoo.alerter.Alerter;
 
@@ -23,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import banyan.com.gemcrm.R;
@@ -70,6 +75,7 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
             str_discount_one, str_discount_two, str_discount_three, str_discount_four, str_discount_five, str_discount_six,
             str_actual_price_one, str_actual_price_two, str_actual_price_three, str_actual_price_four, str_actual_price_five, str_actual_price_six,
             str_req_date_one, str_req_date_two, str_req_date_three, str_req_date_four, str_req_date_five, str_req_date_six,
+            str_qno1, str_qno2, str_qno3, str_qno4, str_qno5, str_qno6,
 
     str_note, str_total_value, str_p_and_f, str_VAT_CET, str_BET, str_p_and_f_value,
             str_VAT_CET_value, str_BET_value, str_grand_total = "";
@@ -79,6 +85,8 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
     String str_others, str_ld_clause_desc, str_commission, str_commission_value, str_logistics_preferred,
             str_form_applicable, str_form_five_insurance, str_freight_terms, str_payment_terms, str_credit_days,
             str_pbg_abg, str_inspection, str_ld_clause, str_permit, str_commission_to = "";
+
+    String str_enq_no = "";
 
 
     SpotsDialog dialog;
@@ -109,6 +117,10 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
         edt_dispatch_pincode = (EditText) findViewById(R.id.customer_dispatch_pincode);
         edt_dispatch_commissioning_instructions = (EditText) findViewById(R.id.customer_dispatch_commissioning_instruction);
 
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+
+        str_enq_no = sharedPreferences.getString("ofm_enq_no", "ofm_enq_no");
 
         btn_dispatch_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -299,6 +311,7 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                         str_actual_price_four = sharedPreferences.getString("str_actual_price_four", "str_actual_price_four");
                         str_actual_price_five = sharedPreferences.getString("str_actual_price_five", "str_actual_price_five");
                         str_actual_price_six = sharedPreferences.getString("str_actual_price_six", "str_actual_price_six");
+
                         //REQUIRED DATE
                         str_req_date_one = sharedPreferences.getString("str_req_date_one", "str_req_date_one");
                         str_req_date_two = sharedPreferences.getString("str_req_date_two", "str_req_date_two");
@@ -306,6 +319,15 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                         str_req_date_four = sharedPreferences.getString("str_req_date_four", "str_req_date_four");
                         str_req_date_five = sharedPreferences.getString("str_req_date_five", "str_req_date_five");
                         str_req_date_six = sharedPreferences.getString("str_req_date_six", "str_req_date_six");
+
+                        //Quotation ID
+                        str_qno1 = sharedPreferences.getString("str_qid1", "str_qid1");
+                        str_qno2 = sharedPreferences.getString("str_qid2", "str_qid2");
+                        str_qno3 = sharedPreferences.getString("str_qid3", "str_qid3");
+                        str_qno4 = sharedPreferences.getString("str_qid4", "str_qid4");
+                        str_qno5 = sharedPreferences.getString("str_qid5", "str_qid5");
+                        str_qno6 = sharedPreferences.getString("str_qid6", "str_qid6");
+
                         //OTHERS
                         str_note = sharedPreferences.getString("str_note", "str_note");
                         str_total_value = sharedPreferences.getString("str_total_value", "str_total_value");
@@ -344,7 +366,16 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
 //                    startActivity(i);
 //                    finish();
 
-                    Function_Submit_OFM();
+                    try {
+                        dialog = new SpotsDialog(Activity_Order_Seven_Dispatch.this);
+                        dialog.show();
+                        queue = Volley.newRequestQueue(getApplicationContext());
+                        Function_Submit_OFM();
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+
+
                 }
 
             }
@@ -368,7 +399,7 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
     private void Function_Submit_OFM() {
 
         StringRequest request = new StringRequest(Request.Method.POST,
-                AppConfig.url_addappointment, new Response.Listener<String>() {
+                AppConfig.url_ofm_submit, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -378,16 +409,22 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                     JSONObject obj = new JSONObject(response);
                     int success = obj.getInt("success");
 
-                    System.out.println("Appointment" + success);
+                    System.out.println("OFM STATUS : " + success);
 
                     if (success == 1) {
-
 
                         Alerter.create(Activity_Order_Seven_Dispatch.this)
                                 .setTitle("GEM CRM")
                                 .setText("OFM Submitted Sucessfully :)")
                                 .setBackgroundColor(R.color.Alert_Success)
                                 .show();
+
+                        try {
+                            FunctionAlert();
+                        }catch (Exception e) {
+
+                        }
+
 
                     } else {
 
@@ -420,6 +457,7 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
+                //FORM 1
                 params.put("price_lst", str_price_list);
                 params.put("qref", str_txt_q_ref);
                 params.put("qdate", str_txt_q_date);
@@ -428,15 +466,166 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                 params.put("podate", str_txt_po_date);
                 params.put("from_prc", str_order_from);
                 params.put("to_gem", str_send_to);
+                params.put("eq_no", str_enq_no);
 
-                return params;
+                //Form 2
+
+                params.put("cfirst_name", str_customer_name);
+                params.put("c_address_line_1", str_customer_address_line1);
+                params.put("c_address_line_2", str_customer_address_line2);
+                params.put("c_city", str_customer_city);
+                params.put("c_state", str_customer_state);
+                params.put("c_pin_code", str_customer_pincode);
+                params.put("c_tin_no", str_customer_tincode);
+                params.put("c_cst_no", str_customer_cstno);
+                params.put("c_ecc_no", str_customer_eccno);
+                params.put("c_pan_no", str_customer_panno);
+                params.put("c_name_contact_persion", str_customer_contact_person);
+                params.put("c_contact_no", str_customer_contact_number);
+                params.put("c_email", str_customer_email);
+                params.put("c_last_name", "");
+
+                //Form 3
+                params.put("b_address_line_1", str_customer_billing_address_line1);
+                params.put("b_address_line_2", str_customer_billing_address_line2);
+                params.put("b_city", str_customer_billing_city);
+                params.put("b_state", str_customer_billing_state);
+                params.put("b_pin_code", str_customer_billing_pincode);
+                params.put("b_tin_no", str_customer_billing_tincode);
+                params.put("b_cst_no", str_customer_billing_cstno);
+                params.put("b_ecc_no", str_customer_billing_eccno);
+                params.put("b_pan_no", str_customer_billing_panno);
+                params.put("b_name_contact_persion", str_customer_billing_contact_person);
+                params.put("b_contact_no", str_customer_billing_contact_number);
+                params.put("b_email", str_customer_billing_email);
+                // params.put("b_last_name", "");
+
+                //Form 4
+                params.put("s_address_line_1", str_customer_shipping_address_line1);
+                params.put("s_address_line", str_customer_shipping_address_line2);
+                params.put("s_city", str_customer_shipping_city);
+                params.put("s_state", str_customer_shipping_state);
+                params.put("s_pin_code", str_customer_shipping_pincode);
+                params.put("s_tin_no", str_customer_shipping_tincode);
+                params.put("s_cst_no", str_customer_shipping_cstno);
+                params.put("s_ecc_no", str_customer_shipping_eccno);
+                params.put("s_pan_no", str_customer_shipping_panno);
+                params.put("s_name_contact_persion", str_customer_shipping_contact_person);
+                params.put("s_contact_no", str_customer_shipping_contact_number);
+                params.put("s_email", str_customer_shipping_email);
+                //Form 6 : set 1
+                params.put("req_date", str_req_date_one);
+                params.put("q_id", str_qno1);
+                params.put("price", str_actual_price_one);
+                //Form 6 : set 2
+                params.put("req_date1", str_req_date_two);
+                params.put("q_id1", str_qno2);
+                params.put("price1", str_actual_price_two);
+                //Form 6 : set 3
+                params.put("req_date2", str_req_date_three);
+                params.put("q_id2", str_qno3);
+                params.put("price2", str_actual_price_three);
+                //Form 6 : set 4
+                params.put("req_date3", str_req_date_four);
+                params.put("q_id3", str_qno4);
+                params.put("price3", str_actual_price_four);
+                //Form 6 : set 5
+                params.put("req_date4", str_req_date_five);
+                params.put("q_id4", str_qno5);
+                params.put("price4", str_actual_price_five);
+                //Form 6 : set 6
+                params.put("req_date5", str_req_date_six);
+                params.put("q_id5", str_qno6);
+                params.put("price5", str_actual_price_six);
+                //Form 6 : other
+                params.put("pf_percent", str_p_and_f);
+                params.put("pf_amount", str_p_and_f_value);
+                params.put("vat_percent", str_VAT_CET);
+                params.put("vat_amount", str_VAT_CET_value);
+                params.put("bed_percent", str_BET);
+                params.put("bed_amount", str_BET_value);
+                params.put("grand_total", str_grand_total);
+
+                //FORM 6
+                params.put("other_payment", str_others);
+                params.put("commission_permit_per", str_commission);
+                params.put("commission_permit_value", str_commission_value);
+                params.put("logistic_prefer", str_logistics_preferred);
+                params.put("form_applicable", str_form_applicable);
+                params.put("insurance", str_form_five_insurance);
+                params.put("freight_terms", str_freight_terms);
+                params.put("payment_terms", str_payment_terms);
+                params.put("days", str_credit_days);
+                params.put("pbg_abg", str_pbg_abg);
+                params.put("inspection", str_inspection);
+                params.put("ld_clause", str_ld_clause);
+                params.put("Permite", str_permit);
+                params.put("Permit", str_commission_to);
+                params.put("applicable_detail", str_ld_clause_desc);
+                params.put("ldclause_applicable", "");
+
+                //Form 7
+                params.put("despatch_contact_person", str_dispatch_contact_person_name);
+                params.put("despatch_contact", str_dispatch_contact_number);
+                params.put("despatch_addr", str_dispatch_address_line1);
+                params.put("despatch_addr2", str_dispatch_address_line2);
+                params.put("despatch_city", str_dispatch_city);
+                params.put("despatch_state", str_dispatch_state);
+                params.put("despatch_pin", str_dispatch_pincode);
+                params.put("despatch_commisssioning", str_customer_commissioning_instructions);
+                //verify
+                params.put("despatch_spacial", "");
+                params.put("despatch_note", "");
+
+
+                return checkParams(params);
+            }
+
+
+            private Map<String, String> checkParams(Map<String, String> map) {
+                Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, String> pairs = (Map.Entry<String, String>) it.next();
+                    if (pairs.getValue() == null) {
+                        map.put(pairs.getKey(), "");
+                    }
+                }
+                return map;
             }
 
         };
+
+        int socketTimeout = 60000;//30 seconds - change to what you want
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        request.setRetryPolicy(policy);
 
         // Adding request to request queue
         queue.add(request);
     }
 
+
+    private void FunctionAlert() {
+
+        new android.app.AlertDialog.Builder(Activity_Order_Seven_Dispatch.this)
+                .setTitle("GEM CRM")
+                .setMessage("OFM Sent Successfully :)")
+                .setIcon(R.mipmap.ic_launcher)
+
+                .setPositiveButton("Done",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+
+                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                                finish();
+
+                                dialog.dismiss();
+
+
+                            }
+                        }).show();
+    }
 
 }
