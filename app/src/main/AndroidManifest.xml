@@ -133,32 +133,32 @@
 
         <activity
             android:name=".activity.Activity_Order_Two_Customerdetails"
-            android:label="OFM"
+            android:label="Customer Details"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Order_Three_Customerdetails_Billing"
-            android:label="OFM"
+            android:label="Billing Details"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Order_Four_Shipping"
-            android:label="OFM"
+            android:label="Shipping Details"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Order_Five_Product_details"
-            android:label="OFM"
+            android:label="Product Details"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Order_Six_Product_details"
-            android:label="OFM"
+            android:label="OFM Order Details"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.Activity_Order_Seven_Dispatch"
-            android:label="OFM"
+            android:label="Dispatch"
             android:screenOrientation="portrait"></activity>
 
         <activity

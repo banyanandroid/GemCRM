@@ -111,10 +111,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="company Name"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -149,10 +149,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Email"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -188,10 +188,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Add on Email"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -204,8 +204,8 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text=""
                             android:inputType="textEmailAddress"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -228,10 +228,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Add on Email 2"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -244,8 +244,8 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text=""
                             android:inputType="textEmailAddress"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -268,10 +268,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Add on Email 3"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -284,8 +284,8 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_parent_rounded_corner"
                             android:gravity="left"
-                            android:text=""
                             android:inputType="textEmailAddress"
+                            android:text=""
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -308,10 +308,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Address"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -347,10 +347,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Pincode"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -384,10 +384,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Phone No"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -422,10 +422,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Contact Person"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -460,10 +460,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Phone"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -499,10 +499,10 @@
                         <TextView
                             android:id="@+id/enq_des_txt_product"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Product"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -536,10 +536,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Enq Thorough"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -576,7 +576,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Enq Description"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -2815,6 +2815,100 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="Feright Terms"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/enq_process_spinner_feright_terms"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:entries="@array/feright_terms"
+                        android:popupBackground="@color/hash"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="Erection"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/enq_process_edterection"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:hint="Erection"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:text="0.00"
+                        android:textColor="@color/album_title" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|left"
+                        android:text="Delivery in Weeks"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/enq_process_spinner_delivery"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_parent_rounded_corner"
+                        android:entries="@array/deliver_weeks"
+                        android:popupBackground="@color/hash"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/enq_process_enq_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -3006,8 +3100,8 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_parent_rounded_corner"
                         android:hint="P&amp;F %"
-                        android:textSize="16dp"
-                        android:inputType="number|text"/>
+                        android:inputType="number|text"
+                        android:textSize="16dp" />
 
                 </LinearLayout>
 

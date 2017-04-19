@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -624,6 +625,50 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                                 dialog.dismiss();
 
 
+                            }
+                        }).show();
+    }
+
+
+    /***********************************
+     *  Back Click Listener
+     * ************************************/
+
+    @Override
+    public void onBackPressed() {
+        // your code.
+        try {
+            String str_status = "Want to Exit From This Screen?";
+            FunctionAlert_back(str_status);
+        } catch (Exception e) {
+
+        }
+    }
+
+
+    private void FunctionAlert_back(String status) {
+
+        new AlertDialog.Builder(Activity_Order_Seven_Dispatch.this)
+                .setTitle("GEM CRM")
+                .setMessage(status)
+                .setIcon(R.mipmap.ic_launcher)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+                    }
+                })
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+                                Intent i = new Intent(getApplicationContext(), Activity_Order_Six_Product_details.class);
+                                startActivity(i);
+                                finish();
                             }
                         }).show();
     }

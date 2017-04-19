@@ -215,6 +215,26 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/alert_btn_preview_quotation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/Alert_Success"
+                    android:text="Preview Quotation"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="16dp"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 

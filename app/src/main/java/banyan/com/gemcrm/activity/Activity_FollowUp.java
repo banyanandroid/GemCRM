@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -74,6 +75,8 @@ public class Activity_FollowUp extends AppCompatActivity implements SwipeRefresh
     String str_message, str_process, str_description, str_report, str_createon = "";
 
     TextView txt_msg, txt_process, txt_description, txt_report, txt_create_on;
+
+    Button btn_preview_quotation;
 
     private Toolbar mToolbar;
 
@@ -310,6 +313,8 @@ public class Activity_FollowUp extends AppCompatActivity implements SwipeRefresh
                 .findViewById(R.id.followup_alert_txt_report);
         txt_create_on = (TextView) promptsView
                 .findViewById(R.id.followup_alert_txt_date);
+        btn_preview_quotation = (Button) promptsView
+                .findViewById(R.id.alert_btn_preview_quotation);
 
         txt_msg.setText("" + str_message);
         txt_process.setText("" + str_process);
@@ -317,6 +322,14 @@ public class Activity_FollowUp extends AppCompatActivity implements SwipeRefresh
         txt_report.setText("" + str_report);
         txt_create_on.setText("" + str_createon);
 
+        btn_preview_quotation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
 
         alertDialogBuilder.setCancelable(false)
 

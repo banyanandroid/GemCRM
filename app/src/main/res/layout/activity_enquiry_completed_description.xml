@@ -110,10 +110,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="company Name"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -149,10 +149,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Email"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -187,11 +187,12 @@
                             android:src="@drawable/email" />
 
                         <TextView
+                            android:id="@+id/textView10"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Add on Email"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -227,10 +228,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Add on Email2"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -266,10 +267,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Add on Email3"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -305,10 +306,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Address"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -344,10 +345,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Pin Code"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -386,7 +387,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left|center"
+                            android:gravity="left|center_vertical"
                             android:text="Phone No"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -422,10 +423,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Contact Person"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -461,10 +462,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Phone"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -500,10 +501,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Product"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -539,10 +540,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Quotation No"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -578,10 +579,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Discount"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -617,10 +618,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Description"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -656,10 +657,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Enquiry Through"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -695,10 +696,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Enquiry Description"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -734,10 +735,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Status"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"
@@ -773,10 +774,10 @@
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_weight="1"
-                            android:gravity="left"
+                            android:gravity="left|center_vertical"
                             android:text="Remark"
                             android:textColor="@color/album_title"
                             android:textSize="16dp"

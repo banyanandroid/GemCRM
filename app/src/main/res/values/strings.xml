@@ -80,6 +80,20 @@
         <item>No</item>
     </string-array>
 
+    <string-array name="feright_terms">
+        <item>To Pay</item>
+        <item>Paid</item>
+    </string-array>
+
+    <string-array name="deliver_weeks">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
     <string-array name="form5_application">
         <item>NA</item>
         <item>C-FORM</item>

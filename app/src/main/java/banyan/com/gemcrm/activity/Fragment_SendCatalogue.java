@@ -53,6 +53,7 @@ import banyan.com.gemcrm.global.Pojo_Catalog;
 import banyan.com.gemcrm.global.SessionManager;
 import butterknife.OnClick;
 import dmax.dialog.SpotsDialog;
+import thebat.lib.validutil.ValidUtils;
 
 /**
  * Created by steve on 14/3/17.
@@ -81,6 +82,8 @@ public class Fragment_SendCatalogue extends Fragment {
 
     String TAG = "add task";
 
+    ValidUtils validUtils;
+
     public static final String TAG_CAT_ID = "catlogue_id";
     public static final String TAG_CAT_Name = "catlogue_name";
 
@@ -94,6 +97,8 @@ public class Fragment_SendCatalogue extends Fragment {
         listView = (ListView) rootview.findViewById(R.id.listView1);
         myButton = (Button) rootview.findViewById(R.id.send_catalog_btn_send);
         countryList = new ArrayList<Pojo_Catalog>();
+
+        validUtils = new ValidUtils();
 
 
         try {
@@ -332,18 +337,22 @@ public class Fragment_SendCatalogue extends Fragment {
                                 str_select_email = edt_email.getText().toString();
 
                                 // Toast.makeText(getActivity(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
-                                try {
+                                if (!validUtils.validateEmail(edt_email)) {
+                                    validUtils.showToast(getActivity(), "Invalid Email");
+                                    dialog.notify();
+                                } else {
+                                    try {
 
-                                    spot_dialog = new SpotsDialog(getActivity());
-                                    spot_dialog.show();
-                                    queue = Volley.newRequestQueue(getActivity());
-                                    Function_SendCatalogue();
+                                        spot_dialog = new SpotsDialog(getActivity());
+                                        spot_dialog.show();
+                                        dialog.cancel();
+                                        queue = Volley.newRequestQueue(getActivity());
+                                        Function_SendCatalogue();
 
-                                } catch (Exception e) {
-                                    // TODO: handle exceptions
+                                    } catch (Exception e) {
+                                        // TODO: handle exceptions
+                                    }
                                 }
-
-                                dialog.cancel();
                             }
                         });
 

@@ -555,6 +555,50 @@ public class Activity_Order_One_Forwarding_Memo extends AppCompatActivity {
     }
 
 
+    /***********************************
+     *  Back Click Listener
+     * ************************************/
+
+    @Override
+    public void onBackPressed() {
+        // your code.
+        try {
+            String str_status = "Want to Exit From This Screen?";
+            FunctionAlert(str_status);
+        } catch (Exception e) {
+
+        }
+    }
+
+
+    private void FunctionAlert(String status) {
+
+        new AlertDialog.Builder(Activity_Order_One_Forwarding_Memo.this)
+                .setTitle("GEM CRM")
+                .setMessage(status)
+                .setIcon(R.mipmap.ic_launcher)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+                    }
+                })
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+                                Intent i = new Intent(getApplicationContext(), Activity_Enquiry_Completed_Description.class);
+                                startActivity(i);
+                                finish();
+                            }
+                        }).show();
+    }
+
+
 }
 
 

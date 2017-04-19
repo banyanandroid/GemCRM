@@ -30,6 +30,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sdsmdg.tastytoast.TastyToast;
 import com.tapadoo.alerter.Alerter;
 
 import org.json.JSONArray;
@@ -48,6 +49,7 @@ import banyan.com.gemcrm.global.AppConfig;
 import banyan.com.gemcrm.global.Pojo_Catalog;
 import banyan.com.gemcrm.global.SessionManager;
 import dmax.dialog.SpotsDialog;
+import thebat.lib.validutil.ValidUtils;
 
 /**
  * Created by User on 3/28/2017.
@@ -58,6 +60,8 @@ public class Activity_Send_Catelog extends AppCompatActivity {
     MyCustomAdapter dataAdapter = null;
     ListView listView;
     Button myButton;
+
+    ValidUtils validUtils;
 
     EditText edt_email;
 
@@ -88,6 +92,8 @@ public class Activity_Send_Catelog extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        validUtils = new ValidUtils();
 
         isInternetOn();
 
@@ -339,22 +345,29 @@ public class Activity_Send_Catelog extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
+                                // Toast.makeText(getApplicationContext(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
 
-                               // Toast.makeText(getApplicationContext(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
+                                System.out.println("SLECT :: " + str_selected);
+                                System.out.println("SLECT :: " + str_selected);
+                                System.out.println("SLECT :: " + str_selected);
+                                System.out.println("SLECT :: " + str_selected);
 
-                                try {
+                                if (!validUtils.validateEmail(edt_email)) {
+                                    validUtils.showToast(Activity_Send_Catelog.this, "Invalid Email");
+                                }else {
+                                    try {
 
-                                    spot_dialog = new SpotsDialog(Activity_Send_Catelog.this);
-                                    spot_dialog.show();
-                                    queue = Volley.newRequestQueue(Activity_Send_Catelog.this);
-                                    Function_SendCatalogue();
+                                        spot_dialog = new SpotsDialog(Activity_Send_Catelog.this);
+                                        spot_dialog.show();
+                                        dialog.cancel();
+                                        queue = Volley.newRequestQueue(Activity_Send_Catelog.this);
+                                        Function_SendCatalogue();
 
-                                } catch (Exception e) {
-                                    // TODO: handle exceptions
+                                    } catch (Exception e) {
+                                        // TODO: handle exceptions
+                                    }
                                 }
 
-
-                                dialog.cancel();
                             }
                         });
 
@@ -457,13 +470,13 @@ public class Activity_Send_Catelog extends AppCompatActivity {
 
         // get Connectivity Manager object to check connection
         ConnectivityManager connec =
-                (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+                (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
         // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
 
             // if connected with internet
 
@@ -472,7 +485,7 @@ public class Activity_Send_Catelog extends AppCompatActivity {
 
         } else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
 
             new android.support.v7.app.AlertDialog.Builder(Activity_Send_Catelog.this)
                     .setTitle("GEM CRM")

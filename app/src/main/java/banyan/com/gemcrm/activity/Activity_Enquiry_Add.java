@@ -46,6 +46,7 @@ import banyan.com.gemcrm.global.BaseActivity_Enquiry;
 import banyan.com.gemcrm.global.SessionManager;
 import butterknife.ButterKnife;
 import dmax.dialog.SpotsDialog;
+import thebat.lib.validutil.ValidUtils;
 
 
 public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements AdapterView.OnItemSelectedListener {
@@ -107,6 +108,8 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
     String str_selected_campaign, str_selected_campaign_id = "";
     String str_selected_team, str_selected_team_id = "";
 
+    ValidUtils validUtils;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         enterFromBottomAnimation();
@@ -116,6 +119,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
         setUpToolbarWithTitle(getString(R.string.COMPOSE), true);
 
         isInternetOn();
+        validUtils = new ValidUtils();
 
         session = new SessionManager(getApplicationContext());
 
@@ -279,6 +283,9 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                     edt_email.setError("Please Enter Company Email or Phone");
                     edt_phone.setError("Please Enter Company Email or Phone");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Company Email", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                } else if (!validUtils.validateEmail(edt_email)) {
+                    edt_email.setError("Please Enter Valid Email Address");
+                    TastyToast.makeText(getApplicationContext(), "Please Enter Valid Email", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else if (str_address.equals("")) {
                     edt_address.setError("Please Enter Company Address");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Company Address", TastyToast.LENGTH_LONG, TastyToast.WARNING);
@@ -553,7 +560,6 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                         }
 
 
-
                     } else if (success == 0) {
 
 
@@ -799,13 +805,13 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
         // get Connectivity Manager object to check connection
         ConnectivityManager connec =
-                (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+                (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
 
         // Check for network connections
-        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
 
             // if connected with internet
 
@@ -814,7 +820,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
         } else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
 
             new AlertDialog.Builder(Activity_Enquiry_Add.this)
                     .setTitle("GEM CRM")

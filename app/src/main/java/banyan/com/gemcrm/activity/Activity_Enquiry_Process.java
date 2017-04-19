@@ -104,13 +104,19 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     EditText edt_addon_email, edt_addon_email2, edt_addon_email3;
 
+    EditText edt_tax_pnf, edt_tax_vat_cst, edt_tax_exduty;
+
+    EditText edt_spec, edt_discount, edt_price;
+
+    EditText edt_price2, edt_price3, edt_price4, edt_price5, edt_price6;
+    EditText edt_add_price, edt_add_price2, edt_add_price3, edt_add_price4, edt_add_price5, edt_add_price6;
+
     TextView txt_minus, txt_value, txt_add;
     TextView txt_minus2, txt_value2, txt_add2;
     TextView txt_minus3, txt_value3, txt_add3;
     TextView txt_minus4, txt_value4, txt_add4;
     TextView txt_minus5, txt_value5, txt_add5;
     TextView txt_minus6, txt_value6, txt_add6;
-
 
     //Hide & Seek
 
@@ -122,12 +128,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     int i = 0;
 
-    EditText edt_spec, edt_discount, edt_price;
-
     String actual_discount = "";
-
-    EditText edt_price2, edt_price3, edt_price4, edt_price5, edt_price6;
-    EditText edt_add_price, edt_add_price2, edt_add_price3, edt_add_price4, edt_add_price5, edt_add_price6;
 
     String str_select_group;
 
@@ -241,7 +242,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     ArrayList<String> Arraylist_tax_id = null;
     String str_Selected_tax = "";*/
 
-    EditText edt_tax_pnf, edt_tax_vat_cst, edt_tax_exduty;
 
     String str_tax_pnf, str_tax_vat_cst, str_tax_exduty = "";
 
@@ -261,6 +261,12 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
             str_po_group5, str_po_model5, str_po_model_no5, str_po_mode5_type, str_po_qty5, str_po_price5, str_po_add_price5,
             str_po_group6, str_po_model6, str_po_model_no6, str_po_mode6_type, str_po_qty6, str_po_price6, str_po_add_price6,
             str_po_status, str_po_appoint_date, str_po_appoint_time, str_po_discount, str_po_spec = null;
+
+    String str_feright_terms, str_erection, str_delivery_weeks = "";
+
+    Spinner spn_feright_terms, spn_delivery_weeks;
+
+    EditText edt_erection;
 
     private Toolbar mToolbar;
 
@@ -502,6 +508,11 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_tax_pnf = (EditText) findViewById(R.id.enq_process_edt_tax_pnf);
         edt_tax_vat_cst = (EditText) findViewById(R.id.enq_process_edt_tax_vat_cst);
         edt_tax_exduty = (EditText) findViewById(R.id.enq_process_edt_tax_exice_duty);
+
+        edt_erection = (EditText) findViewById(R.id.enq_process_edterection);
+
+        spn_feright_terms = (Spinner) findViewById(R.id.enq_process_spinner_feright_terms);
+        spn_delivery_weeks = (Spinner) findViewById(R.id.enq_process_spinner_delivery);
 
        /* Arraylist_tax = new ArrayList<String>();
         Arraylist_tax_id = new ArrayList<String>();*/
@@ -1013,7 +1024,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_price2 = Arraylist_model_price2.get(arg2);
 
                 txt_value2.setText("" + 1);
-                edt_price2.setText(""+str_Selected_model_price2);
+                edt_price2.setText("" + str_Selected_model_price2);
                 System.out.println("NAME : " + str_Selected_model_type2 + "PRICE : " + str_Selected_model_price2);
             }
 
@@ -1033,7 +1044,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_price3 = Arraylist_model_price3.get(arg2);
                 System.out.println("NAME : " + str_Selected_model_type3 + "PRICE : " + str_Selected_model_price3);
                 txt_value3.setText("" + 1);
-                edt_price3.setText(""+str_Selected_model_price3);
+                edt_price3.setText("" + str_Selected_model_price3);
 
             }
 
@@ -1052,7 +1063,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_Selected_model_type4 = Arraylist_model_type4.get(arg2);
                 str_Selected_model_price4 = Arraylist_model_price4.get(arg2);
                 txt_value4.setText("" + 1);
-                edt_price4.setText(""+ str_Selected_model_price4);
+                edt_price4.setText("" + str_Selected_model_price4);
                 System.out.println("NAME : " + str_Selected_model_type4 + "PRICE : " + str_Selected_model_price4);
 
             }
@@ -2093,6 +2104,10 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_po_appoint_date = edt_enq_appint_date.getText().toString();
                 str_po_appoint_time = edt_enq_appint_time.getText().toString();
 
+                str_feright_terms = String.valueOf(spn_feright_terms.getSelectedItem());
+                str_erection = edt_erection.getText().toString();
+                str_delivery_weeks = String.valueOf(spn_delivery_weeks.getSelectedItem());
+
                 str_tax_pnf = edt_tax_pnf.getText().toString();
                 str_tax_vat_cst = edt_tax_vat_cst.getText().toString();
                 str_tax_exduty = edt_tax_exduty.getText().toString();
@@ -2122,13 +2137,13 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 } else if (str_po_status.equals("New Quotation")) {
 
 
-                    if (str_tax_pnf.equals("")){
+                    if (str_tax_pnf.equals("")) {
                         TastyToast.makeText(getApplicationContext(), "Please Enter P & F %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    }else if (str_tax_vat_cst.equals("")){
+                    } else if (str_tax_vat_cst.equals("")) {
                         TastyToast.makeText(getApplicationContext(), "Please Enter VAT / CST %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    }else if (str_tax_exduty.equals("")){
+                    } else if (str_tax_exduty.equals("")) {
                         TastyToast.makeText(getApplicationContext(), "Please Enter Exice Duty %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    }else {
+                    } else {
                         try {
 
                             dialog = new SpotsDialog(Activity_Enquiry_Process.this);
@@ -2143,13 +2158,13 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                 } else if (str_po_status.equals("Another Quotation")) {
 
-                    if (str_tax_pnf.equals("")){
+                    if (str_tax_pnf.equals("")) {
                         TastyToast.makeText(getApplicationContext(), "Please Enter P & F %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    }else if (str_tax_vat_cst.equals("")){
+                    } else if (str_tax_vat_cst.equals("")) {
                         TastyToast.makeText(getApplicationContext(), "Please Enter VAT / CST %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    }else if (str_tax_exduty.equals("")){
+                    } else if (str_tax_exduty.equals("")) {
                         TastyToast.makeText(getApplicationContext(), "Please Enter Exice Duty %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    }else {
+                    } else {
                         try {
 
                             dialog = new SpotsDialog(Activity_Enquiry_Process.this);
@@ -4224,6 +4239,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("tax1", str_tax_pnf);
                 params.put("tax2", str_tax_vat_cst);
                 params.put("tax3", str_tax_exduty);
+                params.put("freight_terms", str_feright_terms);
+                params.put("erection", str_erection);
+                params.put("delivery", str_delivery_weeks);
                 params.put("ga", str_ga_dia1);
 
                 System.out.println("tax" + str_po_add_price6);
@@ -4398,6 +4416,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("tax1", str_tax_pnf);
                 params.put("tax2", str_tax_vat_cst);
                 params.put("tax3", str_tax_exduty);
+                params.put("freight_terms", str_feright_terms);
+                params.put("erection", str_erection);
+                params.put("delivery", str_delivery_weeks);
                 params.put("ga", str_ga_dia1);
 
                 System.out.println("tax" + str_po_add_price6);

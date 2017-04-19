@@ -11,12 +11,13 @@
         android:layout_width="?android:listPreferredItemHeight"
         android:layout_height="?android:listPreferredItemHeight"
         timeline:timeline_indicatorColor="@color/colorPrimaryDark"
-        timeline:timeline_lineStyle="linear"
-        timeline:timeline_lineColor="@color/Alert_Success"/>
+        timeline:timeline_lineColor="@color/Alert_Success"
+        timeline:timeline_lineStyle="linear" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?android:listPreferredItemHeight"
+        android:background="@drawable/bg_parent_rounded_corner"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -28,9 +29,9 @@
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="sample"
+            android:textColor="@color/album_title"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:textColor="@color/album_title"
             tools:ignore="RtlHardcoded" />
 
         <TextView
@@ -41,8 +42,8 @@
             android:gravity="center_vertical"
             android:singleLine="true"
             android:text="sample"
-            android:textSize="16dp"
             android:textColor="@color/album_title"
+            android:textSize="16dp"
             tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
