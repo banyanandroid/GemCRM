@@ -49,6 +49,7 @@ public class AppConfig {
     public static String url_send_quotation  = base_url + "android/send_quotation.php";
 
     public static String url_followups = base_url + "android/enq_follow_ups.php";
+    public static String url_preview_send_quotation = base_url + "android/quotation_forward.php";
 
     public static String url_catalogue = base_url + "android/get_catalouge.php";
     public static String url_send_catalogue = base_url + "android/mail_catalogue.php";

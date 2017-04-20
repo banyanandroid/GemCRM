@@ -326,8 +326,17 @@ public class Activity_FollowUp extends AppCompatActivity implements SwipeRefresh
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                SharedPreferences sharedPreferences = PreferenceManager
+                        .getDefaultSharedPreferences(Activity_FollowUp.this);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putString("str_quotation_id_preview", str_process);
+
+                editor.commit();
+
+                Intent i = new Intent(getApplicationContext(), Activity_Quotation_Preview.class);
                 startActivity(i);
+                finish();
             }
         });
 

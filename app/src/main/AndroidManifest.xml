@@ -166,6 +166,12 @@
             android:label="OFM Preview"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".activity.Activity_Quotation_Preview"
+            android:label="Quotation Preview"
+            android:screenOrientation="portrait"></activity>
+
+
     </application>
 
 </manifest>
