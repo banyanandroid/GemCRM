@@ -148,7 +148,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:popupBackground="@color/colorPrimary"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -186,7 +186,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:popupBackground="@color/colorPrimary"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -255,7 +255,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:popupBackground="@color/colorPrimary"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 

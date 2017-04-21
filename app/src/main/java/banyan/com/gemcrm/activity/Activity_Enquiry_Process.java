@@ -2718,7 +2718,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                             try {
                                 spn_model
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_model));
 
@@ -2988,7 +2988,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                             try {
                                 spn_model_no
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_model_no));
 
@@ -3089,7 +3089,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model_type
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model_type));
 
@@ -3199,32 +3199,32 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                                 System.out.println("GROUP ID :: " + Arraylist_group_id2);
 
                                 spn_group1
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_group2));
 
                                 spn_group2
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_group2));
 
                                 spn_group3
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_group2));
 
                                 spn_group4
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_group2));
 
                                 spn_group5
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_group2));
 
                                 spn_group6
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_group2));
 
@@ -3313,7 +3313,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model2
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model2));
 
@@ -3334,7 +3334,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model3
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model3));
 
@@ -3355,7 +3355,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model4
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model4));
 
@@ -3376,7 +3376,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model5
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model5));
 
@@ -3397,7 +3397,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model6
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model6));
 
@@ -3514,7 +3514,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model_no2
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model_no2));
 
@@ -3536,7 +3536,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model_no3
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model_no3));
 
@@ -3558,7 +3558,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model_no4
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model_no4));
 
@@ -3580,7 +3580,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model_no5
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model_no5));
 
@@ -3602,7 +3602,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                 try {
                                     spn_model_no6
-                                            .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                            .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                     android.R.layout.simple_spinner_dropdown_item,
                                                     Arraylist_model_no6));
 
@@ -3730,7 +3730,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                     try {
                                         spn_model_type2
-                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                         android.R.layout.simple_spinner_dropdown_item,
                                                         Arraylist_model_type2));
 
@@ -3771,7 +3771,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                     try {
                                         spn_model_type3
-                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                         android.R.layout.simple_spinner_dropdown_item,
                                                         Arraylist_model_type3));
 
@@ -3812,7 +3812,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                     try {
                                         spn_model_type4
-                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                         android.R.layout.simple_spinner_dropdown_item,
                                                         Arraylist_model_type4));
 
@@ -3853,7 +3853,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                     try {
                                         spn_model_type5
-                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                         android.R.layout.simple_spinner_dropdown_item,
                                                         Arraylist_model_type5));
 
@@ -3894,7 +3894,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
                                     try {
                                         spn_model_type6
-                                                .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                                .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                         android.R.layout.simple_spinner_dropdown_item,
                                                         Arraylist_model_type6));
 
@@ -4034,7 +4034,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                                 System.out.println("Quotation no :: " + Arraylist_quotation_no);
 
                                 spn_enq_no_for_comple_drop
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Process.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_quotation_no));
 

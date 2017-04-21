@@ -48,6 +48,7 @@
                     android:layout_weight="1"
                     android:entries="@array/form5_application"
                     android:textColor="@color/black"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -75,6 +76,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:entries="@array/form5_insurance"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -104,6 +106,7 @@
                     android:layout_weight="1"
                     android:entries="@array/form5_freight_terms"
                     android:textColor="@color/black"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -132,6 +135,7 @@
                     android:layout_weight="1"
                     android:entries="@array/form5_payment_terms"
                     android:textColor="@color/black"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -218,6 +222,7 @@
                     android:layout_weight="1"
                     android:entries="@array/form5_PBG_ABG"
                     android:textColor="@color/black"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -246,6 +251,7 @@
                     android:layout_weight="1"
                     android:entries="@array/form5_inspesction"
                     android:textColor="@color/black"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -274,6 +280,7 @@
                     android:layout_weight="1"
                     android:entries="@array/form5_LD_clause"
                     android:textColor="@color/black"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -309,6 +316,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="18dp"
                 android:gravity="center"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -328,6 +336,7 @@
                     android:layout_weight="1"
                     android:entries="@array/form5_permit"
                     android:textColor="@color/black"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -356,6 +365,7 @@
                     android:layout_weight="1"
                     android:entries="@array/form5_commission_to"
                     android:textColor="@color/black"
+                    android:background="@drawable/bg_parent_rounded_corner"
                     android:textSize="16dp" />
 
             </LinearLayout>

@@ -292,6 +292,10 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                 } else if (str_contact_person.equals("")) {
                     edt_contact_person.setError("Please Enter the Field");
                     TastyToast.makeText(getApplicationContext(), "Please Enter Contact Person", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                }else if (str_selected_enquiry_through_id.equals("")) {
+                    TastyToast.makeText(getApplicationContext(), "Internal Error Try Again Later", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                }else if (str_selected_team_id.equals("")) {
+                    TastyToast.makeText(getApplicationContext(), "You Must Select Team", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                 } else {
                     dialog = new SpotsDialog(Activity_Enquiry_Add.this);
                     dialog.show();
@@ -373,7 +377,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
                             try {
                                 spn_product
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Add.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_products));
 
@@ -464,7 +468,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                             try {
 
                                 spn_enq_through
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Add.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_ent_title));
 
@@ -541,7 +545,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
                             Arraylist_camp_title.add(camp_title);
                         }
                         try {
-                            adapter_contact = new ArrayAdapter<String>(getApplicationContext(),
+                            adapter_contact = new ArrayAdapter<String>(Activity_Enquiry_Add.this,
                                     android.R.layout.simple_list_item_1, Arraylist_camp_title);
                             auto_campaign_name.setAdapter(adapter_contact);
                             auto_campaign_name.setThreshold(1);
@@ -628,7 +632,7 @@ public class Activity_Enquiry_Add extends BaseActivity_Enquiry implements Adapte
 
                             try {
                                 spn_enq_region
-                                        .setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                        .setAdapter(new ArrayAdapter<String>(Activity_Enquiry_Add.this,
                                                 android.R.layout.simple_spinner_dropdown_item,
                                                 Arraylist_region));
 

@@ -111,7 +111,7 @@ public class Activity_Quotation_Preview extends AppCompatActivity {
 
                 try {
                     FunctionCAllAlert();
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
@@ -228,9 +228,12 @@ public class Activity_Quotation_Preview extends AppCompatActivity {
                                     TastyToast.makeText(getApplicationContext(), "Please Enter Email ID", TastyToast.LENGTH_LONG, TastyToast.ERROR);
                                 } else if (!validUtils.validateEmail(edt_email1)) {
                                     validUtils.showToast(Activity_Quotation_Preview.this, "Invalid Email on 1st Mail ID");
-                                }else if (!validUtils.validateEmail(edt_email2)) {
-                                    validUtils.showToast(Activity_Quotation_Preview.this, "Invalid Email on 2nd Mail ID");
-                                }else {
+                                } else if (!str_email2.equals("")) {
+                                    if (!validUtils.validateEmail(edt_email2)) {
+                                        validUtils.showToast(Activity_Quotation_Preview.this, "Invalid Email on 2nd Mail ID");
+                                    }
+
+                                } else {
                                     spot_dialog = new SpotsDialog(Activity_Quotation_Preview.this);
                                     spot_dialog.show();
                                     queue = Volley.newRequestQueue(Activity_Quotation_Preview.this);

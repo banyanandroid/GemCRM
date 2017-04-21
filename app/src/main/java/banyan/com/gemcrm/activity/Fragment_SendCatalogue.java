@@ -339,7 +339,6 @@ public class Fragment_SendCatalogue extends Fragment {
                                 // Toast.makeText(getActivity(), str_select_email + " " + str_selected, Toast.LENGTH_LONG).show();
                                 if (!validUtils.validateEmail(edt_email)) {
                                     validUtils.showToast(getActivity(), "Invalid Email");
-                                    dialog.notify();
                                 } else {
                                     try {
 

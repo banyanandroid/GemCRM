@@ -655,7 +655,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -685,7 +684,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -715,7 +713,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -745,7 +742,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1023,7 +1019,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -1053,7 +1048,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1083,7 +1077,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1113,7 +1106,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1391,7 +1383,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -1421,7 +1412,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1451,7 +1441,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1481,7 +1470,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1761,7 +1749,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -1791,7 +1778,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1821,7 +1807,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -1851,7 +1836,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2128,7 +2112,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -2158,7 +2141,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2188,7 +2170,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2218,7 +2199,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2494,7 +2474,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/black"
                                 android:textSize="16dp" />
 
@@ -2524,7 +2503,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2554,7 +2532,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2584,7 +2561,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:background="@drawable/bg_spinner"
-                                android:popupBackground="@color/hash"
                                 android:textColor="@color/album_title"
                                 android:textSize="16dp" />
 
@@ -2808,7 +2784,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_parent_rounded_corner"
                         android:entries="@array/enq_status"
-                        android:popupBackground="@color/hash"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -2839,7 +2814,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_parent_rounded_corner"
                         android:entries="@array/feright_terms"
-                        android:popupBackground="@color/hash"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -2902,7 +2876,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_parent_rounded_corner"
                         android:entries="@array/deliver_weeks"
-                        android:popupBackground="@color/hash"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -2935,7 +2908,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/bg_login_rounded"
-                        android:popupBackground="@color/hash"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 
@@ -3038,7 +3010,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_parent_rounded_corner"
                         android:entries="@array/gadiagram"
-                        android:popupBackground="@color/hash"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
 

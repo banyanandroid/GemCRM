@@ -201,9 +201,9 @@ public class Activity_Order_Six_Product_details extends AppCompatActivity {
                     linear_commission_percent.setVisibility(View.VISIBLE);
                     linear_commission_value.setVisibility(View.VISIBLE);
 
-                    str_commission = edt_commission.getText().toString();
+                    /*str_commission = edt_commission.getText().toString();
                     str_commission_value = edt_commission_value.getText().toString();
-                    str_logistics_preferred = edt_logistics_preferred.getText().toString();
+                    str_logistics_preferred = edt_logistics_preferred.getText().toString();*/
 
 
 
@@ -237,6 +237,37 @@ public class Activity_Order_Six_Product_details extends AppCompatActivity {
 
 
                 str_ld_clause_desc = edt_ld_clause_desc.getText().toString();
+
+                if (str_commission_to.equals("NA")){
+
+                    linear_commission_percent.setVisibility(View.GONE);
+                    linear_commission_value.setVisibility(View.GONE);
+
+                    str_commission = "Nil";
+                    str_commission_value = "Nil";
+                    str_logistics_preferred = "Nil";
+
+
+                }else {
+
+                    linear_commission_percent.setVisibility(View.VISIBLE);
+                    linear_commission_value.setVisibility(View.VISIBLE);
+
+                    str_commission = edt_commission.getText().toString();
+                    str_commission_value = edt_commission_value.getText().toString();
+                    str_logistics_preferred = edt_logistics_preferred.getText().toString();
+                }
+
+                if (str_ld_clause.equals("Applicable")){
+
+                    linear_ld_claues.setVisibility(View.VISIBLE);
+
+                }else if (str_ld_clause.equals("Not Applicable")) {
+
+                    linear_ld_claues.setVisibility(View.GONE);
+                    str_ld_clause_desc = "Nil";
+
+                }
 
 
                 if (str_others.equals("")) {
