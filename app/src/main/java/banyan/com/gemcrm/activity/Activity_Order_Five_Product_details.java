@@ -57,8 +57,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
             edt_actual_price_one, edt_actual_price_two, edt_actual_price_three, edt_actual_price_four, edt_actual_price_five, edt_actual_price_six,
             edt_req_date_one, edt_req_date_two, edt_req_date_three, edt_req_date_four, edt_req_date_five, edt_req_date_six,
 
-    edt_note, edt_total_value, edt_p_and_f, edt_VAT_CET, edt_BET, edt_p_and_f_value,
-            edt_VAT_CET_value, edt_BET_value, edt_grand_total;
+    edt_note, edt_total_value, edt_p_and_f, edt_VAT_CET, edt_BET,edt_GST, edt_p_and_f_value,
+            edt_VAT_CET_value, edt_BET_value,edt_GST_value, edt_grand_total;
 
     Button btn_recalculate;
 
@@ -75,8 +75,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
             str_actual_price_one, str_actual_price_two, str_actual_price_three, str_actual_price_four, str_actual_price_five, str_actual_price_six,
             str_req_date_one, str_req_date_two, str_req_date_three, str_req_date_four, str_req_date_five, str_req_date_six,
 
-    str_note, str_total_value, str_p_and_f, str_VAT_CET, str_BET, str_p_and_f_value,
-            str_VAT_CET_value, str_BET_value, str_grand_total = "";
+    str_note, str_total_value, str_p_and_f, str_VAT_CET, str_BET,str_GST, str_p_and_f_value,
+            str_VAT_CET_value, str_BET_value,str_GST_value, str_grand_total = "";
 
     String str_qid1, str_qid2, str_qid3, str_qid4, str_qid5, str_qid6 = "";
 
@@ -99,7 +99,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
     int int_count;
 
-    long long_pf_value, long_bed_value, long_vat_value, long_total, long_grant_total = 0;
+    long long_pf_value, long_bed_value, long_vat_value,long_gst_value, long_total, long_grant_total = 0;
 
     private Toolbar mToolbar;
 
@@ -174,6 +174,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
         edt_VAT_CET_value = (EditText) findViewById(R.id.prod_dtl_edt_vat_cst_value);
         edt_BET = (EditText) findViewById(R.id.prod_dtl_edt_bed_percent);
         edt_BET_value = (EditText) findViewById(R.id.prod_dtl_edt_bed_value);
+        edt_GST = (EditText) findViewById(R.id.prod_dtl_edt_gst_percent);
+        edt_GST_value = (EditText) findViewById(R.id.prod_dtl_edt_gst_value);
         edt_grand_total = (EditText) findViewById(R.id.prod_dtl_edt_grand_total);
 
         card1 = (CardView) findViewById(R.id.product_details_card_view_one);
@@ -191,6 +193,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
         edt_p_and_f_value.setFocusable(false);
         edt_VAT_CET_value.setFocusable(false);
         edt_BET_value.setFocusable(false);
+        edt_GST_value.setFocusable(false);
         edt_grand_total.setFocusable(false);
 
 
@@ -496,10 +499,10 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                 if (str_pandf.equals("")) {
                     TastyToast.makeText(getApplicationContext(), "Please Enter Some Value", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     edt_p_and_f_value.setText("");
-                } else if (str_pandf.equals("0")) {
+                } /*else if (str_pandf.equals("0")) {
                     TastyToast.makeText(getApplicationContext(), "P & F Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     edt_p_and_f_value.setText("");
-                } else {
+                }*/ else {
 
                     try {
 
@@ -518,7 +521,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                         long_total = Math.round(pnf_total_value);
 
-                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_total;
+                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_gst_value + long_total;
 
                         edt_grand_total.setText("" + long_grant_total);
 
@@ -570,10 +573,10 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                 if (str_bed.equals("")) {
                     TastyToast.makeText(getApplicationContext(), "Please Enter Some Value", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     edt_BET_value.setText("");
-                } else if (str_bed.equals("0")) {
+                } /*else if (str_bed.equals("0")) {
                     TastyToast.makeText(getApplicationContext(), "B.E.D Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     edt_BET_value.setText("");
-                } else {
+                }*/ else {
 
                     try {
 
@@ -592,7 +595,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                         long_total = Math.round(bed_total_value);
 
-                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_total;
+                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_gst_value +long_total;
 
                         edt_grand_total.setText("" + long_grant_total);
 
@@ -644,10 +647,10 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                 if (str_vat.equals("")) {
                     TastyToast.makeText(getApplicationContext(), "Please Enter Some Value", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     edt_VAT_CET_value.setText("");
-                } else if (str_vat.equals("0")) {
+                }/* else if (str_vat.equals("0")) {
                     TastyToast.makeText(getApplicationContext(), "VAT/CST % Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     edt_VAT_CET_value.setText("");
-                } else {
+                }*/ else {
 
                     try {
 
@@ -666,7 +669,7 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                         long_total = Math.round(vat_total_value);
 
-                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_total;
+                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_gst_value + long_total;
 
                         edt_grand_total.setText("" + long_grant_total);
 
@@ -674,6 +677,80 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
 
                     }
 
+                }
+
+            }
+        });
+
+        edt_GST.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                System.out.println(" ::::::::::::: onTextChanged ::::::::::: ");
+
+                if (i == 1) {
+
+                    String str_gst = edt_GST.getText().toString();
+
+                    String str_actual_gst = "28";
+
+                    double actual_gst = Double.parseDouble(str_actual_gst);
+
+                    Double gst = Double.parseDouble(str_gst);
+
+                    if (gst >= actual_gst) {
+                        TastyToast.makeText(getApplicationContext(), "Your GST Limit Exceeded", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                        edt_GST.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                System.out.println(" ::::::::::::: afterTextChanged ::::::::::: ");
+
+                String str_gst = edt_GST.getText().toString();
+                String total_value = edt_total_value.getText().toString();
+
+                if (str_gst.equals("")) {
+                    TastyToast.makeText(getApplicationContext(), "Please Enter Some Value", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    edt_GST_value.setText("");
+                } /*else if (str_gst.equals("0")) {
+                    TastyToast.makeText(getApplicationContext(), "GST Cannot be 0", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    edt_GST_value.setText("");
+                }*/ else {
+
+                    try {
+
+                        Double gst_percent = Double.parseDouble(str_gst);
+                        Double gst_total_value = Double.parseDouble(total_value);
+
+                        Double gst_value = gst_percent / 100 * gst_total_value;
+
+                        System.out.println("GST : " + gst_value);
+                        System.out.println("GST : " + gst_value);
+                        System.out.println("GST : " + gst_value);
+
+                        long_gst_value = Math.round(gst_value);
+
+                        edt_GST_value.setText("" + long_gst_value);
+
+                        long_total = Math.round(gst_total_value);
+
+                        long_grant_total = long_pf_value + long_bed_value + long_vat_value + long_gst_value + long_total;
+
+                        edt_grand_total.setText("" + long_grant_total);
+
+                    } catch (Exception e) {
+
+                    }
                 }
 
             }
@@ -900,6 +977,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                 str_VAT_CET_value = edt_VAT_CET_value.getText().toString();
                 str_BET = edt_BET.getText().toString();
                 str_BET_value = edt_BET_value.getText().toString();
+                str_GST = edt_GST.getText().toString();
+                str_GST_value = edt_GST_value.getText().toString();
                 str_grand_total = edt_grand_total.getText().toString();
 
 
@@ -1163,6 +1242,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                 editor.putString("str_VAT_CET_value", str_VAT_CET_value);
                 editor.putString("str_BET", str_BET);
                 editor.putString("str_BET_value", str_BET_value);
+                editor.putString("str_GST", str_GST);
+                editor.putString("str_GST_value", str_GST_value);
                 editor.putString("str_grand_total", str_grand_total);
 
                 editor.commit();
@@ -1290,6 +1371,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
             str_VAT_CET_value = sharedPreferences.getString("str_VAT_CET_value", "str_VAT_CET_value");
             str_BET = sharedPreferences.getString("str_BET", "str_BET");
             str_BET_value = sharedPreferences.getString("str_BET_value", "str_BET_value");
+            str_GST = sharedPreferences.getString("str_GST", "str_GST");
+            str_GST_value = sharedPreferences.getString("str_GST_value", "str_GST_value");
             str_grand_total = sharedPreferences.getString("str_grand_total", "str_grand_total");
 
             //SET
@@ -1359,6 +1442,8 @@ public class Activity_Order_Five_Product_details extends AppCompatActivity {
                 edt_VAT_CET_value.setText(str_VAT_CET_value);
                 edt_BET.setText(str_BET);
                 edt_BET_value.setText(str_BET_value);
+                edt_GST.setText(str_GST);
+                edt_GST_value.setText(str_GST_value);
                 edt_grand_total.setText(str_grand_total);
 
             } catch (Exception e) {

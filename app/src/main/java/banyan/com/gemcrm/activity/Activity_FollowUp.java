@@ -410,5 +410,4 @@ public class Activity_FollowUp extends AppCompatActivity implements SwipeRefresh
         return false;
     }
 
-
 }

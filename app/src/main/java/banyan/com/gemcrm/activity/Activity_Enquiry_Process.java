@@ -104,7 +104,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
     EditText edt_addon_email, edt_addon_email2, edt_addon_email3;
 
-    EditText edt_tax_pnf, edt_tax_vat_cst, edt_tax_exduty;
+    EditText edt_tax_pnf, edt_tax_vat_cst, edt_tax_exduty,edt_tax_gst;
 
     EditText edt_spec, edt_discount, edt_price;
 
@@ -243,7 +243,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
     String str_Selected_tax = "";*/
 
 
-    String str_tax_pnf, str_tax_vat_cst, str_tax_exduty = "";
+    String str_tax_pnf, str_tax_vat_cst, str_tax_exduty,str_tax_gst = "";
 
     LinearLayout linear_appointment, linear_enq_no;
 
@@ -508,6 +508,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
         edt_tax_pnf = (EditText) findViewById(R.id.enq_process_edt_tax_pnf);
         edt_tax_vat_cst = (EditText) findViewById(R.id.enq_process_edt_tax_vat_cst);
         edt_tax_exduty = (EditText) findViewById(R.id.enq_process_edt_tax_exice_duty);
+        edt_tax_gst = (EditText) findViewById(R.id.enq_process_edt_tax_gst);
 
         edt_erection = (EditText) findViewById(R.id.enq_process_edterection);
 
@@ -516,6 +517,14 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
 
        /* Arraylist_tax = new ArrayList<String>();
         Arraylist_tax_id = new ArrayList<String>();*/
+
+       try{
+           edt_tax_pnf.setText("0");
+           edt_tax_vat_cst.setText("0");
+           edt_tax_exduty.setText("0");
+       }catch (Exception e){
+
+       }
 
         Arraylist_quotation_no = new ArrayList<String>();
 
@@ -2111,6 +2120,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 str_tax_pnf = edt_tax_pnf.getText().toString();
                 str_tax_vat_cst = edt_tax_vat_cst.getText().toString();
                 str_tax_exduty = edt_tax_exduty.getText().toString();
+                str_tax_gst = edt_tax_gst.getText().toString();
 
                 if (str_po_status.equals("Appointment")) {
 
@@ -2143,7 +2153,9 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         TastyToast.makeText(getApplicationContext(), "Please Enter VAT / CST %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     } else if (str_tax_exduty.equals("")) {
                         TastyToast.makeText(getApplicationContext(), "Please Enter Exice Duty %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                    } else {
+                    } else if (str_tax_gst.equals("")) {
+                        TastyToast.makeText(getApplicationContext(), "Please Enter GST %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    }else {
                         try {
 
                             dialog = new SpotsDialog(Activity_Enquiry_Process.this);
@@ -2164,6 +2176,8 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                         TastyToast.makeText(getApplicationContext(), "Please Enter VAT / CST %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     } else if (str_tax_exduty.equals("")) {
                         TastyToast.makeText(getApplicationContext(), "Please Enter Exice Duty %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    } else if (str_tax_gst.equals("")) {
+                        TastyToast.makeText(getApplicationContext(), "Please Enter GST %", TastyToast.LENGTH_LONG, TastyToast.WARNING);
                     } else {
                         try {
 
@@ -4239,6 +4253,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("tax1", str_tax_pnf);
                 params.put("tax2", str_tax_vat_cst);
                 params.put("tax3", str_tax_exduty);
+                params.put("tax4", str_tax_gst);
                 params.put("freight_terms", str_feright_terms);
                 params.put("erection", str_erection);
                 params.put("delivery", str_delivery_weeks);
@@ -4416,6 +4431,7 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                 params.put("tax1", str_tax_pnf);
                 params.put("tax2", str_tax_vat_cst);
                 params.put("tax3", str_tax_exduty);
+                params.put("tax4", str_tax_gst);
                 params.put("freight_terms", str_feright_terms);
                 params.put("erection", str_erection);
                 params.put("delivery", str_delivery_weeks);
@@ -4475,7 +4491,6 @@ public class Activity_Enquiry_Process extends AppCompatActivity {
                                 .setText("Appointment Saved Successfully")
                                 .setBackgroundColor(R.color.Alert_Success)
                                 .show();
-
 
                     } else if (success == 0) {
 

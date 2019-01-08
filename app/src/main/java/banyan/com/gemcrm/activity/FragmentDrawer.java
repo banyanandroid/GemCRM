@@ -104,12 +104,9 @@ public class FragmentDrawer extends Fragment {
         txt_username.setText("" + str_name);
 
         try {
-
             String str_img_path = "http://gemservice.in/crm/executive/" + str_image;
             Glide.with(getActivity()).load(str_img_path)
                     .thumbnail(0.5f)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(img_image);
 
         } catch (Exception e) {

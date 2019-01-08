@@ -153,8 +153,6 @@ public class Activity_Enquiry_Completed_Description extends AppCompatActivity {
             String str_img_path = "http://gemservice.in/crm/po/" + str_select_image;
             Glide.with(getApplicationContext()).load(str_img_path)
                     .thumbnail(0.5f)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(img_completed);
 
         } catch (Exception e) {

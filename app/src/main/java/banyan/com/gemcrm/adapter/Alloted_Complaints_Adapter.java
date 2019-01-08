@@ -61,9 +61,7 @@ public class Alloted_Complaints_Adapter extends BaseAdapter {
         HashMap<String, String> result = new HashMap<String, String>();
         result = data.get(position);
 
-
         System.out.println("NAME : " + Tab_Enquiry_Fragment.TAG_ENQ_END_COMP_NAME);
-
 
         app_initial.setText(result.get(Tab_Enquiry_Fragment.TAG_ENQ_PRODUCT_SERIES).substring(0, 1));
         app_with.setText(result.get(Tab_Enquiry_Fragment.TAG_ENQ_END_COMP_NAME));

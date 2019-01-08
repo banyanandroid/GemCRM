@@ -78,8 +78,8 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
             str_req_date_one, str_req_date_two, str_req_date_three, str_req_date_four, str_req_date_five, str_req_date_six,
             str_qno1, str_qno2, str_qno3, str_qno4, str_qno5, str_qno6,
 
-    str_note, str_total_value, str_p_and_f, str_VAT_CET, str_BET, str_p_and_f_value,
-            str_VAT_CET_value, str_BET_value, str_grand_total = "";
+    str_note, str_total_value, str_p_and_f, str_VAT_CET, str_BET,str_GST, str_p_and_f_value,
+            str_VAT_CET_value, str_BET_value,str_GST_value, str_grand_total = "";
 
     //FORM 6
 
@@ -338,6 +338,8 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                         str_VAT_CET_value = sharedPreferences.getString("str_VAT_CET_value", "str_VAT_CET_value");
                         str_BET = sharedPreferences.getString("str_BET", "str_BET");
                         str_BET_value = sharedPreferences.getString("str_BET_value", "str_BET_value");
+                        str_GST = sharedPreferences.getString("str_GST", "str_GST");
+                        str_GST_value = sharedPreferences.getString("str_GST_value", "str_GST_value");
                         str_grand_total = sharedPreferences.getString("str_grand_total", "str_grand_total");
 
                         //FORM 6
@@ -545,6 +547,8 @@ public class Activity_Order_Seven_Dispatch extends AppCompatActivity {
                 params.put("vat_amount", str_VAT_CET_value);
                 params.put("bed_percent", str_BET);
                 params.put("bed_amount", str_BET_value);
+                params.put("gst_percent", str_BET);
+                params.put("gst_amount", str_BET_value);
                 params.put("grand_total", str_grand_total);
 
                 //FORM 6

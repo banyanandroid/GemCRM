@@ -118,7 +118,6 @@ public class Activity_Quotation_Preview extends AppCompatActivity {
             }
         });
 
-
     }
 
     /*****************************************
